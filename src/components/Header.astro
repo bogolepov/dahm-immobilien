@@ -16,8 +16,9 @@ import Dahm from "@data/dahm.json"
     --hover-item-background-color: rgba(169, 169, 169, 0.95);
     /* --menu-opaque-background-color: rgba(203, 203, 203, 0.95); */
     /* --menu-opaque-background-color: rgba(184, 199, 215, 0.95); */
-    --menu-opaque-background-color: rgba(132, 132, 132, 0.95);
-    --submenu-background-color: rgba(215, 215, 215, 0.95);
+    --menu-opaque-background-color: rgba(140, 140, 140, 0.95);
+    /* --submenu-background-color: rgba(215, 215, 215, 0.95); */
+    --submenu-background-color: rgba(229, 232, 236, 0.95);
     --padding-x-item: 0.65em;
     --header-font-color: #373737;
 
@@ -39,6 +40,7 @@ import Dahm from "@data/dahm.json"
     background-color: var(--menu-opaque-background-color);
     /* border-bottom: 3px solid var(--color-dahm-grey); */
     --header-font-color: #000000;
+    --submenu-background-color: var(--menu-opaque-background-color);
     /* background-color: var(--background-color-toolbar); */
   }
   @supports (font-variation-settings: 'wdth' 115) {
@@ -73,10 +75,12 @@ import Dahm from "@data/dahm.json"
     left: 0;
     top: 100%;
     /* backdrop-filter: blur(9px); */
-    /* background-color: var(--submenu-background-color); */
-    background-color: var(--menu-opaque-background-color);
+    background-color: var(--submenu-background-color);
+    /* background-color: var(--menu-opaque-background-color); */
     transform-origin: 0 0;
-    transition: transform 0.5s ease-in-out;
+    transition: 
+      transform 0.5s ease-in-out,
+      background-color 500ms ease-in-out;
   }
   .nav-list ul > li {
     padding: 0.5em calc(1.5 * var(--padding-x-item)) 0.5em calc(3 * var(--padding-x-item));
@@ -199,7 +203,7 @@ import Dahm from "@data/dahm.json"
     header:is(:not(.opaque)):hover {
       background-color: var(--hover-menu-background-color);
     }
-    .nav-list > li:not(.flex-spreader):hover {
+    .nav-list > li:not(.flex-spreader):has(div > a:hover) {
       color: var(--color-dahm-bordo);
       background-color: var(--hover-item-background-color);
     }
@@ -214,6 +218,7 @@ import Dahm from "@data/dahm.json"
       color: var(--header-font-color);
     }
     .nav-list ul > li:hover {
+      color: var(--color-dahm-bordo);
       background-color: var(--hover-item-background-color);
     }
   }
