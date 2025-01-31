@@ -1,0 +1,21 @@
+{
+	"company_name": "Dahm Immobilien",
+	"telephone": "+49 2331 6285250",
+	"email": "info@hv-dahm.de",
+	"website_link": "https://dahm-immobilien.de",
+	"menu": [
+		{ "name": "Startseite", "root": true },
+		{ "name": "Über Uns", "url": "about" },
+		{
+			"name": "Leistungen",
+			"folder": "leistungen",
+			"submenu": [
+				{ "name": "Verwaltung", "url": "verwaltung" },
+				{ "name": "Vermietung", "url": "vermietung" },
+				{ "name": "Verkauf", "url": "verkauf" }
+			]
+		},
+		{ "name": "Objekte", "url": "objekte" },
+		{ "name": "Kontakt", "url": "kontakt" }
+	]
+}

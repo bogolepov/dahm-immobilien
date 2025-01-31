@@ -1,0 +1,334 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const pathname: string = new URL(Astro.request.url).pathname;
+const currentPath: string[] = pathname.split("/").filter(Boolean);
+
+import BurgerButton from "@components/burger_button/burger_button.astro";
+
+import Dahm from "@data/dahm.json"
+
+---
+
+<style>
+  header {
+    --hover-menu-background-color: rgba(220, 220, 220, 0.45);
+    --hover-item-background-color: rgba(169, 169, 169, 0.95);
+    /* --menu-opaque-background-color: rgba(203, 203, 203, 0.95); */
+    /* --menu-opaque-background-color: rgba(184, 199, 215, 0.95); */
+    --menu-opaque-background-color: rgba(132, 132, 132, 0.95);
+    --submenu-background-color: rgba(215, 215, 215, 0.95);
+    --padding-x-item: 0.65em;
+    --header-font-color: #373737;
+
+    width: 100%;
+    height: min-content;
+    max-width: 100vw;
+    top: 0;
+    align-items: center;
+    z-index: 100;
+    position: fixed;
+    -webkit-backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
+    font-weight: 500;
+    transition: 
+      background-color 500ms ease-in-out,
+      border-color 500ms ease-in-out;
+  }
+  header.opaque {
+    background-color: var(--menu-opaque-background-color);
+    /* border-bottom: 3px solid var(--color-dahm-grey); */
+    --header-font-color: #000000;
+    /* background-color: var(--background-color-toolbar); */
+  }
+  @supports (font-variation-settings: 'wdth' 115) {
+    header {
+      font-size: calc(var(--font-size) * 0.85);
+      font-weight: 540;
+      font-stretch: 103%;
+      font-optical-sizing: auto;
+    }
+  }
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style: none;
+    align-items: stretch;
+    height: 100%;
+    color: var(--header-font-color);
+  }
+  .nav-list > li {
+    position: relative;
+    min-height: 100%;
+  }
+  .nav-list > li > div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list ul {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    /* backdrop-filter: blur(9px); */
+    /* background-color: var(--submenu-background-color); */
+    background-color: var(--menu-opaque-background-color);
+    transform-origin: 0 0;
+    transition: transform 0.5s ease-in-out;
+  }
+  .nav-list ul > li {
+    padding: 0.5em calc(1.5 * var(--padding-x-item)) 0.5em calc(3 * var(--padding-x-item));
+    /* padding: var(--padding-x-item);
+    padding-left: calc(3 * var(--padding-x-item)); */
+  }
+
+  nav ul li {
+    padding: 0.15em var(--padding-x-item);
+  }
+
+  nav li {
+    transition:
+      color 500ms ease-out,
+			background-color 400ms ease-in-out;
+  }
+
+  .menu-item-desktop {
+    display: none;
+  }
+  .logo {
+    margin: auto 0;
+    padding: 0 1em;
+
+  }
+  .nav-logo-text {
+    display: block;
+    width: calc(var(--font-size) * 3.5);
+  }
+  .logo svg {
+    height: var(--header-height);
+  }
+  .h2em {
+    min-height: 2.25em;
+    min-width: 2.25em;
+  }
+  .round-border {
+    border: 1px solid #3737375d;
+    border-radius: 9999px;
+    transition: border-color 500ms ease-out;
+
+  }
+  .phone-number-text {
+    padding: 0.2em 0.5em;
+    display: none;
+  }
+  @media screen and (min-width: 695px) {
+    .phone-icon {
+      display: none;
+    }
+    .phone-number-text {
+      display: block;
+    }
+  }
+  .phone-number svg,
+  .email-address svg {
+    width: 2em;
+    height: 1.15em;
+  }
+  header .active_link {
+    text-decoration: 1.5px var(--color-marker) underline;
+    text-underline-offset: 0.4em;
+    text-decoration-skip-ink: none;
+  }
+  .menu-mobile {
+    display: block;
+  } 
+  .menu-mobile > .round-border {
+      padding: 0 0.5em;
+  } 
+  .global-menu-layer {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    z-index: 90;
+    background-color: #a4a4a464;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+  }
+
+  ul.global-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    align-items: start;
+    padding: calc(var(--header-height) + 1em ) 0.65em 0.8em 0.7em;
+    font-size: calc(var(--font-size) * 1.3);
+  }
+  .global-menu a {
+    padding-left: calc(0.6em + 3px);
+  }
+  .global-menu a.active_link {
+    padding-left: 0.6em;
+    border-left: 3px solid var(--color-marker);
+  }
+  @media screen and (max-width: 590px) {
+    body:has(#burger-button:checked) .global-menu-layer {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 590px) {
+    .menu-item-desktop {
+      display: block;
+    }
+    .menu-mobile {
+      display: none;
+    }
+    .global-menu-layer {
+      display: none;
+    }
+    li:has(.email-address) {
+      padding-right: 1.5em;
+    }
+  }
+
+  @media (hover: hover) {
+    header:is(:not(.opaque)):hover {
+      background-color: var(--hover-menu-background-color);
+    }
+    .nav-list > li:not(.flex-spreader):hover {
+      color: var(--color-dahm-bordo);
+      background-color: var(--hover-item-background-color);
+    }
+    .round-border:hover {
+      border-color: var(--color-dahm-bordo);
+    }
+    .nav-list > li:has(ul):not(:hover) ul {
+      transition: transform 0s ease-in-out;
+      transform: scaleY(0);
+    }
+    .nav-list ul > li:not(:hover) {
+      color: var(--header-font-color);
+    }
+    .nav-list ul > li:hover {
+      background-color: var(--hover-item-background-color);
+    }
+  }
+
+  a:focus-visible {
+    outline: none;
+  }
+  a:focus-visible .fv,
+  .fv:focus-visible,
+  .fv:has(a:focus-visible),
+  .fv:has(input:focus-visible) {
+    outline: 1px solid var(--color-dahm-bordo);
+    outline-offset: 0;
+  }
+
+</style>
+
+<header>
+  <nav>
+    <ul class="nav-list">
+      <li class="logo fv">
+        <div>
+          <a href={"/"} aria-label={Dahm.company_name}>
+            <Icon name="logo-text" class="nav-logo-text" size="1rem" />
+          </a>
+        </div>
+      </li>
+      {
+        Dahm.menu.map(menuItem => {
+          const menuItemURL = menuItem.root ? `/` : (menuItem.url ? `/${menuItem.url}/` : null);
+          return(
+            <li class="menu-item-desktop" class:list={[{fv: menuItem.url || menuItem.root }]}>
+              <div>
+              {
+                menuItemURL &&
+                <a href={menuItemURL} class:list={[{active_link: (currentPath.length === 0 && menuItem.root) || (currentPath.length > 0 && currentPath[0] === menuItem.url) }]}>
+                  {menuItem.name.toUpperCase()}
+                </a>
+              }
+              {
+                !menuItemURL &&
+                <span class:list={[{active_link: currentPath.length > 0 && currentPath[0] === menuItem.folder }]}>
+                  {menuItem.name.toUpperCase()}
+                </span>
+              }
+              </div>
+            {
+              menuItem.submenu &&
+              <ul>
+                {
+                  menuItem.submenu &&
+                  menuItem.submenu.map(submenuItem  => {
+                    const submenuItemURL = `/${menuItem.folder}/${submenuItem.url}/`;
+                    return (
+                      <li class="fv">
+                        <a href={submenuItemURL} class:list={[{active_link: currentPath.length > 0 && currentPath[0] === menuItem.folder && currentPath[1] === submenuItem.url }]}>
+                          {submenuItem.name.toUpperCase()}
+                        </a>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+            }
+            </li>
+          );
+        })
+      }
+      <li class="flex-spreader"></li>
+      <li>
+        <div>
+          <a class="flex-center round-border h2em phone-number fv" href={"tel: " + Dahm.telephone}>
+            <span class="phone-number-text">{Dahm.telephone}</span>
+            <Icon name="phone" class="phone-icon" />
+          </a>
+        </div>
+      </li>
+      <li>
+        <div>
+          <a class="flex-center round-border h2em email-address fv" href={"mailto: " + Dahm.email}>
+            <Icon name="email" />
+          </a>
+        </div>     
+      </li>
+      <li class="menu-mobile">
+        <div>
+          <div class="flex-center round-border h2em fv" ><BurgerButton id="burger-button"/></div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+<nav>
+  <div class="global-menu-layer">
+    <ul class="global-menu">
+    {
+      Dahm.menu.map(menuItem => {
+        return(
+          <li class="fv"><a href={`/${menuItem.url}/`} class:list={[{active_link: (currentPath.length === 0 && menuItem.url === '') || (currentPath.length > 0 && currentPath[0] === menuItem.url) }]}>{menuItem.name}</a></li>
+        );
+      })
+    }
+    </ul>
+  </div>
+</nav>
+
+<script is:inline>
+  const header = document.querySelector('header');
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (window.scrollY >= 25) {
+        header.classList.add("opaque")
+      } else {
+        header.classList.remove("opaque");
+      }
+    });
+</script>
