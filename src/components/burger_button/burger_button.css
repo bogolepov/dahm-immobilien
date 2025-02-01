@@ -28,7 +28,7 @@
 }
 
 .burger-button * {
-	line-height: 1px;
+	line-height: 0;
 }
 
 .burger-icon-wrapper {
@@ -40,7 +40,7 @@
 	background: transparent;
 	width: 100%;
 	fill: currentColor;
-	line-height: 3px;
+	line-height: 0;
 }
 
 .burger-button .line {
