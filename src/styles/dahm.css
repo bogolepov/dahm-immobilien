@@ -20,7 +20,7 @@ body {
 	--font-size: 1rem;
 	--font-size: clamp(0.92rem, 1.8vw, 1.05rem);
 
-	--header-height: calc(var(--font-size) * 3);
+	--header-height: calc(var(--font-size) * 3.5);
 
 	background-color: var(--color-dahm-background);
 	font-family: Tahoma, Verdana, sans-serif;
@@ -50,6 +50,42 @@ body {
 	justify-content: flex-start;
 	align-items: center;
 }
+
 .flex-spreader {
 	flex-grow: 5;
+}
+
+.image-wrapper-landscape {
+	display: block;
+	border-radius: 4px;
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+	position: relative;
+}
+
+.cover-image {
+	--min-width: 550px;
+	left: min(calc(50% - var(--min-width) / 2), 0px);
+	min-width: var(--min-width);
+	border-radius: 0;
+}
+.dahm-building {
+	width: 100%;
+	overflow: hidden;
+}
+
+.image-w {
+	display: block;
+	/* border-radius: 4px; */
+	width: 100%;
+	height: auto;
+	object-fit: contain;
+}
+.image-h {
+	display: block;
+	/* border-radius: 4px; */
+	width: auto;
+	height: 100%;
+	object-fit: contain;
 }
