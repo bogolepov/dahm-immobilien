@@ -1,7 +1,18 @@
 {
 	"company_name": "Dahm Immobilien",
+	"company_fullname": "Dahm Immobilien Verwaltung GmbH",
+	"owner": {
+		"firstname": "Norbert",
+		"lastname": "Reiche"
+	},
+	"address": {
+		"street": "Elberfelder Str.",
+		"building": "45",
+		"city": "Hagen",
+		"zip": "58095"
+	},
 	"telephone": "+49 2331 6285250",
-	"email": "info@hv-dahm.de",
+	"email": "info@dahm-immobilien.de",
 	"website_link": "https://dahm-immobilien.de",
 	"menu": [
 		{ "name": "Startseite", "root": true },

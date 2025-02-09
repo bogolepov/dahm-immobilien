@@ -1,40 +1,57 @@
 ---
-import "@styles/init.css"
-import "@styles/dahm.css"
+import '@styles/init.css';
+import '@styles/dahm.css';
 
-import Head from "@components/Head.astro"
-import Header from "@components/header/Header.astro";
+import Head from '@components/Head.astro';
+import Header from '@components/header/Header.astro';
+import Footer from '@components/Footer.astro';
 
 const { title, description, robots } = Astro.props;
 
-import DahmBulding from "@assets/building_dahm2.jpg"
-import { Picture } from 'astro:assets'
-
+import DahmBulding from '@assets/building_dahm2.jpg';
+import { Picture } from 'astro:assets';
 ---
 
 <!doctype html>
-<html lang="de">
-  <Head {title} {description} {robots}/>
+<style>
+	.main-content-wrapper {
+		display: grid;
+		place-items: center;
+		width: 100%;
+	}
+	.main-content {
+		width: 100%;
+		max-width: var(--max-width-page);
+		/* padding: 2.5em; */
+		margin: 0 auto;
+		padding: var(--padding-y-page) calc(var(--padding-x-page) + var(--padding-x-nav-item));
+	}
+</style>
+
+<html lang='de'>
+	<Head {title} {description} {robots} />
 	<body>
-		<Header/>
+		<Header />
 		<main>
-			<div class="dahm-building">
-				<Picture 
-					class:list={'image-wrapper-landscape cover-image'} 
-					src={DahmBulding} 
-					formats={['webp']} 
+			<div class='dahm-building'>
+				<Picture
+					class:list={'image-wrapper-landscape cover-image'}
+					src={DahmBulding}
+					formats={['webp']}
 					fallbackFormat='jpg'
-					loading="eager"
+					loading='eager'
 					widths={[360, 480, 600, 760, 960, 1200, 1600]}
 					sizes={'(max-width: 360px) 360px, (max-width: 480px) 480px, (max-width: 600px) 600px, (max-width: 760px) 760px, (max-width: 960px) 960px, (max-width: 1200px) 1200px, 1600px'}
-					quality="100"
-					alt='' />
+					quality='100'
+					alt=''
+				/>
 			</div>
-			<div class="main-content-wrapper">
-				<div class="main-content">
-					<slot/>
+			<div class='main-content-wrapper'>
+				<div class='main-content'>
+					<slot />
 				</div>
 			</div>
 		</main>
+		<Footer />
 	</body>
 </html>

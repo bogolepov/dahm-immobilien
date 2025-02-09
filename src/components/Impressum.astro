@@ -1,0 +1,40 @@
+---
+import dahm from '@data/dahm.json';
+---
+
+<section class='impressum'>
+	<h4>{dahm.company_fullname}</h4>
+	<address>
+		{dahm.address.street + ' ' + dahm.address.building}<br />
+		{dahm.address.zip + ' ' + dahm.address.city}
+	</address>
+	<div>
+		Tel.: ❗+49 (0) 3581 4714 0❗<br />
+		Fax: ❗+49 (0) 3581 4714 24❗<br />
+		E-mail: {dahm.email}<br />
+
+		Geschäftsinhaber: {dahm.owner.firstname + ' ' + dahm.owner.lastname}<br />
+		USt.-IdNr.: ❗DE313255920❗
+	</div>
+
+	<p>
+		Genehmigung nach § 34 c Abs. 1 Nr. 1 und 4 GewO erteilt von: Landkreis Görlitz Ordnungs- und Straßenverkehrsamt
+		-Allg. Ordnungsrecht- Hochwaldstraße 29 02763 Zittau
+	</p>
+
+	<h6>Streitbeilegung der EU / OS-Plattform</h6>
+
+	<p>
+		Die Europäische Kommission stellt eine Plattform für die außergerichtliche Online-Streitbeilegung (OS-Plattform)
+		bereit, die unter http://www.ec.europa.eu/consumers/odr abrufbar ist. Unsere E-Mail-Adresse lautet: {dahm.email}.
+		Wir sind weder verpflichtet noch bereit, an dem Streitschlichtungsverfahren teilzunehmen.
+	</p>
+
+	<h6>Datenschutzhinweis:</h6>
+
+	<p>
+		Ihre Angaben werden ausschließlich an den Immobilienanbieter weitergeleitet. Die gesetzlichen
+		Datenschutzbestimmungen werden hierbei eingehalten. Es erfolgt weder ein Verkauf noch die Weitergabe Ihrer Daten und
+		Angaben an unbefugte Dritte.
+	</p>
+</section>
