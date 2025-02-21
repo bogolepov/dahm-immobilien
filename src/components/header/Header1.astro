@@ -1,5 +1,5 @@
 ---
-import '@components/header/header.css';
+import '@components/header/header1.css';
 import { Icon } from 'astro-icon/components';
 
 const pathname: string = new URL(Astro.request.url).pathname;
@@ -167,22 +167,20 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 	</ul>
 </nav>
 
-<script>
+<script is:inline>
 	document.addEventListener('DOMContentLoaded', () => {
 		const header = document.querySelector('header');
-		if (header)
-			window.addEventListener('scroll', () => {
-				if (window.scrollY >= 25) {
-					header.classList.add('opaque');
-				} else {
-					header.classList.remove('opaque');
-				}
-			});
+		window.addEventListener('scroll', () => {
+			if (window.scrollY >= 25) {
+				header.classList.add('opaque');
+			} else {
+				header.classList.remove('opaque');
+			}
+		});
 
 		const burgerSwitcher = document.querySelector('#burger-button');
-		if (burgerSwitcher)
-			window.addEventListener('blur', () => {
-				burgerSwitcher.checked = false;
-			});
+		window.addEventListener('blur', () => {
+			burgerSwitcher.checked = false;
+		});
 	});
 </script>

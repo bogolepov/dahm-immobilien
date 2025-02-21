@@ -1,0 +1,39 @@
+---
+import '@components/sidebar/sidebar.css';
+import { Icon } from 'astro-icon/components';
+
+import CardPhone from '@components/cards/CardPhone.astro';
+import CardMessage from '@components/cards/CardMessage.astro';
+---
+
+<div class='sidebar'>
+	<div class='sb-card'>
+		<button class='card-button'><Icon name='phone' /></button>
+		<div class='card-wrapper'>
+			<CardPhone />
+		</div>
+	</div>
+	<div class='sb-card'>
+		<button class='card-button'><Icon name='email' /></button>
+		<div class='card-wrapper'>
+			<CardMessage />
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const sbCards = document.querySelectorAll('.sb-card');
+		sbCards.forEach(card => {
+			const btn = card.querySelector('.card-button');
+			if (btn)
+				btn.addEventListener('click', () => {
+					if (card.classList.contains('open')) card.classList.remove('open');
+					else {
+						sbCards.forEach(tmpCard => tmpCard.classList.remove('open'));
+						card.classList.add('open');
+					}
+				});
+		});
+	});
+</script>

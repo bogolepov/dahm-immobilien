@@ -1,0 +1,30 @@
+input,
+select {
+	border: 1px solid var(--border-color-form);
+	background-color: var(--background-color-form);
+	font-size: 0.95rem;
+	padding: 0.35em 0.5em;
+	outline: 1px solid transparent;
+	transition:
+		outline-color 400ms ease-in-out,
+		background-color 250ms ease-in-out;
+}
+input:hover,
+select:hover {
+	background-color: var(--background-color-form-active);
+}
+input:focus-visible,
+select:focus-visible {
+	background-color: var(--background-color-form-active);
+	outline-color: var(--border-color-form-active);
+}
+
+.red-button {
+	padding: 0.6em 1em;
+	background-color: var(--color-dahm-bordo);
+	font-weight: 350;
+	color: #ffffff;
+}
+.red-button[disabled] {
+	background-color: var(--color-dahm-grey);
+}

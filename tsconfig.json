@@ -5,6 +5,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
+			"@vue/*": ["src/components/vue/*"],
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@styles/*": ["src/styles/*"],
@@ -13,7 +14,7 @@
 			"@assets/*": ["src/assets/*"],
 			"@scripts/*": ["src/scripts/*"]
 		},
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"jsxImportSource": "react"
 	}
 }

@@ -140,33 +140,33 @@ li.menu-item-desktop > div a {
 .menu-item-desktop {
 	display: none;
 }
-.nav-list .logo {
+.logo {
 	margin: auto 0;
 	padding: 0 1em;
 }
-.nav-list .nav-logo-text {
+.nav-logo-text {
 	display: block;
 	width: calc(var(--font-size) * 3.5);
 }
-.nav-list .logo svg {
+.logo svg {
 	height: var(--header-height);
 }
-.nav-list .logo a {
+.logo a {
 	--logo-height: calc(var(--header-height) - 2 * var(--logo-koeff) * var(--padding-y-nav-item));
 	display: block;
 	min-width: calc(1.65 * var(--logo-height));
 	height: var(--logo-height);
 }
-.nav-list .h2em {
+.h2em {
 	min-height: 2.25em;
 	min-width: 2.25em;
 }
-.nav-list .round-border {
+.round-border {
 	border: 1px solid #3737375d;
 	border-radius: 9999px;
 	transition: border-color 500ms ease-out;
 }
-.nav-list .phone-number-text {
+.phone-number-text {
 	padding: 0.2em 0.5em;
 	display: none;
 }
@@ -174,16 +174,33 @@ li.menu-item-desktop > div a {
 	margin-left: auto;
 }
 
-.nav-list .phone-number svg,
-.nav-list .email-address svg {
+@media screen and ((min-width: 765px) or (max-width: 665px)) {
+	.phone-icon {
+		display: none;
+	}
+	.phone-number-text {
+		display: block;
+	}
+}
+@media screen and (max-width: 400px) {
+	.phone-icon {
+		display: block;
+	}
+	.phone-number-text {
+		display: none;
+	}
+}
+
+.phone-number svg,
+.email-address svg {
 	width: 2em;
 	height: 1.15em;
 }
 
-.nav-list .item-menu-mobile {
+.item-menu-mobile {
 	display: block;
 }
-.nav-list .item-menu-mobile > .round-border {
+.item-menu-mobile > .round-border {
 	padding: 0 0.5em;
 }
 
@@ -251,6 +268,39 @@ li.menu-item-desktop > div a {
 	padding-left: calc(var(--padding-koeff) * var(--padding-x-text));
 }
 
+@media screen and (max-width: 6650px) {
+	body:not(:has(#burger-button:checked, .mobile-menu-layer:focus-within)) .mobile-menu-layer {
+		transform: scaleY(0);
+	}
+	body:has(#burger-button:checked) .mobile-menu-layer,
+	.mobile-menu-layer:focus-visible {
+		transform: scaleY(1);
+	}
+	body:has(#burger-button:checked) header {
+		border-bottom: var(--border-thick) solid var(--border-color);
+		background-color: var(--menu-opaque-background-color);
+		--header-font-color: #000000;
+		--submenu-background-color: var(--menu-opaque-background-color);
+	}
+}
+@media screen and (min-width: 665px) {
+	.menu-item-desktop {
+		display: block;
+	}
+	.item-menu-mobile {
+		display: none;
+	}
+	.mobile-menu-layer {
+		display: none;
+	}
+}
+@media screen and (max-width: 665px) {
+	body {
+		--width-hot-button: 0px;
+		--height-hot-button: 0px;
+	}
+}
+
 header:is(:not(.opaque)):hover {
 	background-color: var(--hover-menu-background-color);
 }
@@ -259,7 +309,7 @@ header:is(:not(.opaque)):hover {
 	color: var(--color-dahm-bordo);
 	background-color: var(--hover-item-background-color);
 }
-.nav-list .round-border:hover {
+.round-border:hover {
 	border-color: var(--color-dahm-bordo);
 }
 .nav-list > li:hover ul,
@@ -290,55 +340,4 @@ a:focus-visible .fv,
 .nav-list ul .fv,
 .mobile-menu > li .fv {
 	outline-offset: -1px;
-}
-
-/* @media */
-@media screen and ((min-width: 765px) or (max-width: 665px)) {
-	.nav-list .phone-icon {
-		display: none;
-	}
-	.nav-list .phone-number-text {
-		display: block;
-	}
-}
-@media screen and (max-width: 400px) {
-	.nav-list .phone-icon {
-		display: block;
-	}
-	.nav-list .phone-number-text {
-		display: none;
-	}
-}
-
-@media screen and (max-width: 6650px) {
-	body:not(:has(#burger-button:checked, .mobile-menu-layer:focus-within)) .mobile-menu-layer {
-		transform: scaleY(0);
-	}
-	body:has(#burger-button:checked) .mobile-menu-layer,
-	.mobile-menu-layer:focus-visible {
-		transform: scaleY(1);
-	}
-	body:has(#burger-button:checked) header {
-		border-bottom: var(--border-thick) solid var(--border-color);
-		background-color: var(--menu-opaque-background-color);
-		--header-font-color: #000000;
-		--submenu-background-color: var(--menu-opaque-background-color);
-	}
-}
-@media screen and (min-width: 665px) {
-	.nav-list .menu-item-desktop {
-		display: block;
-	}
-	.nav-list .item-menu-mobile {
-		display: none;
-	}
-	.mobile-menu-layer {
-		display: none;
-	}
-}
-@media screen and (max-width: 665px) {
-	body {
-		--width-hot-button: 0px;
-		--height-hot-button: 0px;
-	}
 }

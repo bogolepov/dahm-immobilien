@@ -1,0 +1,65 @@
+.sidebar {
+	display: block;
+	position: fixed;
+	right: 0;
+	top: calc(var(--header-height) + var(--border-thick) + 5em);
+	z-index: 80;
+}
+
+.sb-card {
+	--card-index: 0;
+	--width-card: 540px;
+	--background-color-card: rgb(215, 215, 215);
+	--background-color-card: rgba(229, 232, 236);
+	--border-color-card: rgb(200, 200, 200);
+
+	position: absolute;
+	z-index: calc(80 - var(--card-index));
+	left: 0;
+	top: calc(var(--card-index) * (var(--height-hot-button) + 0.5em));
+	transition: left 300ms ease-in-out;
+	background-color: var(--background-color-card);
+	border: 1px solid var(--border-color-card);
+}
+.sb-card:nth-child(2) {
+	--card-index: 1;
+}
+
+.sb-card.open {
+	left: calc(-1 * var(--width-card));
+}
+
+.sb-card .card-button {
+	display: block;
+	position: absolute;
+	left: calc(-1 * var(--width-hot-button));
+	width: var(--width-hot-button);
+	height: var(--height-hot-button);
+	background-color: var(--color-dahm-bordo);
+	isolation: isolate;
+	color: #ffffff;
+	fill: #ffffff;
+	line-height: 1;
+}
+.sb-card button svg {
+	width: 1.3rem;
+	height: 1.3rem;
+}
+
+.sb-card .card-wrapper {
+	width: var(--width-card);
+	padding: 1.85rem var(--width-hot-button) 1.5rem 2rem;
+	max-height: min(max(55vh, 400px), 80vh);
+	overflow-y: auto;
+}
+
+.sb-card *::selection {
+	background-color: var(--color-dahm-bordo);
+	color: #ffffff;
+}
+
+@media screen and (max-width: 665px) {
+	.sidebar {
+		display: none;
+	}
+}

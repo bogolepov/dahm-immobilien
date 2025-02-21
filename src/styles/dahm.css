@@ -11,24 +11,36 @@
 
 body {
 	--color-dahm-background: #cecabf;
-	--color-dahm-bordo: #802932;
+	--color-dahm-bordo2: #802932;
+	--color-dahm-bordo: #9a1915;
 	--color-dahm-grey: #9f9e9e;
 	--color-marker: rgb(205, 158, 74);
 	--color-marker: var(--color-dahm-bordo);
 	--background-color-toolbar: hsl(44, 14%, 73%);
 	--border-color: rgb(111, 111, 111);
+	--border-color-form: rgb(175, 175, 175);
+	--border-color-form-active: rgb(154, 154, 154);
+	--background-color-form: rgb(245, 245, 245);
+	--background-color-form-active: rgb(254, 254, 254);
 	--border-thick: 2px;
 
 	--font-size: 1rem;
 	--font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+	--font-size-header: calc(var(--font-size) * 0.85);
+
+	--width-hot-button: 3em;
+	--height-hot-button: 3em;
 
 	--header-height: calc(var(--font-size) * 3.5);
-	--padding-x-page: clamp(0.5rem, 4vw, 1.2rem);
+	--padding-x-page: clamp(var(--width-hot-button) + 0.5rem, 4vw, var(--width-hot-button) + 1.2rem);
 	--padding-y-page: clamp(0.25rem, 4vw, 0.7rem);
 	--max-width-page: 1200px;
 
 	--padding-x-nav-item: 0.65em;
 	--padding-y-nav-item: 0.15em;
+
+	--text-opsz: 1;
+	font-variation-settings: 'opsz' var(--text-opsz);
 
 	background-color: var(--color-dahm-background);
 	font-family: Tahoma, Verdana, sans-serif;
