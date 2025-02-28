@@ -125,7 +125,7 @@ header:not(.opaque) .nav-submenu::before {
 	border-left: var(--border-left-thick-active-item) solid var(--color-marker);
 }
 
-li.menu-item-desktop > div a {
+li.item-menu > div a {
 	padding-top: 0.8em;
 	padding-bottom: 0.8em;
 }
@@ -137,7 +137,7 @@ li.menu-item-desktop > div a {
 		background-color 400ms ease-in-out;
 }
 
-.menu-item-desktop {
+.nav-list li.desktop {
 	display: none;
 }
 .nav-list .logo {
@@ -168,22 +168,21 @@ li.menu-item-desktop > div a {
 }
 .nav-list .phone-number-text {
 	padding: 0.2em 0.5em;
-	display: none;
 }
-.nav-list .phone-item {
+.nav-list .item-phonenumber,
+.nav-list .item-phoneform {
 	margin-left: auto;
 }
 
-.nav-list .phone-number svg,
-.nav-list .email-address svg {
+.nav-list .icon svg {
 	width: 2em;
 	height: 1.15em;
 }
 
-.nav-list .item-menu-mobile {
+.nav-list .item-burgermenu {
 	display: block;
 }
-.nav-list .item-menu-mobile > .round-border {
+.nav-list .item-burgermenu > .round-border {
 	padding: 0 0.5em;
 }
 
@@ -225,10 +224,9 @@ li.menu-item-desktop > div a {
 	padding-left: var(--padding-x-left-item0);
 	width: 100%;
 }
-.mobile-menu ul > li {
+.mobile-submenu > li {
 	padding: calc(2 * var(--padding-y-nav-item)) 0;
 	padding-left: var(--padding-x-left-item0);
-	/* padding-left: calc(var(--padding-x-left-item0) + var(--padding-x-text) + var(--border-thick-active-item)); */
 	width: 100%;
 }
 
@@ -241,20 +239,27 @@ li.menu-item-desktop > div a {
 	padding-left: calc(var(--padding-x-text));
 	border-left: var(--border-thick-active-item) solid var(--color-marker);
 }
-.mobile-menu ul a,
-.mobile-menu ul span {
+.mobile-submenu a,
+.mobile-submenu span {
 	--padding-koeff: 3;
 	font-size: 1.45em;
 	padding-left: calc(var(--padding-koeff) * var(--padding-x-text) + var(--border-thick-active-item));
 }
-.mobile-menu ul a.active_link {
+.mobile-submenu a.active_link {
 	padding-left: calc(var(--padding-koeff) * var(--padding-x-text));
+}
+
+body:has(.sb-card.phone.open) header .form-btn.phone,
+body:has(.sb-card.message.open) header .form-btn.message {
+	color: var(--color-dahm-bordo);
+	border-color: var(--color-dahm-bordo);
 }
 
 header:is(:not(.opaque)):hover {
 	background-color: var(--hover-menu-background-color);
 }
-.nav-list > li:has(div > a:hover),
+.nav-list ul > li:hover,
+.nav-list > li:has(div > *:hover),
 .nav-list > li:hover:has(#burger-button) {
 	color: var(--color-dahm-bordo);
 	background-color: var(--hover-item-background-color);
@@ -269,9 +274,8 @@ header:is(:not(.opaque)):hover {
 .nav-list ul > li:not(:hover) {
 	color: var(--header-font-color);
 }
-.nav-list ul > li:hover,
 .mobile-menu > li > div:hover:has(a),
-.mobile-menu ul > li:hover:has(a) {
+.mobile-submenu > li:hover:has(a) {
 	color: var(--color-dahm-bordo);
 	background-color: var(--hover-item-background-color);
 }
@@ -286,13 +290,38 @@ a:focus-visible .fv,
 	outline: 1px solid var(--color-dahm-bordo);
 	outline-offset: 0;
 }
-.nav-list .fv:is(.logo, .menu-item-desktop),
+.nav-list .fv:is(.logo, .item-menu),
 .nav-list ul .fv,
 .mobile-menu > li .fv {
 	outline-offset: -1px;
 }
 
+body:not(:has(#burger-button:checked, .mobile-menu-layer:focus-within)) .mobile-menu-layer {
+	transform: scaleY(0);
+}
+body:has(#burger-button:checked) .mobile-menu-layer,
+.mobile-menu-layer:focus-visible {
+	transform: scaleY(1);
+}
+body:has(#burger-button:checked) header {
+	border-bottom: var(--border-thick) solid var(--border-color);
+	background-color: var(--menu-opaque-background-color);
+	--header-font-color: #000000;
+	--submenu-background-color: var(--menu-opaque-background-color);
+}
+
 /* @media */
+/* @media screen and (min-width: 765px) {
+	.nav-list .item-phonenumber {
+		display: block;
+	}
+} */
+@media screen and (max-width: 765px) {
+	.nav-list .item-phonenumber {
+		display: none;
+	}
+}
+/* 
 @media screen and ((min-width: 765px) or (max-width: 665px)) {
 	.nav-list .phone-icon {
 		display: none;
@@ -308,35 +337,21 @@ a:focus-visible .fv,
 	.nav-list .phone-number-text {
 		display: none;
 	}
-}
+} 
+*/
 
-@media screen and (max-width: 6650px) {
-	body:not(:has(#burger-button:checked, .mobile-menu-layer:focus-within)) .mobile-menu-layer {
-		transform: scaleY(0);
-	}
-	body:has(#burger-button:checked) .mobile-menu-layer,
-	.mobile-menu-layer:focus-visible {
-		transform: scaleY(1);
-	}
-	body:has(#burger-button:checked) header {
-		border-bottom: var(--border-thick) solid var(--border-color);
-		background-color: var(--menu-opaque-background-color);
-		--header-font-color: #000000;
-		--submenu-background-color: var(--menu-opaque-background-color);
-	}
-}
-@media screen and (min-width: 665px) {
-	.nav-list .menu-item-desktop {
+@media screen and (min-width: 620px) {
+	.nav-list li.desktop {
 		display: block;
 	}
-	.nav-list .item-menu-mobile {
+	.nav-list li.mobile {
 		display: none;
 	}
 	.mobile-menu-layer {
 		display: none;
 	}
 }
-@media screen and (max-width: 665px) {
+@media screen and (max-width: 620px) {
 	body {
 		--width-hot-button: 0px;
 		--height-hot-button: 0px;

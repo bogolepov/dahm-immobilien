@@ -1,13 +1,13 @@
 ---
 import '@components/cards/card.css';
+import { Icon } from 'astro-icon/components';
+import MessageForm from '@vue/forms/MessageForm.vue';
 
 import Dahm from '@data/dahm.json';
 ---
 
 <div class='card-content'>
-	<h4>Rufen Sie uns an.</h4>
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque ipsa blanditiis aperiam eveniet quaerat nobis neque.
-		Aperiam velit vel, laudantium incidunt nulla, temporibus, quam blanditiis sed corporis esse quas veniam.
-	</p>
+	<h4>Nehmen Sie Kontakt auf.</h4>
+	<a href={'mailto: ' + Dahm.email} class='icon-link'><Icon name='email' />{Dahm.email}</a>
+	<MessageForm client:load />
 </div>

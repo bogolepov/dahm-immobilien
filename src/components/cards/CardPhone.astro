@@ -9,7 +9,7 @@ import Dahm from '@data/dahm.json';
 <div class='card-content'>
 	<h4>Rufen Sie uns an.</h4>
 	<p class='phone-time'>{Dahm.telephone_zeit}</p>
-	<a href={'tel: ' + Dahm.telephone} class='phone-number'><Icon name='phone-out' />{Dahm.telephone}</a>
+	<a href={'tel: ' + Dahm.telephone} class='icon-link'><Icon name='phone-out' />{Dahm.telephone}</a>
 	<h4>Dürfen wir Sie zurückrufen?</h4>
-	<CallbackForm />
+	<CallbackForm client:load />
 </div>

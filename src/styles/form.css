@@ -1,5 +1,6 @@
-input,
-select {
+form input,
+form select,
+form textarea {
 	border: 1px solid var(--border-color-form);
 	background-color: var(--background-color-form);
 	font-size: 0.95rem;
@@ -9,22 +10,55 @@ select {
 		outline-color 400ms ease-in-out,
 		background-color 250ms ease-in-out;
 }
-input:hover,
-select:hover {
+form input:hover,
+form select:hover,
+form textarea:hover {
 	background-color: var(--background-color-form-active);
 }
-input:focus-visible,
-select:focus-visible {
+form input:focus-visible,
+form select:focus-visible,
+form textarea:focus-visible {
 	background-color: var(--background-color-form-active);
 	outline-color: var(--border-color-form-active);
 }
 
-.red-button {
-	padding: 0.6em 1em;
-	background-color: var(--color-dahm-bordo);
-	font-weight: 350;
-	color: #ffffff;
+form .ctrl-full {
+	width: 100%;
 }
-.red-button[disabled] {
-	background-color: var(--color-dahm-grey);
+form .ctrl-half {
+	width: 49%;
+}
+
+.form-flex2 {
+	display: flex;
+	width: 100%;
+	padding: 0.4em 0;
+}
+.form-flex2 + .form-flex2 {
+	padding-top: 0;
+}
+
+.form-flex2 input {
+	width: 49%;
+	margin-right: 1%;
+	display: inline-block;
+}
+.form-flex2 input + input {
+	margin-right: 0;
+	margin-left: 1%;
+}
+
+@media screen and (max-width: 360px) {
+	.form-flex2 {
+		flex-wrap: wrap;
+		row-gap: 0.4em;
+	}
+	.form-flex2 input,
+	.form-flex2 input + input {
+		margin: 0;
+		width: 100%;
+	}
+	form .ctrl-half {
+		width: 100%;
+	}
 }

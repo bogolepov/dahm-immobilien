@@ -30,7 +30,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 				Dahm.menu.map(menuItem => {
 					const menuItemURL = menuItem.root ? `/` : menuItem.url ? `/${menuItem.url}/` : null;
 					return (
-						<li class='menu-item-desktop' class:list={[{ fv: menuItem.url || menuItem.root }]}>
+						<li class='item-menu desktop' class:list={[{ fv: menuItem.url || menuItem.root }]}>
 							<div>
 								{menuItemURL && (
 									<a
@@ -82,22 +82,36 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 				})
 			}
 			<!-- <li class='flex-spreader'></li> -->
-			<li class='phone-item'>
+			<li class='item-phonenumber'>
 				<div>
-					<a class='flex-center round-border h2em phone-number fv' href={'tel: ' + Dahm.telephone}>
+					<a class='flex-center round-border h2em icon fv' href={'tel: ' + Dahm.telephone}>
 						<span class='phone-number-text'>{Dahm.telephone}</span>
-						<Icon name='phone' class='phone-icon' />
+						<!-- <Icon name='phone' class='phone-icon' /> -->
 					</a>
 				</div>
 			</li>
-			<li>
+			<!-- <li>
 				<div>
-					<a class='flex-center round-border h2em email-address fv' href={'mailto: ' + Dahm.email}>
+					<a class='flex-center round-border h2em icon fv' href={'mailto: ' + Dahm.email}>
 						<Icon name='email' />
 					</a>
 				</div>
+			</li> -->
+			<li class='item-phoneform mobile'>
+				<div>
+					<button class='flex-center round-border h2em icon fv form-btn phone'>
+						<Icon name='phone' />
+					</button>
+				</div>
 			</li>
-			<li class='item-menu-mobile'>
+			<li class='item-messageform mobile'>
+				<div>
+					<button class='flex-center round-border h2em icon fv form-btn message'>
+						<Icon name='email' />
+					</button>
+				</div>
+			</li>
+			<li class='item-burgermenu mobile'>
 				<div>
 					<div class='flex-center round-border h2em fv'>
 						<BurgerButton id='burger-button' />
@@ -136,7 +150,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 							)}
 						</div>
 						{menuItem.submenu && (
-							<ul>
+							<ul class='mobile-submenu'>
 								{menuItem.submenu &&
 									menuItem.submenu.map(submenuItem => {
 										const submenuItemURL = `/${menuItem.folder}/${submenuItem.url}/`;
@@ -180,9 +194,45 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 			});
 
 		const burgerSwitcher = document.querySelector('#burger-button');
-		if (burgerSwitcher)
+		const sbCards = document.querySelectorAll('.sb-card');
+		const openFormButtons = document.querySelectorAll('.form-btn');
+
+		if (burgerSwitcher) {
 			window.addEventListener('blur', () => {
 				burgerSwitcher.checked = false;
 			});
+
+			burgerSwitcher.addEventListener('click', () => {
+				if (burgerSwitcher.checked) {
+					sbCards.forEach(tmpCard => tmpCard.classList.remove('open'));
+				}
+			});
+		}
+
+		const changeCardState = (cardName: string) => {
+			console.log(cardName);
+
+			sbCards.forEach(card => {
+				if (card.classList.contains(cardName)) {
+					console.log('change status');
+
+					if (card.classList.contains('open')) card.classList.remove('open');
+					else {
+						sbCards.forEach(tmpCard => tmpCard.classList.remove('open'));
+						if (burgerSwitcher) burgerSwitcher.checked = false;
+						card.classList.add('open');
+					}
+				}
+			});
+		};
+		openFormButtons.forEach(btn => {
+			btn.addEventListener('click', () => {
+				console.log('btn click');
+				console.log(btn.classList);
+
+				if (btn.classList.contains('phone')) return changeCardState('phone');
+				else if (btn.classList.contains('message')) return changeCardState('message');
+			});
+		});
 	});
 </script>

@@ -40,6 +40,9 @@ body {
 	--padding-y-nav-item: 0.15em;
 
 	--text-opsz: 1;
+	--text-opsz-16: 16;
+	--text-opsz-40: 40;
+	--text-opsz-max: 60;
 	font-variation-settings: 'opsz' var(--text-opsz);
 
 	background-color: var(--color-dahm-background);
@@ -115,4 +118,14 @@ main {
 	width: auto;
 	height: 100%;
 	object-fit: contain;
+}
+
+.red-button {
+	padding: 0.6em 1em;
+	background-color: var(--color-dahm-bordo);
+	font-weight: 350;
+	color: #ffffff;
+}
+.red-button[disabled] {
+	background-color: var(--color-dahm-grey);
 }

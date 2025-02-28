@@ -14,7 +14,7 @@
 	display: block;
 }
 
-.card-content a.phone-number {
+.card-content a.icon-link {
 	display: flex;
 	align-items: center;
 	column-gap: 0.5em;
