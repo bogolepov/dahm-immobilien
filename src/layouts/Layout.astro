@@ -6,6 +6,7 @@ import Head from '@components/Head.astro';
 import Header from '@components/header/Header.astro';
 import Footer from '@components/Footer.astro';
 import Sidebar from '@components/sidebar/sidebar.astro';
+import Cookie from '@vue/cookie/Cookie.vue';
 
 const { title, description, robots } = Astro.props;
 
@@ -25,7 +26,7 @@ import { Picture } from 'astro:assets';
 		max-width: var(--max-width-page);
 		/* padding: 2.5em; */
 		margin: 0 auto;
-		padding: var(--padding-y-page) calc(var(--padding-x-page) + var(--padding-x-nav-item));
+		padding: var(--padding-y-page) var(--padding-x-page);
 	}
 </style>
 
@@ -55,5 +56,6 @@ import { Picture } from 'astro:assets';
 			</div>
 		</main>
 		<Footer />
+		<Cookie client:load />
 	</body>
 </html>

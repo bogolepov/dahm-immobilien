@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, useId } from 'vue';
 import DahmTexts from '@data/dahm_text.json';
 import PrivacyPolicyControl from './PrivacyPolicyControl.vue';
+
+const agreeId = useId();
 
 const anrede = ref('');
 const vorname = ref('');
 const nachname = ref('');
 const phoneNumber = ref();
 const acceptedPolicy = ref(false);
+const agreedConnection = ref(false);
 const buttonValid = computed(() => {
 	return (
+		agreedConnection.value &&
 		acceptedPolicy.value &&
 		anrede.value.trim().length &&
 		vorname.value.trim().length &&
@@ -36,7 +40,17 @@ function handlePolicyStatus(accepted: boolean): void {
 			<input type="text" v-model="nachname" placeholder="Nachname*" required />
 		</div>
 		<input type="tel" v-model="phoneNumber" placeholder="Rückrufnummer*" class="ctrl-full" required />
-		<PrivacyPolicyControl ctrl-id="policy_callback" @policy-status="handlePolicyStatus" />
+		<div class="policy-flex">
+			<input
+				:id="agreeId"
+				type="checkbox"
+				v-model="agreedConnection"
+				@keypress.enter.prevent="agreedConnection = !agreedConnection"
+			/>
+			<label :for="agreeId">Hiermit erlaube ich Ihnen mich per Telefon zu kontaktieren.</label>
+		</div>
+
+		<PrivacyPolicyControl @policy-status="handlePolicyStatus" />
 		<button class="red-button" :disabled="!buttonValid">Absenden</button>
 	</form>
 </template>
@@ -45,6 +59,6 @@ function handlePolicyStatus(accepted: boolean): void {
 
 <style scoped>
 .callback-form .red-button {
-	margin-top: 0.2em;
+	margin-top: 0.6em;
 }
 </style>

@@ -11,8 +11,11 @@
 
 body {
 	--color-dahm-background: #cecabf;
+	--color-dahm-background-light: #e8e4da;
 	--color-dahm-bordo2: #802932;
 	--color-dahm-bordo: #9a1915;
+	--color-dahm-bordo-disabled: #a9736e;
+	--color-dahm-bordo-disabled: #651c1b;
 	--color-dahm-grey: #9f9e9e;
 	--color-marker: rgb(205, 158, 74);
 	--color-marker: var(--color-dahm-bordo);
@@ -128,4 +131,13 @@ main {
 }
 .red-button[disabled] {
 	background-color: var(--color-dahm-grey);
+}
+
+.glass6 {
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+}
+.glass1_5 {
+	-webkit-backdrop-filter: blur(1.5px);
+	backdrop-filter: blur(1.5px);
 }

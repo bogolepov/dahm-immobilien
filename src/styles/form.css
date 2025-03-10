@@ -10,6 +10,9 @@ form textarea {
 		outline-color 400ms ease-in-out,
 		background-color 250ms ease-in-out;
 }
+form textarea {
+	display: block;
+}
 form input:hover,
 form select:hover,
 form textarea:hover {
@@ -61,4 +64,25 @@ form .ctrl-half {
 	form .ctrl-half {
 		width: 100%;
 	}
+}
+
+/* policy-flex */
+.policy-flex {
+	display: flex;
+	width: 100%;
+	padding-top: 0.5em;
+}
+.policy-flex + .policy-flex {
+	padding-top: 0.35em;
+}
+
+.policy-flex input {
+	width: min-content;
+}
+.policy-flex label {
+	flex-grow: 1;
+	margin-left: 2%;
+	font-size: 0.78rem;
+	font-variation-settings: 'opsz' var(--text-opsz-max);
+	line-height: 1.25;
 }

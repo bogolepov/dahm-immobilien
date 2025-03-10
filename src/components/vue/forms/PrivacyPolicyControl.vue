@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, useId } from 'vue';
 import Dahm from '@data/dahm.json';
 
-interface Props {
-	ctrlId: string;
-}
-const { ctrlId } = defineProps<Props>();
+const id = useId();
 
 const emit = defineEmits<{
 	policyStatus: [accepted: boolean];
@@ -26,8 +23,15 @@ function clickCheckbox(event: KeyboardEvent) {
 
 <template>
 	<div class="policy-flex">
-		<input :id="ctrlId" type="checkbox" :checked="acceptedPolicy" @change="changeStatus" @keypress="clickCheckbox" />
-		<label :for="ctrlId"
+		<input
+			:id
+			type="checkbox"
+			:checked="acceptedPolicy"
+			class="long-text"
+			@change="changeStatus"
+			@keypress.enter="clickCheckbox"
+		/>
+		<label :for="id"
 			>Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine
 			Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden. Hinweis: Sie können
 			Ihre Einwilligung jederzeit für die Zukunft per E-Mail an
@@ -37,25 +41,15 @@ function clickCheckbox(event: KeyboardEvent) {
 </template>
 
 <style>
-.policy-flex {
-	display: flex;
-	width: 100%;
-	padding: 0.4em 0;
-}
-.policy-flex input {
-	width: min-content;
-	margin-bottom: auto;
-	margin-top: 0.65em;
-}
-.policy-flex label {
-	flex-grow: 1;
-	margin-left: 2%;
-	font-size: 0.78rem;
-	font-variation-settings: 'opsz' var(--text-opsz-max);
-	line-height: 1.25;
-}
 .policy-flex label a {
 	color: var(--color-dahm-bordo);
 	font-weight: 450;
+}
+.policy-flex input.long-text {
+	margin-bottom: auto;
+	margin-top: 0.65em;
+}
+.policy-flex + .policy-flex input.long-text {
+	margin-top: 0.1em;
 }
 </style>

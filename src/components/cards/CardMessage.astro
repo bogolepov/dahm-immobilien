@@ -11,3 +11,22 @@ import Dahm from '@data/dahm.json';
 	<a href={'mailto: ' + Dahm.email} class='icon-link'><Icon name='email' />{Dahm.email}</a>
 	<MessageForm client:load />
 </div>
+
+<style scoped>
+	a::before {
+		content: 'Per Email';
+		color: black;
+		font-size: 1rem;
+		font-weight: normal;
+	}
+	a {
+		color: var(--color-dahm-bordo);
+		margin-bottom: 0.5em;
+		font-size: 0.9rem;
+		font-weight: 540;
+	}
+	/* a::after {
+		content: ' oder';
+		color: black;
+	} */
+</style>
