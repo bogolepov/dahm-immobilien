@@ -40,7 +40,7 @@ function handlePolicyStatus(accepted: boolean): void {
 			<input type="text" v-model="nachname" placeholder="Nachname*" required />
 		</div>
 		<input type="tel" v-model="phoneNumber" placeholder="Rückrufnummer*" class="ctrl-full" required />
-		<div class="policy-flex">
+		<div class="flex-checkbox-label">
 			<input
 				:id="agreeId"
 				type="checkbox"
@@ -49,7 +49,6 @@ function handlePolicyStatus(accepted: boolean): void {
 			/>
 			<label :for="agreeId">Hiermit erlaube ich Ihnen mich per Telefon zu kontaktieren.</label>
 		</div>
-
 		<PrivacyPolicyControl @policy-status="handlePolicyStatus" />
 		<button class="red-button" :disabled="!buttonValid">Absenden</button>
 	</form>

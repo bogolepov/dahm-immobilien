@@ -22,15 +22,8 @@ function clickCheckbox(event: KeyboardEvent) {
 </script>
 
 <template>
-	<div class="policy-flex">
-		<input
-			:id
-			type="checkbox"
-			:checked="acceptedPolicy"
-			class="long-text"
-			@change="changeStatus"
-			@keypress.enter="clickCheckbox"
-		/>
+	<div class="flex-checkbox-label">
+		<input :id type="checkbox" :checked="acceptedPolicy" @change="changeStatus" @keypress.enter="clickCheckbox" />
 		<label :for="id"
 			>Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine
 			Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden. Hinweis: Sie können
@@ -41,15 +34,8 @@ function clickCheckbox(event: KeyboardEvent) {
 </template>
 
 <style>
-.policy-flex label a {
+.flex-checkbox-label label a {
 	color: var(--color-dahm-bordo);
 	font-weight: 450;
-}
-.policy-flex input.long-text {
-	margin-bottom: auto;
-	margin-top: 0.65em;
-}
-.policy-flex + .policy-flex input.long-text {
-	margin-top: 0.1em;
 }
 </style>

@@ -255,29 +255,33 @@ body:has(.sb-card.message.open) header .form-btn.message {
 	border-color: var(--color-dahm-bordo);
 }
 
-header:is(:not(.opaque)):hover {
-	background-color: var(--hover-menu-background-color);
-}
-.nav-list ul > li:hover,
-.nav-list > li:has(div > *:hover),
-.nav-list > li:hover:has(#burger-button) {
-	color: var(--color-dahm-bordo);
-	background-color: var(--hover-item-background-color);
-}
-.nav-list .round-border:hover {
-	border-color: var(--color-dahm-bordo);
-}
 .nav-list > li:hover ul,
 .nav-list > li:has(*:hover, a:focus-visible) ul {
 	transform: scaleY(1);
 }
-.nav-list ul > li:not(:hover) {
-	color: var(--header-font-color);
-}
-.mobile-menu > li > div:hover:has(a),
-.mobile-submenu > li:hover:has(a) {
-	color: var(--color-dahm-bordo);
-	background-color: var(--hover-item-background-color);
+
+@media (hover: hover) {
+	header:is(:not(.opaque)):hover {
+		background-color: var(--hover-menu-background-color);
+	}
+	.nav-list ul > li:hover,
+	.nav-list > li:has(div > *:hover),
+	.nav-list > li:hover:has(#burger-button) {
+		color: var(--color-dahm-bordo);
+		background-color: var(--hover-item-background-color);
+	}
+	.nav-list .round-border:hover {
+		border-color: var(--color-dahm-bordo);
+	}
+
+	.nav-list ul > li:not(:hover) {
+		color: var(--header-font-color);
+	}
+	.mobile-menu > li > div:hover:has(a),
+	.mobile-submenu > li:hover:has(a) {
+		color: var(--color-dahm-bordo);
+		background-color: var(--hover-item-background-color);
+	}
 }
 
 a:focus-visible {

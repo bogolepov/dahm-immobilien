@@ -5,6 +5,7 @@ import PrivacyPolicyControl from './PrivacyPolicyControl.vue';
 
 const topics: string[] = ['Verwaltung', 'Verkauf', 'Vermietung', 'Anderes'];
 const agreeId = useId();
+const agreeId2 = useId();
 
 const anrede = ref('');
 const vorname = ref('');
@@ -63,7 +64,7 @@ function handlePolicyStatus(accepted: boolean): void {
 			class="ctrl-full"
 			required
 		></textarea>
-		<div class="policy-flex">
+		<div class="flex-checkbox-label">
 			<input
 				:id="agreeId"
 				type="checkbox"

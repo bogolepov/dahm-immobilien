@@ -13,16 +13,58 @@ form textarea {
 form textarea {
 	display: block;
 }
-form input:hover,
-form select:hover,
-form textarea:hover {
-	background-color: var(--background-color-form-active);
+@media (hover: hover) {
+	form input:hover,
+	form select:hover,
+	form textarea:hover {
+		background-color: var(--background-color-form-active);
+	}
 }
 form input:focus-visible,
 form select:focus-visible,
 form textarea:focus-visible {
 	background-color: var(--background-color-form-active);
 	outline-color: var(--border-color-form-active);
+}
+
+form input[type='checkbox'] {
+	display: inline-block;
+	position: relative;
+	--size-checkbox: 0.86em;
+	width: var(--size-checkbox);
+	height: var(--size-checkbox);
+	overflow: hidden;
+	margin-bottom: auto;
+	margin-top: 0.1em;
+}
+form input[type='checkbox']::after {
+	content: '';
+	display: block;
+	position: absolute;
+	text-align: center;
+	height: var(--size-checkbox);
+	width: var(--size-checkbox);
+	padding: calc(var(--size-checkbox) * 0.1);
+	left: 0;
+	top: 0;
+	line-height: 0;
+	border-radius: 2px;
+	border: 1px solid var(--border-color-form);
+	background-color: var(--background-color-form);
+	transition:
+		outline-color 400ms ease-in-out,
+		background-color 250ms ease-in-out,
+		border-color 250ms ease-in-out;
+}
+@media (hover: hover) {
+	form input[type='checkbox']:hover::after {
+		background-color: var(--background-color-form-active);
+	}
+}
+form input[type='checkbox']:checked::after {
+	content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" display="block" fill="white" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>');
+	background-color: var(--color-dahm-bordo);
+	border: 1px solid var(--color-dahm-bordo);
 }
 
 form .ctrl-full {
@@ -66,20 +108,20 @@ form .ctrl-half {
 	}
 }
 
-/* policy-flex */
-.policy-flex {
+/* flex-checkbox-label */
+.flex-checkbox-label {
 	display: flex;
 	width: 100%;
 	padding-top: 0.5em;
 }
-.policy-flex + .policy-flex {
+.flex-checkbox-label + .flex-checkbox-label {
 	padding-top: 0.35em;
 }
 
-.policy-flex input {
-	width: min-content;
+.flex-checkbox-label input[type='checkbox'] {
+	flex-shrink: 0;
 }
-.policy-flex label {
+.flex-checkbox-label label {
 	flex-grow: 1;
 	margin-left: 2%;
 	font-size: 0.78rem;
