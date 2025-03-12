@@ -7,7 +7,6 @@ import { getConsent, setConsent, type CookieConsent } from '@scripts/cookies';
 import { cccConsent, cccInitialized, cccSettingsShow } from './stateStore';
 
 const loaded = ref(false);
-
 onBeforeMount(() => {
 	const savedConsent: CookieConsent | undefined = getConsent();
 	if (!savedConsent) cccInitialized.value = false;
@@ -22,26 +21,26 @@ function setInitialized(): void {
 	cccInitialized.value = true;
 	cccSettingsShow.value = false;
 }
-const handleNecessary = (): void => {
+function handleNecessary(): void {
 	for (let key in cccConsent.value) {
 		if (key === 'necessary') cccConsent.value[key] = true;
 		else cccConsent.value[key as keyof CookieConsent] = false;
 	}
 	setConsent(cccConsent.value);
 	setInitialized();
-};
-const handleAll = (): void => {
+}
+function handleAll(): void {
 	for (let key in cccConsent.value) {
 		cccConsent.value[key as keyof CookieConsent] = true;
 	}
 	setConsent(cccConsent.value);
 	setInitialized();
-};
-const handleChoice = (newConsents: CookieConsent): void => {
+}
+function handleChoice(newConsents: CookieConsent): void {
 	cccConsent.value = { ...newConsents };
 	setConsent(cccConsent.value);
 	setInitialized();
-};
+}
 </script>
 
 <template>

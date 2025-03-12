@@ -35,8 +35,8 @@ body {
 	--height-hot-button: 3em;
 
 	--header-height: calc(var(--font-size) * 3.5);
-	--padding-x-page: clamp(var(--width-hot-button) + 0.5rem, 4vw, var(--width-hot-button) + 1.2rem);
-	--padding-y-page: clamp(0.25rem, 4vw, 0.7rem);
+	--padding-x-page: clamp(var(--width-hot-button) + 0.5em, 4vw, var(--width-hot-button) + 1.2em);
+	--padding-y-page: clamp(0.25em, 4vw, 0.7em);
 	--max-width-page: 1200px;
 
 	--padding-x-nav-item: 0.65em;

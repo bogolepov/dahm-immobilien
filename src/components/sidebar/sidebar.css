@@ -44,14 +44,14 @@
 	line-height: 1;
 }
 .sb-card button svg {
-	width: 1.3rem;
-	height: 1.3rem;
+	width: 1.3em;
+	height: 1.3em;
 }
 
 .sb-card .card-wrapper {
 	width: var(--width-card);
-	padding: 1.85rem var(--width-hot-button) 1.5rem 2rem;
-	max-height: min(max(55vh, 500px), 90svh - var(--top-sidebar) - var(--top-card));
+	padding: 1.85em var(--width-hot-button) 1.5em 2em;
+	max-height: min(max(55vh, 550px), 90svh - var(--top-sidebar) - var(--top-card));
 	overflow-y: auto;
 }
 

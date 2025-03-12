@@ -41,7 +41,7 @@ function switchState() {
 .switch {
 	/* --width-switch: 60px;
 	--height-switch: 34px; */
-	--width-switch: 3.3rem;
+	--width-switch: 3.3em;
 	--height-switch: calc(var(--width-switch) * 0.6);
 
 	position: relative;

@@ -1,6 +1,6 @@
 .card-content h4 {
 	color: var(--color-dahm-bordo);
-	font-size: 1.15rem;
+	font-size: 1.15em;
 	font-weight: 450;
 	font-variation-settings: 'opsz' 32;
 	line-height: 1;
@@ -19,11 +19,15 @@
 	align-items: center;
 	column-gap: 0.5em;
 	width: max-content;
-	font-size: 0.97rem;
+	font-size: 0.97em;
 	padding-top: 0.05em;
 	/* color: var(--color-dahm-bordo); */
 }
+
+.card-content a.phone-number {
+	font-weight: 500;
+}
 .card-content .phone-time {
-	font-size: 0.9rem;
-	font-weight: 590;
+	font-size: 0.85em;
+	font-weight: 550;
 }

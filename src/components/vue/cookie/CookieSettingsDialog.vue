@@ -168,11 +168,11 @@ function changeState(name: string, newState: boolean): void {
 	font-weight: 540;
 }
 .consent-description {
-	padding: 0.3em 0;
-	font-size: 0.95em;
+	padding: 0.35em 0 0.15em 0;
+	font-size: 0.92em;
 }
 .consent-type {
-	font-size: 0.95em;
+	font-size: 0.92em;
 	color: rgb(65, 0, 0);
 }
 .consent-type::before {

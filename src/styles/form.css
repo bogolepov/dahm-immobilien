@@ -3,7 +3,7 @@ form select,
 form textarea {
 	border: 1px solid var(--border-color-form);
 	background-color: var(--background-color-form);
-	font-size: 0.95rem;
+	font-size: 0.95em;
 	padding: 0.35em 0.5em;
 	outline: 1px solid transparent;
 	transition:
@@ -124,7 +124,7 @@ form .ctrl-half {
 .flex-checkbox-label label {
 	flex-grow: 1;
 	margin-left: 2%;
-	font-size: 0.78rem;
+	font-size: 0.78em;
 	font-variation-settings: 'opsz' var(--text-opsz-max);
-	line-height: 1.25;
+	line-height: 1.2;
 }

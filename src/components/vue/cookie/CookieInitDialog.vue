@@ -26,16 +26,16 @@ const emit = defineEmits<{
 <style>
 .cookie-init-dialog {
 	position: fixed;
-	right: 1rem;
-	bottom: 0.8rem;
+	right: 1em;
+	bottom: 0.8em;
 	width: 750px;
 	border: 1px solid var(--border-color-form);
 	background-color: var(--color-dahm-background-light);
-	font-size: 0.95rem;
+	font-size: 0.95em;
 	z-index: 50005;
 }
 .cookie-init-dialog .init-dialog-content {
-	padding: 1rem 1.5rem;
+	padding: 1em 1.5em;
 }
 .cookie-init-dialog .actions {
 	display: flex;

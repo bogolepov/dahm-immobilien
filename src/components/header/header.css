@@ -1,10 +1,7 @@
 header {
 	--hover-menu-background-color: rgba(220, 220, 220, 0.45);
 	--hover-item-background-color: rgba(169, 169, 169, 0.95);
-	/* --menu-opaque-background-color: rgba(203, 203, 203, 0.95); */
-	/* --menu-opaque-background-color: rgba(184, 199, 215, 0.95); */
 	--menu-opaque-background-color: rgba(140, 140, 140, 0.95);
-	/* --submenu-background-color: rgba(215, 215, 215, 0.95); */
 	--submenu-background-color: rgba(229, 232, 236, 0.95);
 	--header-font-color: #373737;
 	--border-left-thick-active-item: 2px;
@@ -26,10 +23,8 @@ header {
 header.opaque {
 	background-color: var(--menu-opaque-background-color);
 	border-bottom: var(--border-thick) solid var(--border-color);
-	/* border-bottom: 3px solid var(--color-dahm-grey); */
 	--header-font-color: #000000;
 	--submenu-background-color: var(--menu-opaque-background-color);
-	/* background-color: var(--background-color-toolbar); */
 }
 @supports (font-variation-settings: 'wdth' 115) {
 	header {
@@ -260,6 +255,7 @@ body:has(.sb-card.message.open) header .form-btn.message {
 	transform: scaleY(1);
 }
 
+/* @media screen and (pointer: fine) { */
 @media (hover: hover) {
 	header:is(:not(.opaque)):hover {
 		background-color: var(--hover-menu-background-color);
