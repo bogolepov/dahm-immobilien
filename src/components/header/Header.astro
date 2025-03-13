@@ -27,7 +27,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 				</div>
 			</li>
 			{
-				Dahm.menu.map(menuItem => {
+				Dahm.web_menu.map(menuItem => {
 					const menuItemURL = menuItem.root ? `/` : menuItem.url ? `/${menuItem.url}/` : null;
 					return (
 						<li class='item-menu desktop' class:list={[{ fv: menuItem.url || menuItem.root }]}>
@@ -124,7 +124,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 <nav class='mobile-menu-layer'>
 	<ul class='mobile-menu'>
 		{
-			Dahm.menu.map(menuItem => {
+			Dahm.web_menu.map(menuItem => {
 				const menuItemURL = menuItem.root ? `/` : menuItem.url ? `/${menuItem.url}/` : null;
 				return (
 					<li>

@@ -17,14 +17,13 @@ body {
 	--color-dahm-bordo-disabled: #a9736e;
 	--color-dahm-bordo-disabled: #651c1b;
 	--color-dahm-grey: #9f9e9e;
-	--color-marker: rgb(205, 158, 74);
 	--color-marker: var(--color-dahm-bordo);
-	--background-color-toolbar: hsl(44, 14%, 73%);
-	--border-color: rgb(111, 111, 111);
-	--border-color-form: rgb(175, 175, 175);
-	--border-color-form-active: rgb(154, 154, 154);
-	--background-color-form: rgb(245, 245, 245);
-	--background-color-form-active: rgb(254, 254, 254);
+	--background-color-toolbar: #c4bfb1;
+	--border-color: #6f6f6f;
+	--border-color-form: #afafaf;
+	--border-color-form-active: #9a9a9a;
+	--background-color-form: #f5f5f5;
+	--background-color-form-active: #fefefe;
 	--border-thick: 2px;
 
 	--font-size: 1rem;

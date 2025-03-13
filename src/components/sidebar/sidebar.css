@@ -9,7 +9,7 @@
 
 .sb-card {
 	--card-index: 0;
-	--width-card: 540px;
+	--width-card: 520px;
 	--background-color-card: rgb(215, 215, 215);
 	--background-color-card: rgba(229, 232, 236);
 	--border-color-card: rgb(200, 200, 200);
@@ -60,7 +60,7 @@
 	color: #ffffff;
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 580px) {
 	.sidebar {
 		--top-sidebar: 0;
 		right: 0;

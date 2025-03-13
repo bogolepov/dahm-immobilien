@@ -4,12 +4,13 @@ import { Icon } from 'astro-icon/components';
 import CallbackForm from '@vue/forms/CallbackForm.vue';
 
 import Dahm from '@data/dahm.json';
+const { days, time } = Dahm.office_time;
 ---
 
 <div class='card-content'>
 	<h4>Rufen Sie uns an.</h4>
 	<a href={'tel: ' + Dahm.telephone} class='icon-link phone-number'><Icon name='phone-out' />{Dahm.telephone}</a>
-	<p class='phone-time'>{Dahm.telephone_zeit}</p>
+	<p class='phone-time'>{days.von}-{days.bis}: {time.von}-{time.bis} Uhr</p>
 	<h4>Dürfen wir Sie zurückrufen?</h4>
 	<CallbackForm client:load />
 </div>

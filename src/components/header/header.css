@@ -1,8 +1,8 @@
 header {
 	--hover-menu-background-color: rgba(220, 220, 220, 0.45);
 	--hover-item-background-color: rgba(169, 169, 169, 0.95);
-	--menu-opaque-background-color: rgba(140, 140, 140, 0.95);
-	--submenu-background-color: rgba(229, 232, 236, 0.95);
+	--menu-opaque-background-color: rgba(140, 140, 140);
+	--submenu-background-color: rgba(229, 232, 236);
 	--header-font-color: #373737;
 	--border-left-thick-active-item: 2px;
 
@@ -310,37 +310,13 @@ body:has(#burger-button:checked) header {
 	--submenu-background-color: var(--menu-opaque-background-color);
 }
 
-/* @media */
-/* @media screen and (min-width: 765px) {
-	.nav-list .item-phonenumber {
-		display: block;
-	}
-} */
-@media screen and (max-width: 765px) {
+@media screen and (max-width: 700px) {
 	.nav-list .item-phonenumber {
 		display: none;
 	}
 }
-/* 
-@media screen and ((min-width: 765px) or (max-width: 665px)) {
-	.nav-list .phone-icon {
-		display: none;
-	}
-	.nav-list .phone-number-text {
-		display: block;
-	}
-}
-@media screen and (max-width: 400px) {
-	.nav-list .phone-icon {
-		display: block;
-	}
-	.nav-list .phone-number-text {
-		display: none;
-	}
-} 
-*/
 
-@media screen and (min-width: 620px) {
+@media screen and (min-width: 581px) {
 	.nav-list li.desktop {
 		display: block;
 	}
@@ -351,7 +327,7 @@ body:has(#burger-button:checked) header {
 		display: none;
 	}
 }
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 580px) {
 	body {
 		--width-hot-button: 0px;
 		--height-hot-button: 0px;
