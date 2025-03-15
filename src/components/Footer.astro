@@ -8,6 +8,8 @@ const itemImpressum = itemUnternehmen?.submenu?.find(item => item.name === 'Impr
 const itemDatenschutz = itemUnternehmen?.submenu?.find(item => item.name === 'Datenschutz');
 if (!itemImpressum) console.error('Footer: Menu Error 2');
 if (!itemDatenschutz) console.error('Footer: Menu Error 3');
+
+const current_year: string = new Date().getFullYear().toString();
 ---
 
 <style>
@@ -26,13 +28,13 @@ if (!itemDatenschutz) console.error('Footer: Menu Error 3');
 	.footer-up {
 		width: 100%;
 		background-color: var(--background-color-footer-up);
-		padding: 1.3em var(--padding-x-page);
+		/* padding: 1.3em var(--padding-x-page); */
 	}
 	.footer-down {
 		width: 100%;
 		border-top: 1.5px solid var(--border-color-footer);
 		background-color: var(--background-color-footer-down);
-		padding: 0.4em var(--padding-x-page) 0.3em var(--padding-x-page);
+		/* padding: 0.4em var(--padding-x-page) 0.3em var(--padding-x-page); */
 		font-size: 0.95em;
 	}
 
@@ -41,6 +43,11 @@ if (!itemDatenschutz) console.error('Footer: Menu Error 3');
 		column-gap: 2em;
 		row-gap: 1.5em;
 		flex-wrap: wrap;
+
+		width: 100%;
+		max-width: var(--max-width-page);
+		margin: 0 auto;
+		padding: 1.3em var(--padding-x-page);
 	}
 	.footer-list-up > * {
 		flex-grow: 1;
@@ -62,14 +69,34 @@ if (!itemDatenschutz) console.error('Footer: Menu Error 3');
 
 	.footer-list-down {
 		display: flex;
-		flex-wrap: nowrap;
+		flex-wrap: wrap-reverse;
+		column-gap: 5em;
+		row-gap: 0.4em;
+		/* justify-content: space-around; */
+		line-height: 1;
+		width: 100%;
+		/* max-width: min(340px, var(--max-width-page)); */
+		/* margin: 0 auto; */
+		padding: 0.6em var(--padding-x-page) 0.5em var(--padding-x-page);
+	}
+	.footer-list-down .copyright {
+		margin-right: auto;
+		font-size: 0.88em;
+		max-width: calc(100vw - 5em);
+	}
+	.footer-list-down .regulation {
+		display: flex;
+		flex-wrap: wrap;
 		column-gap: 2em;
 		row-gap: 0.25em;
-		justify-content: space-around;
-		width: var(--max-width-page);
-		max-width: min(340px, 100%);
-		margin: 0 auto;
-		padding: 0 var(--padding-x-page);
+	}
+	.footer-list-down a {
+		display: inline-block;
+	}
+	@media screen and (max-width: 580px) {
+		.footer-list-down .regulation {
+			padding-right: 2.8em;
+		}
 	}
 </style>
 
@@ -77,7 +104,7 @@ if (!itemDatenschutz) console.error('Footer: Menu Error 3');
 	<div class='footer-up'>
 		<div class='footer-list-up'>
 			<div class='contacts-block'>
-				<h5 class='company-name'>{Dahm.company_name}</h5>
+				<h5 class='company-name'>{Dahm.company_name.toUpperCase()}</h5>
 				<p class='top'>{Dahm.address.street} {Dahm.address.building}</p>
 				<p>{Dahm.address.zip} {Dahm.address.city}</p>
 				<p class='big-top'><a href={'tel: ' + Dahm.telephone}>{Dahm.telephone}</a></p>
@@ -93,8 +120,11 @@ if (!itemDatenschutz) console.error('Footer: Menu Error 3');
 	</div>
 	<div class='footer-down'>
 		<div class='footer-list-down'>
-			{itemImpressum && <a href={`/${itemUnternehmen.folder}/${itemImpressum.url}/`}>{itemImpressum.name}</a>}
-			{itemDatenschutz && <a href={`/${itemUnternehmen.folder}/${itemDatenschutz.url}/`}>{itemDatenschutz.name}</a>}
+			<div class='copyright'>© {current_year} {Dahm.company_fullname}</div>
+			<div class='regulation'>
+				{itemImpressum && <a href={`/${itemUnternehmen.folder}/${itemImpressum.url}/`}>{itemImpressum.name}</a>}
+				{itemDatenschutz && <a href={`/${itemUnternehmen.folder}/${itemDatenschutz.url}/`}>{itemDatenschutz.name}</a>}
+			</div>
 		</div>
 	</div>
 </footer>

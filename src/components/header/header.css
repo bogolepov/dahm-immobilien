@@ -57,6 +57,10 @@ header.opaque {
 	--logo-koeff: 3;
 	padding: calc(var(--logo-koeff) * var(--padding-y-nav-item)) var(--padding-x-nav-item);
 }
+.nav-list > li.item-phonenumber,
+.nav-list > li.item-burgermenu {
+	padding-right: 0;
+}
 
 .nav-list > li > div {
 	height: 100%;
@@ -120,7 +124,8 @@ header:not(.opaque) .nav-submenu::before {
 	border-left: var(--border-left-thick-active-item) solid var(--color-marker);
 }
 
-li.item-menu > div a {
+li.item-menu > div a,
+li.item-menu > div span {
 	padding-top: 0.8em;
 	padding-bottom: 0.8em;
 }
@@ -261,10 +266,13 @@ body:has(.sb-card.message.open) header .form-btn.message {
 		background-color: var(--hover-menu-background-color);
 	}
 	.nav-list ul > li:hover,
-	.nav-list > li:has(div > *:hover),
-	.nav-list > li:hover:has(#burger-button) {
+	.nav-list > li:has(div > *:hover) {
 		color: var(--color-dahm-bordo);
 		background-color: var(--hover-item-background-color);
+	}
+	.nav-list > li:has(.round-border:hover) {
+		background-color: transparent;
+		color: var(--color-dahm-bordo);
 	}
 	.nav-list .round-border:hover {
 		border-color: var(--color-dahm-bordo);

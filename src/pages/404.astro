@@ -1,0 +1,27 @@
+---
+// import Welcome from '../components/Welcome2.astro';
+import Layout from '@layouts/Layout.astro';
+
+const title: string = '404';
+const titleOnPage: string = 'Diese Seite konnte nicht gefunden werden.';
+---
+
+<Layout {title}>
+	<h1>{titleOnPage}</h1>
+	<p>
+		Möglicherweise haben Sie eine falsche oder veraltete URL aufgerufen, oder wir haben die Seite umbenannt oder
+		gelöscht.
+	</p>
+	<p>Vielleicht können Sie den gewünschten Inhalt über unsere Navigation oben finden?</p>
+</Layout>
+
+<style scoped>
+	p {
+		font-size: 1.15em;
+		font-weight: 350;
+		margin: 1em 0;
+	}
+	h1 + p {
+		margin-top: 1.25em;
+	}
+</style>
