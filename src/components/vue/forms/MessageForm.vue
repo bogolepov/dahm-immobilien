@@ -74,7 +74,7 @@ function handlePolicyStatus(accepted: boolean): void {
 			<label :for="agreeId">Hiermit erlaube ich Ihnen mich per E-Mail und/oder Telefon zu kontaktieren.</label>
 		</div>
 		<PrivacyPolicyControl @policy-status="handlePolicyStatus" />
-		<button class="red-button" :disabled="!buttonValid">Absenden</button>
+		<button type="button" class="red-button" :disabled="!buttonValid">Absenden</button>
 	</form>
 </template>
 

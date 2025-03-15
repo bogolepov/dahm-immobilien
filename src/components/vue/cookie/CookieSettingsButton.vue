@@ -3,7 +3,7 @@ import { cccSettingsShow } from './stateStore';
 </script>
 
 <template>
-	<button class="cooqie-settings-button" @click.prevent="cccSettingsShow = true">
+	<button type="button" class="cooqie-settings-button" @click.prevent="cccSettingsShow = true">
 		<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 50 50">
 			<path
 				fill="currentColor"

@@ -80,6 +80,8 @@ header.opaque {
 	background-color: var(--submenu-background-color);
 	transform-origin: 0 0;
 	transform: scaleY(0);
+}
+header.loaded .nav-submenu {
 	transition:
 		transform 500ms ease-in-out 0.1s,
 		background-color 500ms ease-in-out 0.1s;
@@ -257,6 +259,7 @@ body:has(.sb-card.message.open) header .form-btn.message {
 
 .nav-list > li:hover ul,
 .nav-list > li:has(*:hover, a:focus-visible) ul {
+	/* transition: transform 500ms ease-in-out 0.1s; */
 	transform: scaleY(1);
 }
 

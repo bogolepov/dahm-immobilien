@@ -59,7 +59,7 @@ function changeState(name: string, newState: boolean): void {
 			<form>
 				<div class="header-flex">
 					<h3>{{ 'Dienste, die wir nutzen'.toUpperCase() }}</h3>
-					<button class="close-button" @click.prevent="cancelDialog">&#10006;</button>
+					<button type="button" class="close-button" @click.prevent="cancelDialog">&#10006;</button>
 				</div>
 				<p class="annotation">
 					Hier können Sie einsehen und anpassen, welche Dienste auf unserer Website möglicherweise Cookies benutzen
@@ -82,11 +82,16 @@ function changeState(name: string, newState: boolean): void {
 					</li>
 				</ul>
 				<div class="actions">
-					<button class="border-button" @click.prevent="saveNecessary">Nur Notwendige akzeptieren</button>
-					<button class="border-button" :class="{ active: activeChoiseButton }" @click.prevent="saveChoice">
+					<button type="button" class="border-button" @click.prevent="saveNecessary">Nur Notwendige akzeptieren</button>
+					<button
+						type="button"
+						class="border-button"
+						:class="{ active: activeChoiseButton }"
+						@click.prevent="saveChoice"
+					>
 						Auswahl speichern
 					</button>
-					<button class="border-button" @click.prevent="saveAll">Alle akzeptieren</button>
+					<button type="button" class="border-button" @click.prevent="saveAll">Alle akzeptieren</button>
 				</div>
 			</form>
 		</div>

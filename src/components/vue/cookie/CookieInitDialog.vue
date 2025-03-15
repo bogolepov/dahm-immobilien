@@ -15,9 +15,13 @@ const emit = defineEmits<{
 				persönlichen Daten für die folgenden Zwecke: <b>Notwendige Funktionen, Externe Dienste & Besucher-Statistik</b>.
 			</p>
 			<div class="actions">
-				<button class="settings-button" @click.prevent="cccSettingsShow = true">Einstellungen anpassen</button>
-				<button class="border-button" @click.prevent="$emit('handleNecessary')">Nur Notwendige akzeptieren</button>
-				<button class="border-button" @click.prevent="$emit('handleAll')">Alle akzeptieren</button>
+				<button type="button" class="settings-button" @click.prevent="cccSettingsShow = true">
+					Einstellungen anpassen
+				</button>
+				<button type="button" class="border-button" @click.prevent="$emit('handleNecessary')">
+					Nur Notwendige akzeptieren
+				</button>
+				<button type="button" class="border-button" @click.prevent="$emit('handleAll')">Alle akzeptieren</button>
 			</div>
 		</div>
 	</div>

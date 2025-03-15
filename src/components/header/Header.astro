@@ -99,14 +99,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 			</li> -->
 			<li class='item-phoneform mobile'>
 				<div>
-					<button class='flex-center round-border h2em icon fv form-btn phone'>
+					<button type='button' class='flex-center round-border h2em icon fv form-btn phone'>
 						<Icon name='phone' />
 					</button>
 				</div>
 			</li>
 			<li class='item-messageform mobile'>
 				<div>
-					<button class='flex-center round-border h2em icon fv form-btn message'>
+					<button type='button' class='flex-center round-border h2em icon fv form-btn message'>
 						<Icon name='email' />
 					</button>
 				</div>
@@ -184,7 +184,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const header = document.querySelector('header');
-		if (header)
+		if (header) {
 			window.addEventListener('scroll', () => {
 				if (window.scrollY >= 25) {
 					header.classList.add('opaque');
@@ -192,6 +192,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 					header.classList.remove('opaque');
 				}
 			});
+
+			window.setTimeout(() => {
+				header.classList.add('loaded');
+			}, 1500);
+		}
 
 		const burgerSwitcher = document.querySelector('#burger-button');
 		const sbCards = document.querySelectorAll('.sb-card');
