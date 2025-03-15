@@ -321,13 +321,13 @@ body:has(#burger-button:checked) header {
 	--submenu-background-color: var(--menu-opaque-background-color);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 680px) {
 	.nav-list .item-phonenumber {
 		display: none;
 	}
 }
 
-@media screen and (min-width: 581px) {
+@media screen and (min-width: 531px) {
 	.nav-list li.desktop {
 		display: block;
 	}
@@ -338,7 +338,7 @@ body:has(#burger-button:checked) header {
 		display: none;
 	}
 }
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 530px) {
 	body {
 		--width-hot-button: 0px;
 		--height-hot-button: 0px;

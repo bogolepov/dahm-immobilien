@@ -9,7 +9,7 @@
 
 .sb-card {
 	--card-index: 0;
-	--width-card: 520px;
+	--width-card: min(520px, 100vw - var(--width-hot-button) - 2em);
 	--background-color-card: rgb(215, 215, 215);
 	--background-color-card: rgba(229, 232, 236);
 	--border-color-card: rgb(200, 200, 200);
@@ -60,7 +60,7 @@
 	color: #ffffff;
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 530px) {
 	.sidebar {
 		--top-sidebar: 0;
 		right: 0;

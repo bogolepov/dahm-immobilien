@@ -27,7 +27,7 @@ body {
 	--border-thick: 2px;
 
 	--font-size: 1rem;
-	--font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+	--font-size: clamp(0.92rem, 1.8vw, 1.02rem);
 	--font-size-header: calc(var(--font-size) * 0.85);
 
 	--width-hot-button: 3em;
