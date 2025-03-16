@@ -41,19 +41,19 @@
 	],
 	"team": [
 		{
-			"sid": "mid",
-			"name": "Michael",
-			"lastname": "Dahm",
-			"email": "dahm@hv-dahm.de",
+			"sid": "nor",
+			"name": "Norbert",
+			"lastname": "Reiche",
+			"email": "reiche@hv-dahm.de",
 			"telephone": "+49 2331 924936",
 			"office_time": { "days": { "von": "Mo", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } },
 			"stelle": "Inhaber"
 		},
 		{
-			"sid": "nor",
-			"name": "Norbert",
-			"lastname": "Reiche",
-			"email": "reiche@hv-dahm.de",
+			"sid": "mid",
+			"name": "Michael",
+			"lastname": "Dahm",
+			"email": "dahm@hv-dahm.de",
 			"telephone": "+49 2331 924936",
 			"office_time": { "days": { "von": "Mo", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } }
 		},

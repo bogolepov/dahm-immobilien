@@ -2,6 +2,8 @@
 import '@components/header/header.css';
 import { Icon } from 'astro-icon/components';
 
+const { errorPage } = Astro.props;
+
 const pathname: string = new URL(Astro.request.url).pathname;
 const currentPath: string[] = pathname.split('/').filter(Boolean);
 
@@ -38,8 +40,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 										class:list={[
 											{
 												active_link:
-													(currentPath.length === 0 && menuItem.root) ||
-													(currentPath.length > 0 && currentPath[0] === menuItem.url),
+													!errorPage &&
+													((currentPath.length === 0 && menuItem.root) ||
+														(currentPath.length > 0 && currentPath[0] === menuItem.url)),
 											},
 										]}
 									>
@@ -47,7 +50,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 									</a>
 								)}
 								{!menuItemURL && (
-									<span class:list={[{ active_link: currentPath.length > 0 && currentPath[0] === menuItem.folder }]}>
+									<span
+										class:list={[
+											{ active_link: !errorPage && currentPath.length > 0 && currentPath[0] === menuItem.folder },
+										]}
+									>
 										{menuItem.name.toUpperCase()}
 									</span>
 								)}
@@ -64,6 +71,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 														class:list={[
 															{
 																active_link:
+																	!errorPage &&
 																	currentPath.length > 0 &&
 																	currentPath[0] === menuItem.folder &&
 																	currentPath[1] === submenuItem.url,
@@ -135,8 +143,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 									class:list={[
 										{
 											active_link:
-												(currentPath.length === 0 && menuItem.root) ||
-												(currentPath.length > 0 && currentPath[currentPath.length - 1] === menuItem.url),
+												!errorPage &&
+												((currentPath.length === 0 && menuItem.root) ||
+													(currentPath.length > 0 && currentPath[currentPath.length - 1] === menuItem.url)),
 										},
 									]}
 								>
@@ -144,7 +153,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 								</a>
 							)}
 							{!menuItemURL && (
-								<span class:list={[{ active_link: currentPath.length > 0 && currentPath[0] === menuItem.folder }]}>
+								<span
+									class:list={[
+										{ active_link: !errorPage && currentPath.length > 0 && currentPath[0] === menuItem.folder },
+									]}
+								>
 									{menuItem.name}
 								</span>
 							)}
@@ -161,6 +174,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 													class:list={[
 														{
 															active_link:
+																!errorPage &&
 																currentPath.length > 0 &&
 																currentPath[0] === menuItem.folder &&
 																currentPath[1] === submenuItem.url,

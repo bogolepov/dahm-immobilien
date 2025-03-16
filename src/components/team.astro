@@ -1,0 +1,214 @@
+---
+import MichaelDahm from "@assets/MichaelDahm.jpg"
+
+import Dahm from "@data/dahm.json"
+
+import { Picture } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+
+const pictureTextInhaber: string = 'Michael DAHM, Inhaber';
+
+---
+<style>
+  p.description {
+    font-size: 1.05em;
+    font-weight: 300;
+  }
+  a:where(.phone) {
+    font-size: 0.95em;
+    font-weight: 480;
+  }
+  .dahm-inhaber {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 840px;
+    margin: 0 auto;
+  }
+  .dahm-inhaber .image-wrapper-landscape {
+    padding-top: 0.6em;
+    padding-bottom: 0.4em;
+  }
+  .under-text {
+    font-size: 0.9em;
+    font-weight: 300;
+  }
+  /* li {
+    margin: 0.5em 0;
+    padding: 0.1em 0 0.5em 3em;
+    background-image: url('/assets/logo.svg');
+    background-position: 0 0;
+    background-size: 1.7em 1.5em;
+    background-repeat: no-repeat;
+  } */
+  hr {
+    border-color: var(--color-dahm-grey);
+  }
+  .mt1 {
+    margin-top: 0.5em;
+  }
+  .team-list {
+    margin-top: 2em;
+  }
+  .grid-person {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+  }
+  .grid-info {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+  .team-item {
+    margin-bottom: 1.2em;
+  }
+  .team-item:not(:has(.objects)) {
+    margin-bottom: 1.6em;
+  }
+  .mb015 {
+    margin-bottom: 0.15em;
+  }
+  .mb02 {
+    margin-bottom: 0.2em;
+  }
+  .person-name {
+    font-size: 1.3em;
+    font-weight: 650;
+    color: var(--color-dahm-bordo-dark);
+  }
+  .position {
+    font-weight: 540;
+  }
+  .cgap05 {
+    column-gap: 0.5em;
+  }
+  .cgap1 {
+    column-gap: 1em;
+  }
+  .cgap2 {
+    column-gap: 1.5em;
+  }
+  .item-contact {
+    width: 100%;
+    max-width: 15em;
+  }
+  .item-info {
+    flex-grow: 1;
+  }
+  .info-item-left{
+    margin-bottom: 0.15em;
+    min-width: 6.8em;
+  }
+  .info-item-right {
+    margin-bottom: 0.2em;
+  }
+  .info-address {
+    font-weight: 540;
+    margin-bottom: 0.2em;
+    line-height: 1.1;
+  }
+
+  @media screen and (max-width: 690px) {
+    .grid-person {
+      grid-template-columns: 1fr;
+    }
+    .grid-info {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+    }
+    .team-item:not(:has(.objects)) {
+      margin-bottom: 1.05em;
+    }
+  }
+  @media screen and (max-width: 415px) {
+    .grid-info {
+      grid-template-columns: 1fr;
+    }
+    .info-item-right {
+      padding-left: 1.5em;
+      padding-bottom: 0.5em;
+    }
+    .info-item-left {
+      margin-bottom: 0;
+    }
+    .team-item:not(:has(.objects)) {
+      margin-bottom: 0.8em;
+    }
+    .objects {
+      margin-top: 0.1em;
+    }
+  }
+
+</style>
+
+<section class="team">
+  <h3>Unsere Verwaltung</h3>
+  <p class="description">Hausverwaltung Dahm aus Hagen verwaltet seit über 25 Jahren verlässlich Immobilien. Wir arbeiten stets seriös, zuverlässig und professionell.</p>
+  <div class="dahm-inhaber">
+    <Picture 
+      class:list={'image-wrapper-landscape'} 
+      src={MichaelDahm} 
+      formats={['webp']} 
+      fallbackFormat='jpg'
+      loading="eager"
+      widths={[360, 480, 600, 760, 840]}
+      sizes={'(max-width: 360px) 360px, (max-width: 480px) 480px, (max-width: 600px) 600px, (max-width: 760px) 760px, 840px'}
+      quality="100"
+      alt={pictureTextInhaber} />
+    <div class="under-text">{pictureTextInhaber}</div>
+  </div>
+  <hr>
+  <h3>Unsere Ansprechpartner</h3>
+  <p class="description">Um Ihnen die Suche nach dem richtigen Ansprechpartner etwas zu erleichtern, haben wir für Sie hier unsere Aufgabenbereiche zusammengefasst.</p>
+  <p class="description">Sie erreichen uns unter der Telefonnummer : <a class="phone" href={"tel: " + Dahm.telephone}>{Dahm.telephone}</a></p>
+  <ul class="team-list">
+    {
+      Dahm.team.map(person => {
+        const objects = Dahm.objekte.filter(object => object.person && object.person.includes(person.sid));
+        objects.sort((obj1, obj2) => (obj1.address.str+obj1.address.number).toLowerCase().localeCompare((obj2.address.str+obj2.address.number).toLowerCase(), 'de'));
+        const hasObjects = objects.length > 0;
+        const { days, time } = person.office_time;
+        return (
+          <li class="team-item">
+            <div class="person-name">{person.name} {person.lastname}</div>
+            {
+              person.stelle &&
+              <div class="position">{person.stelle}</div>
+            }
+            <div class="grid-person cgap2">
+              <div class="item-contact">
+                <a class="flex-row-center cgap05 mt1 mb02" href={"mailto: " + person.email}>
+                  <Icon name="email" /><span>{person.email}</span>
+                </a>        
+                <a class="flex-row-center cgap05 mb02" href={"tel: " + Dahm.telephone}>
+                  <Icon name="phone" /><span>{person.telephone}</span>
+                </a>
+              </div>
+              <div class="item-info grid-info cgap1 mt1">
+                {
+                  person.office_time &&
+                  <div class="info-item-left">Bürozeit:</div>
+                  <div class="info-item-right">{days.von}-{days.bis}: {time.von}-{time.bis} Uhr</div>
+                }
+                {
+                  hasObjects &&
+                  <div class="info-item-left">Zuständigkeit:</div>
+                  <ul class="info-item-right objects">
+                    {
+                      objects.map(object => {
+                        const address = object.address;
+                        const isNotHagen = address.city.toLocaleLowerCase('de') !== 'Hagen'.toLocaleLowerCase('de');
+                        return(
+                          <li class="info-address">{address.str} {address.number}{isNotHagen && ', '+address.city}</li>
+                        );
+                      })
+                    }
+                  </ul>
+                }
+              </div>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>

@@ -3,11 +3,10 @@
 import Layout from '@layouts/Layout.astro';
 
 const title: string = '404';
-const titleOnPage: string = 'Diese Seite konnte nicht gefunden werden.';
 ---
 
 <Layout {title}>
-	<h1>{titleOnPage}</h1>
+	<p class='big-font'>Diese Seite konnte nicht gefunden werden.</p>
 	<p>
 		Möglicherweise haben Sie eine falsche oder veraltete URL aufgerufen, oder wir haben die Seite umbenannt oder
 		gelöscht.
@@ -21,7 +20,12 @@ const titleOnPage: string = 'Diese Seite konnte nicht gefunden werden.';
 		font-weight: 350;
 		margin: 1em 0;
 	}
-	h1 + p {
+	p.big-font {
+		font-size: var(--h1-size);
+		font-weight: bold;
+		margin: 0;
+	}
+	p.big-font + p {
 		margin-top: 1.25em;
 	}
 </style>

@@ -12,7 +12,7 @@
 body {
 	--color-dahm-background: #cecabf;
 	--color-dahm-background-light: #e8e4da;
-	--color-dahm-bordo2: #802932;
+	--color-dahm-bordo-dark: #85231e;
 	--color-dahm-bordo: #9a1915;
 	--color-dahm-bordo-disabled: #a9736e;
 	--color-dahm-bordo-disabled: #651c1b;
@@ -29,6 +29,8 @@ body {
 	--font-size: 1rem;
 	--font-size: clamp(0.92rem, 1.8vw, 1.02rem);
 	--font-size-header: calc(var(--font-size) * 0.85);
+	--h1-size: calc(var(--font-size) * 2.3);
+	--h3-size: calc(var(--font-size) * 1.5);
 
 	--width-hot-button: 3em;
 	--height-hot-button: 3em;
@@ -57,7 +59,10 @@ body {
 }
 
 h1 {
-	font-size: calc(var(--font-size) * 2.3);
+	font-size: var(--h1-size);
+}
+h3 {
+	font-size: var(--h3-size);
 }
 
 main {

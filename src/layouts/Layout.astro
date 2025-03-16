@@ -12,6 +12,8 @@ const { title, description, robots } = Astro.props;
 
 import DahmBulding from '@assets/building_dahm2.jpg';
 import { Picture } from 'astro:assets';
+
+const errorPage = title === '404';
 ---
 
 <!doctype html>
@@ -28,12 +30,23 @@ import { Picture } from 'astro:assets';
 		margin: 0 auto;
 		padding: var(--padding-y-page) var(--padding-x-page);
 	}
+	.page-title {
+		color: var(--color-dahm-bordo-dark);
+		padding-top: 0.2em;
+		padding-bottom: 0.5em;
+		letter-spacing: 0.01em;
+		/* line-height: 1;
+		margin-top: 0.2em;
+		margin-bottom: 0.6em;
+		padding-left: 0.3em;
+		border-left: 4px solid var(--color-dahm-bordo); */
+	}
 </style>
 
 <html lang='de'>
 	<Head {title} {description} {robots} />
 	<body>
-		<Header />
+		<Header {errorPage} />
 		<main>
 			<Sidebar />
 			<div class='dahm-building'>
@@ -51,6 +64,7 @@ import { Picture } from 'astro:assets';
 			</div>
 			<div class='main-content-wrapper'>
 				<div class='main-content'>
+					{title && title.length > 0 && <h1 class='page-title'>{errorPage ? '#' + title : title}</h1>}
 					<slot />
 				</div>
 			</div>

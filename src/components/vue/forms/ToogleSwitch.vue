@@ -102,10 +102,6 @@ input[disabled]:checked + .slider {
 	cursor: not-allowed;
 }
 
-/* input:focus + .slider {
-	box-shadow: 0 0 1px var(--color-dahm-bordo2);
-} */
-
 input:checked + .slider:before {
 	transform: translateX(var(--move-slider));
 }
