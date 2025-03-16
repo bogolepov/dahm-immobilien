@@ -93,9 +93,19 @@ const current_year: string = new Date().getFullYear().toString();
 	.footer-list-down a {
 		display: inline-block;
 	}
+
+	footer a {
+		transition: color 400ms ease-in-out;
+	}
+
 	@media screen and (max-width: 530px) {
 		.footer-list-down .regulation {
 			padding-right: 2.8em;
+		}
+	}
+	@media (hover: hover) {
+		footer a:hover {
+			color: var(--color-dahm-bordo);
 		}
 	}
 </style>

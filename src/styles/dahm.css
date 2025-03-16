@@ -75,6 +75,15 @@ main {
 	}
 }
 
+section a {
+	transition: color 300ms ease-in-out;
+}
+@media (hover: hover) {
+	section a:hover {
+		color: var(--color-dahm-bordo);
+	}
+}
+
 .flex-center {
 	display: flex;
 	justify-content: center;

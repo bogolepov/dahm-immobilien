@@ -1,3 +1,248 @@
 ---
-
+import Dahm from '@data/dahm.json';
+import CheckSettingsControl from '@vue/cookie/CheckSettingsControl.vue';
+import CheckSettingsControl_Youtube from '@vue/cookie/CheckSettingsControl.vue';
 ---
+
+<section class='protection'>
+	<h3>1. Datenschutz auf einen Blick</h3>
+	<p>
+		<p>
+			<div class='vue-container'>
+				<CheckSettingsControl client:load />
+			</div>
+		</p>
+		<h4>Allgemeine Hinweise</h4>
+		<p>
+			Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert,
+			wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert
+			werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text
+			aufgeführten Datenschutzerklärung.
+		</p>
+		<h4>Datenerfassung auf unserer Website</h4>
+		<h5>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</h5>
+		<p>
+			Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem
+			Impressum dieser Website entnehmen.
+		</p>
+		<h5>Wie erfassen wir Ihre Daten?</h5>
+		<p>
+			Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten
+			handeln, die Sie in ein Kontaktformular eingeben. Andere Daten werden automatisch beim Besuch der Website durch
+			unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit
+			des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie unsere Website betreten.
+		</p>
+		<h5>Wofür nutzen wir Ihre Daten?</h5>
+		<p>
+			Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten
+			können zur Analyse Ihres Nutzerverhaltens verwendet werden.
+		</p>
+		<h5>Welche Rechte haben Sie bezüglich Ihrer Daten?</h5>
+		<p>
+			Sie haben jederzeit das Recht unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten
+			personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung, Sperrung oder Löschung dieser
+			Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im
+			Impressum angegebenen Adresse an uns wenden. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen
+			Aufsichtsbehörde zu.
+		</p>
+		<h5>Analyse-Tools und Tools von Drittanbietern</h5>
+		<p>
+			Beim Besuch unserer Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Das geschieht vor allem mit
+			Cookies und mit sogenannten Analyseprogrammen. Die Analyse Ihres Surf-Verhaltens erfolgt in der Regel anonym; das
+			Surf-Verhalten kann nicht zu Ihnen zurückverfolgt werden. Sie können dieser Analyse widersprechen oder sie durch
+			die Nichtbenutzung bestimmter Tools verhindern. Detaillierte Informationen dazu finden Sie in der folgenden
+			Datenschutzerklärung. Sie können dieser Analyse widersprechen. Über die Widerspruchsmöglichkeiten werden wir Sie
+			in dieser Datenschutzerklärung informieren.
+		</p>
+		<h3>2. Allgemeine Hinweise und Pflichtinformationen</h3>
+		<h4>Datenschutz</h4>
+		<p>
+			Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre
+			personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser
+			Datenschutzerklärung.
+		</p>
+		<p>
+			Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind
+			Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert,
+			welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.
+		</p>
+		<p>
+			Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail)
+			Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+		</p>
+		<h4>Hinweis zur verantwortlichen Stelle</h4>
+		<p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+		<p>{Dahm.company_fullname}</p>
+		<p>{Dahm.address.street} {Dahm.address.building}</p>
+		<p>{Dahm.address.zip} {Dahm.address.city}</p>
+		<p>Telefon: {Dahm.telephone}</p>
+		<p>E-Mail: {Dahm.email}</p>
+		<p>
+			Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die
+			Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail- Adressen o. Ä.) entscheidet.
+		</p>
+		<h4>Widerruf Ihrer Einwilligung zur Datenverarbeitung</h4>
+		<p>
+			Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits
+			erteilte Einwilligung jederzeit widerrufen. Dazu reicht eine formlose Mitteilung per E-Mail an uns. Die
+			Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.
+		</p>
+		<h4>Beschwerderecht bei der zuständigen Aufsichtsbehörde</h4>
+		<p>
+			Im Falle datenschutzrechtlicher Verstöße steht dem Betroffenen ein Beschwerderecht bei der zuständigen
+			Aufsichtsbehörde zu. Zuständige Aufsichtsbehörde in datenschutzrechtlichen Fragen ist der
+			Landesdatenschutzbeauftragte des Bundeslandes, in dem unser Unternehmen seinen Sitz hat. Eine Liste der
+			Datenschutzbeauftragten sowie deren Kontaktdaten können folgendem Link entnommen werden: <a
+				href='https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html'
+				target='_blank'
+				rel='noopener external'>https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html</a
+			>
+			.
+		</p>
+		<h4>Recht auf Datenübertragbarkeit</h4>
+		<p>
+			Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags
+			automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen
+			zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies
+			nur, soweit es technisch machbar ist.
+		</p>
+		<h4>SSL- bzw. TLS-Verschlüsselung</h4>
+		<p>
+			Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel
+			Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL-bzw. TLS- Verschlüsselung. Eine
+			verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von “http://” auf “https://”
+			wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+		</p>
+		<p>
+			Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von
+			Dritten mitgelesen werden.
+		</p>
+		<h4>Auskunft, Sperrung, Löschung</h4>
+		<p>
+			Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über
+			Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und
+			ggf. ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema
+			personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden.
+		</p>
+		<h4>Aufbewahrungsfristen</h4>
+		<p>
+			Der Gesetzgeber hat vielfältige Aufbewahrungspflichten und –fristen erlassen. Nach Ablauf dieser Fristen werden
+			die entsprechenden Daten routinemäßig gelöscht, wenn Sie nicht mehr zur Vertragserfüllung erforderlich sind.
+			Sofern Daten hiervon nicht berührt sind, werden sie gelöscht, wenn die genannten Zwecke wegfallen.
+		</p>
+		<h3>3. Datenschutzbeauftragter</h3>
+		<h4>Gesetzlich vorgeschriebener Datenschutzbeauftragter</h4>
+		<p>Gesetzlich vorgeschriebener Datenschutzbeauftragter</p>
+		<p>
+			Wir haben für unser Unternehmen einen Datenschutzbeauftragten bestellt. Falls Sie Fragen hierzu haben, wenden Sie
+			sich bitte über die E-Mail-Adresse <a href={'mailto: ' + Dahm.email}>{Dahm.email}</a> an den von uns bestellten Datenschutzbeauftragten.
+		</p>
+		<h3>4. Datenerfassung auf unserer Website</h3>
+		<h4>Cookies</h4>
+		<p>
+			Die Internetseiten verwenden teilweise so genannte Cookies. Cookies richten auf Ihrem Rechner keinen Schaden an
+			und enthalten keine Viren. Cookies dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu
+			machen. Cookies sind kleine Textdateien, die auf Ihrem Rechner abgelegt werden und die Ihr Browser speichert. Die
+			meisten der von uns verwendeten Cookies sind so genannte „Session-Cookies“. Sie werden nach Ende Ihres Besuchs
+			automatisch gelöscht. Andere Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese löschen. Diese Cookies
+			ermöglichen es uns, Ihren Browser beim nächsten Besuch wiederzuerkennen. Sie können Ihren Browser so einstellen,
+			dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von
+			Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen
+			des Browser aktivieren. Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt
+			sein.
+		</p>
+		<h4>Kontaktformular</h4>
+		<p>
+			Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive
+			der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen
+			bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. Die Verarbeitung der in das
+			Kontaktformular eingegebenen Daten erfolgt somit ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1
+			lit. a DSGVO). Sie können diese Einwilligung jederzeit widerrufen. Dazu reicht eine formlose Mitteilung per E-Mail
+			an uns. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitungsvorgänge bleibt vom Widerruf
+			unberührt. Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung
+			auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.B.
+			nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere
+			Aufbewahrungsfristen – bleiben unberührt.
+		</p>
+		<h3>5. Plugins und Tools</h3>
+		<h4>Google Maps</h4>
+		<p>
+			<div class='vue-container'>
+				<CheckSettingsControl client:only='vue' type='google_maps' />
+			</div>
+		</p>
+		<p>
+			Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited („Google“), Gordon House,
+			Barrow Street, Dublin 4, Irland.
+		</p>
+		<p>
+			Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen
+			werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Der Anbieter dieser
+			Seite hat keinen Einfluss auf diese Datenübertragung. Wenn Google Maps aktiviert ist, kann Google zum Zwecke der
+			einheitlichen Darstellung der Schriftarten Google Web Fonts verwenden. Beim Aufruf von Google Maps lädt Ihr
+			Browser die benötigten Web Fonts in Ihrem Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
+		</p>
+		<p>
+			Die Nutzung von Google Maps erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote und an
+			einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein berechtigtes Interesse
+			im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die
+			Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG, soweit die
+			Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B.
+			Device-Fingerprinting) im Sinne des TTDSG umfasst. Die Einwilligung ist jederzeit widerrufbar.
+		</p>
+		<p>
+			Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden
+			Sie hier: <a
+				href='https://privacy.google.com/businesses/gdprcontrollerterms/'
+				target='_blank'
+				rel='noopener external'>https://privacy.google.com/businesses/gdprcontrollerterms/</a
+			> und
+			<a href='https://privacy.google.com/businesses/gdprcontrollerterms/sccs/' target='_blank' rel='noopener external'
+				>https://privacy.google.com/businesses/gdprcontrollerterms/sccs/</a
+			>.
+			<p>
+				Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google:
+				<a href='https://policies.google.com/privacy?hl=de' target='_blank' rel='noopener external'
+					>https://policies.google.com/privacy?hl=de</a
+				>.
+			</p>
+		</p>
+	</p>
+
+	<style>
+		/* .datenschutz h3 {
+		font-size: 1.25em;
+	} */
+		.protection h4 {
+			font-size: calc(var(--font-size) * 1.2);
+		}
+		.protection h5 {
+			font-size: calc(var(--font-size));
+		}
+		.protection p {
+			font-size: calc(var(--font-size) * 0.95);
+		}
+
+		.protection p + h3 {
+			padding-top: 1.2em;
+		}
+		.protection p + h4 {
+			padding-top: 0.8em;
+		}
+		.protection p + h5 {
+			padding-top: 0.4em;
+		}
+		.protection h3 + h4 {
+			padding-top: 0.5em;
+		}
+		.protection h4 + h5 {
+			padding-top: 0.35em;
+		}
+
+		.protection .vue-container {
+			width: 100%;
+			max-width: calc(var(--max-width-page) * 0.75);
+			margin: 2em auto;
+		}
+	</style>
+</section>
