@@ -41,6 +41,9 @@ const errorPage = title === '404';
 		padding-left: 0.3em;
 		border-left: 4px solid var(--color-dahm-bordo); */
 	}
+	.page-title.error {
+		margin-top: calc(var(--header-height) + var(--border-thick) + min(2em, 5vh, 4vw));
+	}
 </style>
 
 <html lang='de'>
@@ -49,22 +52,32 @@ const errorPage = title === '404';
 		<Header {errorPage} />
 		<main>
 			<Sidebar />
-			<div class='dahm-building'>
-				<Picture
-					class:list={'image-wrapper-landscape cover-image'}
-					src={DahmBulding}
-					formats={['webp']}
-					fallbackFormat='jpg'
-					loading='eager'
-					widths={[360, 480, 600, 760, 960, 1200, 1600]}
-					sizes={'(max-width: 360px) 360px, (max-width: 480px) 480px, (max-width: 600px) 600px, (max-width: 760px) 760px, (max-width: 960px) 960px, (max-width: 1200px) 1200px, 1600px'}
-					quality='100'
-					alt=''
-				/>
-			</div>
+			{
+				!errorPage && (
+					<div class='dahm-building'>
+						<Picture
+							class:list={'image-wrapper-landscape cover-image'}
+							src={DahmBulding}
+							formats={['webp']}
+							fallbackFormat='jpg'
+							loading='eager'
+							widths={[360, 480, 600, 760, 960, 1200, 1600]}
+							sizes={
+								'(max-width: 360px) 360px, (max-width: 480px) 480px, (max-width: 600px) 600px, (max-width: 760px) 760px, (max-width: 960px) 960px, (max-width: 1200px) 1200px, 1600px'
+							}
+							quality='100'
+							alt=''
+						/>
+					</div>
+				)
+			}
 			<div class='main-content-wrapper'>
 				<div class='main-content'>
-					{title && title.length > 0 && <h1 class='page-title'>{errorPage ? '#' + title : title}</h1>}
+					{
+						title && title.length > 0 && (
+							<h1 class:list={['page-title', { error: errorPage }]}>{errorPage ? '#' + title : title}</h1>
+						)
+					}
 					<slot />
 				</div>
 			</div>
