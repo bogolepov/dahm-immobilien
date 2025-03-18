@@ -16,6 +16,12 @@
 	"website_link": "https://dahm-immobilien.de",
 	"domain": "dahm-immobilien.de",
 	"office_time": { "days": { "von": "Mo", "bis": "Fr" }, "time": { "von": "09:00", "bis": "13:00" } },
+	"registration": {
+		"gericht": "Amtsgericht Hagen",
+		"gericht_nummer": "HRB 1321",
+		"steuer_nummer": "321/5774/3890",
+		"umsatz_id": "DE37060245"
+	},
 	"web_menu": [
 		{ "name": "Startseite", "root": true },
 		{
@@ -114,7 +120,7 @@
 			"person": ["kah"]
 		},
 		{
-			"address": { "str": "Schwerte Str.", "number": "158", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
+			"address": { "str": "Schwerter Str.", "number": "158", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
 			"person": ["kah"]
 		},
 		{
@@ -150,9 +156,12 @@
 			"person": ["sib"]
 		},
 		{
-			"address": { "str": "Neumarktstr.", "number": "12", "plz": "58095", "city": "Hagen", "distr": "Zentrum" },
-			"person": ["sas"],
-			"photo": ["Neumarktstr.jpg"]
+			"address": { "str": "Am Waldesrand", "number": "12c", "plz": "58093", "city": "Hagen", "distr": "Emst" },
+			"person": ["sib"]
+		},
+		{
+			"address": { "str": "Buscheystr.", "number": "38", "plz": "58089", "city": "Hagen", "distr": "Wehringhausen" },
+			"person": ["sib"]
 		},
 		{
 			"address": { "str": "Grimmestr.", "number": "13/13a", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
@@ -168,6 +177,10 @@
 			"person": ["sas"]
 		},
 		{
+			"address": { "str": "Hagener Str.", "number": "132", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
+			"person": ["sas"]
+		},
+		{
 			"address": { "str": "Emster Str.", "number": "17", "plz": "58093", "city": "Hagen", "distr": "Emst" },
 			"person": ["sis"],
 			"photo": ["Emsterstr.jpg"]
@@ -176,15 +189,6 @@
 			"address": { "str": "Prentzelstr.", "number": "10", "plz": "58095", "city": "Hagen", "distr": "Zentrum" },
 			"person": ["sis"],
 			"photo": ["Prentzelstr.jpg"]
-		},
-		{
-			"address": { "str": "Elberfelder Str.", "number": "45", "plz": "58095", "city": "Hagen", "distr": "Zentrum" },
-			"photo": ["Elberfelder.jpg"]
-		},
-		{
-			"address": { "str": "Dödterstr.", "number": "10", "plz": "58095", "city": "Hagen", "distr": "Elbershallen" },
-			"photo": ["Elbershallen.jpg"],
-			"url": "http://www.elbershallen.de/"
 		}
 	]
 }

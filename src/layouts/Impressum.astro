@@ -15,12 +15,14 @@ import dahm from '@data/dahm.json';
 		<p>{dahm.owner.firstname + ' ' + dahm.owner.lastname}</p>
 		<h4>Vertreten durch:</h4>
 		<p>{dahm.owner.firstname + ' ' + dahm.owner.lastname} (alleinvertretungsberechtigt)</p>
+		<h4>Inhaltlich Verantwortlicher <span>gemäß §10 III MDStV</span>:</h4>
+		<p>{dahm.owner.firstname + ' ' + dahm.owner.lastname} (Anschrift wie oben)</p>
 		<h4>Registereintrag:</h4>
-		<p>Registergericht: Amtsgericht Hagen</p>
-		<p>Registernummer: HRB 13210</p>
-		<p>Steuernummer: 321/5774/3890</p>
-		<p>USt.-IdNr.: ❗DE 175199736❗</p>
-		<h4>Aufsichtsbehörde:</h4>
+		<p>Registergericht: {dahm.registration.gericht}</p>
+		<p>Registernummer: {dahm.registration.gericht_nummer}</p>
+		<p>Steuernummer: {dahm.registration.steuer_nummer}</p>
+		<p>USt.-IdNr.: {dahm.registration.umsatz_id}</p>
+		<h4>Aufsichtsbehörde:❗</h4>
 		<p>Ordnungsamt der Stadt Hagen</p>
 		<p>Gesetzliche Grundlagen: § 34c Makler, Bauträger, Baubetreuer</p>
 		<p>❗oder❗</p>
@@ -79,6 +81,9 @@ import dahm from '@data/dahm.json';
 	}
 	.impressum h4 {
 		padding-top: 1em;
+	}
+	.impressum h4 span {
+		font-weight: normal;
 	}
 	.impressum h3 + p {
 		padding-top: 0.6em;
