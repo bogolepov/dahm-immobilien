@@ -1,10 +1,15 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 import dahm from '@data/dahm.json';
 import { object } from 'astro:schema';
 const { objects } = dahm;
-// objects.sort((obj1, obj2) => {
-// 	return 0;
-// });
+objects.sort((obj1, obj2) => {
+	let res: number = obj1.address.str.toLowerCase().localeCompare(obj2.address.str.toLowerCase(), 'de');
+	if (!res) res = obj1.address.number.toLowerCase().localeCompare(obj2.address.number.toLowerCase(), 'de');
+	if (!res) res = obj1.address.city.toLowerCase().localeCompare(obj2.address.city.toLowerCase(), 'de');
+	return res;
+});
 ---
 
 <section class='objects'>
@@ -12,10 +17,62 @@ const { objects } = dahm;
 	{
 		objects.map(object => {
 			return (
-				<p>
-					{object.address.str} {object.address.number}
-				</p>
+				<div>
+					<p>
+						{object.address.str} {object.address.number}, {object.address.plz} {object.address.city}
+					</p>
+					<div class='object-card'>
+						{object.person && (
+							<div>
+								<p class='card-title'>{dahm.company_name} Ansprechpartner</p>
+								{object.person.map(item => {
+									const who = dahm.team.find(t => t.sid === item);
+									if (!who) return null;
+									return (
+										<div class='dahm-partner-info'>
+											<p>
+												{who.name} {who.lastname}:
+											</p>
+											<div>
+												<a href={'mailto: ' + who.email} class='icon-flex'>
+													<Icon name='email' />
+													{who.email}
+												</a>
+												<a href={'tel: ' + who.telephone} class='icon-flex'>
+													<Icon name='phone' />
+													{who.telephone}
+												</a>
+											</div>
+										</div>
+									);
+								})}
+								<p class='card-title'>Hausmeister:</p>
+							</div>
+						)}
+					</div>
+				</div>
 			);
 		})
 	}
 </section>
+
+<style>
+	.objects h3 {
+		padding-bottom: 0.5em;
+	}
+	.objects .object-card {
+		margin-left: 1.5em;
+		padding: 0.5em 0 1.5em 2em;
+	}
+	.object-card .card-title {
+		font-weight: 540;
+		padding-top: 0.4em;
+	}
+	.dahm-partner-info {
+		display: flex;
+		column-gap: 1.5em;
+	}
+	.dahm-partner-info .icon-flex {
+		column-gap: 0.5em;
+	}
+</style>

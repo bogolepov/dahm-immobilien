@@ -159,3 +159,13 @@ section a {
 	-webkit-backdrop-filter: blur(1.5px);
 	backdrop-filter: blur(1.5px);
 }
+
+.icon-flex {
+	display: flex;
+	align-items: center;
+	column-gap: 0.75em;
+	width: max-content;
+}
+.icon-flex svg {
+	display: block;
+}
