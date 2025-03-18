@@ -18,7 +18,7 @@ objects.sort((obj1, obj2) => {
 		objects.map(object => {
 			return (
 				<div>
-					<p>
+					<p class='object-item'>
 						{object.address.str} {object.address.number}, {object.address.plz} {object.address.city}
 					</p>
 					<div class='object-card'>
@@ -69,9 +69,15 @@ objects.sort((obj1, obj2) => {
 		padding-bottom: 0.5em;
 	}
 	.objects .object-card {
-		margin-left: 1.5em;
-		padding: 0.5em 0 1.5em 2em;
+		transform-origin: 0 0;
+		overflow: hidden;
+		transition: max-height 500ms ease-in-out;
+		max-height: 0;
 	}
+	.objects .object-card > div {
+		padding: 0.5em 0 1.5em 3.5em;
+	}
+
 	.object-card .card-title {
 		font-weight: 540;
 		padding-top: 0.4em;
@@ -84,3 +90,26 @@ objects.sort((obj1, obj2) => {
 		column-gap: 0.5em;
 	}
 </style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const objectItems = document.querySelectorAll('.object-item');
+		objectItems.forEach(item =>
+			item.addEventListener('click', () => {
+				const card = item.nextElementSibling;
+				if (!card) return;
+
+				if (card.style.maxHeight) {
+					card.style.maxHeight = null;
+					// card.style.transform = 'scaleY(0)';
+				} else {
+					objectItems.forEach(obj => {
+						if (obj.nextElementSibling) obj.nextElementSibling.style.maxHeight = null;
+					});
+					card.style.maxHeight = card.scrollHeight + 'px';
+					// card.style.transform = 'scaleY(1)';
+				}
+			})
+		);
+	});
+</script>

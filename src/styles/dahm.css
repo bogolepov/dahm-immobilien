@@ -98,7 +98,6 @@ section a {
 .flex-row-center {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
 	align-items: center;
 }
 
@@ -163,7 +162,7 @@ section a {
 .icon-flex {
 	display: flex;
 	align-items: center;
-	column-gap: 0.75em;
+	column-gap: 1ch;
 	width: max-content;
 }
 .icon-flex svg {

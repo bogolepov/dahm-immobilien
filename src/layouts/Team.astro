@@ -33,19 +33,8 @@ const pictureTextInhaber: string = 'Michael DAHM, Inhaber';
     font-size: 0.9em;
     font-weight: 300;
   }
-  /* li {
-    margin: 0.5em 0;
-    padding: 0.1em 0 0.5em 3em;
-    background-image: url('/assets/logo.svg');
-    background-position: 0 0;
-    background-size: 1.7em 1.5em;
-    background-repeat: no-repeat;
-  } */
   hr {
     border-color: var(--color-dahm-grey);
-  }
-  .mt1 {
-    margin-top: 0.5em;
   }
   .team-list {
     margin-top: 2em;
@@ -53,10 +42,15 @@ const pictureTextInhaber: string = 'Michael DAHM, Inhaber';
   .grid-person {
     display: grid;
     grid-template-columns: 2fr 3fr;
+    margin-top: 0.5em;
+    row-gap: 0.5em;
+    column-gap: 1.5em;
   }
   .grid-info {
     display: grid;
     grid-template-columns: 1fr 4fr;
+    column-gap: 1em;
+
   }
   .team-item {
     margin-bottom: 1.2em;
@@ -64,10 +58,7 @@ const pictureTextInhaber: string = 'Michael DAHM, Inhaber';
   .team-item:not(:has(.objects)) {
     margin-bottom: 1.6em;
   }
-  .mb015 {
-    margin-bottom: 0.15em;
-  }
-  .mb02 {
+  .team .icon-flex {
     margin-bottom: 0.2em;
   }
   .person-name {
@@ -77,15 +68,6 @@ const pictureTextInhaber: string = 'Michael DAHM, Inhaber';
   }
   .position {
     font-weight: 540;
-  }
-  .cgap05 {
-    column-gap: 0.5em;
-  }
-  .cgap1 {
-    column-gap: 1em;
-  }
-  .cgap2 {
-    column-gap: 1.5em;
   }
   .item-contact {
     width: 100%;
@@ -112,7 +94,6 @@ const pictureTextInhaber: string = 'Michael DAHM, Inhaber';
       grid-template-columns: 1fr;
     }
     .grid-info {
-      display: grid;
       grid-template-columns: 1fr 3fr;
     }
     .team-item:not(:has(.objects)) {
@@ -183,16 +164,23 @@ const pictureTextInhaber: string = 'Michael DAHM, Inhaber';
               person.stelle &&
               <div class="position">{person.stelle}</div>
             }
-            <div class="grid-person cgap2">
+            <div class="grid-person">
               <div class="item-contact">
-                <a class="flex-row-center cgap05 mt1 mb02" href={"mailto: " + person.email}>
-                  <Icon name="email" /><span>{person.email}</span>
-                </a>        
-                <a class="flex-row-center cgap05 mb02" href={"tel: " + Dahm.telephone}>
-                  <Icon name="phone" /><span>{person.telephone}</span>
-                </a>
+                {person.email && 
+                  <div class="icon-flex" >
+                    <Icon name="email" />
+                    <a href={"mailto: " + person.email}>{person.email}</a>
+                  </div>
+                }
+                {
+                  person.telephone &&
+                  <div class="icon-flex" >
+                    <Icon name="phone" />
+                    <a href={"tel: " + person.telephone}>{person.telephone}</a>
+                  </div>
+                }
               </div>
-              <div class="item-info grid-info cgap1 mt1">
+              <div class="item-info grid-info">
                 {
                   person.office_time &&
                   <div class="info-item-left">Bürozeit:</div>

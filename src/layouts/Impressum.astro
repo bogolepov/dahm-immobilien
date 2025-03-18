@@ -1,5 +1,6 @@
 ---
 import dahm from '@data/dahm.json';
+const Norbert = dahm.team.find(p => p.sid === 'nor');
 ---
 
 <section class='impressum'>
@@ -11,12 +12,18 @@ import dahm from '@data/dahm.json';
 		<h4>Kontakt:</h4>
 		<p>Telefon: {dahm.telephone}</p>
 		<p>E-mail: {dahm.email}</p>
-		<h4>Geschäftsinhaber:</h4>
-		<p>{dahm.owner.firstname + ' ' + dahm.owner.lastname}</p>
+		<h4>Geschäftsführer:</h4>
+		{
+			dahm.directors.map(director_sid => {
+				const person = dahm.team.find(p => p.sid === director_sid);
+				if (person) return <p>{person.name + ' ' + person.lastname}</p>;
+				return null;
+			})
+		}
 		<h4>Vertreten durch:</h4>
-		<p>{dahm.owner.firstname + ' ' + dahm.owner.lastname} (alleinvertretungsberechtigt)</p>
-		<h4>Inhaltlich Verantwortlicher <span>gemäß §10 III MDStV</span>:</h4>
-		<p>{dahm.owner.firstname + ' ' + dahm.owner.lastname} (Anschrift wie oben)</p>
+		<p>{Norbert.name + ' ' + Norbert.lastname} (alleinvertretungsberechtigt)</p>
+		<h4>Inhaltlich Verantwortlicher <span>gemäß § 10 III MDStV</span>:</h4>
+		<p>{Norbert.name + ' ' + Norbert.lastname} (Anschrift wie oben)</p>
 		<h4>Registereintrag:</h4>
 		<p>Registergericht: {dahm.registration.gericht}</p>
 		<p>Registernummer: {dahm.registration.gericht_nummer}</p>

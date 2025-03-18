@@ -1,4 +1,5 @@
 ---
+import { getDayName } from '@scripts/utils';
 import Dahm from '@data/dahm.json';
 const { days, time } = Dahm.office_time;
 const itemUnternehmen = Dahm.web_menu.find(item => item.folder === 'unternehmen');
@@ -122,8 +123,12 @@ const current_year: string = new Date().getFullYear().toString();
 			</div>
 			<div class='available-block'>
 				<h5>{'Telefonische Erreichbarkeit'.toUpperCase()}</h5>
-				<p class='top'>{days.von}-{days.bis}: {time.von}-{time.bis} Uhr</p>
-				<p>Sa: 10:00–13:00 Uhr</p>
+				<!-- <p class='top'>{days.von}-{days.bis}: {time.von}-{time.bis} Uhr</p>
+				<p>&nbsp;</p> -->
+				<p class='top'>{time.von} - {time.bis} Uhr</p>
+				<p>{getDayName(days.von)} - {getDayName(days.bis)}</p>
+				<!-- <p class='top'>{getDayName(days.von)} - {getDayName(days.bis)}</p>
+				<p>{time.von} bis {time.bis} Uhr</p> -->
 				<h5 class='big-top'>{'Termine nach Vereinbarung'.toUpperCase()}</h5>
 			</div>
 		</div>
