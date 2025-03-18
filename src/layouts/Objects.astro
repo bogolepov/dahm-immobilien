@@ -1,0 +1,21 @@
+---
+import dahm from '@data/dahm.json';
+import { object } from 'astro:schema';
+const { objects } = dahm;
+// objects.sort((obj1, obj2) => {
+// 	return 0;
+// });
+---
+
+<section class='objects'>
+	<h3>Verwaltung</h3>
+	{
+		objects.map(object => {
+			return (
+				<p>
+					{object.address.str} {object.address.number}
+				</p>
+			);
+		})
+	}
+</section>

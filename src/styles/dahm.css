@@ -10,7 +10,8 @@
 }
 
 body {
-	--color-dahm-background: #cecabf;
+	--color-dahm-background-dark: hsl(40, 13%, 74%);
+	--color-dahm-background: hsl(44, 13%, 78%);
 	--color-dahm-background-light: #e8e4da;
 	--color-dahm-bordo-dark: #85231e;
 	--color-dahm-bordo: #9a1915;

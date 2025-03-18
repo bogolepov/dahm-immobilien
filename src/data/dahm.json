@@ -90,7 +90,7 @@
 			"office_time": { "days": { "von": "Mi", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "12:00" } }
 		}
 	],
-	"objekte": [
+	"objects": [
 		{
 			"address": { "str": "Alemannenweg", "number": "9", "plz": "58119", "city": "Hagen", "distr": "Hohenlimburg" },
 			"person": ["kah"],

@@ -1,0 +1,96 @@
+---
+import ExternalService from '@vue/cookie/ExternalService.vue';
+import MessageForm from '@vue/forms/MessageForm.vue';
+import { Icon } from 'astro-icon/components';
+
+import dahm from '@data/dahm.json';
+const { days, time } = dahm.office_time;
+---
+
+<section class='section-contact'>
+	<div>
+		<div class='icon-flex'>
+			<Icon name='geo' class='geo' />
+			<div>
+				<p>{dahm.company_fullname}</p>
+				<p>{dahm.address.street + ' ' + dahm.address.building}</p>
+				<p>{dahm.address.zip + ' ' + dahm.address.city}</p>
+			</div>
+		</div>
+		<div class='icon-flex'>
+			<Icon name='phone' />
+			<a href={'tel: ' + dahm.telephone}>{dahm.telephone}</a>
+		</div>
+		<div class='icon-flex'>
+			<Icon name='email' />
+			<a href={'mailto: ' + dahm.email}>{dahm.email}</a>
+		</div>
+		<div class='icon-flex'>
+			<Icon name='time' />
+			<div>
+				<p>{days.von}-{days.bis}: {time.von}-{time.bis} Uhr</p>
+				<p>Termine nach Vereinbarung</p>
+			</div>
+		</div>
+
+		<div class='map-container'>
+			<ExternalService client:only='vue' type='google_maps'>
+				<iframe
+					class='flex-item-left'
+					src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10510.716011968982!2d7.468919999999999!3d51.358410000000006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b93b7c53856cc9%3A0x8027014197acac4b!2sElberfelder%20Str.%2045%2C%2058095%20Hagen!5e1!3m2!1sde!2sde!4v1742236386216!5m2!1sde!2sde'
+					class='gmap'
+					width='100%'
+					height='100%'
+					allowfullscreen=''
+					loading='lazy'
+					referrerpolicy='no-referrer-when-downgrade'
+				>
+				</iframe>
+			</ExternalService>
+		</div>
+	</div>
+	<div>
+		<p class='chapter'>Nehmen Sie mit uns kontakt auf</p>
+		<MessageForm client:load />
+	</div>
+</section>
+
+<style>
+	.section-contact {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 2em;
+		row-gap: 2em;
+		padding-bottom: 1em;
+	}
+	.section-contact > * {
+		/* min-width: 200px; */
+		flex-basis: 300px;
+		flex-grow: 1;
+	}
+
+	.map-container {
+		margin-top: 1em;
+		width: 100%;
+		height: min(70vh, 400px);
+	}
+	.section-contact .icon-flex {
+		display: flex;
+		align-items: center;
+		column-gap: 0.75em;
+		width: max-content;
+		font-size: 0.97em;
+		padding-top: 0.03em;
+		padding-bottom: 0.5em;
+		/* color: var(--color-dahm-bordo); */
+	}
+	.icon-flex svg {
+		margin-bottom: auto;
+	}
+	.section-contact p.chapter {
+		color: var(--color-dahm-bordo-dark);
+		font-size: 1.1em;
+		font-weight: 540;
+		padding-bottom: 0.15em;
+	}
+</style>

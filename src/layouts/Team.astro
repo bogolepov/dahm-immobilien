@@ -163,7 +163,7 @@ const pictureTextInhaber: string = 'Michael DAHM, Inhaber';
   <ul class="team-list">
     {
       Dahm.team.map(person => {
-        const objects = Dahm.objekte.filter(object => object.person && object.person.includes(person.sid));
+        const objects = Dahm.objects.filter(object => object.person && object.person.includes(person.sid));
         objects.sort((obj1, obj2) => (obj1.address.str+obj1.address.number).toLowerCase().localeCompare((obj2.address.str+obj2.address.number).toLowerCase(), 'de'));
         const hasObjects = objects.length > 0;
         const { days, time } = person.office_time;
