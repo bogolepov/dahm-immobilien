@@ -229,12 +229,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		}
 
 		const changeCardState = (cardName: string) => {
-			console.log(cardName);
-
 			sbCards.forEach(card => {
 				if (card.classList.contains(cardName)) {
-					console.log('change status');
-
 					if (card.classList.contains('open')) card.classList.remove('open');
 					else {
 						sbCards.forEach(tmpCard => tmpCard.classList.remove('open'));
@@ -246,9 +242,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		};
 		openFormButtons.forEach(btn => {
 			btn.addEventListener('click', () => {
-				console.log('btn click');
-				console.log(btn.classList);
-
 				if (btn.classList.contains('phone')) return changeCardState('phone');
 				else if (btn.classList.contains('message')) return changeCardState('message');
 			});

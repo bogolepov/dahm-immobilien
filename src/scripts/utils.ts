@@ -17,3 +17,10 @@ export function getDayName(shortName: string): string | undefined {
 	}
 	return undefined;
 }
+
+export function getDuration1991(): number {
+	return new Date().getFullYear() - 1991;
+}
+export function getDuration2025(): number {
+	return new Date().getFullYear() - 2025;
+}

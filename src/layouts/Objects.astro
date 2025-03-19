@@ -24,7 +24,7 @@ objects.sort((obj1, obj2) => {
 					<div class='object-card'>
 						{object.person && (
 							<div>
-								<p class='card-title'>{dahm.company_name} Ansprechpartner</p>
+								<p class='card-title'>Ansprechpartner</p>
 								{object.person.map(item => {
 									const who = dahm.team.find(t => t.sid === item);
 									if (!who) return null;
@@ -34,27 +34,31 @@ objects.sort((obj1, obj2) => {
 												{who.name} {who.lastname}:
 											</p>
 											<div>
-												<a href={'mailto: ' + who.email} class='icon-flex'>
+												<div class='icon-flex'>
 													<Icon name='email' />
-													{who.email}
-												</a>
-												<a href={'tel: ' + who.telephone} class='icon-flex'>
+													<a href={'mailto: ' + who.email}>{who.email}</a>
+												</div>
+												<div class='icon-flex'>
 													<Icon name='phone' />
-													{who.telephone}
-												</a>
+													<a href={'tel: ' + who.telephone}>{who.telephone}</a>
+												</div>
 											</div>
 										</div>
 									);
 								})}
-								<p class='card-title'>Hausmeister:</p>
-								<div class='icon-flex'>
+								<p class='card-title'>
+									<a href='' target='_blank' rel='noopener external'>
+										Auf Google Maps
+									</a>
+								</p>
+								{/* <div class='icon-flex'>
 									<p class='card-title'>
 										<a href='' target='_blank' rel='noopener external'>
 											Auf Google Maps
 										</a>
 									</p>
 									<Icon name='geo' />
-								</div>
+								</div> */}
 							</div>
 						)}
 					</div>

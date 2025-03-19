@@ -1,11 +1,11 @@
 ---
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
-import History from '@components/History.astro';
+import Profile from '@layouts/Profile.astro';
 
-// const title: String = '';
+const title: string = 'Über uns';
 ---
 
-<Layout>
-	<History />
+<Layout {title}>
+	<Profile />
 </Layout>

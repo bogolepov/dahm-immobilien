@@ -120,10 +120,6 @@ section a {
 	min-width: var(--min-width);
 	border-radius: 0;
 }
-.dahm-building {
-	width: 100%;
-	overflow: hidden;
-}
 
 .image-w {
 	display: block;

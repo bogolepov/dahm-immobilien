@@ -12,6 +12,7 @@ const { title, description, robots } = Astro.props;
 
 import DahmBulding from '@assets/building_dahm2.jpg';
 import { Picture } from 'astro:assets';
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png}');
 
 const errorPage = title === '404';
 ---
@@ -39,6 +40,7 @@ const errorPage = title === '404';
 							quality='100'
 							alt=''
 						/>
+						{/* <Picture class='image-h big-logo' src={images['/src/assets/logo.png']()} alt='Logo' /> */}
 					</div>
 				)
 			}
@@ -59,6 +61,20 @@ const errorPage = title === '404';
 </html>
 
 <style>
+	.dahm-building {
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+	}
+	.big-logo {
+		--width-logo: 28vw;
+		min-width: 65px;
+		width: var(--width-logo);
+		position: absolute;
+		left: calc(50% - var(--width-logo) / 2);
+		top: 0;
+	}
+
 	.main-content-wrapper {
 		display: grid;
 		place-items: center;
