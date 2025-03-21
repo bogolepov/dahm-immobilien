@@ -94,99 +94,130 @@
 			"office_time": { "days": { "von": "Mi", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "12:00" } }
 		}
 	],
+	"object_types": [
+		{ "sid": "mfh", "title": "Mehrfamilienhaus" },
+		{ "sid": "ind", "title": "Industrieobjekt" },
+		{ "sid": "gmfh", "title": "Gewerbe und Mehrfamilienhaus" },
+		{ "sid": "weg", "title": "WEG-Mehrfamilienhaus" }
+	],
 	"objects": [
 		{
 			"address": { "str": "Alemannenweg", "number": "9", "plz": "58119", "city": "Hagen", "distr": "Hohenlimburg" },
 			"person": ["kah"],
-			"photo": ["Alemannenweg.jpg"]
+			"photo": ["Alemannenweg.jpg"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Frankfurter Str.", "number": "71/73", "plz": "58339", "city": "Breckerfeld" },
-			"person": ["kah"]
+			"person": ["kah"],
+			"type": "gmfh"
 		},
 		{
 			"address": { "str": "Grünrockstr.", "number": "17", "plz": "58119", "city": "Hagen", "distr": "Hohenlimburg" },
-			"person": ["kah"]
+			"person": ["kah"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Im Lindental", "number": "48", "plz": "58135", "city": "Hagen", "distr": "Haspe" },
 			"person": ["kah"],
-			"photo": ["Lindental.jpg"]
+			"photo": ["Lindental.jpg"],
+			"type": "ind"
 		},
 		{
 			"address": { "str": "Hospitalstr.", "number": "9", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
-			"person": ["kah"]
+			"person": ["kah"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Schwerter Str.", "number": "158", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
-			"person": ["kah"]
+			"person": ["kah"],
+			"type": "gmfh"
 		},
 		{
 			"address": { "str": "Ruhreckstr.", "number": "35", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
-			"person": ["kah"]
+			"person": ["kah"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Beethovenstr.", "number": "62", "plz": "58097", "city": "Hagen", "distr": "Klosterviertel" },
 			"person": ["sib"],
-			"photo": ["Beethovenstr.jpg"]
+			"photo": ["Beethovenstr.jpg"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Emster Str.", "number": "86", "plz": "58093", "city": "Hagen", "distr": "Emst" },
-			"person": ["sib"]
+			"person": ["sib"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Kockenhof", "number": "18", "plz": "58093", "city": "Hagen", "distr": "Berchum" },
 			"person": ["sib"],
-			"photo": ["Kockenhof.jpg"]
+			"photo": ["Kockenhof.jpg"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Milly-Steger-Str.", "number": "12", "plz": "58093", "city": "Hagen", "distr": "Emst" },
 			"person": ["sib"],
-			"photo": ["Milly-Steger-Str.jpg"]
+			"photo": ["Milly-Steger-Str.jpg"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Sedanstr.", "number": "41", "plz": "58089", "city": "Hagen", "distr": "Altenhagen" },
 			"person": ["sib", "sis"],
-			"photo": ["Sedanstr.jpg"]
+			"photo": ["Sedanstr.jpg"],
+			"type": "ind"
 		},
 		{
 			"address": { "str": "Overbeckstr.", "number": "1", "plz": "44141", "city": "Dortmund", "distr": "Innenstadt" },
-			"person": ["sib"]
+			"person": ["sib"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Am Waldesrand", "number": "12c", "plz": "58093", "city": "Hagen", "distr": "Emst" },
-			"person": ["sib"]
+			"person": ["sib"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Buscheystr.", "number": "38", "plz": "58089", "city": "Hagen", "distr": "Wehringhausen" },
-			"person": ["sib"]
+			"person": ["sib"],
+			"type": "weg"
 		},
 		{
 			"address": { "str": "Grimmestr.", "number": "13/13a", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
-			"person": ["sas"]
+			"person": ["sas"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Grimmestr.", "number": "15", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
-			"person": ["sas"]
+			"person": ["sas"],
+			"type": "mfh"
 		},
-		{ "address": { "str": "Grünstr.", "number": "123", "plz": "58239", "city": "Schwerte" }, "person": ["sas"] },
+		{
+			"address": { "str": "Grünstr.", "number": "123", "plz": "58239", "city": "Schwerte" },
+			"person": ["sas"],
+			"type": "gmfh"
+		},
 		{
 			"address": { "str": "Oststr.", "number": "16", "plz": "58119", "city": "Hagen", "distr": "Hohenlimburg" },
-			"person": ["sas"]
+			"person": ["sas"],
+			"type": "gmfh"
 		},
 		{
 			"address": { "str": "Hagener Str.", "number": "132", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
-			"person": ["sas"]
+			"person": ["sas"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Emster Str.", "number": "17", "plz": "58093", "city": "Hagen", "distr": "Emst" },
 			"person": ["sis"],
-			"photo": ["Emsterstr.jpg"]
+			"photo": ["Emsterstr.jpg"],
+			"type": "mfh"
 		},
 		{
 			"address": { "str": "Prentzelstr.", "number": "10", "plz": "58095", "city": "Hagen", "distr": "Zentrum" },
-			"person": ["sis"],
-			"photo": ["Prentzelstr.jpg"]
+			"person": ["sis", "sib"],
+			"photo": ["Prentzelstr.jpg"],
+			"type": "mfh"
 		}
 	]
 }

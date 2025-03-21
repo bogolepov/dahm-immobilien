@@ -14,11 +14,19 @@ objects.sort((obj1, obj2) => {
 
 <section class='objects'>
 	<h3>Verwaltung</h3>
+	<iframe
+		width='100%'
+		height='450px'
+		frameborder='0'
+		allowfullscreen
+		allow='geolocation'
+		src='//umap.openstreetmap.fr/de/map/dahm-immobilien-verwaltung-gmbh_1194597?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'
+	></iframe>
 	{
 		objects.map(object => {
 			return (
 				<div>
-					<p class='object-item'>
+					<p class='object-address'>
 						{object.address.str} {object.address.number}, {object.address.plz} {object.address.city}
 					</p>
 					<div class='object-card'>
@@ -29,8 +37,8 @@ objects.sort((obj1, obj2) => {
 									const who = dahm.team.find(t => t.sid === item);
 									if (!who) return null;
 									return (
-										<div class='dahm-partner-info'>
-											<p>
+										<div class='contact-partner-info'>
+											<p class='name'>
 												{who.name} {who.lastname}:
 											</p>
 											<div>
@@ -72,6 +80,12 @@ objects.sort((obj1, obj2) => {
 	.objects h3 {
 		padding-bottom: 0.5em;
 	}
+	.objects .object-address {
+		/* display: flex; */
+		cursor: pointer;
+		margin: 0.3em 0;
+		width: max-content;
+	}
 	.objects .object-card {
 		transform-origin: 0 0;
 		overflow: hidden;
@@ -79,25 +93,31 @@ objects.sort((obj1, obj2) => {
 		max-height: 0;
 	}
 	.objects .object-card > div {
-		padding: 0.5em 0 1.5em 3.5em;
+		padding: 0.5em 0 1.5em 3em;
 	}
 
 	.object-card .card-title {
 		font-weight: 540;
 		padding-top: 0.4em;
 	}
-	.dahm-partner-info {
+	.contact-partner-info {
 		display: flex;
-		column-gap: 1.5em;
+		/* column-gap: 1.5em; */
+		flex-wrap: wrap;
 	}
-	.dahm-partner-info .icon-flex {
+	.contact-partner-info .name {
+		min-width: 8em;
+	}
+	.contact-partner-info .icon-flex {
 		column-gap: 0.5em;
+		margin-left: 1.5em;
+		min-width: 13em;
 	}
 </style>
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-		const objectItems = document.querySelectorAll('.object-item');
+		const objectItems = document.querySelectorAll('.object-address');
 		objectItems.forEach(item =>
 			item.addEventListener('click', () => {
 				const card = item.nextElementSibling;
