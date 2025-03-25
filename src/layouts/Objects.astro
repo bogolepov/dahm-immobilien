@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 
 import dahm from '@data/dahm.json';
-import { object } from 'astro:schema';
+import { object, undefined } from 'astro:schema';
 const { objects } = dahm;
 objects.sort((obj1, obj2) => {
 	let res: number = obj1.address.str.toLowerCase().localeCompare(obj2.address.str.toLowerCase(), 'de');
@@ -16,14 +16,15 @@ objects.sort((obj1, obj2) => {
 	<h3>Verwaltung</h3>
 	<iframe
 		width='100%'
-		height='450px'
+		height='500px'
 		frameborder='0'
 		allowfullscreen
 		allow='geolocation'
-		src='//umap.openstreetmap.fr/de/map/dahm-immobilien-verwaltung-gmbh_1194597?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'
+		src='//umap.openstreetmap.fr/de/map/dahm-immobilien-verwaltung-gmbh_1194597#10/51.3834/7.4487?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'
 	></iframe>
 	{
 		objects.map(object => {
+			const objectName = dahm.object_types.find(type => type.sid === object.type)?.title;
 			return (
 				<div>
 					<p class='object-address'>
@@ -32,6 +33,12 @@ objects.sort((obj1, obj2) => {
 					<div class='object-card'>
 						{object.person && (
 							<div>
+								{objectName && (
+									<div class='contact-partner-info'>
+										<p class='name'>Objekt:</p>
+										<p>{objectName}</p>
+									</div>
+								)}
 								<p class='card-title'>Ansprechpartner</p>
 								{object.person.map(item => {
 									const who = dahm.team.find(t => t.sid === item);

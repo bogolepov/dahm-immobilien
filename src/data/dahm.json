@@ -215,7 +215,7 @@
 		},
 		{
 			"address": { "str": "Prentzelstr.", "number": "10", "plz": "58095", "city": "Hagen", "distr": "Zentrum" },
-			"person": ["sis", "sib"],
+			"person": ["sis"],
 			"photo": ["Prentzelstr.jpg"],
 			"type": "mfh"
 		}
