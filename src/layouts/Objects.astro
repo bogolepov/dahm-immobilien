@@ -2,7 +2,6 @@
 import { Icon } from 'astro-icon/components';
 
 import dahm from '@data/dahm.json';
-import { object, undefined } from 'astro:schema';
 const { objects } = dahm;
 objects.sort((obj1, obj2) => {
 	let res: number = obj1.address.str.toLowerCase().localeCompare(obj2.address.str.toLowerCase(), 'de');
