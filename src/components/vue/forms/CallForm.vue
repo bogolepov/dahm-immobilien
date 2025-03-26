@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, useId } from 'vue';
+import { getDayName } from '@scripts/utils';
 import Dahm from '@data/dahm.json';
 import PhoneOut from '@vue/icons/PhoneOut.vue';
 
@@ -11,20 +12,6 @@ const choiceByName = ref(CHOICE_BY_NAME);
 const namePartner = ref();
 const objectAddress = ref();
 
-const partners = computed(() => {
-	const list = [];
-	if (choiceByName.value === CHOICE_BY_NAME && namePartner.value) {
-		console.log(namePartner.value);
-		list.push(namePartner.value);
-	} else if (choiceByName.value !== CHOICE_BY_NAME && objectAddress.value) {
-		console.log(objectAddress.value);
-		objectAddress.value.person.forEach(sid => list.push(team.find(p => p.sid === sid)));
-	}
-	console.log(list);
-
-	return list;
-});
-
 Dahm.objects.sort((obj1, obj2) => {
 	let res: number = obj1.address.str.toLowerCase().localeCompare(obj2.address.str.toLowerCase(), 'de');
 	if (!res) res = obj1.address.number.toLowerCase().localeCompare(obj2.address.number.toLowerCase(), 'de');
@@ -32,6 +19,27 @@ Dahm.objects.sort((obj1, obj2) => {
 	return res;
 });
 const team = Dahm.team.filter(person => person.telephone);
+
+const objectPartners = computed(() => {
+	const list: typeof Dahm.team = [];
+	// if (choiceByName.value === CHOICE_BY_NAME && namePartner.value) {
+	// 	list.push(namePartner.value);
+	// } else
+	if (choiceByName.value !== CHOICE_BY_NAME && objectAddress.value) {
+		objectAddress.value.person.forEach(sid => list.push(team.find(p => p.sid === sid)));
+	}
+	return list;
+});
+function getOfficeTime(person: (typeof Dahm.team)[0]): string {
+	if (!person) return '';
+	const { days, time } = person.office_time;
+	return `${days.von}-${days.bis}: ${time.von}-${time.bis} Uhr`;
+}
+function getOfficeTimeLong(person: (typeof Dahm.team)[0]): string {
+	if (!person) return '';
+	const { days, time } = person.office_time;
+	return `${getDayName(days.von)}-${getDayName(days.bis)}: ${time.von}-${time.bis} Uhr`;
+}
 </script>
 
 <template>
@@ -46,32 +54,37 @@ const team = Dahm.team.filter(person => person.telephone);
 				<label :for="radioObjectId">nach Objekt</label>
 			</div>
 		</div>
-		<select v-show="choiceByName === CHOICE_BY_NAME" v-model="namePartner" class="ctrl-full">
-			<option disabled :value="undefined" hidden>auswählen...</option>
-			<option v-for="iPerson in team" :value="iPerson">
-				{{ `${iPerson.name} ${iPerson.lastname}` }}
-			</option>
-		</select>
-		<select v-show="choiceByName !== CHOICE_BY_NAME" v-model="objectAddress" class="ctrl-full">
-			<option disabled :value="undefined" hidden>auswählen...</option>
-			<option v-for="iObject in Dahm.objects" :value="iObject">
-				{{ `${iObject.address.str} ${iObject.address.number}, ${iObject.address.plz} ${iObject.address.city}` }}
-			</option>
-		</select>
-		<template v-for="iPartner in partners" :value="iPartner">
-			<a
-				v-if="choiceByName === CHOICE_BY_NAME"
-				:href="`tel: ${iPartner.telephone}`"
-				class="red-button icon-link ctrl-full"
-				><PhoneOut width="1em" />{{ iPartner.telephone }}</a
+		<div v-show="choiceByName === CHOICE_BY_NAME" class="choice-block">
+			<select v-model="namePartner" class="ctrl-full">
+				<option disabled :value="undefined" hidden>auswählen...</option>
+				<option v-for="iPerson in team" :value="iPerson">
+					{{ `${iPerson.name} ${iPerson.lastname}` }}
+				</option>
+			</select>
+			<p v-if="namePartner" class="office-time by-name">{{ getOfficeTimeLong(namePartner) }}</p>
+			<a v-if="namePartner" :href="`tel: ${namePartner.telephone}`" class="red-button icon-link ctrl-full"
+				><PhoneOut width="1em" />{{ namePartner.telephone }}</a
 			>
-			<div v-else class="form-flex2">
-				<p>{{ iPartner.name }} {{ iPartner.lastname }}</p>
-				<a :href="`tel: ${iPartner.telephone}`" class="red-button icon-link"
-					><PhoneOut width="1em" />{{ iPartner.telephone }}</a
-				>
-			</div>
-		</template>
+		</div>
+		<div v-show="choiceByName !== CHOICE_BY_NAME" class="choice-block">
+			<select v-model="objectAddress" class="ctrl-full">
+				<option disabled :value="undefined" hidden>auswählen...</option>
+				<option v-for="iObject in Dahm.objects" :value="iObject">
+					{{ `${iObject.address.str} ${iObject.address.number}, ${iObject.address.plz} ${iObject.address.city}` }}
+				</option>
+			</select>
+			<template v-for="iPartner in objectPartners" :value="iPartner">
+				<div class="form-flex2">
+					<div>
+						<p>{{ iPartner.name }} {{ iPartner.lastname }}</p>
+						<p class="office-time">{{ getOfficeTime(iPartner) }}</p>
+					</div>
+					<a :href="`tel: ${iPartner.telephone}`" class="red-button icon-link"
+						><PhoneOut width="1em" />{{ iPartner.telephone }}</a
+					>
+				</div>
+			</template>
+		</div>
 	</form>
 </template>
 
@@ -94,22 +107,33 @@ const team = Dahm.team.filter(person => person.telephone);
 	padding-left: 0.4em;
 }
 
-.call-form select {
+.call-form .choice-block {
 	margin-bottom: 0.8em;
 }
 
 .call-form .form-flex2 {
 	align-items: center;
-	padding: 0.2em 0 0.4em 0;
+	margin: 0;
+	padding: 0;
+	margin-top: 0.8em;
 }
-.call-form .form-flex2 + .form-flex2 {
-	padding-top: 0.4em;
-}
+
 .call-form .form-flex2 p {
 	font-weight: 400;
 }
 .call-form a.red-button {
 	padding: 0.3em 0.6em;
 	justify-content: center;
+}
+.call-form .office-time {
+	font-size: 0.87em;
+	font-weight: 400;
+	line-height: 1;
+	padding-top: 0.1em;
+}
+.call-form .office-time.by-name {
+	/* font-size: 0.85em; */
+	padding-top: 0.45em;
+	padding-bottom: 0.8em;
 }
 </style>
