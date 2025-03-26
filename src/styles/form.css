@@ -27,28 +27,33 @@ form textarea:focus-visible {
 	outline-color: var(--border-color-form-active);
 }
 
-form input[type='checkbox'] {
+form input[type='checkbox'],
+form input[type='radio'] {
 	display: inline-block;
 	position: relative;
-	--size-checkbox: 0.86em;
-	width: var(--size-checkbox);
-	height: var(--size-checkbox);
+	--size-element: 0.86em;
+	width: var(--size-element);
+	height: var(--size-element);
 	overflow: hidden;
 	margin-bottom: auto;
 	margin-top: 0.1em;
 }
-form input[type='checkbox']::after {
+form input[type='radio'] {
+	--size-element: 1em;
+	margin-top: auto;
+}
+form input[type='checkbox']::after,
+form input[type='radio']::after {
 	content: '';
 	display: block;
 	position: absolute;
 	text-align: center;
-	height: var(--size-checkbox);
-	width: var(--size-checkbox);
-	padding: calc(var(--size-checkbox) * 0.1);
+	height: var(--size-element);
+	width: var(--size-element);
+	padding: calc(var(--size-element) * 0.1);
 	left: 0;
 	top: 0;
 	line-height: 0;
-	border-radius: 2px;
 	border: 1px solid var(--border-color-form);
 	background-color: var(--background-color-form);
 	transition:
@@ -56,12 +61,20 @@ form input[type='checkbox']::after {
 		background-color 250ms ease-in-out,
 		border-color 250ms ease-in-out;
 }
+form input[type='checkbox']::after {
+	border-radius: 2px;
+}
+form input[type='radio']::after {
+	border-radius: 50%;
+}
 @media (hover: hover) {
+	form input[type='checkbox']:hover::after,
 	form input[type='checkbox']:hover::after {
 		background-color: var(--background-color-form-active);
 	}
 }
-form input[type='checkbox']:checked::after {
+form input[type='checkbox']:checked::after,
+form input[type='radio']:checked::after {
 	content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" display="block" fill="white" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>');
 	background-color: var(--color-dahm-bordo);
 	border: 1px solid var(--color-dahm-bordo);
@@ -83,12 +96,12 @@ form .ctrl-half {
 	padding-top: 0;
 }
 
-.form-flex2 input {
+.form-flex2 > * {
 	width: 49%;
 	margin-right: 1%;
 	display: inline-block;
 }
-.form-flex2 input + input {
+.form-flex2 > * + * {
 	margin-right: 0;
 	margin-left: 1%;
 }
@@ -98,8 +111,8 @@ form .ctrl-half {
 		flex-wrap: wrap;
 		row-gap: 0.4em;
 	}
-	.form-flex2 input,
-	.form-flex2 input + input {
+	.form-flex2 > *,
+	.form-flex2 > * + * {
 		margin: 0;
 		width: 100%;
 	}

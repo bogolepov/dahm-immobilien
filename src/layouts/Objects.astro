@@ -11,16 +11,15 @@ objects.sort((obj1, obj2) => {
 });
 ---
 
-<section class='objects'>
-	<h3>Verwaltung</h3>
+<section class='s-objects'>
 	<iframe
-		width='100%'
-		height='500px'
+		class='map-objects'
 		frameborder='0'
 		allowfullscreen
 		allow='geolocation'
 		src='//umap.openstreetmap.fr/de/map/dahm-immobilien-verwaltung-gmbh_1194597#10/51.3834/7.4487?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'
 	></iframe>
+	<h3>Verwaltung</h3>
 	{
 		objects.map(object => {
 			const objectName = dahm.object_types.find(type => type.sid === object.type)?.title;
@@ -83,22 +82,29 @@ objects.sort((obj1, obj2) => {
 </section>
 
 <style>
-	.objects h3 {
+	.s-objects .map-objects {
+		width: 100%;
+		height: min(calc((100vh - var(--header-height)) * 0.9), calc(1.2 * 100vw));
+		min-height: 300px;
+		max-height: 500px;
+	}
+
+	.s-objects h3 {
 		padding-bottom: 0.5em;
 	}
-	.objects .object-address {
+	.s-objects .object-address {
 		/* display: flex; */
 		cursor: pointer;
 		margin: 0.3em 0;
 		width: max-content;
 	}
-	.objects .object-card {
+	.s-objects .object-card {
 		transform-origin: 0 0;
 		overflow: hidden;
 		transition: max-height 500ms ease-in-out;
 		max-height: 0;
 	}
-	.objects .object-card > div {
+	.s-objects .object-card > div {
 		padding: 0.5em 0 1.5em 3em;
 	}
 

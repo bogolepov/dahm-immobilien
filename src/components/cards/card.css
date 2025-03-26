@@ -18,10 +18,12 @@
 	display: flex;
 	align-items: center;
 	column-gap: 0.5em;
-	width: max-content;
+	min-width: max-content;
 	font-size: 0.97em;
 	padding-top: 0.05em;
-	/* color: var(--color-dahm-bordo); */
+}
+.card-content a.icon-link.min {
+	width: max-content;
 }
 
 .card-content a.phone-number {
