@@ -1,0 +1,135 @@
+---
+type TCategory = {
+	catName: string;
+	catDescriptions: string[];
+};
+const list: TCategory[] = [
+	{
+		catName: 'Vermarktung der Immobilie',
+		catDescriptions: [
+			'Erstellung von Exposés und Inseraten (online/offline)',
+			'Auswahl geeigneter Werbekanäle',
+			'Organisation und Durchführung von Besichtigungen',
+		],
+	},
+	{
+		catName: 'Mieterauswahl und Vertragsabschluss',
+		catDescriptions: [
+			'Prüfung von Mietinteressenten (Bonität, Unterlagen)',
+			'Auswahl geeigneter Mieter',
+			'Erstellung und Abschluss von Mietverträgen',
+		],
+	},
+	{
+		catName: 'Mietmanagement',
+		catDescriptions: [
+			'Übergabe der Immobilie an den Mieter (inkl. Protokoll)',
+			'Laufende Betreuung des Mietverhältnisses',
+			'Bearbeitung von Anliegen, Störungen und Beschwerden',
+		],
+	},
+	{
+		catName: 'Mietinkasso und Abrechnung',
+		catDescriptions: [
+			'Einzug der Mieten und Nebenkosten',
+			'Kontrolle der Zahlungseingänge',
+			'Mahnwesen bei Mietrückständen',
+			'Erstellung der jährlichen Nebenkostenabrechnungen',
+		],
+	},
+	{
+		catName: 'Instandhaltung und Objektbetreuung',
+		catDescriptions: [
+			'Organisation von Reparaturen und Wartungsarbeiten',
+			'Kontrolle des Objektzustands',
+			'Beauftragung und Überwachung von Handwerkern',
+		],
+	},
+	{
+		catName: 'Vertragsbeendigung und Neuvermietung',
+		catDescriptions: [
+			'Abnahme der Mietsache bei Auszug',
+			'Prüfung auf Schäden und Kautionsabrechnung',
+			'Wiederaufnahme der Vermarktung bei Leerstand',
+		],
+	},
+	{
+		catName: 'Rechtliche Betreuung',
+		catDescriptions: [
+			'Einhaltung mietrechtlicher Vorschriften',
+			'Durchführung von Mieterhöhungen oder Kündigungen',
+			'Vertretung gegenüber Behörden oder bei rechtlichen Auseinandersetzungen',
+		],
+	},
+];
+
+/*
+	{
+		catName: 'Vermietung und Mieterbetreuung',
+		catDescriptions: [
+			'Mietersuche und Abschluss von Mietverträgen',
+			'Übergabe und Rücknahme von Mietflächen',
+			'Bearbeitung von Mieteranliegen und Beschwerden',
+			'Verwaltung von Mieterakten',
+		],
+	},
+*/
+---
+
+<ul class='services-list'>
+	{
+		list.map(cat => {
+			return (
+				<li class='service-cat sticker color'>
+					<p>{cat.catName}</p>
+					<ul>
+						{cat.catDescriptions.map(descr => {
+							return <li>{descr}</li>;
+						})}
+					</ul>
+				</li>
+			);
+		})
+	}
+	<li></li>
+	<li></li>
+</ul>
+
+<style>
+	.services-list {
+		--padding-x-service: 1.2em;
+		--padding-y-service: 0.8em;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+		flex-wrap: wrap;
+		column-gap: 2em;
+	}
+	.services-list > * {
+		width: min(100%, 300px);
+		flex-grow: 1;
+	}
+	.services-list .service-cat {
+		margin-bottom: 2em;
+	}
+
+	.service-cat.sticker {
+		--padding-x-sticker: var(--padding-x-service);
+		--padding-y-sticker: var(--padding-y-service);
+	}
+
+	.service-cat p {
+		font-weight: 720;
+		line-height: 1;
+		/* padding-bottom: 0.5em; */
+	}
+	.service-cat ul {
+		list-style: disc;
+		margin-left: var(--padding-x-service);
+	}
+	.service-cat li {
+		margin-top: var(--padding-y-service);
+		line-height: 1.15;
+	}
+</style>

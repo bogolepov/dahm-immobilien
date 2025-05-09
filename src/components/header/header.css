@@ -61,6 +61,9 @@ header.opaque {
 .nav-list > li.item-burgermenu {
 	padding-right: 0;
 }
+.nav-list li.item-phonenumber {
+	word-wrap: none;
+}
 
 .nav-list > li > div {
 	height: 100%;
@@ -146,13 +149,7 @@ li.item-menu > div span {
 	margin: auto 0;
 	padding: 0 1em;
 }
-.nav-list .nav-logo-text {
-	display: block;
-	width: calc(var(--font-size) * 3.5);
-}
-.nav-list .logo svg {
-	height: var(--header-height);
-}
+
 .nav-list .logo a {
 	--logo-height: calc(var(--header-height) - 2 * var(--logo-koeff) * var(--padding-y-nav-item));
 	display: block;
@@ -321,7 +318,7 @@ body:has(#burger-button:checked) header {
 	--submenu-background-color: var(--menu-opaque-background-color);
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 700px) {
 	.nav-list .item-phonenumber {
 		display: none;
 	}

@@ -1,0 +1,152 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type TCategory = {
+	catName: string;
+	catDescriptions: string[];
+};
+const list: TCategory[] = [
+	{
+		catName: 'Technische Verwaltung',
+		catDescriptions: [
+			'Regelmäßige Objektkontrollen und Wartungen',
+			'Organisation und Überwachung von Instandhaltungs- und Reparaturmaßnahmen',
+			'Koordination von Dienstleistern und Handwerkern',
+			'Sicherstellung der Einhaltung von Sicherheitsvorschriften (z. B. Brandschutz, Aufzugsprüfungen)',
+		],
+	},
+	{
+		catName: 'Kaufmännische Verwaltung',
+		catDescriptions: [
+			'Erstellung von Wirtschaftsplänen und Betriebskostenabrechnungen',
+			'Miet- und Nebenkostenabrechnung',
+			'Kontrolle der Zahlungseingänge und Mahnwesen',
+			'Verwaltung von Mietkautionen',
+		],
+	},
+	{
+		catName: 'Vermietung und Mieterbetreuung',
+		catDescriptions: [
+			'Mietersuche und Abschluss von Mietverträgen',
+			'Übergabe und Rücknahme von Mietflächen',
+			'Bearbeitung von Mieteranliegen und Beschwerden',
+			'Verwaltung von Mieterakten',
+		],
+	},
+	{
+		catName: 'Buchhaltung und Controlling',
+		catDescriptions: [
+			'Führung der Hausbuchhaltung',
+			'Erstellung von Einnahmen-/Ausgabenübersichten',
+			'Vorbereitung von Unterlagen für Steuerberater und Wirtschaftsprüfer',
+		],
+	},
+	{
+		catName: 'Rechtliche Betreuung',
+		catDescriptions: [
+			'Überwachung der Einhaltung mietrechtlicher Vorschriften',
+			'Vertretung des Eigentümers gegenüber Mietern und Behörden',
+			'Begleitung von gerichtlichen Verfahren (z. B. bei Mietrückständen)',
+		],
+	},
+	{
+		catName: 'Kommunikation und Reporting',
+		catDescriptions: [
+			'Regelmäßige Berichterstattung an Eigentümer bzw. Investoren',
+			'Organisation von Eigentümerversammlungen',
+			'Protokollführung und Umsetzung von Beschlüssen',
+		],
+	},
+];
+
+/*
+	{
+		catName: 'Vermietung und Mieterbetreuung',
+		catDescriptions: [
+			'Mietersuche und Abschluss von Mietverträgen',
+			'Übergabe und Rücknahme von Mietflächen',
+			'Bearbeitung von Mieteranliegen und Beschwerden',
+			'Verwaltung von Mieterakten',
+		],
+	},
+*/
+---
+
+<ul class='services-list'>
+	{
+		list.map(cat => {
+			return (
+				<li class='service-cat sticker color'>
+					<p>{cat.catName}</p>
+					<ul>
+						{cat.catDescriptions.map(descr => {
+							return <li>{descr}</li>;
+						})}
+					</ul>
+				</li>
+			);
+		})
+	}
+	<li class='service-cat sticker color objects'>
+		<a href='/objekte/'><Icon name='logo2025' class='image-h' /><span>Unsere Objekte</span></a>
+	</li>
+	<li></li>
+	<li></li>
+</ul>
+
+<style>
+	.services-list {
+		--padding-x-service: 1.2em;
+		--padding-y-service: 0.8em;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+		flex-wrap: wrap;
+		column-gap: 2em;
+	}
+	.services-list > * {
+		width: min(100%, 300px);
+		flex-grow: 1;
+	}
+	.services-list .service-cat {
+		margin-bottom: 2em;
+	}
+
+	.service-cat.sticker {
+		--padding-x-sticker: var(--padding-x-service);
+		--padding-y-sticker: var(--padding-y-service);
+	}
+	.service-cat.objects {
+		display: grid;
+		place-items: center;
+		min-height: 120px;
+	}
+
+	.service-cat.objects a {
+		display: flex;
+		flex-direction: row;
+		gap: 1.4em;
+		align-items: center;
+		height: 3.3em;
+	}
+	.service-cat.objects a span {
+		width: min-content;
+		font-size: 1.25em;
+		font-weight: 460;
+		color: var(--color-dahm-bordo);
+	}
+
+	.service-cat p {
+		font-weight: 720;
+		line-height: 1;
+	}
+	.service-cat ul {
+		list-style: disc;
+		margin-left: var(--padding-x-service);
+	}
+	.service-cat li {
+		margin-top: var(--padding-y-service);
+		line-height: 1.15;
+	}
+</style>

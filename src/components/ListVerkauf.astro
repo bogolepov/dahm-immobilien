@@ -1,0 +1,121 @@
+---
+type TCategory = {
+	catName: string;
+	catDescriptions: string[];
+};
+const list: TCategory[] = [
+	{
+		catName: 'Verkaufsplanung und Beratung',
+		catDescriptions: [
+			'Bewertung der Immobilie (Marktwertanalyse, Gutachten)',
+			'Beratung des Eigentümers zur Preisstrategie',
+			'Erstellung eines Verkaufsplans und Zeitrahmens',
+		],
+	},
+	{
+		catName: 'Verkaufsunterlagen und Exposé-Erstellung',
+		catDescriptions: [
+			'Zusammenstellung aller relevanten Objektunterlagen (Grundbuch, Energieausweis, Baupläne etc.)',
+			'Erstellung eines professionellen Exposés mit Bildern, Grundrissen und Lagebeschreibung',
+		],
+	},
+	{
+		catName: 'Vermarktung der Immobilie',
+		catDescriptions: [
+			'Auswahl geeigneter Vermarktungskanäle (Online-Portale, Printmedien, Netzwerke)',
+			'Veröffentlichung von Anzeigen',
+			'Ansprechende Präsentation der Immobilie',
+		],
+	},
+	{
+		catName: 'Interessentenmanagement',
+		catDescriptions: [
+			'Beantwortung von Anfragen',
+			'Organisation und Durchführung von Besichtigungen',
+			'Prüfung der Bonität potenzieller Käufer',
+		],
+	},
+	{
+		catName: 'Verkaufsverhandlung und Kaufabwicklung',
+		catDescriptions: [
+			'Durchführung von Preisverhandlungen',
+			'Abstimmung des Kaufvertrags mit Notar und Käufer',
+			'Organisation und Begleitung des Notartermins',
+		],
+	},
+	{
+		catName: 'Objektübergabe',
+		catDescriptions: [
+			'Übergabe der Immobilie nach Kaufvertragsabschluss',
+			'Erstellung eines Übergabeprotokolls',
+			'Koordination der Übergabe von Schlüsseln und Unterlagen',
+		],
+	},
+	{
+		catName: 'Nachbereitung und Dokumentation',
+		catDescriptions: [
+			'Abschluss der Unterlagenverwaltung',
+			'Kommunikation mit Behörden (z. B. Grundbuchamt)',
+			'Unterstützung bei steuerlichen Fragen in Zusammenarbeit mit dem Steuerberater des Eigentümers',
+		],
+	},
+];
+---
+
+<ul class='services-list'>
+	{
+		list.map(cat => {
+			return (
+				<li class='service-cat sticker color'>
+					<p>{cat.catName}</p>
+					<ul>
+						{cat.catDescriptions.map(descr => {
+							return <li>{descr}</li>;
+						})}
+					</ul>
+				</li>
+			);
+		})
+	}
+	<li></li>
+	<li></li>
+</ul>
+
+<style>
+	.services-list {
+		--padding-x-service: 1.2em;
+		--padding-y-service: 0.8em;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+		flex-wrap: wrap;
+		column-gap: 2em;
+	}
+	.services-list > * {
+		width: min(100%, 300px);
+		flex-grow: 1;
+	}
+	.services-list .service-cat {
+		margin-bottom: 2em;
+	}
+
+	.service-cat.sticker {
+		--padding-x-sticker: var(--padding-x-service);
+		--padding-y-sticker: var(--padding-y-service);
+	}
+
+	.service-cat p {
+		font-weight: 720;
+		line-height: 1;
+		/* padding-bottom: 0.5em; */
+	}
+	.service-cat ul {
+		list-style: disc;
+		margin-left: var(--padding-x-service);
+	}
+	.service-cat li {
+		margin-top: var(--padding-y-service);
+		line-height: 1.15;
+	}
+</style>

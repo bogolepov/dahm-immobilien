@@ -95,10 +95,10 @@
 		}
 	],
 	"object_types": [
-		{ "sid": "mfh", "title": "Mehrfamilienhaus" },
-		{ "sid": "ind", "title": "Industrieobjekt" },
-		{ "sid": "gmfh", "title": "Gewerbe und Mehrfamilienhaus" },
-		{ "sid": "weg", "title": "WEG-Mehrfamilienhaus" }
+		{ "sid": "mfh", "title": "Mehrfamilienhaus", "title_plural": "Mehrfamilienhäuser" },
+		{ "sid": "ind", "title": "Industrieobjekt", "title_plural": "Industrieobjekte" },
+		{ "sid": "gmfh", "title": "Gewerbe und Mehrfamilienhaus", "title_plural": "Gewerbe und Mehrfamilienhäuser" },
+		{ "sid": "weg", "title": "WEG-Mehrfamilienhaus", "title_plural": "WEG-Mehrfamilienhäuser" }
 	],
 	"objects": [
 		{

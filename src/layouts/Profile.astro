@@ -1,5 +1,47 @@
 ---
-
+import History from '@components/History.astro';
 ---
 
-<section class='profile'></section>
+<section class='profile'>
+	<p class='text-block mt0'>
+		Seit 1991 ist unser kleines Unternehmen unter der Leitung von Herrn Michael Dam auf dem Immobilienmarkt tätig, wobei
+		wir uns auf die Verwaltung von Immobilien und den Aufbau enger, vertrauensvoller Beziehungen zu unseren Partnern
+		konzentrieren.
+	</p>
+	<p class='text-block'>
+		Aus der langjährigen Zusammenarbeit ergibt sich für uns die Notwendigkeit, das Leistungsspektrum zu erweitern, um
+		den Bedürfnissen unserer Partner am Immobilienmarkt noch besser gerecht zu werden. Aus diesem Grund wurde die Firma
+		Dahm Immobilien unter der Leitung von Michael Dahm und Norbert Reiche gegründet.
+	</p>
+	<History />
+	<p class='text-block'>
+		Die Umfirmierung hat keinerlei Auswirkungen auf unsere Geschäftsbeziehungen. Die Geschäftspartner können weiterhin
+		auf unsere gewohnte Zuverlässigkeit, Qualität und Serviceleistungen zählen. Unser <a href='/unternehmen/team'
+			>Team</a
+		> bleibt unverändert und steht wie gewohnt zur Verfügung.
+	</p>
+</section>
+
+<style>
+	.profile > p {
+		margin-top: 2em;
+		margin-bottom: 2em;
+		font-size: calc(var(--font-size) * 1.05);
+	}
+	.profile p.mt0 {
+		margin-top: 0;
+	}
+
+	.profile > p a {
+		/* color: var(--color-dahm-bordo); */
+		text-decoration: underline;
+		text-decoration-style: dashed;
+		text-decoration-color: var(--border-color);
+		text-underline-offset: 0.1em;
+	}
+	@media (hover: hover) {
+		.profile > p a:hover {
+			text-decoration-color: var(--color-dahm-bordo);
+		}
+	}
+</style>

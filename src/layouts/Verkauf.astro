@@ -1,0 +1,34 @@
+---
+import ListVerkauf from '@components/ListVerkauf.astro';
+---
+
+<section class='sale'>
+	<p class='text-block'>
+		Bei der Vermietung oder Veräußerung von Gebäuden, Räumlichkeiten oder Wohnungen in verwalteten Immobilien stehen wir
+		Ihnen gerne für die Suche nach Vermietern/Käufern zur Verfügung und begleiten die Abwicklung.
+	</p>
+	<p class='text-block'>
+		Bei Interesse an einer Immobilie zur Miete oder zum Kauf kontaktieren Sie uns gerne telefonisch oder per E-Mail.
+	</p>
+	<ListVerkauf />
+</section>
+
+<style>
+	.sale > p {
+		margin-top: 2em;
+		margin-bottom: 2em;
+		font-size: calc(var(--font-size) * 1.05);
+	}
+
+	/* .sale .company-name {
+		color: var(--color-dahm-bordo);
+		font-weight: 460;
+	}
+	.sale .motto {
+		font-weight: 540;
+	}
+	.sale .final {
+		font-weight: 500;
+		margin-top: 0;
+	} */
+</style>

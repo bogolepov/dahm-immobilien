@@ -12,6 +12,20 @@ objects.sort((obj1, obj2) => {
 ---
 
 <section class='s-objects'>
+	<p class='text-block mb0'>
+		Derzeit verwaltet <span class='company-name'>{dahm.company_name}</span>
+		{dahm.objects.length} Objekte unterschiedlicher Art:
+	</p>
+	<ul class='text-block obj-types'>
+		{
+			dahm.object_types.map(type => {
+				return <li>{type.title_plural}</li>;
+			})
+		}
+	</ul>
+	<p class='text-block'>
+		Bei Interesse an einer Immobilie zur Miete oder zum Kauf kontaktieren Sie uns gerne telefonisch oder per E-Mail.
+	</p>
 	<iframe
 		class='map-objects'
 		frameborder='0'
@@ -19,66 +33,54 @@ objects.sort((obj1, obj2) => {
 		allow='geolocation'
 		src='//umap.openstreetmap.fr/de/map/dahm-immobilien-verwaltung-gmbh_1194597#10/51.3834/7.4487?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'
 	></iframe>
-	<h3>Verwaltung</h3>
-	{
-		objects.map(object => {
-			const objectName = dahm.object_types.find(type => type.sid === object.type)?.title;
-			return (
-				<div>
-					<p class='object-address'>
-						{object.address.str} {object.address.number}, {object.address.plz} {object.address.city}
-					</p>
-					<div class='object-card'>
-						{object.person && (
-							<div>
-								{objectName && (
-									<div class='contact-partner-info'>
-										<p class='name'>Objekt:</p>
-										<p>{objectName}</p>
-									</div>
-								)}
-								<p class='card-title'>Ansprechpartner</p>
-								{object.person.map(item => {
-									const who = dahm.team.find(t => t.sid === item);
-									if (!who) return null;
-									return (
-										<div class='contact-partner-info'>
-											<p class='name'>
-												{who.name} {who.lastname}:
-											</p>
-											<div>
-												<div class='icon-flex'>
-													<Icon name='email' />
-													<a href={'mailto: ' + who.email}>{who.email}</a>
-												</div>
-												<div class='icon-flex'>
-													<Icon name='phone' />
-													<a href={'tel: ' + who.telephone}>{who.telephone}</a>
-												</div>
+	<ul class='obj-list'>
+		{
+			objects.map(object => {
+				const objectName = dahm.object_types.find(type => type.sid === object.type)?.title;
+				return (
+					<li>
+						<p class='object-address'>
+							{object.address.str} {object.address.number}, {object.address.plz} {object.address.city}
+						</p>
+						<div class='object-card'>
+							{object.person && (
+								<div>
+									{objectName && (
+											<p class='card-title new-part'>Objekt</p>
+											<p class='marg-l'>{objectName}</p>
+									)}
+									<p class='card-title new-part'>Ansprechpartner</p>
+									{object.person.map((item, index) => {
+										const who = dahm.team.find(t => t.sid === item);
+										if (!who) return null;
+										return (
+											<div class='icon-flex marg-t1' class:list={[{'marg-t2': index>0}]}>
+												<Icon name='person' />
+												<p class="person-name">{who.name} {who.lastname}</p>
 											</div>
-										</div>
-									);
-								})}
-								<p class='card-title'>
-									<a href='' target='_blank' rel='noopener external'>
-										Auf Google Maps
-									</a>
-								</p>
-								{/* <div class='icon-flex'>
-									<p class='card-title'>
+											<div class='icon-flex'>
+												<Icon name='email' />
+												<a href={'mailto: ' + who.email}>{who.email}</a>
+											</div>
+											<div class='icon-flex'>
+												<Icon name='phone' />
+												<a href={'tel: ' + who.telephone}>{who.telephone}</a>
+											</div>
+										);
+									})}
+									<p class='card-title new-part'>
 										<a href='' target='_blank' rel='noopener external'>
 											Auf Google Maps
 										</a>
 									</p>
-									<Icon name='geo' />
-								</div> */}
-							</div>
-						)}
-					</div>
-				</div>
-			);
-		})
-	}
+								</div>
+							)}
+						</div>
+					</li>
+				);
+			})
+		}
+	</ul>
 </section>
 
 <style>
@@ -89,13 +91,30 @@ objects.sort((obj1, obj2) => {
 		max-height: 500px;
 	}
 
-	.s-objects h3 {
-		padding-bottom: 0.5em;
+	.s-objects > p {
+		margin-top: 2em;
+		margin-bottom: 2em;
+		font-size: calc(var(--font-size) * 1.05);
 	}
+	.s-objects .company-name {
+		color: var(--color-dahm-bordo-dark);
+		font-weight: 460;
+	}
+
+	.s-objects .obj-types {
+		list-style: disc;
+		padding-left: 2.5em;
+		margin-bottom: 2em;
+		margin-top: 0.5em;
+	}
+	.s-objects .mb0 {
+		margin-bottom: 0;
+	}
+
 	.s-objects .object-address {
 		/* display: flex; */
 		cursor: pointer;
-		margin: 0.3em 0;
+		margin: 0.1em 0 0.3em 0;
 		width: max-content;
 	}
 	.s-objects .object-card {
@@ -105,25 +124,41 @@ objects.sort((obj1, obj2) => {
 		max-height: 0;
 	}
 	.s-objects .object-card > div {
-		padding: 0.5em 0 1.5em 3em;
+		padding: 0 0 0.7em 2.5em;
 	}
 
 	.object-card .card-title {
-		font-weight: 540;
+		font-weight: 560;
+		font-size: 0.9em;
+	}
+	.object-card .person-name {
+		font-weight: 560;
+	}
+	.object-card .new-part {
 		padding-top: 0.4em;
 	}
-	.contact-partner-info {
-		display: flex;
-		/* column-gap: 1.5em; */
-		flex-wrap: wrap;
+	.object-card .marg-t1 {
+		margin-top: 0.3em;
 	}
-	.contact-partner-info .name {
-		min-width: 8em;
+	.object-card .marg-t2 {
+		margin-top: 0.7em;
 	}
-	.contact-partner-info .icon-flex {
+	.object-card .marg-l {
+		margin-left: 1.5em;
+	}
+	.object-card .icon-flex {
 		column-gap: 0.5em;
 		margin-left: 1.5em;
 		min-width: 13em;
+	}
+
+	.s-objects .obj-list {
+		margin-top: 2em;
+		margin-bottom: 2em;
+		columns: 290px auto;
+	}
+	.s-objects .obj-list li {
+		break-inside: avoid-column;
 	}
 </style>
 

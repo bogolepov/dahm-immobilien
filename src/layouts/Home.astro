@@ -1,0 +1,46 @@
+---
+import History from '@components/History.astro';
+import Vorteile from '@components/Vorteile.astro';
+---
+
+<section class='homepage'>
+	<p class='text-block'>
+		Wir möchten unsere Hausverwaltung vorstellen, die seit 1991 von Herrn Michael Dahm geführt wird. Als kleinere,
+		private Hausverwaltung legen wir großen Wert auf persönliche Betreuung und individuelle Lösungen für unsere Mieter
+		und Eigentümer.
+	</p>
+	<p class='text-block'>
+		Unser Leistungsspektrum umfasst alle Aspekte rund um Mietverträge, Reparaturarbeiten und Betriebskostenabrechnungen.
+		Wir kümmern uns um die zuverlässige Verwaltung ihrer Immobilien und stehen ihnen jederzeit mit Rat und Tat zur
+		Seite. Unser Ziel ist es, eine harmonische Wohnatmosphäre zu schaffen und die Zufriedenheit unserer Mieter zu
+		gewährleisten.
+	</p>
+	<History />
+	<p class='text-block'>
+		Die Haupttätigkeit des Unternehmens bleibt die Immobilienverwaltung (Industrieobjekte, Mehrfamilienhäuser, Gewerbe
+		und Mehrfamilienhäuser, WEG-Mehrfamilienhäuser). Bei der Vermietung oder Veräußerung von Gebäuden, Räumlichkeiten
+		oder Wohnungen in verwalteten Immobilien stehen wir Ihnen gerne für die Suche nach Vermietern/Käufern zur Verfügung
+		und begleiten die Abwicklung.
+	</p>
+	<p class='text-block'>Unsere Aktivitäten basieren auf folgenden Grundsätzen:</p>
+	<Vorteile />
+	<p class='text-block final'>Planen Sie eine Immobilie professionell verwalten zu lassen?</p>
+	<p class='text-block final'>
+		Wir freuen uns darauf, Sie kennenzulernen und Ihnen bei Ihrem Anliegen zu Seite zu stehen.
+	</p>
+</section>
+
+<style>
+	.homepage > p {
+		margin-top: 2em;
+		margin-bottom: 2em;
+		font-size: calc(var(--font-size) * 1.05);
+	}
+
+	.homepage > p.final {
+		/* font-size: calc(var(--font-size) * 1.1); */
+		font-weight: 460;
+		margin-top: 0;
+		margin-bottom: 1em;
+	}
+</style>

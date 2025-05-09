@@ -1,0 +1,113 @@
+---
+type TAdvantage = {
+	advName: string;
+	advMotto: string;
+	advDescription: string;
+};
+
+const list: TAdvantage[] = [
+	{
+		advName: 'Zuverlässigkeit & Erreichbarkeit',
+		advMotto: '„Für Sie da – jederzeit!“',
+		advDescription:
+			'Ob werktags oder im Notfall: Wir sind erreichbar, kümmern uns zügig um Ihr Anliegen und sorgen dafür, dass Ihre Immobilie in besten Händen ist.',
+	},
+	{
+		advName: 'Fachliche Kompetenz',
+		advMotto: '„Verwalten mit Verstand.“',
+		advDescription:
+			'Wir bringen jahrelange Erfahrung und fundiertes Fachwissen in Mietrecht, Gebäudetechnik und Verwaltung mit – für professionelle Betreuung auf höchstem Niveau.',
+	},
+	{
+		advName: 'Kostenbewusstsein',
+		advMotto: '„Ihre Immobilie – wirtschaftlich gedacht.“',
+		advDescription:
+			'Wir optimieren laufende Kosten, holen das Beste aus Ihrem Budget heraus und handeln stets in Ihrem finanziellen Interesse.',
+	},
+	{
+		advName: 'Transparenz',
+		advMotto: '„Klarheit schafft Vertrauen.“',
+		advDescription:
+			'Von der Abrechnung bis zur Instandhaltung: Bei uns wissen Sie immer, was passiert – transparent, verständlich und jederzeit nachvollziehbar.',
+	},
+	{
+		advName: 'Engagement bei der Mieterverwaltung',
+		advMotto: '„Die richtigen Mieter. Die sichere Miete.“',
+		advDescription:
+			'Wir kümmern uns um die Auswahl zuverlässiger Mieter, sorgen für pünktliche Mietzahlungen und handeln bei Problemen konsequent.',
+	},
+	{
+		advName: 'Technisches Verständnis',
+		advMotto: '„Technik im Griff – Werte erhalten.“',
+		advDescription:
+			'Ob Wartung, Reparatur oder Modernisierung: Wir erkennen frühzeitig, was zu tun ist, und steuern alle Maßnahmen professionell.',
+	},
+	{
+		advName: 'Rechtssicherheit',
+		advMotto: '„Sicher durch alle Vorschriften.“',
+		advDescription:
+			'Wir halten Ihre Immobilie auf dem neuesten Stand der Gesetzgebung, wahren Ihre Interessen und vertreten Sie rechtssicher in allen Angelegenheiten.',
+	},
+	{
+		advName: 'Digitale Kompetenz',
+		advMotto: '„Immobilienverwaltung im digitalen Zeitalter.“',
+		advDescription:
+			'Mit moderner Software, Online-Portalen und digitalen Prozessen machen wir die Verwaltung effizient, transparent und bequem – für Eigentümer und Mieter.',
+	},
+];
+---
+
+<ul class='advantages-list'>
+	{
+		list.map(item => {
+			return (
+				<li class='advantage sticker color'>
+					<h5>{item.advName}</h5>
+					<blockquote>{item.advMotto}</blockquote>
+					<p>{item.advDescription}</p>
+				</li>
+			);
+		})
+	}
+	<li></li>
+	<li></li>
+</ul>
+
+<style>
+	.advantages-list {
+		--padding-x-service: 1.2em;
+		--padding-y-service: 0.8em;
+
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+		flex-wrap: wrap;
+		column-gap: 2em;
+	}
+	.advantages-list > * {
+		width: min(100%, 300px);
+		flex-grow: 1;
+	}
+	.advantages-list .advantage {
+		margin-bottom: 2em;
+	}
+
+	.advantage.sticker {
+		--padding-x-sticker: var(--padding-x-service);
+		--padding-y-sticker: var(--padding-y-service);
+	}
+
+	.advantage h5 {
+		text-transform: uppercase;
+		font-size: 0.8em;
+		letter-spacing: 0.025em;
+		padding-bottom: 0.3em;
+	}
+	.advantage blockquote {
+		font-size: 1.1em;
+		font-style: italic;
+		padding-bottom: 0.3em;
+		color: var(--color-dahm-bordo);
+	}
+</style>

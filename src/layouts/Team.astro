@@ -127,8 +127,7 @@ const experience = getDuration1991();
 </style>
 
 <section class="team">
-  <h3>Unsere Verwaltung</h3>
-  <p class="description">Hausverwaltung Dahm aus Hagen verwaltet seit über {experience} Jahren verlässlich Immobilien. Wir arbeiten stets seriös, zuverlässig und professionell.</p>
+  <p class="text-block description">Hausverwaltung Dahm aus Hagen verwaltet seit über {experience} Jahren verlässlich Immobilien. Wir arbeiten stets seriös, zuverlässig und professionell.</p>
   <div class="dahm-inhaber">
     <Picture 
       class:list={'image-wrapper-landscape'} 
@@ -143,10 +142,10 @@ const experience = getDuration1991();
     <div class="under-text">{pictureTextInhaber}</div>
   </div>
   <hr>
-  <h3>Unsere Ansprechpartner</h3>
-  <p class="description">Um Ihnen die Suche nach dem richtigen Ansprechpartner etwas zu erleichtern, haben wir für Sie hier unsere Aufgabenbereiche zusammengefasst.</p>
-  <p class="description">Sie erreichen uns unter der Telefonnummer : <a class="phone" href={"tel: " + Dahm.telephone}>{Dahm.telephone}</a></p>
-  <ul class="team-list">
+  <h3 class="text-block">Unsere Ansprechpartner</h3>
+  <p class="text-block description">Um Ihnen die Suche nach dem richtigen Ansprechpartner etwas zu erleichtern, haben wir für Sie hier unsere Aufgabenbereiche zusammengefasst.</p>
+  <p class="text-block description">Sie erreichen uns unter der Telefonnummer : <a class="phone" href={"tel: " + Dahm.telephone}>{Dahm.telephone}</a></p>
+  <ul class="text-block team-list">
     {
       Dahm.team.map(person => {
         const objects = Dahm.objects.filter(object => object.person && object.person.includes(person.sid));

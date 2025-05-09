@@ -5,34 +5,200 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png}');
 ---
 
-<section class='history'>
-	<Icon name='logo1991' class='logo1991' />
-	<div></div>
-	<Picture class='image-h logo2025' src={images['/src/assets/logo.png']()} alt='Logo' />
+<section class='history text-block'>
+	<div class='year-flex'>
+		<Icon name='logo1991' class='logo1991 slide-in-top hd-11' />
+		<div class='year-number swing-in-top-fwd hd-12'>1991</div>
+		<div class='actions-flex'>
+			<a href='/leistungen/verwaltung' class='swing-in-top-fwd hd-13'>Verwaltung</a>
+		</div>
+		<!-- <div class='year-info'>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, facere. Tenetur doloremque nobis labore
+			ipsam! Libero asperiores consectetur aliquid voluptatum.
+		</div> -->
+	</div>
+
+	<div class='year-flex'>
+		<Icon name='logo2025' class='logo2025 image-h slide-in-left hd-21' />
+		<div class='year-number swing-in-top-fwd hd-22'>2025</div>
+		<div class='actions-flex'>
+			<a href='/leistungen/verwaltung' class='swing-in-top-fwd hd-23'>Verwaltung</a>
+			<a href='/leistungen/vermietung' class='swing-in-top-fwd hd-24'>Vermietung</a>
+			<a href='/leistungen/verkauf' class='swing-in-top-fwd hd-25'>Verkauf</a>
+		</div>
+		<!-- <div class='year-info'>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas molestias doloribus tenetur dignissimos eius ad
+			perspiciatis distinctio, numquam porro dolore.
+		</div> -->
+	</div>
+
+	<!-- <Picture class='image-h logo2025' src={images['/src/assets/logo.png']()} alt='Logo' /> -->
 </section>
 
 <style>
 	.history {
+		--history-delay: 0ms;
+		--history-duration: 650ms;
 		--width-flex: calc(100vw - 2 * var(--padding-x-page));
 		--width-image: calc(var(--width-flex) / 6);
+		--gap-x: calc((min(100vw, var(--max-width-page)) - 2 * var(--width-image)) * 0.15);
+		display: flex;
+		justify-content: center;
+		column-gap: var(--gap-x);
+		/* width: 100%; */
+	}
+	.hd-11 {
+		--history-delay: 0ms;
+		--history-duration: 800ms;
+	}
+	.hd-12 {
+		--history-delay: 1200ms;
+		--history-duration: 900ms;
+	}
+	.hd-13 {
+		--history-delay: 1850ms;
+	}
+	.hd-21 {
+		--history-delay: 2700ms;
+		--history-duration: 800ms;
+	}
+	.hd-22 {
+		--history-delay: 3900ms;
+		--history-duration: 900ms;
+	}
+	.hd-23 {
+		--history-delay: 4550ms;
+	}
+	.hd-24 {
+		--history-delay: 5000ms;
+	}
+	.hd-25 {
+		--history-delay: 5450ms;
+	}
+
+	.history .year-flex {
+		width: 50%;
+		height: 100%;
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		width: 100%;
+		justify-content: flex-start;
+		flex-direction: column;
+		row-gap: 1em;
 	}
+	.year-flex .year-info {
+		flex-grow: 1;
+	}
+	.year-flex .year-number {
+		font-size: calc(4vw);
+		font-size: max(4vw, calc(var(--font-size) * 1.25));
+		font-weight: 640;
+		letter-spacing: 0.05em;
+		margin-top: 0.2em;
+		border-top: 2px solid #333333;
+		border-bottom: 2px solid #333333;
+		line-height: 1;
+		color: #333333;
+	}
+	.year-flex .year-number::after {
+		content: 'seit';
+		font-size: max(1.5vw, calc(var(--font-size) * 0.75));
+		font-weight: 600;
+		display: block;
+		text-align: center;
+		margin-bottom: 0.2em;
+		letter-spacing: 0.4em;
+	}
+
 	.history .logo1991 {
 		display: block;
 		/* width: 250px; */
 		font-size: var(--width-image);
 		min-height: 60px;
-		max-height: 200px;
+		max-height: 190px;
 		height: min(20vw, 20vw);
 		width: auto;
 	}
 	.history .logo2025 {
 		/* width: var(--width-image); */
 		min-height: 60px;
-		max-height: 200px;
+		max-height: 190px;
 		height: min(20vw, 20vw);
+	}
+	.year-flex .actions-flex {
+		display: flex;
+		flex-direction: column;
+		row-gap: 0.7em;
+		align-items: stretch;
+		justify-content: center;
+		min-width: 70%;
+		min-height: 9em;
+	}
+	.year-flex .actions-flex > * {
+		font-size: calc(var(--font-size) * 1.2);
+		font-weight: 250;
+		line-height: 1;
+		background-color: var(--color-dahm-bordo);
+		color: white;
+		text-align: center;
+		padding: 0.5em 1em;
+	}
+
+	.slide-in-top {
+		animation: slide-in-top var(--history-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) both var(--history-delay);
+	}
+	.slide-in-left {
+		animation: slide-in-left var(--history-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) both var(--history-delay);
+	}
+	.slit-in-horizontal {
+		animation: slit-in-horizontal var(--history-duration) ease-out both var(--history-delay);
+	}
+	.swing-in-top-fwd {
+		animation: swing-in-top-fwd var(--history-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) both
+			var(--history-delay);
+	}
+	@keyframes slide-in-top {
+		0% {
+			transform: translateY(-1000px);
+			opacity: 0;
+		}
+		100% {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+	@keyframes slide-in-left {
+		0% {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
+		100% {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+	@keyframes slit-in-horizontal {
+		0% {
+			transform: translateZ(-800px) rotateX(90deg);
+			opacity: 0;
+		}
+		54% {
+			transform: translateZ(-160px) rotateX(87deg);
+			opacity: 1;
+		}
+		100% {
+			transform: translateZ(0) rotateX(0);
+		}
+	}
+	@keyframes swing-in-top-fwd {
+		0% {
+			transform: rotateX(-100deg);
+			transform-origin: top;
+			opacity: 0;
+		}
+		100% {
+			transform: rotateX(0deg);
+			transform-origin: top;
+			opacity: 1;
+		}
 	}
 </style>

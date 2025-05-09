@@ -40,6 +40,7 @@ body {
 	--padding-x-page: clamp(var(--width-hot-button) + 0.5em, 4vw, var(--width-hot-button) + 1.2em);
 	--padding-y-page: clamp(0.25em, 4vw, 0.7em);
 	--max-width-page: 1200px;
+	--text-block-width: 840px;
 
 	--padding-x-nav-item: 0.65em;
 	--padding-y-nav-item: 0.15em;
@@ -77,7 +78,9 @@ main {
 }
 
 section a {
-	transition: color 300ms ease-in-out;
+	transition:
+		color 300ms ease-in-out,
+		text-decoration-color 300ms ease-in-out;
 }
 @media (hover: hover) {
 	section a:hover {
@@ -163,4 +166,45 @@ section a {
 }
 .icon-flex svg {
 	display: block;
+}
+
+.sticker {
+	--padding-y-sticker: 0.8em;
+	--padding-x-sticker: 1.2em;
+	border: 1px solid var(--border-color);
+	padding: var(--padding-y-sticker) var(--padding-x-sticker);
+	background-color: var(--color-dahm-background-dark);
+	box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+.sticker.color:nth-child(4n + 1) {
+	background-color: rgb(255, 238, 231, 0.2);
+}
+.sticker.color:nth-child(4n + 2) {
+	background-color: rgb(251, 239, 223, 0.18);
+	/* background-color: rgb(197, 192, 180, 0.2); */
+}
+.sticker.color:nth-child(4n + 3) {
+	background-color: rgb(231, 231, 231, 0.2);
+}
+.sticker.color:nth-child(4n) {
+	background-color: rgb(197, 192, 180, 0.2);
+}
+
+.long-sticker {
+	--padding-y-sticker: 0.7em;
+	--padding-x-sticker: 1.2em;
+
+	display: flex;
+	flex-direction: row;
+	width: 95%;
+	margin-left: auto;
+	/* border: 1px solid var(--border-color); */
+	padding: var(--padding-y-sticker) var(--padding-x-sticker);
+	background-color: var(--color-dahm-background-dark);
+}
+
+.text-block {
+	width: min(100%, var(--text-block-width));
+	margin-left: auto;
+	margin-right: auto;
 }
