@@ -121,6 +121,7 @@ section a {
 	--min-width: 550px;
 	left: min(calc(50% - var(--min-width) / 2), 0px);
 	min-width: var(--min-width);
+	top: calc(max(0px, (100vw - 600px)/12.5) * -1);
 	border-radius: 0;
 }
 
