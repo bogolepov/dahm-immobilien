@@ -11,8 +11,8 @@ objects.sort((obj1, obj2) => {
 });
 ---
 
-<section class='s-objects'>
-	<p class='text-block mb0'>
+<article class='s-objects'>
+	<p class='text-block mb0 mt0'>
 		Derzeit verwaltet <span class='company-name'>{dahm.company_name}</span>
 		{dahm.objects.length} Objekte unterschiedlicher Art:
 	</p>
@@ -68,11 +68,15 @@ objects.sort((obj1, obj2) => {
 											</div>
 										);
 									})}
-									<p class='card-title new-part'>
-										<a href='' target='_blank' rel='noopener external'>
+									{
+										object.google &&
+										<p class='card-title new-part'>
+										<a href={object.google} target='_blank' rel='noopener external'>
 											Auf Google Maps
 										</a>
 									</p>
+									}
+									
 								</div>
 							)}
 						</div>
@@ -81,7 +85,7 @@ objects.sort((obj1, obj2) => {
 			})
 		}
 	</ul>
-</section>
+</article>
 
 <style>
 	.s-objects .map-objects {
@@ -106,9 +110,6 @@ objects.sort((obj1, obj2) => {
 		padding-left: 2.5em;
 		margin-bottom: 2em;
 		margin-top: 0.5em;
-	}
-	.s-objects .mb0 {
-		margin-bottom: 0;
 	}
 
 	.s-objects .object-address {

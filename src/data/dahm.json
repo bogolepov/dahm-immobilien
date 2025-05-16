@@ -50,6 +50,7 @@
 			"name": "Michael",
 			"lastname": "Dahm",
 			"email": "dahm@hv-dahm.de",
+			"telephone": "+49 2331 6285250",
 			"office_time": { "days": { "von": "Mo", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } },
 			"stelle": "Geschäftsführer"
 		},
@@ -58,6 +59,7 @@
 			"name": "Norbert",
 			"lastname": "Reiche",
 			"email": "reiche@hv-dahm.de",
+			"telephone": "+49 2331 6285250",
 			"office_time": { "days": { "von": "Mo", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } },
 			"stelle": "Geschäftsführer"
 		},
@@ -105,119 +107,141 @@
 			"address": { "str": "Alemannenweg", "number": "9", "plz": "58119", "city": "Hagen", "distr": "Hohenlimburg" },
 			"person": ["kah"],
 			"photo": ["Alemannenweg.jpg"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/bCnFqYPWiTW8E1ZH7"
 		},
 		{
 			"address": { "str": "Frankfurter Str.", "number": "71/73", "plz": "58339", "city": "Breckerfeld" },
 			"person": ["kah"],
-			"type": "gmfh"
+			"type": "gmfh",
+			"google": "https://maps.app.goo.gl/Nr5GtLJeF7nWcETL8"
 		},
 		{
 			"address": { "str": "Grünrockstr.", "number": "17", "plz": "58119", "city": "Hagen", "distr": "Hohenlimburg" },
 			"person": ["kah"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/V3PMoQzj6okfbBwD6"
 		},
 		{
 			"address": { "str": "Im Lindental", "number": "48", "plz": "58135", "city": "Hagen", "distr": "Haspe" },
 			"person": ["kah"],
 			"photo": ["Lindental.jpg"],
-			"type": "ind"
+			"type": "ind",
+			"google": "https://maps.app.goo.gl/XcttPngnaykvh1f6A"
 		},
 		{
 			"address": { "str": "Hospitalstr.", "number": "9", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
 			"person": ["kah"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/6JGyNMpYCCUFZ7UMA"
 		},
 		{
 			"address": { "str": "Schwerter Str.", "number": "158", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
 			"person": ["kah"],
-			"type": "gmfh"
+			"type": "gmfh",
+			"google": "https://maps.app.goo.gl/YgtkXt3bRkNs9HWU7"
 		},
 		{
 			"address": { "str": "Ruhreckstr.", "number": "35", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
 			"person": ["kah"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/hJxFZY21AWLQ1Z4d6"
 		},
 		{
 			"address": { "str": "Beethovenstr.", "number": "62", "plz": "58097", "city": "Hagen", "distr": "Klosterviertel" },
 			"person": ["sib"],
 			"photo": ["Beethovenstr.jpg"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/sudBKjCkZKWktTYR7"
 		},
 		{
 			"address": { "str": "Emster Str.", "number": "86", "plz": "58093", "city": "Hagen", "distr": "Emst" },
 			"person": ["sib"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/ntjk75yvPRswJwDk8"
 		},
 		{
 			"address": { "str": "Kockenhof", "number": "18", "plz": "58093", "city": "Hagen", "distr": "Berchum" },
 			"person": ["sib"],
 			"photo": ["Kockenhof.jpg"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/cKdV1rmHpk1dhNsx9"
 		},
 		{
 			"address": { "str": "Milly-Steger-Str.", "number": "12", "plz": "58093", "city": "Hagen", "distr": "Emst" },
 			"person": ["sib"],
 			"photo": ["Milly-Steger-Str.jpg"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/qwL4sKKthDjbEjsq6"
 		},
 		{
-			"address": { "str": "Sedanstr.", "number": "41", "plz": "58089", "city": "Hagen", "distr": "Altenhagen" },
+			"address": { "str": "Sedanstr.", "number": "41", "plz": "58089", "city": "Hagen", "distr": "Philippshöhe" },
 			"person": ["sib", "sis"],
 			"photo": ["Sedanstr.jpg"],
-			"type": "ind"
+			"type": "ind",
+			"google": "https://maps.app.goo.gl/dZyhVvzATSNy1S5DA"
 		},
 		{
 			"address": { "str": "Overbeckstr.", "number": "1", "plz": "44141", "city": "Dortmund", "distr": "Innenstadt" },
 			"person": ["sib"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/zcziaLmHakHjj4DN8"
 		},
 		{
 			"address": { "str": "Am Waldesrand", "number": "12c", "plz": "58093", "city": "Hagen", "distr": "Emst" },
 			"person": ["sib"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/toTQCpy3AZEteQmG6"
 		},
 		{
 			"address": { "str": "Buscheystr.", "number": "38", "plz": "58089", "city": "Hagen", "distr": "Wehringhausen" },
 			"person": ["sib"],
-			"type": "weg"
+			"type": "weg",
+			"google": "https://maps.app.goo.gl/2ShPcRxMLxVZeuscA"
 		},
 		{
 			"address": { "str": "Grimmestr.", "number": "13/13a", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
 			"person": ["sas"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/W8KdS6GjX7thqU27A"
 		},
 		{
 			"address": { "str": "Grimmestr.", "number": "15", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
 			"person": ["sas"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/kiURHU6zNrx1tSCC6"
 		},
 		{
 			"address": { "str": "Grünstr.", "number": "123", "plz": "58239", "city": "Schwerte" },
 			"person": ["sas"],
-			"type": "gmfh"
+			"type": "gmfh",
+			"google": "https://maps.app.goo.gl/2VyYn46CTdKN8mfi8"
 		},
 		{
 			"address": { "str": "Oststr.", "number": "16", "plz": "58119", "city": "Hagen", "distr": "Hohenlimburg" },
 			"person": ["sas"],
-			"type": "gmfh"
+			"type": "gmfh",
+			"google": "https://maps.app.goo.gl/vPpfyCSimpcNQBd59"
 		},
 		{
 			"address": { "str": "Hagener Str.", "number": "132", "plz": "58099", "city": "Hagen", "distr": "Bölerheide" },
 			"person": ["sas"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/Pnp89owrJawNgfaD9"
 		},
 		{
 			"address": { "str": "Emster Str.", "number": "17", "plz": "58093", "city": "Hagen", "distr": "Emst" },
 			"person": ["sis"],
 			"photo": ["Emsterstr.jpg"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/TDDp1EsaULrWHTjz8"
 		},
 		{
 			"address": { "str": "Prentzelstr.", "number": "10", "plz": "58095", "city": "Hagen", "distr": "Zentrum" },
 			"person": ["sis"],
 			"photo": ["Prentzelstr.jpg"],
-			"type": "mfh"
+			"type": "mfh",
+			"google": "https://maps.app.goo.gl/ez1CstiGWxAA73Ps9"
 		}
 	]
 }

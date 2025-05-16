@@ -5,7 +5,7 @@ import { Picture } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png}');
 ---
 
-<section class='history text-block'>
+<article class='history text-block'>
 	<div class='year-flex'>
 		<Icon name='logo1991' class='logo1991 slide-in-top hd-11' />
 		<div class='year-number swing-in-top-fwd hd-12'>1991</div>
@@ -33,7 +33,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 	</div>
 
 	<!-- <Picture class='image-h logo2025' src={images['/src/assets/logo.png']()} alt='Logo' /> -->
-</section>
+</article>
 
 <style>
 	.history {
