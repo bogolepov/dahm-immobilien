@@ -1,5 +1,5 @@
 {
-	"company_name": "Dahm Immobilien",
+	"company_name": "Dahm Immobilien Verwaltung",
 	"company_fullname": "Dahm Immobilien Verwaltung GmbH",
 	"address": {
 		"street": "Elberfelder Str.",
@@ -60,16 +60,8 @@
 			"lastname": "Reiche",
 			"email": "reiche@hv-dahm.de",
 			"telephone": "+49 2331 6285250",
-			"office_time": { "days": { "von": "Mo", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } },
+			"office_time": { "days": { "von": "Di", "bis": "Mi", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } },
 			"stelle": "Geschäftsführer"
-		},
-		{
-			"sid": "kah",
-			"name": "Karin",
-			"lastname": "Hoffmann",
-			"email": "hoffmann@hv-dahm.de ",
-			"telephone": "+49 2331 62852530",
-			"office_time": { "days": { "von": "Mo", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } }
 		},
 		{
 			"sid": "sib",
@@ -77,6 +69,14 @@
 			"lastname": "Band",
 			"email": "band@hv-dahm.de",
 			"telephone": "+49 2331 62852510",
+			"office_time": { "days": { "von": "Mo", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } }
+		},
+		{
+			"sid": "kah",
+			"name": "Karin",
+			"lastname": "Hoffmann",
+			"email": "hoffmann@hv-dahm.de ",
+			"telephone": "+49 2331 62852530",
 			"office_time": { "days": { "von": "Mo", "bis": "Fr", "list": [] }, "time": { "von": "09:00", "bis": "13:00" } }
 		},
 		{

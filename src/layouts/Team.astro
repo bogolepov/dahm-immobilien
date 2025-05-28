@@ -1,5 +1,5 @@
 ---
-import MichaelDahm from "@assets/MichaelDahm.jpg"
+import TeamPhoto from "@assets/team.jpg"
 import { getDuration1991 } from "@scripts/utils"
 
 import Dahm from "@data/dahm.json"
@@ -21,16 +21,8 @@ const experience = getDuration1991();
     font-size: 0.95em;
     font-weight: 480;
   }
-  .dahm-inhaber {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 840px;
-    margin: 0 auto;
-  }
-  .dahm-inhaber .image-wrapper-landscape {
-    padding-top: 0.6em;
-    padding-bottom: 0.4em;
+  .team-photo {
+    margin-top: 1.5em;
   }
   .under-text {
     font-size: 0.9em;
@@ -127,11 +119,10 @@ const experience = getDuration1991();
 </style>
 
 <article class="team">
-  <p class="text-block description">Hausverwaltung Dahm aus Hagen verwaltet seit über {experience} Jahren verlässlich Immobilien. Wir arbeiten stets seriös, zuverlässig und professionell.</p>
-  <div class="dahm-inhaber">
+  <p class="text-block description">Die {Dahm.company_fullname} als Nachfolger für die Hausverwaltung Dahm verwaltet seit über {experience} Jahren verlässlich Immobilien. Wir arbeiten stets seriös, zuverlässig und professionell.</p>
     <Picture 
-      class:list={'image-wrapper-landscape'} 
-      src={MichaelDahm} 
+      class='image-wrapper-landscape text-block team-photo' 
+      src={TeamPhoto} 
       formats={['webp']} 
       fallbackFormat='jpg'
       loading="eager"
@@ -139,8 +130,6 @@ const experience = getDuration1991();
       sizes={'(max-width: 360px) 360px, (max-width: 480px) 480px, (max-width: 600px) 600px, (max-width: 760px) 760px, 840px'}
       quality="100"
       alt={pictureTextInhaber} />
-    <div class="under-text">{pictureTextInhaber}</div>
-  </div>
   <hr>
   <h3 class="text-block">Unsere Ansprechpartner</h3>
   <p class="text-block description">Um Ihnen die Suche nach dem richtigen Ansprechpartner etwas zu erleichtern, haben wir für Sie hier unsere Aufgabenbereiche zusammengefasst.</p>
@@ -163,7 +152,7 @@ const experience = getDuration1991();
         const { days, time } = person.office_time;
         return (
           <li class="team-item">
-            <div class="person-name">{person.name} {person.lastname}</div>
+            <div class="person-name">{person.lastname} {person.name}</div>
             {
               person.stelle &&
               <div class="position">{person.stelle}</div>
