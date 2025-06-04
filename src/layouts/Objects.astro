@@ -15,15 +15,16 @@ objects.sort((obj1, obj2) => {
 	<p class='text-block mb0 mt0'>
 		Derzeit verwaltet <span class='company-name'>{dahm.company_name}</span> zahlreiche Objekte unterschiedlicher Art in Hagen und Umgebung:
 	</p>
-	<ul class='text-block obj-types'>
+	<ul class='text-block obj-types mt05'>
 		{
 			dahm.object_types.map(type => {
 				return <li>{type.title_plural}</li>;
 			})
 		}
 	</ul>
+	<p class="text-block mt05">Unten sehen Sie eine Karte mit verwalteten Objekten.</p>
 	<p class='text-block'>
-		Bei Interesse an einer Immobilie zur Miete oder zum Kauf kontaktieren Sie uns gerne telefonisch oder per E-Mail.
+		Über die Verfügbarkeit von Immobilien zur Miete oder zum Kauf können Sie sich per E-Mail oder telefonisch informieren.
 	</p>
 	<iframe
 		class='map-objects'
@@ -107,7 +108,9 @@ objects.sort((obj1, obj2) => {
 	.s-objects .obj-types {
 		list-style: disc;
 		padding-left: 2.5em;
-		margin-bottom: 2em;
+	}
+
+	.s-objects .mt05 {
 		margin-top: 0.5em;
 	}
 

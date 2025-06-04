@@ -45,7 +45,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		display: flex;
 		justify-content: center;
 		column-gap: var(--gap-x);
+		opacity: 0;
+		transition: opacity 20ms ease-in-out;
 		/* width: 100%; */
+	}
+	.history.history-active {
+		opacity: 1;
 	}
 	.hd-11 {
 		--history-delay: 0ms;
@@ -143,16 +148,16 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		padding: 0.5em 1em;
 	}
 
-	.slide-in-top {
+	.history-active .slide-in-top {
 		animation: slide-in-top var(--history-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) both var(--history-delay);
 	}
-	.slide-in-left {
+	.history-active .slide-in-left {
 		animation: slide-in-left var(--history-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) both var(--history-delay);
 	}
-	.slit-in-horizontal {
+	.history-active .slit-in-horizontal {
 		animation: slit-in-horizontal var(--history-duration) ease-out both var(--history-delay);
 	}
-	.swing-in-top-fwd {
+	.history-active .swing-in-top-fwd {
 		animation: swing-in-top-fwd var(--history-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275) both
 			var(--history-delay);
 	}
@@ -202,3 +207,22 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		}
 	}
 </style>
+
+<script>
+	function onHistoryEntry(entry) {
+		entry.forEach((change: IntersectionObserverEntry) => {
+			if (change.isIntersecting) {
+				change.target.classList.add('history-active');
+			}
+		});
+	}
+
+	document.addEventListener('DOMContentLoaded', () => {
+		let options = { threshold: [0.5] };
+		let observer = new IntersectionObserver(onHistoryEntry, options);
+		let elements = document.querySelectorAll('article.history');
+		for (let elm of elements) {
+			observer.observe(elm);
+		}
+	});
+</script>
