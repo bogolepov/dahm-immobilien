@@ -216,3 +216,7 @@ article a {
 .mb0 {
 	margin-bottom: 0 !important;
 }
+
+.company-name-bold {
+	font-weight: 520;
+}

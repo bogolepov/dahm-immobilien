@@ -70,11 +70,15 @@ import CheckSettingsControl from '@vue/cookie/CheckSettingsControl.vue';
 	</p>
 	<h4>Hinweis zur verantwortlichen Stelle</h4>
 	<p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-	<p>{Dahm.company_fullname}</p>
-	<p>{Dahm.address.street} {Dahm.address.building}</p>
-	<p>{Dahm.address.zip} {Dahm.address.city}</p>
-	<p>Telefon: {Dahm.telephone}</p>
-	<p>E-Mail: {Dahm.email}</p>
+	<p>
+		{Dahm.company_fullname}<br />
+		{Dahm.address.street}
+		{Dahm.address.building}<br />
+		{Dahm.address.zip}
+		{Dahm.address.city}<br />
+		Telefon: {Dahm.telephone}<br />
+		E-Mail: {Dahm.email}
+	</p>
 	<p>
 		Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die
 		Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail- Adressen o. Ä.) entscheidet.
@@ -202,6 +206,39 @@ import CheckSettingsControl from '@vue/cookie/CheckSettingsControl.vue';
 			>https://policies.google.com/privacy?hl=de</a
 		>.
 	</p>
+	<h4>OpenStreetMap</h4>
+	<p>
+		<div class='vue-container'>
+			<CheckSettingsControl client:only='vue' type='open_street_map' />
+		</div>
+	</p>
+	<p>
+		Diese Seite nutzt den Kartendienst OpenStreetMap. Anbieter ist die Openstreetmap Foundation („OpenStreetMap“), St
+		John’s Innovation Centre, Cowley Road, Cambridge, CB4 0WS, United Kingdom.
+	</p>
+	<p>
+		Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log Files, die Ihr
+		Browser automatisch an uns übermittelt. Dies sind: Browsertyp und Browserversion, verwendetes Betriebssystem,
+		Referrer URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage. Diese Daten sind nicht bestimmten
+		Personen zuordenbar. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. Wenn OpenStreetMap
+		aktiviert ist, kann OpenStreetMap zum Zwecke der einheitlichen Darstellung der Schriftarten Google Web Fonts
+		verwenden. Beim Aufruf von Google Maps lädt Ihr Browser die benötigten Web Fonts in Ihrem Browsercache, um Texte und
+		Schriftarten korrekt anzuzeigen.
+	</p>
+	<p>
+		Die Nutzung von OpenStreetMap erfolgt im Interesse einer ansprechenden Darstellung unserer verwalteten Objekten und
+		an einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein berechtigtes
+		Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung abgefragt wurde,
+		erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG, soweit
+		die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers im Sinne des
+		TTDSG umfasst. Die Einwilligung ist jederzeit widerrufbar.
+	</p>
+	<p>
+		Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von OpenStreetMap:
+		<a href='https://osmfoundation.org/wiki/Privacy_Policy' target='_blank' rel='noopener external'
+			>https://osmfoundation.org/wiki/Privacy_Policy</a
+		>.
+	</p>
 </article>
 
 <style>
@@ -236,6 +273,10 @@ import CheckSettingsControl from '@vue/cookie/CheckSettingsControl.vue';
 		padding-top: 0.5em;
 	}
 	.protection h4 + h5 {
+		padding-top: 0.35em;
+	}
+
+	.protection p + p {
 		padding-top: 0.35em;
 	}
 

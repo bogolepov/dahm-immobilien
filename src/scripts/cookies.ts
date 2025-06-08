@@ -4,7 +4,8 @@ const DOMAIN_NAME: string = 'dahm-immobilien.de';
 export type SameSiteOption = 'lax' | 'strict' | 'none';
 export type CookieConsent = {
 	necessary: boolean;
-	google_maps: boolean /* youtube: boolean; google_analytics: boolean */;
+	google_maps: boolean;
+	open_street_map: boolean /* youtube: boolean; google_analytics: boolean */;
 };
 export type CookieOptions = {
 	path?: string;
@@ -20,7 +21,11 @@ export function getConsent(): CookieConsent | undefined {
 	let cookie_value = getCookie(CONSENT_KEY);
 	if (!cookie_value) return undefined;
 
-	const consent: CookieConsent = { necessary: true, google_maps: false /*, youtube: false, google_analytics: false*/ };
+	const consent: CookieConsent = {
+		necessary: true,
+		google_maps: false,
+		open_street_map: false /*, youtube: false, google_analytics: false*/,
+	};
 	let consentKeys = Object.keys(consent);
 
 	cookie_value
@@ -81,6 +86,7 @@ export type ConsentInfo = {
 export const ConsentInfos: {
 	necessary: ConsentInfo;
 	google_maps: ConsentInfo;
+	open_street_map: ConsentInfo;
 	youtube: ConsentInfo;
 	immob_scout24: ConsentInfo;
 	google_analytics: ConsentInfo;
@@ -93,6 +99,11 @@ export const ConsentInfos: {
 	google_maps: {
 		title: 'Google Maps',
 		description: 'Einbinden von Google Maps, um die Adresse anzuzeigen',
+		type: 'Externe Dienste',
+	},
+	open_street_map: {
+		title: 'OpenStreetMap',
+		description: 'Einbinden von OpenStreetMap, um die verwaltete Objekte anzuzeigen',
 		type: 'Externe Dienste',
 	},
 	youtube: {
