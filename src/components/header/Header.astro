@@ -199,12 +199,17 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 	document.addEventListener('DOMContentLoaded', () => {
 		const header = document.querySelector('header');
 		if (header) {
-			window.addEventListener('scroll', () => {
+			const headerOpaqueStatus = () => {
 				if (window.scrollY >= 25) {
-					header.classList.add('opaque');
+					if (!header.classList.contains('opaque')) header.classList.add('opaque');
 				} else {
-					header.classList.remove('opaque');
+					if (header.classList.contains('opaque')) header.classList.remove('opaque');
 				}
+			};
+			headerOpaqueStatus();
+
+			window.addEventListener('scroll', () => {
+				headerOpaqueStatus();
 			});
 
 			window.setTimeout(() => {
