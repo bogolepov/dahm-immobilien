@@ -5,6 +5,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
+			"@netlify/*": ["netlify/functions/*"],
 			"@vue/*": ["src/components/vue/*"],
 			"@components/*": ["src/components/*"],
 			"@layouts/*": ["src/layouts/*"],

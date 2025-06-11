@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /404.html
+Disallow: /404/index.html
+Disallow: /*/404.html$
+Disallow: /*/404/index.html$
+Disallow: /data/*.json$
+
+Sitemap: https://dahm-ivg.de/sitemap-index.xml

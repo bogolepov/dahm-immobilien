@@ -1,30 +1,28 @@
 ---
-import dahm from "@data/dahm.json"
+import dahm from '@data/dahm.json';
 const { title, description, robots = 'index, follow' } = Astro.props;
 
-const pageTitle =  (title?.length) ? title +  ' — ' + dahm.company_name : dahm.company_name ;
+const pageTitle = title?.length ? title + ' — ' + dahm.company_name : dahm.company_name;
 const pageDescription = description;
 
 const pathname: string = new URL(Astro.request.url).pathname;
-
 ---
+
 <head>
-	<meta charset="UTF-8" />
-  <meta name="robots" content={robots} />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset='UTF-8' />
+	<meta name='robots' content={robots} />
+	<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 	<title>{pageTitle}</title>
-  {
-    pageDescription?.length && 
-    <meta name="description" content={pageDescription} />
-  }	
+	{pageDescription?.length && <meta name='description' content={pageDescription} />}
 
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+	<link rel='sitemap' href='/sitemap-index.xml' />
 
-	<meta property="og:title" content={pageTitle} />
-	<meta property="og:description" content={pageDescription} />
-	<meta property="og:url" content={dahm.website_link+pathname} />
-	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content={dahm.company_name} />
+	<meta property='og:title' content={pageTitle} />
+	<meta property='og:description' content={pageDescription} />
+	<meta property='og:url' content={dahm.website_link + pathname} />
+	<meta property='og:type' content='website' />
+	<meta property='og:site_name' content={dahm.company_name} />
 	<!-- <meta property="og:image" content={imageUrl} />
 	<meta property="og:image:secure_url" content={imageUrl}>
 	<meta property="og:image:type" content={imageType} />
@@ -32,5 +30,5 @@ const pathname: string = new URL(Astro.request.url).pathname;
 	<meta property="og:image:height" content="628" />
 	<meta property="og:locale" content="de" /> -->
 
-	<meta name="generator" content={Astro.generator} />
+	<meta name='generator' content={Astro.generator} />
 </head>
