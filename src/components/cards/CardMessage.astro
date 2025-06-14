@@ -8,21 +8,35 @@ import Dahm from '@data/dahm.json';
 
 <div class='card-content'>
 	<h4>Nehmen Sie Kontakt auf.</h4>
-	<a href={'mailto: ' + Dahm.email} class='icon-link min'><Icon name='email' />{Dahm.email}</a>
-	<MessageForm client:load />
+	<ul>
+		<li>
+			<div class='flex-row'>
+				&bull; per E-Mail
+				<a href={'mailto: ' + Dahm.email} class='icon-link min'><Icon name='email' />{Dahm.email}</a>
+			</div>
+		</li>
+		<li>
+			&bull; über das Kontaktformular
+			<MessageForm client:load />
+		</li>
+	</ul>
 </div>
 
 <style scoped>
-	a::before {
-		content: 'Per Email';
-		color: black;
-		font-size: 1em;
-		font-weight: normal;
+	ul {
+		padding-top: 0.25em;
 	}
 	a {
 		color: var(--color-dahm-bordo);
 		margin-bottom: 0.5em;
 		font-size: 0.9em;
-		font-weight: 540;
+		font-weight: 500;
+	}
+
+	.flex-row {
+		display: flex;
+		flex-direction: row;
+		column-gap: 0.7em;
+		flex-wrap: wrap;
 	}
 </style>

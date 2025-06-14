@@ -9,6 +9,7 @@ const emit = defineEmits<{
 }>();
 
 const acceptedPolicy = ref(false);
+
 function changeStatus() {
 	acceptedPolicy.value = !acceptedPolicy.value;
 	emit('policyStatus', acceptedPolicy.value);
@@ -19,6 +20,11 @@ function clickCheckbox(event: KeyboardEvent) {
 		changeStatus();
 	}
 }
+
+function resetPolicy() {
+	acceptedPolicy.value = false;
+}
+defineExpose({ resetPolicy });
 </script>
 
 <template>

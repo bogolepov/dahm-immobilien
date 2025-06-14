@@ -1,14 +1,26 @@
 <script setup lang="ts">
-import { ref, computed, useId } from 'vue';
+import { ref, computed, useId, useTemplateRef } from 'vue';
 import DahmTexts from '@data/dahm_text.json';
 import PrivacyPolicyControl from './PrivacyPolicyControl.vue';
-import type { IContactForm } from '@scripts/contact_form';
+import SendingLoader from './Loader.vue';
+import MessageDialog from './Dialog.vue';
+import {
+	MSG_MAX_LENGTH,
+	MSG_MIN_LENGTH,
+	sendContactForm,
+	validEmailAddress,
+	validMessage,
+	validPhoneNumber,
+	type IContactForm,
+} from '@scripts/contact_form';
+
+type PrivacyPolicyType = InstanceType<typeof PrivacyPolicyControl>;
+type SendingLoaderType = InstanceType<typeof SendingLoader>;
+type MessageDialogType = InstanceType<typeof MessageDialog>;
 
 const topics: string[] = ['Verwaltung', 'Verkauf', 'Vermietung', 'Anderes'];
 const agreeId = useId();
 // const agreeId2 = useId();
-const MSG_MIN_LENGTH = 10;
-const MSG_MAX_LENGTH = 2000;
 const MSG_PLACEHOLDER = 'Nachricht* (' + MSG_MIN_LENGTH + '-' + MSG_MAX_LENGTH + ' Zeichen)';
 
 const validationMode = ref<boolean>(false);
@@ -22,26 +34,44 @@ const topic = ref<string>('');
 const message = ref<string>('');
 const acceptedPolicy = ref(false);
 const agreedConnection = ref(false);
+
+const policyComponent = useTemplateRef<PrivacyPolicyType>('policy-ctrl');
+const sendingLoader = useTemplateRef<SendingLoaderType>('loader-ctrl');
+const msgDialog = useTemplateRef<MessageDialogType>('msg-dialog');
+
 const buttonValid = computed(() => {
-	return (
-		agreedConnection.value &&
-		acceptedPolicy.value &&
-		firstName.value?.trim().length &&
-		lastName.value?.trim().length &&
-		emailAddress.value?.trim().length &&
-		topic.value?.trim().length &&
-		message.value?.trim().length
-	);
+	if (!validationMode.value)
+		return (
+			agreedConnection.value &&
+			acceptedPolicy.value &&
+			firstName.value?.trim().length &&
+			lastName.value?.trim().length &&
+			emailAddress.value?.trim().length &&
+			topic.value?.trim().length &&
+			message.value?.trim().length
+		);
+	else return validateFormData() !== undefined;
 });
 
 function handlePolicyStatus(accepted: boolean): void {
 	acceptedPolicy.value = accepted;
 }
 
-function handleSendMessage() {
+function handleSendForm() {
 	validationMode.value = true;
 	const formData = validateFormData();
-	console.log(formData);
+	if (formData) {
+		startSendingLoader();
+		sendContactForm(formData, handleSendResult);
+	}
+}
+
+function handleSendResult(isOk: boolean, msg: string) {
+	if (isOk) {
+		resetForm();
+	}
+	stopSendingLoader();
+	msgDialog.value?.show(msg);
 }
 
 function validateFormData(): IContactForm | undefined {
@@ -67,21 +97,28 @@ function validateFormData(): IContactForm | undefined {
 	return undefined;
 }
 
-function validPhoneNumber(phone: string | undefined): boolean {
-	if (!phone || !phone.length) return true;
-	const PHONE_REGEX = /^[0\+]{1}[0-9]{7,16}$/;
-	return PHONE_REGEX.test(phone);
+function resetForm() {
+	validationMode.value = false;
+	firstName.value = '';
+	lastName.value = '';
+	phoneNumber.value = '';
+	emailAddress.value = '';
+	subject.value = '';
+	topic.value = '';
+	message.value = '';
+	agreedConnection.value = false;
+	policyComponent.value?.resetPolicy();
 }
 
-function validEmailAddress(email: string): boolean {
-	// const EMAIL_REGEX: RegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-	const EMAIL_REGEX: RegExp = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-	if (email && EMAIL_REGEX.test(email)) return true;
-	return false;
+function startSendingLoader() {
+	sendingLoader.value?.start();
+}
+function stopSendingLoader() {
+	sendingLoader.value?.stop();
 }
 
-function validMessage(msg: string): boolean {
-	return msg?.length >= MSG_MIN_LENGTH && msg?.length <= MSG_MAX_LENGTH;
+function closeDialog() {
+	msgDialog.value?.close();
 }
 </script>
 
@@ -144,14 +181,20 @@ function validMessage(msg: string): boolean {
 			/>
 			<label :for="agreeId">Hiermit erlaube ich Ihnen mich per E-Mail und/oder Telefon zu kontaktieren.</label>
 		</div>
-		<PrivacyPolicyControl @policy-status="handlePolicyStatus" />
-		<button type="button" class="red-button" @click="handleSendMessage" :disabled="!buttonValid">Absenden</button>
+		<PrivacyPolicyControl ref="policy-ctrl" @policy-status="handlePolicyStatus" />
+		<button type="button" class="red-button" @click="handleSendForm" :disabled="!buttonValid">Absenden</button>
+		<SendingLoader ref="loader-ctrl" :background="false" />
+		<MessageDialog ref="msg-dialog" @handle-close="closeDialog" />
 	</form>
 </template>
 
 <style src="/src/styles/form.css"></style>
 
 <style scoped>
+.message-form {
+	position: relative;
+}
+
 .message-form textarea {
 	resize: none;
 	margin-top: 0.4em;
