@@ -51,7 +51,7 @@ function makePersonalMessage(contactForm: TContactForm, toDahm: boolean): string
 
 	if (toDahm) {
 		const strHello: string = 'Hallo Dahm Immobilien Team,';
-		const formText = 'Eine neue Anfrage wurde über das Kontaktformular auf der Website gesendet.';
+		const formText = 'eine neue Anfrage wurde über das Kontaktformular auf der Website gesendet.';
 
 		diffText = `\
 <tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #000000; font-weight: 500">${strHello}</td></tr>\
