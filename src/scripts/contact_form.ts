@@ -1,14 +1,18 @@
-export interface IContactForm {
-	firstName: string;
-	lastName: string;
-	email: string;
-	phone?: string;
-	subject: string;
-	topic: string;
-	message: string;
-}
+import { z } from 'zod/v4';
 
-export function validPhoneNumber(phone: string | undefined): boolean {
+const ContactFormSchema = z.object({
+	firstName: z.string(),
+	lastName: z.string(),
+	email: z.string(),
+	phone: z.string(),
+	subject: z.string(),
+	topic: z.string(),
+	message: z.string(),
+});
+
+export type TContactForm = z.infer<typeof ContactFormSchema>;
+
+export function validPhoneNumber(phone: string): boolean {
 	const PHONE_REGEX = /^[0\+]{1}[0-9]{7,16}$/;
 	return !phone?.length || PHONE_REGEX.test(phone);
 }
@@ -27,7 +31,7 @@ export function validMessage(msg: string): boolean {
 	return msg?.length >= MSG_MIN_LENGTH && msg?.length <= MSG_MAX_LENGTH;
 }
 
-export function sendContactForm(formData: IContactForm, handleSendResult: (isOk: boolean, msg: string) => void): void {
+export function sendContactForm(formData: TContactForm, handleSendResult: (isOk: boolean, msg: string) => void): void {
 	formData.subject = codeSubject(formData);
 
 	const options = {
@@ -52,7 +56,36 @@ export function sendContactForm(formData: IContactForm, handleSendResult: (isOk:
 		.catch(err => handleSendResult(false, err.message));
 }
 
-function codeSubject(formData: IContactForm): string {
+export function validationContactFormJson(json_data: string): TContactForm | undefined {
+	console.log(json_data);
+	const result = ContactFormSchema.safeParse(JSON.parse(json_data));
+	if (result.success) {
+		const contactForm: TContactForm = result.data;
+		console.log('Валидный пользователь:', contactForm);
+		return contactForm;
+	} else {
+		console.error('Ошибка валидации:', result.error.format());
+		return undefined;
+	}
+}
+
+export function isValidContactForm(contactForm: TContactForm, emptySubject: boolean): boolean {
+	if (
+		contactForm.firstName.length &&
+		contactForm.lastName.length &&
+		contactForm.topic.length > 3 &&
+		validMessage(contactForm.message) &&
+		validPhoneNumber(contactForm.phone) &&
+		validEmailAddress(contactForm.email)
+	) {
+		if (emptySubject) return !contactForm.subject.length;
+		else return contactForm.subject === codeSubject(contactForm);
+	}
+
+	return false;
+}
+
+function codeSubject(formData: TContactForm): string {
 	return (
 		formData.email.slice(-1) +
 		formData.email.charAt(0) +

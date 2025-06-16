@@ -1,127 +1,79 @@
-import type { Handler } from '@netlify/functions';
+import type { Handler, HandlerResponse } from '@netlify/functions';
+import { validationContactFormJson, isValidContactForm, type TContactForm } from '@scripts/contact_form';
 // import { LANG_LIST, EMAIL_REGEX } from '@scripts/consts.ts';
 // import { fromHtmlToPlainText, getJsonDictionary, getJsonTheater, nonBreakingSpace } from './lib/utils.ts';
-// import { makeHtmlEmail } from './lib/mailUtils.ts';
-// import { type TMail, sendMails } from './lib/mailService.ts';
+import { makeHtmlEmail } from './lib/mailUtils.ts';
+import { type TMail, getDahmEmailAddress, sendMails } from './lib/mailService.ts';
+import { fromHtmlToPlainText, nonBreakingSpace } from './lib/utils.ts';
+import Dahm from '@data/dahm.json';
+
+function handlerResponse(resCode: number, resMessage: string): HandlerResponse {
+	if (resCode >= 400) console.error('resMessage');
+	return {
+		statusCode: resCode,
+		body: JSON.stringify({
+			message: resMessage,
+		}),
+	};
+}
 
 export const handler: Handler = async (event, context) => {
-	if (!event || !event.body) {
-		console.error('WRONG message from client');
-		return {
-			statusCode: 400,
-			body: JSON.stringify({
-				message: 'Wrong feedback form data',
-			}),
-		};
-	}
+	if (!event || !event.body) return handlerResponse(400, 'Ungültige Anfrage');
 
-	const messageData = JSON.parse(event.body);
-
-	/*
-	// spam checking
-	if (!validateMessage(messageData)) {
-		// fake OK-result
-		return {
-			statusCode: 200,
-			body: JSON.stringify({
-				message: 'Email sent successfully',
-			}),
-		};
-	}
-	*/
+	const contactForm = validationContactFormJson(event.body);
+	if (!contactForm) return handlerResponse(400, 'Ungültiges Datenformat.');
+	if (!isValidContactForm(contactForm, false)) return handlerResponse(400, 'Falsche Anfragedaten.');
 
 	// const { lang, subject, topic, name, email, message, now } = messageData;
 
-	/*
-	const transporterMail: string = process.env.ANTREPRIZA_EMAIL_INFO;
 	let clientMail: TMail = {
-		to: email,
-		subject: subject,
-		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, false)),
+		to: contactForm.email,
+		subject: contactForm.topic,
+		html: makeHtmlEmail(contactForm.topic, makeContent(contactForm, false)),
 	};
-	let antreprizaMail: TMail = {
-		to: '',
-		subject: subject,
-		html: makeHtmlEmail(lang, topic, makeContent(lang, topic, name, email, message, now, true)),
+	let dahmMail: TMail = {
+		to: getDahmEmailAddress(),
+		subject: contactForm.topic,
+		html: makeHtmlEmail(contactForm.topic, makeContent(contactForm, true)),
 	};
-	*/
 
-	// return await sendMails(transporterMail, clientMail, dahmMail);
-
-	return {
-		statusCode: 200,
-		body: JSON.stringify({
-			message: 'Email sent successfully',
-		}),
-	};
+	const isSent = await sendMails(clientMail, dahmMail);
+	if (isSent) return handlerResponse(200, 'Ihre Anfrage wurde erfolgreich übermittelt');
+	else return handlerResponse(500, 'Fehler beim Senden der Anfrage.');
 };
 
-/*
-function validateMessage(messageData) {
-	if (!messageData || !messageData.lang || !LANG_LIST.includes(messageData.lang)) return false;
-	if (!messageData.subject || !messageData.subject.includes(' - ')) return false;
-	if (!messageData.topic || !messageData.name || messageData.name.length < 2) return false;
-	if (messageData.phone !== messageData.topic + messageData.name) return false;
-	if (!messageData.email || !EMAIL_REGEX.test(messageData.email) || messageData.email.length < 5 || messageData.email.length > 64)
-		return false;
-	if (!messageData.message || messageData.message.length < 10 || messageData.now <= 0) return false;
-	return true;
+function makeContent(contactForm: TContactForm, toDahm: boolean): string {
+	return makePersonalMessage(contactForm, toDahm) + makeContactFormBlock(contactForm);
 }
 
-function makeContent(
-	lang: string,
-	topic: string,
-	name: string,
-	email: string,
-	message: string,
-	now: number,
-	toAntrepriza: boolean
-): string {
-	return makePersonalMessage(lang, name, now, toAntrepriza) + makeFeedbackBlock(lang, topic, name, email, message);
-}
-
-function makePersonalMessage(lang: string, name: string, now: number, toAntrepriza: boolean): string {
-	const date = new Date(now);
-	const getHello = (hour: number): string => {
-		if (hour < 6 && lang === 'ru') return dictionaryServer.hello[lang];
-		else if (hour < 12) return dictionaryServer.good_morning[lang];
-		else if (hour < 18) return dictionaryServer.good_afternoon[lang];
-		else return dictionaryServer.good_evening[lang];
-	};
-
+function makePersonalMessage(contactForm: TContactForm, toDahm: boolean): string {
 	let diffText: string;
-	let strHello: string;
 
-	if (toAntrepriza) {
-		let options: Intl.DateTimeFormatOptions = {
-			year: 'numeric',
-			month: 'long',
-			day: '2-digit',
-			hour: '2-digit',
-			minute: '2-digit',
-		};
-		let strCurrentDate: string = date.toLocaleDateString(lang, options);
+	if (toDahm) {
+		const strHello: string = 'Hallo Dahm Immobilien Team,';
+		const formText = 'Eine neue Anfrage wurde über das Kontaktformular auf der Website gesendet.';
 
-		strHello = getHello(date.getHours()) + (lang === 'ru' ? '!' : '.');
 		diffText = `\
-<tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
-<tr><td style="line-height: 120%; color: #d6d6d6">${dictionaryServer.email_feedback_form_text_antrepriza[lang]}</td></tr>\
-<tr><td style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">[${strCurrentDate}]</td></tr>\
+<tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #000000; font-weight: 500">${strHello}</td></tr>\
+<tr><td style="line-height: 120%; color: #000000">${formText}</td></tr>\
 `;
 	} else {
-		strHello = getHello(date.getHours()) + (lang === 'ru' ? ', ' : ' ') + fromHtmlToPlainText(name) + (lang === 'ru' ? '!' : '.');
+		const strHello: string = 'Hallo ' + contactForm.firstName + ',';
+		const formText =
+			'Ihre Anfrage wurde erfolgreich gesendet. Bei Bedarf werden wir uns schnellstmöglich mit Ihnen in Verbindung setzen.';
+
 		diffText = `\
-<tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #d6d6d6; font-weight: 500">${strHello}</td></tr>\
-<tr><td style="line-height: 120%; color: #d6d6d6; padding-bottom: 15px">${dictionaryServer.email_feedback_form_text[lang]}</td></tr>\
-<tr><td style="line-height: 120%; color: #d6d6d6">${theater.longTheaterName[lang]}</td></tr>\
+<tr><td style="font-size: 125%; padding-bottom: 15px; line-height: 120%; color: #000000; font-weight: 500">${strHello}</td></tr>\
+<tr><td style="line-height: 120%; color: #000000; padding-bottom: 15px">${formText}</td></tr>\
+<tr><td style="line-height: 120%; color: #000000">${Dahm.company_fullname}</td></tr>\
 <tr><td style="line-height: 120%">\
-<a href='${theater.our_website_link}/${lang}/' style="line-height: 120%; color: #d6d6d6">${theater.our_website_text}</a>\
+<a href='${Dahm.website_link}/' style="line-height: 120%; color: #000000">${Dahm.domain}</a>\
 </td></tr>\
 `;
 	}
 
 	return `\
-<table border="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 15px 0; border-bottom: 1px solid #d6d6d6">\
+<table border="0" role="presentation" style="width: 100%; margin: 0; padding: 0 0 15px 0; border-bottom: 1px solid #000000">\
 <tbody>\
 ${diffText}\
 </tbody>\
@@ -129,33 +81,36 @@ ${diffText}\
 `;
 }
 
-let feedbackBlock: string;
-function makeFeedbackBlock(lang: string, topic: string, name: string, email: string, message: string): string {
-	if (feedbackBlock) return feedbackBlock;
+let contactFormBlock: string;
+function makeContactFormBlock(contactForm: TContactForm): string {
+	if (contactFormBlock) return contactFormBlock;
 
-	feedbackBlock = `\
+	contactFormBlock = `\
 <table border="0" cellpadding="0" role="presentation" style="width: 100%; margin: 0; padding: 15px 0 0 0">\
 <tbody>\
 <tr>\
-<td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.question_subject[lang] + ' :')}</td>\
-<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(topic)}</td>\
+<td style="line-height: 120%; color: #222222; vertical-align: top">${nonBreakingSpace('Betreff :')}</td>\
+<td style="line-height: 120%; color: #000000; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(contactForm.topic)}</td>\
 </tr>\
 <tr>\
-<td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.lang_name[lang] + ' :')}</td>\
-<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(name)}</td>\
+<td style="line-height: 120%; color: #222222; vertical-align: top">${nonBreakingSpace('Name :')}</td>\
+<td style="line-height: 120%; color: #000000; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(contactForm.firstName + ' ' + contactForm.lastName)}</td>\
 </tr>\
 <tr>\
-<td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.lang_email[lang] + ' :')}</td>\
-<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 10px 8px">\
-<a href='${'mailto:' + fromHtmlToPlainText(email)}' style="line-height: 120%; color: #d6d6d6">${fromHtmlToPlainText(email)}</a></td>\
+<td style="line-height: 120%; color: #222222; vertical-align: top">${nonBreakingSpace('E-Mail :')}</td>\
+<td style="line-height: 120%; color: #000000; vertical-align: top; padding: 0 0 10px 8px">\
+<a href='${'mailto:' + fromHtmlToPlainText(contactForm.email)}' style="line-height: 120%; color: #000000">${fromHtmlToPlainText(contactForm.email)}</a></td>\
 </tr>\
 <tr>\
-<td style="line-height: 120%; color: #888888; vertical-align: top">${nonBreakingSpace(dictionaryServer.lang_message[lang] + ' :')}</td>\
-<td style="line-height: 120%; color: #d6d6d6; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(message)}</td>\
+<td style="line-height: 120%; color: #222222; vertical-align: top">${nonBreakingSpace('Telefon :')}</td>\
+<td style="line-height: 120%; color: #000000; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(contactForm.phone ? contactForm.phone : '-')}</td>\
+</tr>\
+<tr>\
+<td style="line-height: 120%; color: #222222; vertical-align: top">${nonBreakingSpace('Nachricht :')}</td>\
+<td style="line-height: 120%; color: #000000; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(contactForm.message)}</td>\
 </tr>\
 </tbody>\
 </table>\
 `;
-	return feedbackBlock;
+	return contactFormBlock;
 }
-*/

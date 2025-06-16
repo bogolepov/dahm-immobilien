@@ -1,5 +1,5 @@
+// import Dahm from '@data/dahm.json';
 const CONSENT_KEY: string = 'website_consent';
-const DOMAIN_NAME: string = 'dahm-immobilien.de';
 
 export type SameSiteOption = 'lax' | 'strict' | 'none';
 export type CookieConsent = {
@@ -51,7 +51,7 @@ export function setConsent(consent: CookieConsent): void {
 
 	setCookie(CONSENT_KEY, value, {
 		path: '/',
-		// domain: DOMAIN_NAME,
+		// domain: Dahm.domain,
 		secure: true,
 		expires: date.toUTCString(),
 		sameSite: 'lax',

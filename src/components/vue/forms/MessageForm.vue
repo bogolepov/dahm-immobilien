@@ -8,10 +8,11 @@ import {
 	MSG_MAX_LENGTH,
 	MSG_MIN_LENGTH,
 	sendContactForm,
+	isValidContactForm,
 	validEmailAddress,
 	validMessage,
 	validPhoneNumber,
-	type IContactForm,
+	type TContactForm,
 } from '@scripts/contact_form';
 
 type PrivacyPolicyType = InstanceType<typeof PrivacyPolicyControl>;
@@ -24,6 +25,7 @@ const agreeId = useId();
 const MSG_PLACEHOLDER = 'Nachricht* (' + MSG_MIN_LENGTH + '-' + MSG_MAX_LENGTH + ' Zeichen)';
 
 const validationMode = ref<boolean>(false);
+const formSent = ref<boolean>(false);
 
 const firstName = ref<string>('');
 const lastName = ref<string>('');
@@ -69,13 +71,14 @@ function handleSendForm() {
 function handleSendResult(isOk: boolean, msg: string) {
 	if (isOk) {
 		resetForm();
+		formSent.value = true;
 	}
 	stopSendingLoader();
 	msgDialog.value?.show(msg);
 }
 
-function validateFormData(): IContactForm | undefined {
-	const formData: IContactForm = {
+function validateFormData(): TContactForm | undefined {
+	const formData: TContactForm = {
 		firstName: firstName.value,
 		lastName: lastName.value,
 		email: emailAddress.value,
@@ -85,14 +88,7 @@ function validateFormData(): IContactForm | undefined {
 		message: message.value,
 	};
 
-	if (
-		formData.topic?.length > 3 &&
-		validMessage(formData.message) &&
-		!formData.subject?.length &&
-		validPhoneNumber(formData.phone) &&
-		validEmailAddress(formData.email)
-	)
-		return formData;
+	if (isValidContactForm(formData, true)) return formData;
 
 	return undefined;
 }
@@ -119,6 +115,12 @@ function stopSendingLoader() {
 
 function closeDialog() {
 	msgDialog.value?.close();
+	if (formSent.value) closeCardMessage();
+}
+
+function closeCardMessage() {
+	document.querySelector('.sb-card.message.open')?.classList.remove('open');
+	formSent.value = false;
 }
 </script>
 
