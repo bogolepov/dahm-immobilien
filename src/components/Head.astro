@@ -2,7 +2,7 @@
 import dahm from '@data/dahm.json';
 const { title, description, robots = 'index, follow' } = Astro.props;
 
-const pageTitle = title?.length ? title + ' — ' + dahm.company_name : dahm.company_name;
+const pageTitle = title?.length ? title + ' — ' + dahm.company_fullname : dahm.company_fullname;
 const pageDescription = description;
 
 const pathname: string = new URL(Astro.request.url).pathname;
