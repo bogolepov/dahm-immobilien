@@ -9,8 +9,8 @@
 	},
 	"telephone": "+49 2331 6285250",
 	"email": "info@hv-dahm.de",
-	"website_link": "https://dahm-ivg.de",
-	"domain": "dahm-ivg.de",
+	"website_link": "https://dahm-immobilien-verwaltung.de",
+	"domain": "dahm-immobilien-verwaltung.de",
 	"office_time": { "days": { "von": "Mo", "bis": "Fr" }, "time": { "von": "09:00", "bis": "13:00" } },
 	"registration": {
 		"gericht": "Amtsgericht Hagen",

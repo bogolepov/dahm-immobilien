@@ -6,6 +6,7 @@ const pageTitle = title?.length ? title + ' — ' + dahm.company_fullname : dahm
 const pageDescription = description;
 
 const pathname: string = new URL(Astro.request.url).pathname;
+let imageUrl = dahm.website_link + '/assets/logo_small2t.png';
 ---
 
 <head>
@@ -23,12 +24,12 @@ const pathname: string = new URL(Astro.request.url).pathname;
 	<meta property='og:url' content={dahm.website_link + pathname} />
 	<meta property='og:type' content='website' />
 	<meta property='og:site_name' content={dahm.company_name} />
-	<!-- <meta property="og:image" content={imageUrl} />
-	<meta property="og:image:secure_url" content={imageUrl}>
-	<meta property="og:image:type" content={imageType} />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="628" />
-	<meta property="og:locale" content="de" /> -->
+	<meta property='og:image' content={imageUrl} />
+	<meta property='og:image:secure_url' content={imageUrl} />
+	<meta property='og:image:type' content='image/png' />
+	<meta property='og:image:width' content='1200' />
+	<meta property='og:image:height' content='628' />
+	<meta property='og:locale' content='de' />
 
 	<meta name='generator' content={Astro.generator} />
 </head>

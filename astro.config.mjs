@@ -8,12 +8,12 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://dahm-ivg.de',
+	site: 'https://dahm-immobilien-verwaltung.de',
 	integrations: [
 		icon(),
 		vue(),
 		sitemap({
-			filter: page => page !== 'https://dahm-ivg.de/404/',
+			filter: page => page !== 'https://dahm-immobilien-verwaltung.de/404/',
 		}),
 	],
 	adapter: netlify(),
