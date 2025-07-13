@@ -32,14 +32,14 @@ import { cccSettingsShow } from './stateStore';
 	outline: 0;
 	border-radius: 50%;
 	border: 1px solid transparent;
-	transition: color 250ms ease-in-out;
+	transition: color 450ms ease-in-out;
 }
 .cooqie-settings-button:focus-visible {
 	border-color: var(--button-color);
 }
 @media (hover: hover) {
 	.cooqie-settings-button:hover {
-		color: hsl(from var(--button-color) h s calc(l + 5));
+		color: hsl(from var(--button-color) h s calc(l + 8) / 0.95);
 	}
 }
 </style>

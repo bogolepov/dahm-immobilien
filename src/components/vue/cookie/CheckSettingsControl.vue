@@ -52,8 +52,9 @@ function getStatus(type: string | undefined): string {
 
 .control-box .red-button {
 	--red-button-color: var(--color-dahm-bordo-dark);
+	--red-padding-x: 0.8em;
+	--red-padding-y: 0.5em;
 	width: 100%;
-	padding: 0.5em 0.8em;
 	margin-top: 1em;
 }
 </style>

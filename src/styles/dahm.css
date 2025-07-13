@@ -144,12 +144,17 @@ article a {
 
 .red-button {
 	--red-button-color: var(--color-dahm-bordo);
-	--bkg-color-change-duration: 450ms;
-	padding: 0.6em 1em;
+	--bkg-color-change-duration: 600ms;
+	--red-padding-y: 0.6em;
+	--red-padding-x: 1em;
+	padding: var(--red-padding-y) var(--red-padding-x);
 	background-color: var(--red-button-color);
+	border: 1px solid var(--red-button-color);
 	font-weight: 350;
 	color: #ffffff;
-	transition: background-color var(--bkg-color-change-duration) ease-in-out;
+	transition:
+		background-color var(--bkg-color-change-duration) ease-in-out,
+		border-color var(--bkg-color-change-duration) ease-in-out;
 }
 .red-button[disabled] {
 	background-color: var(--color-dahm-grey);
@@ -246,6 +251,7 @@ footer a:focus-visible {
 }
 @media (hover: hover) {
 	.red-button:hover {
-		background-color: hsl(from var(--red-button-color) h s calc(l + 5));
+		background-color: hsl(from var(--red-button-color) h s calc(l + 9));
+		border-color: hsl(from var(--red-button-color) h s calc(l - 12));
 	}
 }

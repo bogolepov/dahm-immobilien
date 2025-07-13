@@ -54,7 +54,8 @@ function doServiceOn(): void {
 	text-align: center;
 }
 .service-off .red-button {
-	margin-top: 0.4em;
+	margin-top: 0.6em;
+	--red-padding-y: 0.5em;
 }
 .service-on {
 	width: 100%;
