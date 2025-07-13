@@ -172,6 +172,7 @@ function closeCardMessage() {
 			:placeholder="MSG_PLACEHOLDER"
 			class="ctrl-full"
 			:class="{ 'not-valid': validationMode && !validMessage(message) }"
+			spellcheck="false"
 			required
 		></textarea>
 		<div class="flex-checkbox-label">

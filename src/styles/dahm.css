@@ -85,7 +85,7 @@ article a {
 		text-decoration-color 300ms ease-in-out;
 }
 @media (hover: hover) {
-	article a:hover {
+	article a:not(.red-button):hover {
 		color: var(--color-dahm-bordo);
 	}
 }
@@ -144,11 +144,12 @@ article a {
 
 .red-button {
 	--red-button-color: var(--color-dahm-bordo);
+	--bkg-color-change-duration: 450ms;
 	padding: 0.6em 1em;
 	background-color: var(--red-button-color);
 	font-weight: 350;
 	color: #ffffff;
-	transition: background-color 150ms ease-in-out;
+	transition: background-color var(--bkg-color-change-duration) ease-in-out;
 }
 .red-button[disabled] {
 	background-color: var(--color-dahm-grey);
@@ -238,6 +239,7 @@ footer a:focus-visible {
 }
 
 .red-button:focus-visible {
+	--bkg-color-change-duration: 150ms;
 	outline-color: var(--color-dahm-bordo-dark);
 	outline-offset: 2px;
 	background-color: hsl(from var(--red-button-color) h s calc(l + 5));

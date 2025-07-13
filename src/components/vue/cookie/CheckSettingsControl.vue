@@ -55,6 +55,5 @@ function getStatus(type: string | undefined): string {
 	width: 100%;
 	padding: 0.5em 0.8em;
 	margin-top: 1em;
-	transition: background-color 400ms ease-in-out;
 }
 </style>

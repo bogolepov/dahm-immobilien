@@ -10,29 +10,19 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		<Icon name='logo1991' class='logo1991 slide-in-top hd-11' />
 		<div class='year-number swing-in-top-fwd hd-12'>1991</div>
 		<div class='actions-flex'>
-			<a href='/leistungen/verwaltung' class='swing-in-top-fwd hd-13'>Verwaltung</a>
+			<a href='/leistungen/verwaltung' class='red-button swing-in-top-fwd hd-13'>Verwaltung</a>
 		</div>
-		<!-- <div class='year-info'>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, facere. Tenetur doloremque nobis labore
-			ipsam! Libero asperiores consectetur aliquid voluptatum.
-		</div> -->
 	</div>
 
 	<div class='year-flex'>
 		<Icon name='logo2025' class='logo2025 image-h slide-in-left hd-21' />
 		<div class='year-number swing-in-top-fwd hd-22'>2025</div>
 		<div class='actions-flex'>
-			<a href='/leistungen/verwaltung' class='swing-in-top-fwd hd-23'>Verwaltung</a>
-			<a href='/leistungen/vermietung' class='swing-in-top-fwd hd-24'>Vermietung</a>
-			<a href='/leistungen/verkauf' class='swing-in-top-fwd hd-25'>Verkauf</a>
+			<a href='/leistungen/verwaltung' class='red-button swing-in-top-fwd hd-23'>Verwaltung</a>
+			<a href='/leistungen/vermietung' class='red-button swing-in-top-fwd hd-24'>Vermietung</a>
+			<a href='/leistungen/verkauf' class='red-button swing-in-top-fwd hd-25'>Verkauf</a>
 		</div>
-		<!-- <div class='year-info'>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas molestias doloribus tenetur dignissimos eius ad
-			perspiciatis distinctio, numquam porro dolore.
-		</div> -->
 	</div>
-
-	<!-- <Picture class='image-h logo2025' src={images['/src/assets/logo.png']()} alt='Logo' /> -->
 </article>
 
 <style>
@@ -45,16 +35,13 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		display: flex;
 		justify-content: center;
 		column-gap: var(--gap-x);
-		/* border: 1px solid var(--border-color); */
 		background-color: var(--color-dahm-background-dark);
 		transition:
 			background-color 800ms ease-in-out,
 			border 60ms ease-in-out;
 	}
 	.history.history-active {
-		/* opacity: 1; */
 		background-color: transparent;
-		/* border: none; */
 	}
 	.history > * {
 		opacity: 0;
@@ -128,7 +115,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 
 	.history .logo1991 {
 		display: block;
-		/* width: 250px; */
 		font-size: var(--width-image);
 		min-height: 60px;
 		max-height: 190px;
@@ -136,7 +122,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		width: auto;
 	}
 	.history .logo2025 {
-		/* width: var(--width-image); */
 		min-height: 60px;
 		max-height: 190px;
 		height: min(20vw, 20vw);
@@ -154,14 +139,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		font-size: calc(var(--font-size) * 1.2);
 		font-weight: 250;
 		line-height: 1;
-		background-color: var(--color-dahm-bordo);
-		color: white;
 		text-align: center;
 		padding: 0.5em 1em;
-		transition: background-color 150ms ease-in-out;
-	}
-	.year-flex .actions-flex > *:focus-visible {
-		background-color: hsl(from var(--color-dahm-bordo) h s calc(l + 5));
 	}
 
 	.history-active .slide-in-top {

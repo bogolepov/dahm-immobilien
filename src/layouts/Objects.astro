@@ -44,7 +44,7 @@ objects.sort((obj1, obj2) => {
 				const objectAddress = `${object.address.str} ${object.address.number}, ${object.address.plz} ${object.address.city}`;
 				return (
 					<li aria-label={'Objekt ' + objectAddress}>
-						<p class='object-address' tabindex="0" aria-label="Objektkarte öffnen">
+						<p class='object-address' tabindex="0" aria-label="Objektkarte öffnen" aria-expanded='false'>
 							{objectAddress}
 						</p>
 						<div class='object-card' inert>
@@ -187,15 +187,18 @@ objects.sort((obj1, obj2) => {
 					if (card.style.maxHeight) {
 						card.style.maxHeight = null;
 						card.setAttribute('inert', '');
+						item.setAttribute('aria-expanded', 'false');
 					} else {
 						objectItems.forEach(obj => {
 							if (obj.nextElementSibling && obj.nextElementSibling !== card) {
 								obj.nextElementSibling.style.maxHeight = null; 
 								obj.nextElementSibling.setAttribute('inert', '');
+								obj.setAttribute('aria-expanded', 'false');
 							}
 						});
 						card.style.maxHeight = card.scrollHeight + 'px';
 						card.removeAttribute('inert');
+						item.setAttribute('aria-expanded', 'true');
 					}
 				}); 
 
