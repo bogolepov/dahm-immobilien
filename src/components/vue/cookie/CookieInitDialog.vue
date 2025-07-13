@@ -63,4 +63,9 @@ const emit = defineEmits<{
 		width: auto;
 	}
 }
+
+.cookie-init-dialog *:focus-visible {
+	outline: 1px solid #000000;
+	outline-offset: 2px;
+}
 </style>

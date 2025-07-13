@@ -59,6 +59,7 @@ defineExpose({ show, close });
 
 .msg-dialog p {
 	margin-bottom: 0.6em;
+	text-align: center;
 }
 .msg-dialog button {
 	/* border: 1px solid var(--border-color-form); */

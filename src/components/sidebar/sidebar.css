@@ -31,9 +31,11 @@
 	left: calc(-1 * var(--width-card));
 }
 
-.sb-card .card-button {
+.card-button {
 	display: block;
 	position: absolute;
+	padding: 0;
+	font-weight: 400;
 	left: calc(-1 * var(--width-hot-button));
 	width: var(--width-hot-button);
 	height: var(--height-hot-button);
@@ -82,7 +84,7 @@
 		transform: scaleY(1);
 	}
 
-	.sb-card .card-button {
+	.card-button {
 		display: none;
 	}
 

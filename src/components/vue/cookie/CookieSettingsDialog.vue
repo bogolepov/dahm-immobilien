@@ -59,7 +59,14 @@ function changeState(name: string, newState: boolean): void {
 			<form>
 				<div class="header-flex">
 					<h3>{{ 'Dienste, die wir nutzen'.toUpperCase() }}</h3>
-					<button type="button" class="close-button" @click.prevent="cancelDialog">&#10006;</button>
+					<button
+						type="button"
+						class="close-button"
+						@click.prevent="cancelDialog"
+						aria-label="Cookie-Einstellungen schließen"
+					>
+						&#10006;
+					</button>
 				</div>
 				<p class="annotation">
 					Hier können Sie einsehen und anpassen, welche Dienste auf unserer Website möglicherweise Cookies benutzen
@@ -109,6 +116,7 @@ function changeState(name: string, newState: boolean): void {
 	bottom: 0;
 	background-color: rgba(211, 210, 207, 0.75);
 	z-index: 50008;
+	overscroll-behavior-y: contain;
 }
 
 .cookie-settings-dialog {
@@ -119,6 +127,7 @@ function changeState(name: string, newState: boolean): void {
 	max-width: 90dvw;
 	max-height: 90dvh;
 	overflow-y: auto;
+	overscroll-behavior-y: contain;
 }
 
 .cookie-settings-dialog .header-flex {
@@ -183,7 +192,7 @@ function changeState(name: string, newState: boolean): void {
 .consent-type::before {
 	content: 'Zweck: ';
 	font-weight: 450;
-	color: rgb(65, 0, 0, 0.8);
+	color: rgba(65, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 500px) {
@@ -194,5 +203,10 @@ function changeState(name: string, newState: boolean): void {
 	.cookie-settings-dialog .actions button {
 		padding: 0.5em;
 	}
+}
+
+.cookie-settings-layer *:focus-visible {
+	outline: 1px solid #000000;
+	outline-offset: 2px;
 }
 </style>

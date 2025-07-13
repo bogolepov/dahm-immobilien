@@ -45,13 +45,25 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		display: flex;
 		justify-content: center;
 		column-gap: var(--gap-x);
-		opacity: 0;
-		transition: opacity 20ms ease-in-out;
-		/* width: 100%; */
+		/* border: 1px solid var(--border-color); */
+		background-color: var(--color-dahm-background-dark);
+		transition:
+			background-color 800ms ease-in-out,
+			border 60ms ease-in-out;
 	}
 	.history.history-active {
+		/* opacity: 1; */
+		background-color: transparent;
+		/* border: none; */
+	}
+	.history > * {
+		opacity: 0;
+		transition: opacity 20ms ease-in-out;
+	}
+	.history.history-active > * {
 		opacity: 1;
 	}
+
 	.hd-11 {
 		--history-delay: 0ms;
 		--history-duration: 800ms;
@@ -146,6 +158,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		color: white;
 		text-align: center;
 		padding: 0.5em 1em;
+		transition: background-color 150ms ease-in-out;
+	}
+	.year-flex .actions-flex > *:focus-visible {
+		background-color: hsl(from var(--color-dahm-bordo) h s calc(l + 5));
 	}
 
 	.history-active .slide-in-top {

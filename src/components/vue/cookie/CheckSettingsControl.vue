@@ -51,15 +51,10 @@ function getStatus(type: string | undefined): string {
 }
 
 .control-box .red-button {
+	--red-button-color: var(--color-dahm-bordo-dark);
 	width: 100%;
 	padding: 0.5em 0.8em;
 	margin-top: 1em;
-	background-color: var(--color-dahm-bordo-dark);
 	transition: background-color 400ms ease-in-out;
-}
-@media (hover: hover) {
-	.control-box .red-button:hover {
-		background-color: var(--color-dahm-bordo);
-	}
 }
 </style>

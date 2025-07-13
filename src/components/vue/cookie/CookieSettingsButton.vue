@@ -3,7 +3,12 @@ import { cccSettingsShow } from './stateStore';
 </script>
 
 <template>
-	<button type="button" class="cooqie-settings-button" @click.prevent="cccSettingsShow = true">
+	<button
+		type="button"
+		class="cooqie-settings-button"
+		@click.prevent="cccSettingsShow = true"
+		aria-label="Cookie-Einstellungen"
+	>
 		<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 50 50">
 			<path
 				fill="currentColor"
@@ -15,11 +20,26 @@ import { cccSettingsShow } from './stateStore';
 
 <style>
 .cooqie-settings-button {
+	--button-color: var(--color-dahm-bordo);
+	display: grid;
+	place-items: center;
 	position: fixed;
 	right: 0.1em;
-	bottom: 0;
-	padding: 0.15em 0.3em;
-	color: var(--color-dahm-bordo);
+	bottom: 0.1em;
+	padding: 0.15em;
+	color: var(--button-color);
 	z-index: 50000;
+	outline: 0;
+	border-radius: 50%;
+	border: 1px solid transparent;
+	transition: color 250ms ease-in-out;
+}
+.cooqie-settings-button:focus-visible {
+	border-color: var(--button-color);
+}
+@media (hover: hover) {
+	.cooqie-settings-button:hover {
+		color: hsl(from var(--button-color) h s calc(l + 5));
+	}
 }
 </style>

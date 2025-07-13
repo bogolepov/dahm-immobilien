@@ -8,16 +8,15 @@ export function makeHtmlEmail(subject: string, content: string): string {
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />\
 <title>${subject}</title>\
 </head>\
-<body style="margin: 0; padding: 0; min-width: 100%; background-color: #cecac0; color: #000000">\
+<body style="margin: 0; padding: 0; min-width: 100%">\
 <!--[if (gte mso 9)|(IE)]>\
 <style type="text/css">\
-body { background-color: #cecac0; !important; color: #000000; }\
 body, table, td, p, a { font-family: Verdana, Arial, sans-serif; }\
 </style>\
 <![endif]-->\
 <table \
 border="0" cellpadding="0" role="presentation" \
-style="width: 100%; border-spacing: 0; font-size: 16px; background-color: #cecac0; \
+style="width: 100%; border-spacing: 0; font-size: 16px; background-color:rgb(244, 241, 232); \
 color: #000000; font-family: Arial, sans-serif;">\
 <tbody><tr><td style="vertical-align: top">\
 <!--[if mso | IE]>\

@@ -81,11 +81,8 @@ ${diffText}\
 `;
 }
 
-let contactFormBlock: string;
 function makeContactFormBlock(contactForm: TContactForm): string {
-	if (contactFormBlock) return contactFormBlock;
-
-	contactFormBlock = `\
+	return `\
 <table border="0" cellpadding="0" role="presentation" style="width: 100%; margin: 0; padding: 15px 0 0 0">\
 <tbody>\
 <tr>\
@@ -103,14 +100,13 @@ function makeContactFormBlock(contactForm: TContactForm): string {
 </tr>\
 <tr>\
 <td style="line-height: 120%; color: #222222; vertical-align: top">${nonBreakingSpace('Telefon :')}</td>\
-<td style="line-height: 120%; color: #000000; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(contactForm.phone ? contactForm.phone : '-')}</td>\
+<td style="line-height: 120%; color: #010101; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(contactForm.phone ? contactForm.phone : '-')}</td>\
 </tr>\
 <tr>\
-<td style="line-height: 120%; color: #222222; vertical-align: top">${nonBreakingSpace('Nachricht :')}</td>\
-<td style="line-height: 120%; color: #000000; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(contactForm.message)}</td>\
+<td style="line-height: 120%; color: #222222; vertical-align: top"><span style="color: #222222">${nonBreakingSpace('Nachricht :')}</span></td>\
+<td style="line-height: 120%; color: #010101; vertical-align: top; padding: 0 0 10px 8px">${fromHtmlToPlainText(contactForm.message)}</td>\
 </tr>\
 </tbody>\
 </table>\
 `;
-	return contactFormBlock;
 }

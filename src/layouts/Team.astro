@@ -162,14 +162,18 @@ const experience = getDuration1991();
                 {person.email && 
                   <div class="icon-flex" >
                     <Icon name="email" />
-                    <a href={"mailto: " + person.email}>{person.email}</a>
+                    <a href={"mailto: " + person.email} aria-label={`${person.name} ${person.lastname} E-Mail-Adresse`}>
+                      {person.email}
+                    </a>
                   </div>
                 }
                 {
                   person.telephone &&
                   <div class="icon-flex" >
                     <Icon name="phone" />
-                    <a href={"tel: " + person.telephone}>{person.telephone}</a>
+                    <a href={"tel: " + person.telephone} aria-label={`${person.name} ${person.lastname} Telefonnummer`}>
+                      {person.telephone}
+                    </a>
                   </div>
                 }
               </div>

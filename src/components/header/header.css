@@ -288,13 +288,13 @@ body:has(.sb-card.message.open) header .form-btn.message {
 	}
 }
 
-a:focus-visible {
+nav a:focus-visible {
 	outline: none;
 }
-a:focus-visible .fv,
-.fv:focus-visible,
-.fv:has(a:focus-visible),
-.fv:has(input:focus-visible) {
+nav a:focus-visible .fv,
+nav .fv:focus-visible,
+nav .fv:has(a:focus-visible),
+nav .fv:has(input:focus-visible) {
 	outline: 1px solid var(--color-dahm-bordo);
 	outline-offset: 0;
 }

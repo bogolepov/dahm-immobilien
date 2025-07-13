@@ -41,12 +41,13 @@ objects.sort((obj1, obj2) => {
 		{
 			objects.map(object => {
 				const objectName = dahm.object_types.find(type => type.sid === object.type)?.title;
+				const objectAddress = `${object.address.str} ${object.address.number}, ${object.address.plz} ${object.address.city}`;
 				return (
-					<li>
-						<p class='object-address'>
-							{object.address.str} {object.address.number}, {object.address.plz} {object.address.city}
+					<li aria-label={'Objekt ' + objectAddress}>
+						<p class='object-address' tabindex="0" aria-label="Objektkarte öffnen">
+							{objectAddress}
 						</p>
-						<div class='object-card'>
+						<div class='object-card' inert>
 							{object.person && (
 								<div>
 									{objectName && (
@@ -64,11 +65,15 @@ objects.sort((obj1, obj2) => {
 											</div>
 											<div class='icon-flex'>
 												<Icon name='email' />
-												<a href={'mailto: ' + who.email}>{who.email}</a>
+												<a href={'mailto: ' + who.email} aria-label={`${who.name} ${who.lastname} E-Mail-Adresse`}>
+													{who.email}
+												</a>
 											</div>
 											<div class='icon-flex'>
 												<Icon name='phone' />
-												<a href={'tel: ' + who.telephone}>{who.telephone}</a>
+												<a href={'tel: ' + who.telephone} aria-label={`${who.name} ${who.lastname} Telefonnummer`}>
+													{who.telephone}
+												</a>
 											</div>
 										);
 									})}
@@ -168,28 +173,38 @@ objects.sort((obj1, obj2) => {
 	.s-objects .obj-list li {
 		break-inside: avoid-column;
 	}
-
 </style>
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const objectItems = document.querySelectorAll('.object-address');
 		objectItems.forEach(item =>
-			item.addEventListener('click', () => {
-				const card = item.nextElementSibling;
-				if (!card) return;
+			{
+				item.addEventListener('click', () => {
+					const card = item.nextElementSibling;
+					if (!card) return;
 
-				if (card.style.maxHeight) {
-					card.style.maxHeight = null;
-					// card.style.transform = 'scaleY(0)';
-				} else {
-					objectItems.forEach(obj => {
-						if (obj.nextElementSibling) obj.nextElementSibling.style.maxHeight = null;
-					});
-					card.style.maxHeight = card.scrollHeight + 'px';
-					// card.style.transform = 'scaleY(1)';
-				}
-			})
+					if (card.style.maxHeight) {
+						card.style.maxHeight = null;
+						card.setAttribute('inert', '');
+					} else {
+						objectItems.forEach(obj => {
+							if (obj.nextElementSibling && obj.nextElementSibling !== card) {
+								obj.nextElementSibling.style.maxHeight = null; 
+								obj.nextElementSibling.setAttribute('inert', '');
+							}
+						});
+						card.style.maxHeight = card.scrollHeight + 'px';
+						card.removeAttribute('inert');
+					}
+				}); 
+
+				item.addEventListener('keyup', e => {
+					if (e instanceof KeyboardEvent && ('Enter' === e.code || 'Space' === e.code)) {
+						item.dispatchEvent(new Event("click"));
+					}
+				});
+			}
 		);
 	});
 </script>

@@ -8,14 +8,18 @@ import CardMessage from '@components/cards/CardMessage.astro';
 
 <div class='sidebar'>
 	<div class='sb-card phone'>
-		<button type='button' class='card-button'><Icon name='phone' /></button>
-		<div class='card-wrapper'>
+		<button type='button' class='red-button card-button' aria-label='Telefonkarte öffnen' aria-expanded='false'>
+			<Icon name='phone' />
+		</button>
+		<div class='card-wrapper' inert>
 			<CardPhone />
 		</div>
 	</div>
 	<div class='sb-card message'>
-		<button type='button' class='card-button'><Icon name='email' /></button>
-		<div class='card-wrapper'>
+		<button type='button' class='red-button card-button' aria-label='Nachrichtenkarte öffnen' aria-expanded='false'>
+			<Icon name='email' />
+		</button>
+		<div class='card-wrapper' inert>
 			<CardMessage />
 		</div>
 	</div>
@@ -28,10 +32,19 @@ import CardMessage from '@components/cards/CardMessage.astro';
 			const btn = card.querySelector('.card-button');
 			if (btn)
 				btn.addEventListener('click', () => {
-					if (card.classList.contains('open')) card.classList.remove('open');
-					else {
-						sbCards.forEach(tmpCard => tmpCard.classList.remove('open'));
+					if (card.classList.contains('open')) {
+						card.classList.remove('open');
+						card.querySelector('.card-wrapper')?.setAttribute('inert', '');
+						btn.setAttribute('aria-expanded', 'false');
+					} else {
+						sbCards.forEach(tmpCard => {
+							tmpCard.classList.remove('open');
+							tmpCard.querySelector('.card-wrapper')?.setAttribute('inert', '');
+							tmpCard.querySelector('.card-button')?.setAttribute('aria-expanded', 'false');
+						});
 						card.classList.add('open');
+						card.querySelector('.card-wrapper')?.removeAttribute('inert');
+						btn.setAttribute('aria-expanded', 'true');
 					}
 				});
 		});
