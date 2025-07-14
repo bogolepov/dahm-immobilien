@@ -132,8 +132,15 @@ function getOfficeTimeLong(person: (typeof Dahm.team)[0]): string {
 	padding-top: 0.1em;
 }
 .call-form .office-time.by-name {
-	/* font-size: 0.85em; */
 	padding-top: 0.45em;
 	padding-bottom: 0.8em;
+}
+
+.call-form .flex-radio input:focus-visible {
+	outline: unset;
+}
+.call-form .flex-radio:has(input:focus-visible) {
+	outline: 1px solid var(--color-dahm-bordo);
+	outline-offset: 2px;
 }
 </style>

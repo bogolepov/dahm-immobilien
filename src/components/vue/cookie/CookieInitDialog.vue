@@ -49,10 +49,12 @@ const emit = defineEmits<{
 .cookie-init-dialog .settings-button {
 	margin-right: auto;
 	text-decoration: underline;
+	transition: color 500ms ease-in-out;
 }
-.cookie-init-dialog .border-button {
-	border: 1px solid var(--border-color-form);
-	padding: 0.75em 1em;
+@media (hover: hover) {
+	.cookie-init-dialog .settings-button:hover {
+		color: var(--color-dahm-bordo);
+	}
 }
 
 @media screen and (max-width: 800px) {

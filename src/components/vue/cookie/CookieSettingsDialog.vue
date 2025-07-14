@@ -142,26 +142,38 @@ function changeState(name: string, newState: boolean): void {
 }
 .cookie-settings-dialog form a {
 	text-decoration: underline;
+	transition: color 500ms ease-in-out;
 }
+@media (hover: hover) {
+	.cookie-settings-dialog form a:hover {
+		color: var(--color-dahm-bordo);
+	}
+}
+
 .cookie-settings-dialog .close-button {
 	font-size: 1.17em;
 	margin-left: auto;
 	user-select: none;
+	transition: color 500ms ease-in-out;
 }
+@media (hover: hover) {
+	.cookie-settings-dialog .close-button:hover {
+		color: var(--color-dahm-bordo);
+	}
+}
+
 .cookie-settings-dialog .actions {
 	display: flex;
 	column-gap: 1em;
 	margin-top: 0.8em;
 }
-.cookie-settings-dialog .actions button {
+.cookie-settings-dialog .border-button {
+	--border-button-padding-y: 0.6em;
 	flex-grow: 1;
 	flex-basis: 33%;
 	font-size: 0.97em;
-	border: 1px solid var(--border-color-form);
-	padding: 0.6em 1em;
-	transition: border-color 350ms ease-in-out;
 }
-.cookie-settings-dialog .actions button.active {
+.cookie-settings-dialog .border-button.active {
 	border-color: var(--color-dahm-bordo);
 }
 

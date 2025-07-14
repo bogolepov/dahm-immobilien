@@ -52,9 +52,7 @@ function switchState() {
 }
 
 .slider:focus-visible {
-	/* background-color: var(--background-color-form-active); */
 	outline: 1px solid white;
-	/* outline-color: white; */
 }
 
 /* Hide default HTML checkbox */
@@ -73,7 +71,7 @@ function switchState() {
 	right: 0;
 	bottom: 0;
 	background-color: #ccc;
-	transition: 400ms background-color ease-in-out;
+	transition: background-color 600ms ease-in-out;
 	border-radius: var(--height-switch);
 }
 
