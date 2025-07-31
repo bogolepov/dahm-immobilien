@@ -8,7 +8,7 @@ import { fromHtmlToPlainText, nonBreakingSpace } from './lib/utils.ts';
 import Dahm from '@data/dahm.json';
 
 function handlerResponse(resCode: number, resMessage: string): HandlerResponse {
-	if (resCode >= 400) console.error('resMessage');
+	if (resCode >= 400) console.error('resMessage: ' + resCode + ', ' + resMessage);
 	return {
 		statusCode: resCode,
 		body: JSON.stringify({

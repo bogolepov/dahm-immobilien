@@ -61,10 +61,8 @@ export function validationContactFormJson(json_data: string): TContactForm | und
 	const result = ContactFormSchema.safeParse(JSON.parse(json_data));
 	if (result.success) {
 		const contactForm: TContactForm = result.data;
-		console.log('Валидный пользователь:', contactForm);
 		return contactForm;
 	} else {
-		console.error('Ошибка валидации:', result.error.format());
 		return undefined;
 	}
 }

@@ -42,6 +42,20 @@
 			]
 		}
 	],
+	"seo": [
+		{
+			"page": "team",
+			"og": {
+				"image": { "url": "team.jpg", "type": "image/jpeg" }
+			}
+		},
+		{
+			"page": "objects",
+			"og": {
+				"image": { "url": "map.jpg", "type": "image/jpeg" }
+			}
+		}
+	],
 	"owner": ["nor"],
 	"directors": ["mid", "nor"],
 	"team": [

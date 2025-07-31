@@ -1,11 +1,13 @@
 ---
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
-import Vermietung from '@layouts/Vermietung.astro';
+import Content from '@layouts/Vermietung.astro';
 
 const title: string = 'Vermietung';
+const description: string =
+	'Begleitung bei der Vermietung von Gebäuden, Räumlichkeiten oder Wohnungen in verwalteten Immobilien.';
 ---
 
-<Layout {title}>
-	<Vermietung />
+<Layout {title} {description}>
+	<Content />
 </Layout>

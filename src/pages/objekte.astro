@@ -4,8 +4,9 @@ import Layout from '@layouts/Layout.astro';
 import Objects from '@layouts/Objects.astro';
 
 const title: string = 'Objekte';
+const description: string = 'Verwaltete Objekte unterschiedlicher Art in Hagen und Umgebung.';
 ---
 
-<Layout {title}>
+<Layout {title} {description} seo='objects'>
 	<Objects />
 </Layout>

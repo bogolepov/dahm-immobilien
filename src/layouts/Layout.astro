@@ -8,7 +8,7 @@ import Footer from '@components/Footer.astro';
 import Sidebar from '@components/sidebar/sidebar.astro';
 import Cookie from '@vue/cookie/Cookie.vue';
 
-const { title, description, robots } = Astro.props;
+const { title, description, seo, robots } = Astro.props;
 
 import DahmBulding from '@assets/building_dahm2.jpg';
 import { Picture } from 'astro:assets';
@@ -19,7 +19,7 @@ const errorPage = title === '404';
 
 <!doctype html>
 <html lang='de'>
-	<Head {title} {description} {robots} />
+	<Head {title} {description} {seo} {robots} />
 	<body>
 		<Header {errorPage} />
 		<main>

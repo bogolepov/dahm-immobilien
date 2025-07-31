@@ -4,8 +4,9 @@ import Layout from '@layouts/Layout.astro';
 import TeamContent from '@layouts/Team.astro';
 
 const title: string = 'Team';
+const description: string = 'Unser Team zum Aufbau enger, vertrauensvoller Beziehungen mit Partnern.';
 ---
 
-<Layout {title}>
+<Layout {title} {description} seo='team'>
 	<TeamContent />
 </Layout>

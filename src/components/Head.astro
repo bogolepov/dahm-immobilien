@@ -1,12 +1,19 @@
 ---
 import dahm from '@data/dahm.json';
-const { title, description, robots = 'index, follow' } = Astro.props;
+const { title, description, seo, robots = 'index, follow' } = Astro.props;
 
 const pageTitle = title?.length ? title + ' — ' + dahm.company_fullname : dahm.company_fullname;
-const pageDescription = description;
 
 const pathname: string = new URL(Astro.request.url).pathname;
 let imageUrl = dahm.website_link + '/assets/logo_small2t.png';
+let imageType = 'image/png';
+if (seo) {
+	const ogImage = dahm.seo.find(item => item.page === seo)?.og?.image;
+	if (ogImage) {
+		imageUrl = dahm.website_link + '/assets/' + ogImage.url;
+		imageType = ogImage.type;
+	}
+}
 ---
 
 <head>
@@ -14,19 +21,19 @@ let imageUrl = dahm.website_link + '/assets/logo_small2t.png';
 	<meta name='robots' content={robots} />
 	<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 	<title>{pageTitle}</title>
-	{pageDescription?.length && <meta name='description' content={pageDescription} />}
+	{description?.length && <meta name='description' content={description} />}
 
 	<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 	<link rel='sitemap' href='/sitemap-index.xml' />
 
 	<meta property='og:title' content={pageTitle} />
-	<meta property='og:description' content={pageDescription} />
+	<meta property='og:description' content={description} />
 	<meta property='og:url' content={dahm.website_link + pathname} />
 	<meta property='og:type' content='website' />
 	<meta property='og:site_name' content={dahm.company_name} />
 	<meta property='og:image' content={imageUrl} />
 	<meta property='og:image:secure_url' content={imageUrl} />
-	<meta property='og:image:type' content='image/png' />
+	<meta property='og:image:type' content={imageType} />
 	<meta property='og:image:width' content='1200' />
 	<meta property='og:image:height' content='628' />
 	<meta property='og:locale' content='de' />

@@ -1,10 +1,11 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import Verkauf from '@layouts/Verkauf.astro';
+import Content from '@layouts/Verkauf.astro';
 
 const title: string = 'Verkauf';
+const description: string = 'Begleitung bei der Veräußerung der verwalteten Objekte.';
 ---
 
-<Layout {title}>
-	<Verkauf />
+<Layout {title} {description}>
+	<Content />
 </Layout>

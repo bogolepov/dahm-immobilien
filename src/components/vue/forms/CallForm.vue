@@ -58,7 +58,7 @@ function getOfficeTimeLong(person: (typeof Dahm.team)[0]): string {
 			<select v-model="namePartner" class="ctrl-full">
 				<option disabled :value="undefined" hidden>auswählen...</option>
 				<option v-for="iPerson in team" :value="iPerson">
-					{{ `${iPerson.name} ${iPerson.lastname}` }}
+					{{ `${iPerson.lastname} ${iPerson.name}` }}
 				</option>
 			</select>
 			<p v-if="namePartner" class="office-time by-name">{{ getOfficeTimeLong(namePartner) }}</p>
@@ -76,7 +76,7 @@ function getOfficeTimeLong(person: (typeof Dahm.team)[0]): string {
 			<template v-for="iPartner in objectPartners" :value="iPartner">
 				<div class="form-flex2">
 					<div>
-						<p>{{ iPartner.name }} {{ iPartner.lastname }}</p>
+						<p>{{ iPartner.lastname }} {{ iPartner.name }}</p>
 						<p class="office-time">{{ getOfficeTime(iPartner) }}</p>
 					</div>
 					<a :href="`tel: ${iPartner.telephone}`" class="red-button icon-link"

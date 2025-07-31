@@ -1,11 +1,13 @@
 ---
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
-import Verwaltung from '@layouts/Verwaltung.astro';
+import Content from '@layouts/Verwaltung.astro';
 
 const title: string = 'Verwaltung';
+const description: string =
+	'Verwaltung als Haupttätigkeit unseres Unternehmens. Industrieobjekten, Mehrfamilienhäuser, Gewerbe und Mehrfamilienhäuser, WEG-Mehrfamilienhäuser';
 ---
 
-<Layout {title}>
-	<Verwaltung />
+<Layout {title} {description}>
+	<Content />
 </Layout>

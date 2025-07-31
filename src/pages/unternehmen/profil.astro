@@ -4,8 +4,9 @@ import Layout from '@layouts/Layout.astro';
 import Profile from '@layouts/Profile.astro';
 
 const title: string = 'Über uns';
+const description: string = 'Die Entwicklungsgeschichte unseres Unternehmens in Fakten.';
 ---
 
-<Layout {title}>
+<Layout {title} {description}>
 	<Profile />
 </Layout>
