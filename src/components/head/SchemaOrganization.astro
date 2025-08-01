@@ -21,6 +21,7 @@ const json: string = JSON.stringify({
 		addressCountry: dahm.address.country_code,
 		postalCode: dahm.address.zip,
 	},
+	image: dahm.website_link + '/assets/building.jpg',
 	openingHours: [strHours],
 	geo: {
 		'@type': 'GeoCoordinates',
@@ -28,17 +29,6 @@ const json: string = JSON.stringify({
 		longitude: 7.469349,
 	},
 });
-
-// {"@context":"https://schema.org","@type":"Real Estate Management",
-// "url":"https://dahm-immobilien-verwaltung.de",
-// "logo":"https://dahm-immobilien-verwaltung.de/assets/logo600.svg",
-// "name":"Dahm Immobilien Verwaltung GmbH",
-// "description":"Erfahrene, private Immobilienverwaltungsgesellschaft für professionelle Betreuung, transparente Kommunikation und nachhaltige Werte in Hagen und Umgebung.",
-// "email":"info@hv-dahm.de",
-// "telephone":"+49 2331 6285250",
-// "address":{"@type":"PostalAddress","streetAddress":"Elberfelder Str. 45","addressLocality":"Hagen","addressCountry":"DE","postalCode":"58095"},
-// "openingHours":["Mo-Fr 09:00-13:00"],
-// "geo":{"@type":"GeoCoordinates","latitude":51.358463,"longitude":7.469349}}
 ---
 
 <script type='application/ld+json' set:html={json} />
