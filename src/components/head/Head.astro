@@ -1,5 +1,6 @@
 ---
 import dahm from '@data/dahm.json';
+import SchemaOrganization from './SchemaOrganization.astro';
 const { title, description, seo, robots = 'index, follow' } = Astro.props;
 
 const pageTitle = title?.length ? title + ' — ' + dahm.company_fullname : dahm.company_fullname;
@@ -25,6 +26,8 @@ if (seo) {
 
 	<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 	<link rel='sitemap' href='/sitemap-index.xml' />
+
+	<SchemaOrganization />
 
 	<meta property='og:title' content={pageTitle} />
 	<meta property='og:description' content={description} />

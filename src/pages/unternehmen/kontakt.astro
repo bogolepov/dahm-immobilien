@@ -2,9 +2,10 @@
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
 import Contact from '@layouts/Contact.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Kontakt';
-const description: string = 'Wie uns zu erreichen, wo uns zu finden.';
+const description: string = texts.description_contact;
 ---
 
 <Layout {title} {description}>

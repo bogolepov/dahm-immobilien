@@ -1,0 +1,33 @@
+---
+import dahm from '@data/dahm.json';
+import texts from '@data/dahm_text.json';
+
+const { days, time } = dahm.office_time;
+const strHours = `${days.von}-${days.bis} ${time.von}-${time.bis}`;
+
+const json: string = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Real Estate Management',
+	url: dahm.website_link,
+	logo: dahm.website_link + '/assets/logo600.svg',
+	name: dahm.company_fullname,
+	description: texts.description_schema_org,
+	email: dahm.email,
+	telephone: dahm.telephone,
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: dahm.address.street + ' ' + dahm.address.building,
+		addressLocality: dahm.address.city,
+		addressCountry: dahm.address.country_code,
+		postalCode: dahm.address.zip,
+	},
+	openingHours: [strHours],
+	geo: {
+		'@type': 'GeoCoordinates',
+		latitude: 51.358463,
+		longitude: 7.469349,
+	},
+});
+---
+
+<script type='application/ld+json' set:html={json} />

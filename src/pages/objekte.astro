@@ -2,9 +2,10 @@
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
 import Objects from '@layouts/Objects.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Objekte';
-const description: string = 'Verwaltete Objekte unterschiedlicher Art in Hagen und Umgebung.';
+const description: string = texts.description_objects;
 ---
 
 <Layout {title} {description} seo='objects'>

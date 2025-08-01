@@ -3,9 +3,9 @@
 import Home from '@layouts/Home.astro';
 import Layout from '@layouts/Layout.astro';
 
+import texts from '@data/dahm_text.json';
 // const title: String = '';
-const description: string =
-	'Erfahrene, private Immobilienverwaltungsgesellschaft mit großem Herzen für professionelle Betreuung, transparente Kommunikation und nachhaltige Werte.';
+const description: string = texts.description_mainpage;
 ---
 
 <Layout {description}>

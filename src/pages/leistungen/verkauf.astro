@@ -1,9 +1,10 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import Content from '@layouts/Verkauf.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Verkauf';
-const description: string = 'Begleitung bei der Veräußerung der verwalteten Objekte.';
+const description: string = texts.description_verkauf;
 ---
 
 <Layout {title} {description}>

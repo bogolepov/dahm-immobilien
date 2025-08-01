@@ -2,9 +2,10 @@
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
 import TeamContent from '@layouts/Team.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Team';
-const description: string = 'Unser Team zum Aufbau enger, vertrauensvoller Beziehungen mit Partnern.';
+const description: string = texts.description_team;
 ---
 
 <Layout {title} {description} seo='team'>

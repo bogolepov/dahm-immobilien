@@ -2,10 +2,11 @@
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
 import Content from '@layouts/Vermietung.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Vermietung';
-const description: string =
-	'Begleitung bei der Vermietung von Gebäuden, Räumlichkeiten oder Wohnungen in verwalteten Immobilien.';
+const description: string = texts.description_vermietung;
+('');
 ---
 
 <Layout {title} {description}>

@@ -2,9 +2,10 @@
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
 import Profile from '@layouts/Profile.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Über uns';
-const description: string = 'Die Entwicklungsgeschichte unseres Unternehmens in Fakten.';
+const description: string = texts.description_profile;
 ---
 
 <Layout {title} {description}>

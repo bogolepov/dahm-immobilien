@@ -3,5 +3,14 @@
 	"map_verbot_text": "Aufgrund deiner Datenschutz-Einstellungen können wir Ihnen die Karte nicht anzeigen. Klicken Sie hier, um die Karte in einem neuen Fenster zu öffnen.",
 	"immoscout24_warnung_text": "An dieser Stelle finden Sie Inhalte von Immobilienscout24. Um die Inhalte darzustellen, benötigen wir Ihre Zustimmung.",
 	"inhalte_aktivieren_text": "Inhalte aktivieren",
-	"anrede_list": ["Herr", "Frau", "divers/keine Angabe"]
+	"anrede_list": ["Herr", "Frau", "divers/keine Angabe"],
+	"description_schema_org": "Erfahrene, private Immobilienverwaltungsgesellschaft für professionelle Betreuung, transparente Kommunikation und nachhaltige Werte in Hagen und Umgebung.",
+	"description_mainpage": "Erfahrene, private Immobilienverwaltungsgesellschaft mit großem Herzen für professionelle Betreuung, transparente Kommunikation und nachhaltige Werte.",
+	"description_objects": "Verwaltete Objekte unterschiedlicher Art in Hagen und Umgebung.",
+	"description_verkauf": "Begleitung bei der Veräußerung der verwalteten Objekte.",
+	"description_vermietung": "Begleitung bei der Vermietung von Gebäuden, Räumlichkeiten oder Wohnungen in verwalteten Immobilien.",
+	"description_verwaltung": "Verwaltung als Haupttätigkeit unseres Unternehmens. Industrieobjekten, Mehrfamilienhäuser, Gewerbe und Mehrfamilienhäuser, WEG-Mehrfamilienhäuser.",
+	"description_team": "Unser Team zum Aufbau enger, vertrauensvoller Beziehungen mit Partnern.",
+	"description_profile": "Die Entwicklungsgeschichte unseres Unternehmens in Fakten.",
+	"description_contact": "Wie uns zu erreichen, wo uns zu finden."
 }

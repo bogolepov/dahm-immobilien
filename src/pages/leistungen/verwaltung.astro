@@ -2,10 +2,10 @@
 // import Welcome from '../components/Welcome2.astro';
 import Layout from '@layouts/Layout.astro';
 import Content from '@layouts/Verwaltung.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Verwaltung';
-const description: string =
-	'Verwaltung als Haupttätigkeit unseres Unternehmens. Industrieobjekten, Mehrfamilienhäuser, Gewerbe und Mehrfamilienhäuser, WEG-Mehrfamilienhäuser';
+const description: string = texts.description_verwaltung;
 ---
 
 <Layout {title} {description}>

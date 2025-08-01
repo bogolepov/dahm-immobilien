@@ -5,7 +5,9 @@
 		"street": "Elberfelder Str.",
 		"building": "45",
 		"city": "Hagen",
-		"zip": "58095"
+		"zip": "58095",
+		"country": "Deutschland",
+		"country_code": "DE"
 	},
 	"telephone": "+49 2331 6285250",
 	"email": "info@hv-dahm.de",
