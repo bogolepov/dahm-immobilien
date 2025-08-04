@@ -15,7 +15,7 @@ const { days, time } = Dahm.office_time;
 	<a href={'tel: ' + Dahm.telephone} class='icon-link min phone-number'><Icon name='phone-out' />{Dahm.telephone}</a>
 	<p class='phone-time'>{days.von}-{days.bis}: {time.von}-{time.bis} Uhr</p>
 	<h4>Ansprechpartner</h4>
-	<CallForm client:load />
+	<CallForm client:idle />
 </div>
 
 <style scoped>

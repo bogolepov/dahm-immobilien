@@ -236,11 +236,17 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		const changeCardState = (cardName: string) => {
 			sbCards.forEach(card => {
 				if (card.classList.contains(cardName)) {
-					if (card.classList.contains('open')) card.classList.remove('open');
-					else {
-						sbCards.forEach(tmpCard => tmpCard.classList.remove('open'));
+					if (card.classList.contains('open')) {
+						card.classList.remove('open');
+						card.querySelector('.card-wrapper')?.setAttribute('inert', '');
+					} else {
+						sbCards.forEach(tmpCard => {
+							tmpCard.classList.remove('open');
+							tmpCard.querySelector('.card-wrapper')?.setAttribute('inert', '');
+						});
 						if (burgerSwitcher) burgerSwitcher.checked = false;
 						card.classList.add('open');
+						card.querySelector('.card-wrapper')?.removeAttribute('inert');
 					}
 				}
 			});
