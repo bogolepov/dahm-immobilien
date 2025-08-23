@@ -31,9 +31,9 @@ defineExpose({ resetPolicy });
 	<div class="flex-checkbox-label">
 		<input :id type="checkbox" :checked="acceptedPolicy" @change="changeStatus" @keypress.enter="clickCheckbox" />
 		<label :for="id"
-			>Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu, dass meine
-			Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden. Hinweis: Sie können
-			Ihre Einwilligung jederzeit für die Zukunft per E-Mail an
+			>Ich habe die <a href="/unternehmen/datenschutz/">Datenschutzerklärung</a> zur Kenntnis genommen. Ich stimme zu,
+			dass meine Angaben und Daten zur Beantwortung meiner Anfrage elektronisch erhoben und gespeichert werden. Hinweis:
+			Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail an
 			<a :href="`mailto:${Dahm.email}`">{{ Dahm.email }}</a> widerrufen.</label
 		>
 	</div>

@@ -71,7 +71,7 @@ function changeState(name: string, newState: boolean): void {
 				<p class="annotation">
 					Hier können Sie einsehen und anpassen, welche Dienste auf unserer Website möglicherweise Cookies benutzen
 					und/oder Informationen über Sie speichern. Um mehr zu erfahren, lesen Sie bitte unsere
-					<a href="/datenschutz/">Datenschutzerklärung</a>.
+					<a href="/unternehmen/datenschutz/">Datenschutzerklärung</a>.
 				</p>
 				<ul v-if="mounted">
 					<li v-for="key in consentKeys" :key>
