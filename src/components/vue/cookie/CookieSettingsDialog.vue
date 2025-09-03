@@ -191,7 +191,12 @@ function changeState(name: string, newState: boolean): void {
 }
 .consent-title {
 	font-size: 1.05em;
-	font-weight: 540;
+	font-weight: 500;
+}
+@supports (font-variation-settings: 'wght' 540) {
+	.consent-title {
+		font-weight: 540;
+	}
 }
 .consent-description {
 	padding: 0.35em 0 0.15em 0;
@@ -203,8 +208,13 @@ function changeState(name: string, newState: boolean): void {
 }
 .consent-type::before {
 	content: 'Zweck: ';
-	font-weight: 450;
+	font-weight: 400;
 	color: rgba(65, 0, 0, 0.8);
+}
+@supports (font-variation-settings: 'wght' 450) {
+	.consent-type::before {
+		font-weight: 450;
+	}
 }
 
 @media screen and (max-width: 500px) {

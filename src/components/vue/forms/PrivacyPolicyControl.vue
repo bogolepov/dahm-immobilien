@@ -42,6 +42,11 @@ defineExpose({ resetPolicy });
 <style>
 .flex-checkbox-label label a {
 	color: var(--color-dahm-bordo);
-	font-weight: 450;
+	font-weight: 400;
+}
+@supports (font-variation-settings: 'wght' 450) {
+	.flex-checkbox-label label a {
+		font-weight: 450;
+	}
 }
 </style>

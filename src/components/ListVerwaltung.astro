@@ -133,13 +133,23 @@ const list: TCategory[] = [
 	.service-cat.objects a span {
 		width: min-content;
 		font-size: 1.25em;
-		font-weight: 460;
+		font-weight: 500;
 		color: var(--color-dahm-bordo);
+	}
+	@supports (font-variation-settings: 'wght' 460) {
+		.service-cat.objects a span {
+			font-weight: 460;
+		}
 	}
 
 	.service-cat p {
-		font-weight: 720;
+		font-weight: 700;
 		line-height: 1;
+	}
+	@supports (font-variation-settings: 'wght' 720) {
+		.service-cat p {
+			font-weight: 720;
+		}
 	}
 	.service-cat ul {
 		list-style: disc;

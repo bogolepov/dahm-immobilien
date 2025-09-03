@@ -18,8 +18,13 @@ const experience = getDuration1991();
   }
   a:where(.phone) {
     font-size: 0.95em;
-    font-weight: 480;
+    font-weight: 500;
   }
+  @supports (font-variation-settings: 'wght' 480) {
+    a:where(.phone) {
+			font-weight: 480;
+		}
+	}
   .team-photo {
     margin-top: 1.5em;
   }
@@ -57,14 +62,25 @@ const experience = getDuration1991();
   }
   .person-name {
     font-size: 1.3em;
-    font-weight: 650;
+    font-weight: 700;
     color: var(--color-dahm-bordo-dark);
   }
+  @supports (font-variation-settings: 'wght' 650) {
+		.person-name {
+			font-weight: 650;
+		}
+	} 
   .position {
-    font-weight: 540;
+    font-weight: 500;
     font-size: 0.92em;
     padding-bottom: 0.2em;
   }
+  @supports (font-variation-settings: 'wght' 540) {
+    .position {
+			font-weight: 540;
+		}
+	}
+
   .item-contact {
     width: 100%;
     max-width: 15em;
@@ -80,10 +96,16 @@ const experience = getDuration1991();
     margin-bottom: 0.2em;
   }
   .info-address {
-    font-weight: 540;
+    font-weight: 500;
     margin-bottom: 0.2em;
     line-height: 1.1;
   }
+  @supports (font-variation-settings: 'wght' 540) {
+		.info-address {
+			font-weight: 540;
+		}
+	}
+
 
   @media screen and (max-width: 690px) {
     .grid-person {

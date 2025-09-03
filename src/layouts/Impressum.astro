@@ -21,7 +21,7 @@ const Norbert = dahm.team.find(p => p.sid === 'nor');
 			})
 		}
 		<h4>Inhaltlich Verantwortlicher <span>gemäß § 10 III MDStV</span>:</h4>
-		<p>{Norbert.name + ' ' + Norbert.lastname} (Anschrift wie oben)</p>
+		<p>{Norbert?.name + ' ' + Norbert?.lastname} (Anschrift wie oben)</p>
 		<h4>Registereintrag:</h4>
 		<p>Registergericht: {dahm.registration.gericht}</p>
 		<p>Registernummer: {dahm.registration.gericht_nummer}</p>

@@ -95,7 +95,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 	.year-flex .year-number {
 		font-size: calc(4vw);
 		font-size: max(4vw, calc(var(--font-size) * 1.25));
-		font-weight: 640;
+		font-weight: 700;
 		letter-spacing: 0.05em;
 		margin-top: 0.2em;
 		border-top: 2px solid #333333;
@@ -103,6 +103,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 		line-height: 1;
 		color: #333333;
 	}
+	@supports (font-variation-settings: 'wght' 640) {
+		.year-flex .year-number {
+			font-weight: 640;
+		}
+	}
+
 	.year-flex .year-number::after {
 		content: 'seit';
 		font-size: max(1.5vw, calc(var(--font-size) * 0.75));
@@ -137,10 +143,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 	}
 	.year-flex .actions-flex > * {
 		font-size: calc(var(--font-size) * 1.2);
-		font-weight: 250;
+		font-weight: 300;
 		line-height: 1;
 		text-align: center;
 		padding: 0.5em 1em;
+	}
+	@supports (font-variation-settings: 'wght' 250) {
+		.year-flex .actions-flex > * {
+			font-weight: 250;
+		}
 	}
 
 	.history-active .slide-in-top {
@@ -204,8 +215,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 </style>
 
 <script>
-	function onHistoryEntry(entry) {
-		entry.forEach((change: IntersectionObserverEntry) => {
+	function onHistoryEntry(entries: IntersectionObserverEntry[]) {
+		entries.forEach((change: IntersectionObserverEntry) => {
 			if (change.isIntersecting) {
 				change.target.classList.add('history-active');
 			}

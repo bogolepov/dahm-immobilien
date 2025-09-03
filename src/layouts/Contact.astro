@@ -90,7 +90,12 @@ const { days, time } = dahm.office_time;
 	.section-contact p.chapter {
 		color: var(--color-dahm-bordo-dark);
 		font-size: 1.1em;
-		font-weight: 540;
+		font-weight: 500;
 		padding-bottom: 0.15em;
+	}
+	@supports (font-variation-settings: 'wght' 540) {
+		.section-contact p.chapter {
+			font-weight: 540;
+		}
 	}
 </style>

@@ -17,8 +17,13 @@ const title: string = '404';
 <style scoped>
 	p {
 		font-size: 1.15em;
-		font-weight: 350;
+		font-weight: 300;
 		margin: 1em 0;
+	}
+	@supports (font-variation-settings: 'wght' 350) {
+		p {
+			font-weight: 350;
+		}
 	}
 	p.big-font {
 		font-size: var(--h1-size);

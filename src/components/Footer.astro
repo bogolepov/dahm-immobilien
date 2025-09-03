@@ -4,6 +4,7 @@ import Dahm from '@data/dahm.json';
 const { days, time } = Dahm.office_time;
 const itemUnternehmen = Dahm.web_menu.find(item => item.folder === 'unternehmen');
 if (!itemUnternehmen) console.error('Footer: Menu Error 1');
+const unternehmenFolder = itemUnternehmen?.folder;
 
 const itemImpressum = itemUnternehmen?.submenu?.find(item => item.name === 'Impressum');
 const itemDatenschutz = itemUnternehmen?.submenu?.find(item => item.name === 'Datenschutz');
@@ -22,8 +23,13 @@ const current_year: string = new Date().getFullYear().toString();
 		width: 100%;
 		max-width: 100vw;
 		border-top: var(--border-thick) solid var(--border-color-footer);
-		font-weight: 475;
+		font-weight: 500;
 		line-height: 1.15;
+	}
+	@supports (font-variation-settings: 'wght' 475) {
+		footer {
+			font-weight: 475;
+		}
 	}
 
 	.footer-up {
@@ -138,8 +144,8 @@ const current_year: string = new Date().getFullYear().toString();
 		<div class='footer-list-down'>
 			<div class='copyright'>© {current_year} {Dahm.company_fullname}</div>
 			<div class='regulation'>
-				{itemImpressum && <a href={`/${itemUnternehmen.folder}/${itemImpressum.url}/`}>{itemImpressum.name}</a>}
-				{itemDatenschutz && <a href={`/${itemUnternehmen.folder}/${itemDatenschutz.url}/`}>{itemDatenschutz.name}</a>}
+				{itemImpressum && <a href={`/${unternehmenFolder}/${itemImpressum.url}/`}>{itemImpressum.name}</a>}
+				{itemDatenschutz && <a href={`/${unternehmenFolder}/${itemDatenschutz.url}/`}>{itemDatenschutz.name}</a>}
 			</div>
 		</div>
 	</div>

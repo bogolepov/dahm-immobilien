@@ -1,12 +1,9 @@
 @font-face {
 	font-family: 'Inter';
-	src: url('/fonts/Inter/Inter-VariableFont.ttf') format('truetype');
-	/* font-weight: 100;
-		font-style: normal; */
-	font-weight: 125 950;
-	font-stretch: 75% 125%;
+	src: url('/fonts/Inter/InterVariable.woff2') format('woff2');
 	font-style: normal;
-	font-display: optional;
+	font-weight: 100 900;
+	font-display: swap;
 }
 
 body {
@@ -45,11 +42,9 @@ body {
 	--padding-x-nav-item: 0.65em;
 	--padding-y-nav-item: 0.15em;
 
-	--text-opsz: 1;
-	--text-opsz-16: 16;
-	--text-opsz-40: 40;
-	--text-opsz-max: 60;
-	font-variation-settings: 'opsz' var(--text-opsz);
+	--text-opsz-min: 1;
+	--text-opsz-max: 32;
+	/* font-variation-settings: 'opsz' var(--text-opsz); */
 
 	color: #000000;
 	background-color: var(--color-dahm-background);
@@ -73,10 +68,8 @@ main {
 	flex-grow: 1;
 }
 
-@supports (font-variation-settings: 'wdth' 115) {
-	body {
-		font-family: Inter, Tahoma, Verdana, sans-serif;
-	}
+body {
+	font-family: Inter, Tahoma, Verdana, sans-serif;
 }
 
 article a {
@@ -150,12 +143,18 @@ article a {
 	padding: var(--red-padding-y) var(--red-padding-x);
 	background-color: var(--red-button-color);
 	border: 1px solid var(--red-button-color);
-	font-weight: 350;
+	font-weight: 300;
 	color: #ffffff;
 	transition:
 		background-color var(--bkg-color-change-duration) ease-in-out,
 		border-color var(--bkg-color-change-duration) ease-in-out;
 }
+@supports (font-variation-settings: 'wght' 350) {
+	.red-button {
+		font-weight: 350;
+	}
+}
+
 .red-button[disabled] {
 	background-color: var(--color-dahm-grey);
 	border-color: var(--color-dahm-grey);
@@ -239,7 +238,12 @@ article a {
 }
 
 .company-name-bold {
-	font-weight: 520;
+	font-weight: 500;
+}
+@supports (font-variation-settings: 'wght' 520) {
+	.company-name-bold {
+		font-weight: 520;
+	}
 }
 
 /* focus-visible */

@@ -141,12 +141,19 @@ objects.sort((obj1, obj2) => {
 	}
 
 	.object-card .card-title {
-		font-weight: 560;
+		font-weight: 500;
 		font-size: 0.9em;
 	}
 	.object-card .person-name {
-		font-weight: 560;
+		font-weight: 500;
 	}
+  @supports (font-variation-settings: 'wght' 560) {
+    .object-card .card-title,
+		.object-card .person-name {
+			font-weight: 560;
+		}
+	}
+	
 	.object-card .new-part {
 		padding-top: 0.4em;
 	}
@@ -177,22 +184,23 @@ objects.sort((obj1, obj2) => {
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
-		const objectItems = document.querySelectorAll('.object-address');
+		const objectItems = document.querySelectorAll<HTMLElement>('.object-address');
 		objectItems.forEach(item =>
 			{
 				item.addEventListener('click', () => {
 					const card = item.nextElementSibling;
-					if (!card) return;
+					if (!card || !(card instanceof HTMLElement)) return;
 
 					if (card.style.maxHeight) {
-						card.style.maxHeight = null;
+						card.style.maxHeight = '';
 						card.setAttribute('inert', '');
 						item.setAttribute('aria-expanded', 'false');
 					} else {
 						objectItems.forEach(obj => {
-							if (obj.nextElementSibling && obj.nextElementSibling !== card) {
-								obj.nextElementSibling.style.maxHeight = null; 
-								obj.nextElementSibling.setAttribute('inert', '');
+							const aCard = obj.nextElementSibling;
+							if (aCard && aCard !== card && aCard instanceof HTMLElement) {
+								aCard.style.maxHeight = ''; 
+								aCard.setAttribute('inert', '');
 								obj.setAttribute('aria-expanded', 'false');
 							}
 						});

@@ -119,10 +119,15 @@ const list: TCategory[] = [
 	}
 
 	.service-cat p {
-		font-weight: 720;
+		font-weight: 700;
 		line-height: 1;
-		/* padding-bottom: 0.5em; */
 	}
+	@supports (font-variation-settings: 'wght' 720) {
+		.service-cat p {
+			font-weight: 720;
+		}
+	}
+
 	.service-cat ul {
 		list-style: disc;
 		margin-left: var(--padding-x-service);

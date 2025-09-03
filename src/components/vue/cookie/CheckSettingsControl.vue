@@ -46,8 +46,13 @@ function getStatus(type: string | undefined): string {
 
 .control-box .status {
 	font-size: 1.1em;
-	font-weight: 540;
+	font-weight: 500;
 	margin-bottom: 0.4em;
+}
+@supports (font-variation-settings: 'wght' 540) {
+	.control-box .status {
+		font-weight: 540;
+	}
 }
 
 .control-box .red-button {

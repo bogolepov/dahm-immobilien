@@ -35,8 +35,14 @@ const experience = getDuration1991();
 
 	.management .motto {
 		/* font-size: calc(var(--font-size) * 1.15); */
-		font-weight: 540;
+		font-weight: 500;
 	}
+	@supports (font-variation-settings: 'wght' 540) {
+		.management .motto {
+			font-weight: 540;
+		}
+	}
+
 	.management .final {
 		font-weight: 500;
 		margin-top: 0;

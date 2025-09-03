@@ -217,7 +217,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 			}, 1500);
 		}
 
-		const burgerSwitcher = document.querySelector('#burger-button');
+		const burgerSwitcher = document.querySelector<HTMLInputElement>('#burger-button');
 		const sbCards = document.querySelectorAll('.sb-card');
 		const openFormButtons = document.querySelectorAll('.form-btn');
 

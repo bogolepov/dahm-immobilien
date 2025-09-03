@@ -26,11 +26,10 @@ header.opaque {
 	--header-font-color: #000000;
 	--submenu-background-color: var(--menu-opaque-background-color);
 }
-@supports (font-variation-settings: 'wdth' 115) {
+
+@supports (font-variation-settings: 'wght' 540) {
 	header {
 		font-weight: 540;
-		font-stretch: 103%;
-		font-optical-sizing: auto;
 	}
 }
 

@@ -1,11 +1,17 @@
 .card-content h4 {
 	color: var(--color-dahm-bordo);
 	font-size: 1.15em;
-	font-weight: 450;
-	font-variation-settings: 'opsz' 32;
+	font-weight: 500;
+	font-variation-settings: 'opsz' 26;
 	line-height: 1;
 	margin-bottom: 0.5em;
 }
+@supports (font-variation-settings: 'wght' 450) {
+	.card-content h4 {
+		font-weight: 450;
+	}
+}
+
 .card-content * + h4 {
 	margin-top: 1.1em;
 }
@@ -27,8 +33,14 @@
 }
 
 .card-content a.phone-number {
-	font-weight: 460;
+	font-weight: 500;
 }
+@supports (font-variation-settings: 'wght' 460) {
+	.card-content a.phone-number {
+		font-weight: 460;
+	}
+}
+
 .card-content .phone-time {
 	font-size: 0.85em;
 	font-weight: 400;
