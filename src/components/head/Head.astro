@@ -33,7 +33,7 @@ if (seo) {
 	<SchemaOrganization />
 
 	<meta property='og:title' content={pageTitle} />
-	<meta property='og:description' content={description} />
+	{description?.length && <meta property='og:description' content={description} />}
 	<meta property='og:url' content={dahm.website_link + pathname} />
 	<meta property='og:type' content='website' />
 	<meta property='og:site_name' content={dahm.company_name} />

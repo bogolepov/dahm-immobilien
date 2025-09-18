@@ -4,6 +4,7 @@ import { getDayName } from '@scripts/utils';
 import Dahm from '@data/dahm.json';
 import PhoneOut from '@vue/icons/PhoneOut.vue';
 import '@styles/form.css';
+import type { IObjectInfo, IPerson } from '@scripts/types';
 
 const CHOICE_BY_NAME: string = 'Name';
 const radioNameId = useId();
@@ -11,7 +12,7 @@ const radioObjectId = useId();
 
 const choiceByName = ref(CHOICE_BY_NAME);
 const namePartner = ref();
-const objectAddress = ref();
+const objectAddress = ref<IObjectInfo>();
 
 Dahm.objects.sort((obj1, obj2) => {
 	let res: number = obj1.address.str.toLowerCase().localeCompare(obj2.address.str.toLowerCase(), 'de');
@@ -19,24 +20,27 @@ Dahm.objects.sort((obj1, obj2) => {
 	if (!res) res = obj1.address.city.toLowerCase().localeCompare(obj2.address.city.toLowerCase(), 'de');
 	return res;
 });
-const team = Dahm.team.filter(person => person.telephone);
+const team: IPerson[] = Dahm.team.filter(person => person.telephone);
 
 const objectPartners = computed(() => {
-	const list: typeof Dahm.team = [];
+	const list: IPerson[] = [];
 	// if (choiceByName.value === CHOICE_BY_NAME && namePartner.value) {
 	// 	list.push(namePartner.value);
 	// } else
 	if (choiceByName.value !== CHOICE_BY_NAME && objectAddress.value) {
-		objectAddress.value.person.forEach(sid => list.push(team.find(p => p.sid === sid)));
+		objectAddress.value.person.forEach(person_sid => {
+			const person = team.find(p => p.sid === person_sid);
+			if (person) list.push(person);
+		});
 	}
 	return list;
 });
-function getOfficeTime(person: (typeof Dahm.team)[0]): string {
+function getOfficeTime(person: IPerson): string {
 	if (!person) return '';
 	const { days, time } = person.office_time;
 	return `${days.von}-${days.bis}: ${time.von}-${time.bis} Uhr`;
 }
-function getOfficeTimeLong(person: (typeof Dahm.team)[0]): string {
+function getOfficeTimeLong(person: IPerson): string {
 	if (!person) return '';
 	const { days, time } = person.office_time;
 	return `${getDayName(days.von)}-${getDayName(days.bis)}: ${time.von}-${time.bis} Uhr`;

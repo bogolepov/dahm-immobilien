@@ -2,6 +2,7 @@
 import { ref, computed, useId } from 'vue';
 import DahmTexts from '@data/dahm_text.json';
 import PrivacyPolicyControl from './PrivacyPolicyControl.vue';
+import '@styles/form.css';
 
 const agreeId = useId();
 
@@ -54,7 +55,7 @@ function handlePolicyStatus(accepted: boolean): void {
 	</form>
 </template>
 
-<style src="/src/styles/form.css"></style>
+<!-- <style src="/src/styles/form.css"></style> -->
 
 <style scoped>
 .callback-form .red-button {

@@ -14,6 +14,7 @@ import {
 	validPhoneNumber,
 	type TContactForm,
 } from '@scripts/contact_form';
+import '@styles/form.css';
 
 type PrivacyPolicyType = InstanceType<typeof PrivacyPolicyControl>;
 type SendingLoaderType = InstanceType<typeof SendingLoader>;
@@ -191,7 +192,7 @@ function closeCardMessage() {
 	</form>
 </template>
 
-<style src="/src/styles/form.css"></style>
+<!-- <style src="/src/styles/form.css"></style> -->
 
 <style scoped>
 .message-form {

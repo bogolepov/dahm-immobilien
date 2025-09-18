@@ -44,7 +44,7 @@ objects.sort((obj1, obj2) => {
 				const objectAddress = `${object.address.str} ${object.address.number}, ${object.address.plz} ${object.address.city}`;
 				return (
 					<li aria-label={'Objekt ' + objectAddress}>
-						<p class='object-address' tabindex="0" aria-label="Objektkarte öffnen" aria-expanded='false'>
+						<p class='object-address' tabindex="0" role="button" aria-expanded='false'>
 							{objectAddress}
 						</p>
 						<div class='object-card' inert>
