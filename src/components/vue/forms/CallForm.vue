@@ -97,7 +97,7 @@ function getOfficeTimeLong(person: IPerson): string {
 </template>
 
 <!-- <style src="/src/styles/form.css"></style> -->
-<style>
+<style scoped>
 .flex-choice {
 	display: flex;
 	flex-wrap: wrap;
