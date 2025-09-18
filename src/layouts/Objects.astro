@@ -43,7 +43,7 @@ objects.sort((obj1, obj2) => {
 				const objectName = dahm.object_types.find(type => type.sid === object.type)?.title;
 				const objectAddress = `${object.address.str} ${object.address.number}, ${object.address.plz} ${object.address.city}`;
 				return (
-					<li aria-label={'Objekt ' + objectAddress}>
+					<li>
 						<p class='object-address' tabindex="0" role="button" aria-expanded='false'>
 							{objectAddress}
 						</p>
