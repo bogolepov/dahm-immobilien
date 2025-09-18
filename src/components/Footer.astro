@@ -125,8 +125,8 @@ const current_year: string = new Date().getFullYear().toString();
 				<h5 class='company-name'>{Dahm.company_fullname.toUpperCase()}</h5>
 				<p class='top'>{Dahm.address.street} {Dahm.address.building}</p>
 				<p>{Dahm.address.zip} {Dahm.address.city}</p>
-				<p class='big-top'><a href={'tel: ' + Dahm.telephone}>{Dahm.telephone}</a></p>
-				<p class='top'><a href={'mailto: ' + Dahm.email}>{Dahm.email}</a></p>
+				<p class='big-top'><a href={'tel:' + Dahm.telephone.replaceAll(' ', '')}>{Dahm.telephone}</a></p>
+				<p class='top'><a href={'mailto:' + Dahm.email}>{Dahm.email}</a></p>
 			</div>
 			<div class='available-block'>
 				<h5>{'Telefonische Erreichbarkeit'.toUpperCase()}</h5>

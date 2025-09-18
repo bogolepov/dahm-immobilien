@@ -3,6 +3,7 @@ import { ref, computed, useId } from 'vue';
 import { getDayName } from '@scripts/utils';
 import Dahm from '@data/dahm.json';
 import PhoneOut from '@vue/icons/PhoneOut.vue';
+import '@styles/form.css';
 
 const CHOICE_BY_NAME: string = 'Name';
 const radioNameId = useId();
@@ -62,7 +63,10 @@ function getOfficeTimeLong(person: (typeof Dahm.team)[0]): string {
 				</option>
 			</select>
 			<p v-if="namePartner" class="office-time by-name">{{ getOfficeTimeLong(namePartner) }}</p>
-			<a v-if="namePartner" :href="`tel: ${namePartner.telephone}`" class="red-button icon-link ctrl-full"
+			<a
+				v-if="namePartner"
+				:href="`tel:${namePartner.telephone.replaceAll(' ', '')}`"
+				class="red-button icon-link ctrl-full"
 				><PhoneOut width="1em" />{{ namePartner.telephone }}</a
 			>
 		</div>
@@ -79,7 +83,7 @@ function getOfficeTimeLong(person: (typeof Dahm.team)[0]): string {
 						<p>{{ iPartner.lastname }} {{ iPartner.name }}</p>
 						<p class="office-time">{{ getOfficeTime(iPartner) }}</p>
 					</div>
-					<a :href="`tel: ${iPartner.telephone}`" class="red-button icon-link"
+					<a :href="`tel:${iPartner.telephone.replaceAll(' ', '')}`" class="red-button icon-link"
 						><PhoneOut width="1em" />{{ iPartner.telephone }}</a
 					>
 				</div>
@@ -88,7 +92,7 @@ function getOfficeTimeLong(person: (typeof Dahm.team)[0]): string {
 	</form>
 </template>
 
-<style src="/src/styles/form.css"></style>
+<!-- <style src="/src/styles/form.css"></style> -->
 <style>
 .flex-choice {
 	display: flex;

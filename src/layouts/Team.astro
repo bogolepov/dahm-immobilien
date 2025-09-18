@@ -153,8 +153,14 @@ const experience = getDuration1991();
       alt='Unser Team' />
   <hr>
   <h3 class="text-block">Unsere Ansprechpartner</h3>
-  <p class="text-block description">Um Ihnen die Suche nach dem richtigen Ansprechpartner etwas zu erleichtern, haben wir für Sie hier unsere Aufgabenbereiche zusammengefasst.</p>
-  <p class="text-block description">Sie erreichen uns unter der Telefonnummer : <a class="phone" href={"tel: " + Dahm.telephone}>{Dahm.telephone}</a></p>
+  <p class="text-block description">
+    Um Ihnen die Suche nach dem richtigen Ansprechpartner etwas zu erleichtern, haben wir für Sie hier 
+    unsere Aufgabenbereiche zusammengefasst.
+  </p>
+  <p class="text-block description">
+    Sie erreichen uns unter der Telefonnummer : 
+    <a class="phone" href={"tel:" + Dahm.telephone.replaceAll(' ', '')}>{Dahm.telephone}</a>
+  </p>
   <ul class="text-block team-list">
     {
       Dahm.team.map(person => {
@@ -183,7 +189,7 @@ const experience = getDuration1991();
                 {person.email && 
                   <div class="icon-flex" >
                     <Icon name="email" />
-                    <a href={"mailto: " + person.email} aria-label={`${person.name} ${person.lastname} E-Mail-Adresse`}>
+                    <a href={"mailto:" + person.email} aria-label={`${person.name} ${person.lastname} E-Mail-Adresse`}>
                       {person.email}
                     </a>
                   </div>
@@ -192,7 +198,7 @@ const experience = getDuration1991();
                   person.telephone &&
                   <div class="icon-flex" >
                     <Icon name="phone" />
-                    <a href={"tel: " + person.telephone} aria-label={`${person.name} ${person.lastname} Telefonnummer`}>
+                    <a href={"tel:" + person.telephone} aria-label={`${person.name} ${person.lastname} Telefonnummer`}>
                       {person.telephone}
                     </a>
                   </div>

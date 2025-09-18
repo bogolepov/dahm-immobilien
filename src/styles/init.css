@@ -100,14 +100,6 @@ h6 {
 	text-wrap: balance;
 }
 
-main,
-header,
-footer,
-article,
-section {
-	container-type: inline-size;
-}
-
 p,
 li,
 figcaption {

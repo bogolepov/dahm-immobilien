@@ -157,7 +157,7 @@ function closeCardMessage() {
 				placeholder="Telefon"
 			/>
 		</div>
-		<input type="hidden" v-model="subject" placeholder="Subject" />
+		<input type="hidden" v-model="subject" />
 		<select v-model.trim="topic" class="ctrl-half" required>
 			<option disabled value="" selected hidden>Betreff*</option>
 			<option v-for="iBetreff in topics" :value="iBetreff">

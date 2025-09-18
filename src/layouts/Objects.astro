@@ -65,13 +65,13 @@ objects.sort((obj1, obj2) => {
 											</div>
 											<div class='icon-flex'>
 												<Icon name='email' />
-												<a href={'mailto: ' + who.email} aria-label={`${who.name} ${who.lastname} E-Mail-Adresse`}>
+												<a href={'mailto:' + who.email} aria-label={`${who.name} ${who.lastname} E-Mail-Adresse`}>
 													{who.email}
 												</a>
 											</div>
 											<div class='icon-flex'>
 												<Icon name='phone' />
-												<a href={'tel: ' + who.telephone} aria-label={`${who.name} ${who.lastname} Telefonnummer`}>
+												<a href={'tel:' + who.telephone.replaceAll(' ', '')} aria-label={`${who.name} ${who.lastname} Telefonnummer`}>
 													{who.telephone}
 												</a>
 											</div>

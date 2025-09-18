@@ -19,11 +19,11 @@ const { days, time } = dahm.office_time;
 		</div>
 		<div class='icon-flex'>
 			<Icon name='phone' />
-			<a href={'tel: ' + dahm.telephone}>{dahm.telephone}</a>
+			<a href={'tel:' + dahm.telephone.replaceAll(' ', '')}>{dahm.telephone}</a>
 		</div>
 		<div class='icon-flex'>
 			<Icon name='email' />
-			<a href={'mailto: ' + dahm.email}>{dahm.email}</a>
+			<a href={'mailto:' + dahm.email}>{dahm.email}</a>
 		</div>
 		<div class='icon-flex'>
 			<Icon name='time' />

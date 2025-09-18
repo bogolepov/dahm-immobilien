@@ -92,7 +92,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 			<!-- <li class='flex-spreader'></li> -->
 			<li class='item-phonenumber'>
 				<div>
-					<a class='flex-center round-border h2em icon fv' href={'tel: ' + Dahm.telephone}>
+					<a class='flex-center round-border h2em icon fv' href={'tel:' + Dahm.telephone.replaceAll(' ', '')}>
 						<span class='phone-number-text'>{Dahm.telephone}</span>
 						<!-- <Icon name='phone' class='phone-icon' /> -->
 					</a>
@@ -100,7 +100,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 			</li>
 			<!-- <li>
 				<div>
-					<a class='flex-center round-border h2em icon fv' href={'mailto: ' + Dahm.email}>
+					<a class='flex-center round-border h2em icon fv' href={'mailto:' + Dahm.email}>
 						<Icon name='email' />
 					</a>
 				</div>

@@ -13,7 +13,7 @@ const json: string = JSON.stringify({
 	name: dahm.company_fullname,
 	description: texts.description_schema_org,
 	email: dahm.email,
-	telephone: dahm.telephone,
+	telephone: dahm.telephone.replaceAll(' ', ''),
 	address: {
 		'@type': 'PostalAddress',
 		streetAddress: dahm.address.street + ' ' + dahm.address.building,
