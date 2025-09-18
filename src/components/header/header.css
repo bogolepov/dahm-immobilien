@@ -1,7 +1,7 @@
 header {
 	--hover-menu-background-color: rgba(220, 220, 220, 0.45);
-	--hover-item-background-color: rgba(169, 169, 169, 0.95);
-	--menu-opaque-background-color: rgba(140, 140, 140);
+	--hover-item-background-color: hsla(45, 2%, 69%);
+	--menu-opaque-background-color: hsl(45, 2%, 59%);
 	--submenu-background-color: rgba(229, 232, 236);
 	--header-font-color: #373737;
 	--border-left-thick-active-item: 2px;
@@ -199,8 +199,8 @@ li.item-menu > div span {
 }
 
 .mobile-menu {
-	--hover-item-background-color: rgba(169, 169, 169, 0.95);
-	--menu-background-color: rgba(229, 232, 236, 0.55);
+	--hover-item-background-color: hsla(0, 0%, 69%);
+	--menu-background-color: hsla(214, 16%, 91%, 0.55);
 	--padding-x-text: 0.6em;
 	--border-thick-active-item: 3px;
 	--padding-x-left-item0: calc(var(--padding-x-page) + var(--padding-x-nav-item));
@@ -230,7 +230,8 @@ li.item-menu > div span {
 
 .mobile-menu a,
 .mobile-menu span {
-	font-size: 1.5em;
+	font-size: 1.4em;
+	font-weight: 400;
 	padding-left: calc(var(--padding-x-text) + var(--border-thick-active-item));
 }
 .mobile-menu a.active_link {
@@ -240,7 +241,7 @@ li.item-menu > div span {
 .mobile-submenu a,
 .mobile-submenu span {
 	--padding-koeff: 3;
-	font-size: 1.45em;
+	font-size: 1.35em;
 	padding-left: calc(var(--padding-koeff) * var(--padding-x-text) + var(--border-thick-active-item));
 }
 .mobile-submenu a.active_link {
