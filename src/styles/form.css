@@ -137,7 +137,7 @@ form .ctrl-half {
 .flex-checkbox-label label {
 	flex-grow: 1;
 	margin-left: 2%;
-	font-size: 0.78em;
+	font-size: max(0.78em, 12px);
 	font-variation-settings: 'opsz' var(--text-opsz-max);
 	line-height: 1.2;
 }

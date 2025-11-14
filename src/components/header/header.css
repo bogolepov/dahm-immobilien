@@ -44,7 +44,6 @@ header.opaque {
 	max-width: var(--max-width-page);
 	margin: 0 auto;
 	padding: 0 var(--padding-x-page);
-	/* margin: 0 calc(auto - var(--padding-x-page)); */
 }
 
 .nav-list > li {
@@ -64,12 +63,13 @@ header.opaque {
 	word-wrap: none;
 }
 
-.nav-list > li > div {
+.nav-list > li > *:not(ul) {
+	display: grid;
+	place-items: center;
 	height: 100%;
-	display: flex;
-	align-items: center;
 }
-.nav-list > li .active_link {
+
+.nav-list > li > .active_link {
 	text-decoration: 1.5px var(--color-marker) underline;
 	text-underline-offset: 0.4em;
 	text-decoration-skip-ink: none;
@@ -114,28 +114,22 @@ header:not(.opaque) .nav-submenu::before {
 	border-width: 0;
 }
 
-.nav-submenu > li {
-	padding: 0.5em calc(1.5 * var(--padding-x-nav-item)) 0.5em calc(2 * var(--padding-x-nav-item));
-	/* padding: var(--padding-x-nav-item);
-    padding-left: calc(3 * var(--padding-x-nav-item)); */
-}
 .nav-submenu > li > * {
+	display: grid;
+	place-items: left center;
+	padding: 0.5em calc(1.5 * var(--padding-x-nav-item)) 0.5em calc(2 * var(--padding-x-nav-item));
+}
+.nav-submenu span {
 	padding-left: calc(1.1 * var(--padding-x-nav-item) + var(--border-left-thick-active-item));
 }
-.nav-submenu > li > .active_link {
+.nav-submenu .active_link span {
 	padding-left: calc(1.1 * var(--padding-x-nav-item));
 	text-decoration: none;
 	border-left: var(--border-left-thick-active-item) solid var(--color-marker);
 }
 
-li.item-menu > div a,
-li.item-menu > div span {
-	padding-top: 0.8em;
-	padding-bottom: 0.8em;
-}
-
 .nav-list li,
-.mobile-menu li {
+.mobile-menu a {
 	transition:
 		color 500ms ease-out,
 		background-color 400ms ease-in-out;
@@ -203,7 +197,7 @@ li.item-menu > div span {
 	--menu-background-color: hsla(214, 16%, 91%, 0.55);
 	--padding-x-text: 0.6em;
 	--border-thick-active-item: 3px;
-	--padding-x-left-item0: calc(var(--padding-x-page) + var(--padding-x-nav-item));
+	--padding-x-left-base: calc(var(--padding-x-page) + var(--padding-x-nav-item));
 
 	display: flex;
 	flex-direction: column;
@@ -214,37 +208,29 @@ li.item-menu > div span {
 	background-color: var(--menu-background-color);
 	font-size: var(--font-size-header);
 }
-.mobile-menu > li {
+.mobile-menu li {
 	width: 100%;
 }
-.mobile-menu > li > div {
+.mobile-menu li > *:not(ul) {
+	display: block;
 	padding: calc(2 * var(--padding-y-nav-item)) 0;
-	padding-left: var(--padding-x-left-item0);
+	padding-left: var(--padding-x-left-base);
 	width: 100%;
 }
-.mobile-submenu > li {
-	padding: calc(2 * var(--padding-y-nav-item)) 0;
-	padding-left: var(--padding-x-left-item0);
-	width: 100%;
-}
-
-.mobile-menu a,
 .mobile-menu span {
+	--padding-koeff: 1;
 	font-size: 1.4em;
-	font-weight: 400;
-	padding-left: calc(var(--padding-x-text) + var(--border-thick-active-item));
+	padding-left: calc(var(--padding-koeff) * var(--padding-x-text) + var(--border-thick-active-item));
 }
-.mobile-menu a.active_link {
-	padding-left: calc(var(--padding-x-text));
-	border-left: var(--border-thick-active-item) solid var(--color-marker);
-}
-.mobile-submenu a,
 .mobile-submenu span {
 	--padding-koeff: 3;
 	font-size: 1.35em;
-	padding-left: calc(var(--padding-koeff) * var(--padding-x-text) + var(--border-thick-active-item));
+	font-weight: 400;
 }
-.mobile-submenu a.active_link {
+.mobile-menu .active_link > * {
+	border-left: var(--border-thick-active-item) solid var(--color-marker);
+}
+.mobile-menu .active_link > span {
 	padding-left: calc(var(--padding-koeff) * var(--padding-x-text));
 }
 
@@ -265,11 +251,13 @@ body:has(.sb-card.message.open) header .form-btn.message {
 	header:is(:not(.opaque)):hover {
 		background-color: var(--hover-menu-background-color);
 	}
-	.nav-list ul > li:hover,
-	.nav-list > li:has(div > *:hover) {
+	.nav-list li.logo:has(a:hover),
+	.nav-list li.item-menu:has(.lev0:hover),
+	.nav-submenu li:has(a:hover) {
 		color: var(--color-dahm-bordo);
 		background-color: var(--hover-item-background-color);
 	}
+
 	.nav-list > li:has(.round-border:hover) {
 		background-color: transparent;
 		color: var(--color-dahm-bordo);
@@ -281,8 +269,7 @@ body:has(.sb-card.message.open) header .form-btn.message {
 	.nav-list ul > li:not(:hover) {
 		color: var(--header-font-color);
 	}
-	.mobile-menu > li > div:hover:has(a),
-	.mobile-submenu > li:hover:has(a) {
+	.mobile-menu a:hover {
 		color: var(--color-dahm-bordo);
 		background-color: var(--hover-item-background-color);
 	}

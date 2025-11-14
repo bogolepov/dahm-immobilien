@@ -33,23 +33,24 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 					const menuItemURL = menuItem.root ? `/` : menuItem.url ? `/${menuItem.url}/` : null;
 					return (
 						<li class='item-menu desktop' class:list={[{ fv: menuItem.url || menuItem.root }]}>
-							<div>
-								{menuItemURL && (
-									<a
-										href={menuItemURL}
-										class:list={[
-											{
-												active_link:
-													!errorPage &&
-													((currentPath.length === 0 && menuItem.root) ||
-														(currentPath.length > 0 && currentPath[0] === menuItem.url)),
-											},
-										]}
-									>
-										{menuItem.name.toUpperCase()}
-									</a>
-								)}
-								{!menuItemURL && (
+							{menuItemURL && (
+								<a
+									href={menuItemURL}
+									class:list={[
+										{
+											active_link:
+												!errorPage &&
+												((currentPath.length === 0 && menuItem.root) ||
+													(currentPath.length > 0 && currentPath[0] === menuItem.url)),
+										},
+										'lev0',
+									]}
+								>
+									<span>{menuItem.name.toUpperCase()}</span>
+								</a>
+							)}
+							{!menuItemURL && (
+								<div class='lev0'>
 									<span
 										class:list={[
 											{ active_link: !errorPage && currentPath.length > 0 && currentPath[0] === menuItem.folder },
@@ -57,8 +58,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 									>
 										{menuItem.name.toUpperCase()}
 									</span>
-								)}
-							</div>
+								</div>
+							)}
 							{menuItem.submenu && (
 								<ul class='nav-submenu'>
 									{menuItem.submenu &&
@@ -78,7 +79,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 															},
 														]}
 													>
-														{submenuItem.name.toUpperCase()}
+														<span>{submenuItem.name.toUpperCase()}</span>
 													</a>
 												</li>
 											);
@@ -89,22 +90,13 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 					);
 				})
 			}
-			<!-- <li class='flex-spreader'></li> -->
 			<li class='item-phonenumber'>
 				<div>
 					<a class='flex-center round-border h2em icon fv' href={'tel:' + Dahm.telephone.replaceAll(' ', '')}>
 						<span class='phone-number-text'>{Dahm.telephone}</span>
-						<!-- <Icon name='phone' class='phone-icon' /> -->
 					</a>
 				</div>
 			</li>
-			<!-- <li>
-				<div>
-					<a class='flex-center round-border h2em icon fv' href={'mailto:' + Dahm.email}>
-						<Icon name='email' />
-					</a>
-				</div>
-			</li> -->
 			<li class='item-phoneform mobile'>
 				<div>
 					<button type='button' class='flex-center round-border h2em icon fv form-btn phone' aria-label='Telefonkarte'>
@@ -141,23 +133,24 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 				const menuItemURL = menuItem.root ? `/` : menuItem.url ? `/${menuItem.url}/` : null;
 				return (
 					<li>
-						<div class='fv'>
-							{menuItemURL && (
-								<a
-									href={menuItemURL}
-									class:list={[
-										{
-											active_link:
-												!errorPage &&
-												((currentPath.length === 0 && menuItem.root) ||
-													(currentPath.length > 0 && currentPath[currentPath.length - 1] === menuItem.url)),
-										},
-									]}
-								>
-									{menuItem.name}
-								</a>
-							)}
-							{!menuItemURL && (
+						{menuItemURL && (
+							<a
+								href={menuItemURL}
+								class:list={[
+									{
+										active_link:
+											!errorPage &&
+											((currentPath.length === 0 && menuItem.root) ||
+												(currentPath.length > 0 && currentPath[currentPath.length - 1] === menuItem.url)),
+									},
+									'fv',
+								]}
+							>
+								<span>{menuItem.name}</span>
+							</a>
+						)}
+						{!menuItemURL && (
+							<div>
 								<span
 									class:list={[
 										{ active_link: !errorPage && currentPath.length > 0 && currentPath[0] === menuItem.folder },
@@ -165,15 +158,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 								>
 									{menuItem.name}
 								</span>
-							)}
-						</div>
+							</div>
+						)}
 						{menuItem.submenu && (
 							<ul class='mobile-submenu'>
 								{menuItem.submenu &&
 									menuItem.submenu.map(submenuItem => {
 										const submenuItemURL = `/${menuItem.folder}/${submenuItem.url}/`;
 										return (
-											<li class='fv'>
+											<li>
 												<a
 													href={submenuItemURL}
 													class:list={[
@@ -184,9 +177,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg
 																currentPath[0] === menuItem.folder &&
 																currentPath[1] === submenuItem.url,
 														},
+														'fv',
 													]}
 												>
-													{submenuItem.name}
+													<span>{submenuItem.name}</span>
 												</a>
 											</li>
 										);
