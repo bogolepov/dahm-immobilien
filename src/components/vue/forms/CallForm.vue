@@ -63,7 +63,7 @@ function getOfficeTimeLong(person: IPerson): string {
 			<select v-model="namePartner" class="ctrl-full">
 				<option disabled :value="undefined" hidden>auswählen...</option>
 				<option v-for="iPerson in team" :value="iPerson">
-					{{ `${iPerson.lastname} ${iPerson.name}` }}
+					{{ `${iPerson.lastname}, ${iPerson.name}` }}
 				</option>
 			</select>
 			<p v-if="namePartner" class="office-time by-name">{{ getOfficeTimeLong(namePartner) }}</p>
@@ -84,7 +84,7 @@ function getOfficeTimeLong(person: IPerson): string {
 			<template v-for="iPartner in objectPartners" :value="iPartner">
 				<div class="form-flex2">
 					<div>
-						<p>{{ iPartner.lastname }} {{ iPartner.name }}</p>
+						<p>{{ iPartner.lastname }}, {{ iPartner.name }}</p>
 						<p class="office-time">{{ getOfficeTime(iPartner) }}</p>
 					</div>
 					<a :href="`tel:${iPartner.telephone.replaceAll(' ', '')}`" class="red-button icon-link"
