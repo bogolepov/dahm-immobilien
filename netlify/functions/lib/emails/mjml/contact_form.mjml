@@ -1,0 +1,59 @@
+<mjml lang="de">
+	<mj-head>
+		<mj-title>{{ subject }}</mj-title>
+		<mj-include path="./components/head.mjml" />
+	</mj-head>
+	<mj-body>
+		<mj-wrapper mj-class="body-wrapper">
+			<mj-include path="./components/header.mjml" />
+			<mj-section>
+				<mj-column>
+					<mj-text mj-class="title">{{ hello }}</mj-text>
+					<mj-text>
+						{{ main_text }} {{#if timestamp}}
+						<div style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">[{{ timestamp }}]</div>
+						{{/if}}
+					</mj-text>
+					<!-- {{#unless timestamp}} -->
+					<mj-text>
+						{{ team }}<br />
+						<a href="{{{website_url}}}" style="color: #000000">{{{ website_url_text }}}</a>
+					</mj-text>
+					<!-- {{/unless}} -->
+					<mj-divider />
+				</mj-column>
+			</mj-section>
+			<mj-section>
+				<mj-column>
+					<mj-table css-class="info-table-cf" padding="15px 0 15px 0">
+						<tr>
+							<td class="info-label">Betreff :</td>
+							<td>{{ topic }}</td>
+						</tr>
+						<tr>
+							<td class="info-label">Name :</td>
+							<td>{{ name }}</td>
+						</tr>
+						<tr>
+							<td class="info-label">E-Mail :</td>
+							<td>
+								<a href="mailto:{{email}}" style="color: #000000">{{ email }}</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="info-label">Telefon :</td>
+							<td>
+								<a href="tel:{{phone}}" style="color: #000000">{{ phone }}</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="info-label">Nachricht :</td>
+							<td>{{ message }}</td>
+						</tr>
+					</mj-table>
+				</mj-column>
+			</mj-section>
+			<mj-include path="./components/footer.mjml" />
+		</mj-wrapper>
+	</mj-body>
+</mjml>

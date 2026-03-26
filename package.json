@@ -6,7 +6,9 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"build-emails": "rimraf --glob ./netlify/functions/lib/emails/html/*.html && mjml ./netlify/functions/lib/emails/mjml/*.mjml -o ./netlify/functions/lib/emails/html && node ./netlify/functions/lib/emails/postprocess-html.mjs",
+		"build-emails-prod": "rimraf --glob ./netlify/functions/lib/emails/html/*.html && mjml ./netlify/functions/lib/emails/mjml/*.mjml -o ./netlify/functions/lib/emails/html && node ./netlify/functions/lib/emails/postprocess-html.mjs --prod"
 	},
 	"dependencies": {
 		"@astrojs/netlify": "^6.3.1",
@@ -14,6 +16,8 @@
 		"@astrojs/vue": "^5.0.11",
 		"astro": "^5.7.5",
 		"astro-icon": "^1.1.5",
+		"handlebars": "^4.7.8",
+		"mjml": "^4.18.0",
 		"nodemailer": "^7.0.3",
 		"vue": "^3.5.13",
 		"zod": "^3.25.64"
@@ -21,6 +25,7 @@
 	"devDependencies": {
 		"@types/nodemailer": "^6.4.17",
 		"prettier": "^3.4.2",
-		"prettier-plugin-astro": "^0.14.1"
+		"prettier-plugin-astro": "^0.14.1",
+		"rimraf": "^6.1.3"
 	}
 }
