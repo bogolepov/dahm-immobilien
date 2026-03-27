@@ -12,5 +12,9 @@
 	"description_verwaltung": "Verwaltung als Haupttätigkeit unseres Unternehmens. Industrieobjekten, Mehrfamilienhäuser, Gewerbe und Mehrfamilienhäuser, WEG-Mehrfamilienhäuser.",
 	"description_team": "Unser Team zum Aufbau enger, vertrauensvoller Beziehungen mit Partnern.",
 	"description_profile": "Die Entwicklungsgeschichte unseres Unternehmens in Fakten.",
-	"description_contact": "Wie uns zu erreichen, wo uns zu finden."
+	"description_contact": "Wie uns zu erreichen, wo uns zu finden.",
+	"cf_main_text_client": "vielen Dank für Ihre Anfrage. Wir haben Ihre Nachricht erhalten und werden uns bei Bedarf schnellstmöglich mit Ihnen in Verbindung setzen.",
+	"cf_main_text_company": "es wurde eine neue Anfrage über das Kontaktformular der Website übermittelt.",
+	"cf_auto_email_text_client": "Dies ist eine automatisch generierte E-Mail. Bitte antworten Sie nicht auf diese Nachricht.",
+	"cf_auto_email_text_company": "Diese E-Mail wurde automatisch generiert."
 }

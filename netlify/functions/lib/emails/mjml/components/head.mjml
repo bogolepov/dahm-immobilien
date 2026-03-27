@@ -6,24 +6,8 @@
 	<mj-class name="body-wrapper" width="600px" padding="35px 20px" />
 	<mj-class name="title" font-size="20px" font-weight="500" />
 	<mj-class name="list-item" padding="0 0 3px 20px" />
-
-	<mj-class
-		name="action-button"
-		font-family="Arial"
-		background-color="transparent"
-		color="#87605e"
-		border="1px solid #87605e"
-		font-size="17px"
-		font-weight="500"
-		padding="20px 0 40px 0"
-		text-decoration="none"
-	/>
 </mj-attributes>
 <mj-style inline="inline">
-	.link-nostyle { color: inherit; text-decoration: none; } .info-table td, .info-table-cf td, .info-table-booking td { font-family: Arial,
-	sans-serif; font-size: 16px; color: #000000; padding: 0; } .info-table .info-label { width: 70px; font-weight: 400; white-space: nowrap; }
-	.info-table-booking .info-label { width: 25%; font-weight: 400; white-space: nowrap; padding-bottom: 5px; } .info-table-cf td {
-	padding-bottom: 10px; vertical-align: top; } .info-table-cf .info-label { width: 37%; padding-right: 8px; font-weight: 400; color:
-	#888888; white-space: nowrap; } .event-date { font-size: 115%; color: #87605e; font-weight: 600; } .reservation-id { font-size: 85%;
-	color: #888888; font-weight: 400; padding: 3px 0 0 0; }
+	.link-nostyle { color: inherit; text-decoration: none; } .info-table-cf td { font-family: Arial, sans-serif; font-size: 16px; color:
+	#000000; padding: 0 0 10px 0; vertical-align: top; } .info-table-cf .info-label { width: 25%; white-space: nowrap; }
 </mj-style>

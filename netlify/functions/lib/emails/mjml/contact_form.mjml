@@ -9,14 +9,12 @@
 			<mj-section>
 				<mj-column>
 					<mj-text mj-class="title">{{ hello }}</mj-text>
+					<mj-text> {{ main_text }} </mj-text>
+					<mj-text> {{ auto_email_text }} </mj-text>
+					<!-- {{#unless to_company}} -->
 					<mj-text>
-						{{ main_text }} {{#if timestamp}}
-						<div style="font-size: 90%; line-height: 120%; color: #888888; font-weight: 500">[{{ timestamp }}]</div>
-						{{/if}}
-					</mj-text>
-					<!-- {{#unless timestamp}} -->
-					<mj-text>
-						{{ team }}<br />
+						Mit freundlichen Grüßen<br />
+						{{{ company_name }}}<br />
 						<a href="{{{website_url}}}" style="color: #000000">{{{ website_url_text }}}</a>
 					</mj-text>
 					<!-- {{/unless}} -->
@@ -42,9 +40,7 @@
 						</tr>
 						<tr>
 							<td class="info-label">Telefon :</td>
-							<td>
-								<a href="tel:{{phone}}" style="color: #000000">{{ phone }}</a>
-							</td>
+							<td>{{ phone }}</td>
 						</tr>
 						<tr>
 							<td class="info-label">Nachricht :</td>

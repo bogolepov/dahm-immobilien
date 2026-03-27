@@ -57,7 +57,7 @@ export function sendContactForm(formData: TContactForm, handleSendResult: (isOk:
 }
 
 export function validationContactFormJson(json_data: string): TContactForm | undefined {
-	console.log(json_data);
+	// console.log(json_data);
 	const result = ContactFormSchema.safeParse(JSON.parse(json_data));
 	if (result.success) {
 		const contactForm: TContactForm = result.data;
@@ -84,11 +84,5 @@ export function isValidContactForm(contactForm: TContactForm, emptySubject: bool
 }
 
 function codeSubject(formData: TContactForm): string {
-	return (
-		formData.email.slice(-1) +
-		formData.email.charAt(0) +
-		'+' +
-		formData.message.slice(-5, -4) +
-		formData.message.charAt(7)
-	);
+	return formData.email.slice(-1) + formData.email.charAt(0) + '+' + formData.message.slice(-5, -4) + formData.message.charAt(7);
 }
