@@ -143,13 +143,13 @@
 		},
 		{
 			"address": { "str": "Grünrockstr.", "number": "17", "plz": "58119", "city": "Hagen", "distr": "Hohenlimburg" },
-			"person": ["kah"],
+			"person": ["rab"],
 			"type": "mfh",
 			"google": "https://maps.app.goo.gl/V3PMoQzj6okfbBwD6"
 		},
 		{
 			"address": { "str": "Im Lindental", "number": "48", "plz": "58135", "city": "Hagen", "distr": "Haspe" },
-			"person": ["kah"],
+			"person": ["rab"],
 			"photo": ["Lindental.jpg"],
 			"type": "ind",
 			"google": "https://maps.app.goo.gl/XcttPngnaykvh1f6A"
@@ -269,10 +269,10 @@
 			"google": "https://maps.app.goo.gl/ez1CstiGWxAA73Ps9"
 		},
 		{
-			"address": { "str": "Altenhagener Str.", "number": "98", "plz": "58097", "city": "Hagen" },
+			"address": { "str": "Altenhagener Str.", "number": "86", "plz": "58097", "city": "Hagen" },
 			"person": ["sas"],
 			"type": "gmfh",
-			"google": "https://maps.app.goo.gl/Rse8UaiyzdcC2mp77"
+			"google": "https://maps.app.goo.gl/LkapoSBbCaBGXNbY7"
 		},
 		{
 			"address": { "str": "Holthauser Str.", "number": "36", "plz": "58093", "city": "Hagen", "distr": "Holthausen" },
@@ -285,6 +285,12 @@
 			"person": ["kah"],
 			"type": "gmfh",
 			"google": "https://maps.app.goo.gl/3We2LRDZHwEVyJsL6"
+		},
+		{
+			"address": { "str": "Bergstr.", "number": "119", "plz": "58095", "city": "Hagen" },
+			"person": ["rab"],
+			"type": "weg",
+			"google": "https://maps.app.goo.gl/YBrJUMc4kc1fLCZA9"
 		}
 	]
 }
