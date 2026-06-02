@@ -40,7 +40,15 @@ export const handler: Handler = async (event, context) => {
 	const input = extractSchemaFromJson(zLoginInput, event.body);
 	if (!input) return response(400, 'Bad request');
 
+	console.log(input);
+
 	if (input.email?.length) return response(400, 'Bad request');
+
+	// console.log('ADMIN:', process.env.ADMIN_LOGIN);
+	// console.log('MODERATOR:', process.env.MODERATOR_LOGIN);
+	console.log('DEVELOPER:', process.env.DEVELOPER_LOGIN);
+	if (input.login !== process.env.DEVELOPER_LOGIN) console.log('login not from Developer');
+	if (input.password !== process.env.DEVELOPER_PASSWORD) console.log('password not from Developer');
 
 	if (input.login === process.env.ADMIN_LOGIN && input.password === process.env.ADMIN_PASSWORD) return userLogin('admin');
 	if (input.login === process.env.MODERATOR_LOGIN && input.password === process.env.MODERATOR_PASSWORD) return userLogin('moderator');
