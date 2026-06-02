@@ -1,22 +1,12 @@
 ---
-import ListVerkauf from '@components/ListVerkauf.astro';
+import ListVerkauf from '@components/serviceList/ListVerkauf.astro';
 ---
 
 <article class='sale'>
 	<p class='text-block mt0'>
-		Bei der Veräußerung von Gebäuden, Räumlichkeiten oder Wohnungen in verwalteten Immobilien stehen wir Ihnen gerne für
-		die Suche nach Käufern zur Verfügung und begleiten die Abwicklung.
+		Bei der Veräußerung von Gebäuden, Räumlichkeiten oder Wohnungen in verwalteten Immobilien stehen wir Ihnen gerne für die Suche nach
+		Käufern zur Verfügung und begleiten die Abwicklung.
 	</p>
-	<p class='text-block'>
-		Über die Verfügbarkeit von Immobilien zum Kauf können Sie sich per E-Mail oder telefonisch informieren.
-	</p>
+	<p class='text-block'>Über die Verfügbarkeit von Immobilien zum Kauf können Sie sich per E-Mail oder telefonisch informieren.</p>
 	<ListVerkauf />
 </article>
-
-<style>
-	.sale > p {
-		margin-top: 2em;
-		margin-bottom: 2em;
-		font-size: calc(var(--font-size) * 1.05);
-	}
-</style>

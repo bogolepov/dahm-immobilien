@@ -1,4 +1,8 @@
 ---
+import { Icon } from 'astro-icon/components';
+import ObjectsButton from '@vue/Objects/ObjectsButton/ObjectsButton.vue';
+import '@styles/list.css';
+
 type TCategory = {
 	catName: string;
 	catDescriptions: string[];
@@ -75,12 +79,12 @@ const list: TCategory[] = [
 */
 ---
 
-<ul class='services-list'>
+<ul class='card-list'>
 	{
 		list.map(cat => {
 			return (
-				<li class='service-cat sticker color'>
-					<p>{cat.catName}</p>
+				<li class='card-item sticker color'>
+					<h5>{cat.catName}</h5>
 					<ul>
 						{cat.catDescriptions.map(descr => {
 							return <li>{descr}</li>;
@@ -90,50 +94,10 @@ const list: TCategory[] = [
 			);
 		})
 	}
+	<li class='card-item sticker color objects secret'>
+		<a href='/objekte/'><Icon name='logo2025' class='image-h' /><span>Unsere Objekte</span></a>
+	</li>
 	<li></li>
 	<li></li>
 </ul>
-
-<style>
-	.services-list {
-		--padding-x-service: 1.2em;
-		--padding-y-service: 0.8em;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		width: 100%;
-		flex-wrap: wrap;
-		column-gap: 2em;
-	}
-	.services-list > * {
-		width: min(100%, 300px);
-		flex-grow: 1;
-	}
-	.services-list .service-cat {
-		margin-bottom: 2em;
-	}
-
-	.service-cat.sticker {
-		--padding-x-sticker: var(--padding-x-service);
-		--padding-y-sticker: var(--padding-y-service);
-	}
-
-	.service-cat p {
-		font-weight: 700;
-		line-height: 1;
-	}
-	@supports (font-variation-settings: 'wght' 720) {
-		.service-cat p {
-			font-weight: 720;
-		}
-	}
-
-	.service-cat ul {
-		list-style: disc;
-		margin-left: var(--padding-x-service);
-	}
-	.service-cat li {
-		margin-top: var(--padding-y-service);
-		line-height: 1.15;
-	}
-</style>
+<ObjectsButton client:only='vue' type='rent' />

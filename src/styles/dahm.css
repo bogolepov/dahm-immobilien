@@ -9,7 +9,7 @@
 body {
 	--color-dahm-background-dark: hsl(40, 13%, 74%);
 	--color-dahm-background: hsl(44, 13%, 78%);
-	--color-dahm-background-light: #e8e4da;
+	--color-dahm-background-light: hsl(43, 23%, 88%);
 	--color-dahm-bordo-dark: #85231e;
 	--color-dahm-bordo: #9a1915;
 	--color-dahm-bordo-disabled: #a9736e;
@@ -81,6 +81,17 @@ article a {
 	article a:not(.red-button):hover {
 		color: var(--color-dahm-bordo);
 	}
+}
+
+article > p {
+	margin-top: 2em;
+	margin-bottom: 2em;
+	font-size: calc(var(--font-size) * 1.05);
+}
+
+p.final {
+	font-weight: 500;
+	margin-top: 0;
 }
 
 .flex-center {

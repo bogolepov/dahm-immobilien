@@ -1,5 +1,5 @@
 import type { Handler, HandlerResponse } from '@netlify/functions';
-import { validationContactFormJson, isValidContactForm, type TContactForm } from '@scripts/contact_form';
+import { validationContactFormJson, isValidContactForm } from '@scripts/contact_form';
 import { TemplateNames, createTransporter, getEmailHtml, sendMail } from './lib/mailService.ts';
 import Dahm from '@data/dahm.json';
 import dahmText from '@data/dahm_text.json';

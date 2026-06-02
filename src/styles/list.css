@@ -1,0 +1,84 @@
+.card-list {
+	--padding-x-service: 1.2em;
+	--padding-y-service: 0.8em;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	flex-wrap: wrap;
+	column-gap: 2em;
+}
+.card-list > * {
+	width: min(100%, 300px);
+	flex-grow: 1;
+}
+.card-list .card-item {
+	position: relative;
+	margin-bottom: 2em;
+}
+
+.card-item.sticker {
+	--padding-x-sticker: var(--padding-x-service);
+	--padding-y-sticker: var(--padding-y-service);
+}
+
+.card-item.objects {
+	display: grid;
+	place-items: center;
+	min-height: 120px;
+}
+.card-item.objects.secret {
+	display: none;
+}
+
+.card-item.objects a {
+	display: flex;
+	flex-direction: row;
+	gap: 1.4em;
+	align-items: center;
+	height: 3.3em;
+}
+.card-item.objects a span {
+	width: min-content;
+	font-size: 1.25em;
+	font-weight: 500;
+	color: var(--color-dahm-bordo);
+}
+@supports (font-variation-settings: 'wght' 460) {
+	.card-item.objects a span {
+		font-weight: 460;
+	}
+}
+
+.card-item h5 {
+	font-size: var(--font-size);
+	font-weight: 700;
+	line-height: 1;
+}
+@supports (font-variation-settings: 'wght' 720) {
+	.card-item h5 {
+		font-weight: 720;
+	}
+}
+.card-item h5.bold {
+	text-transform: uppercase;
+	font-size: 0.8em;
+	letter-spacing: 0.025em;
+	padding-bottom: 0.3em;
+}
+
+.card-item blockquote {
+	font-size: 1.1em;
+	font-style: italic;
+	padding-bottom: 0.3em;
+	color: var(--color-dahm-bordo);
+}
+
+.card-item ul {
+	list-style: disc;
+	margin-left: var(--padding-x-service);
+}
+.card-item li {
+	margin-top: var(--padding-y-service);
+	line-height: 1.15;
+}

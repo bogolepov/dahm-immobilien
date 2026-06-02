@@ -1,0 +1,121 @@
+.admin-panel {
+	--input-padding-x: 0.3em;
+	--input-padding-y: 0.05em;
+	--font-size: clamp(14px, 4vw, 17px);
+	--button-disabled-color: hsl(0, 0%, 44%);
+
+	font-size: var(--font-size);
+}
+
+.admin-panel input,
+.admin-panel select {
+	/* hsl(from var(--color-dahm-background) h s calc(l + 5)) */
+	--input-background: hsl(44, 13%, 83%);
+	background-color: var(--input-background);
+
+	padding: var(--input-padding-y) var(--input-padding-x);
+	border: 1px solid var(--border-color);
+	width: 100%;
+}
+.admin-panel input:-webkit-autofill,
+.admin-panel input:-webkit-autofill:hover,
+.admin-panel input:-webkit-autofill:focus {
+	--input-background: hsl(44, 13%, 80%);
+	-webkit-box-shadow: 0 0 0 1000px var(--input-background) inset;
+	box-shadow: 0 0 0 1000px var(--input-background) inset;
+
+	border: 1px solid var(--border-color); /* !important;*/
+
+	-webkit-text-fill-color: var(--color-text);
+	color: var(--color-text);
+}
+.admin-panel input.hidden,
+.admin-panel input.hidden:-webkit-autofill,
+.admin-panel input.hidden:-webkit-autofill:hover,
+.admin-panel input.hidden:-webkit-autofill:focus {
+	--input-background: hsl(44, 13%, 76%);
+}
+.admin-panel input:-webkit-autofill::first-line {
+	color: var(--color-text);
+}
+
+.admin-panel input.hidden:-moz-autofill {
+	--input-background: hsl(44, 13%, 76%);
+}
+.admin-panel input:-moz-autofill {
+	--input-background: hsl(44, 13%, 80%);
+	box-shadow: 0 0 0 1000px var(--input-background) inset;
+
+	-moz-text-fill-color: var(--color-text);
+	color: var(--color-text);
+	border: 1px solid var(--border-color);
+}
+
+.admin-panel button {
+	/* padding: var(--input-padding-y) var(--input-padding-x); */
+	border: 1px solid transparent;
+	transition:
+		background-color 300ms ease-in,
+		color 300ms ease-in;
+}
+.admin-panel button:disabled {
+	cursor: default;
+}
+
+.admin-panel button.action {
+	border-color: var(--color-dahm-bordo-dark);
+	background-color: var(--color-dahm-bordo-dark);
+	color: #ffffff;
+	font-weight: 300;
+}
+.admin-panel button.action:disabled {
+	border-color: var(--button-disabled-color);
+	background-color: var(--button-disabled-color);
+}
+
+.admin-panel button.border {
+	border-color: var(--color-dahm-bordo-dark);
+	background-color: transparent;
+	color: var(--color-dahm-bordo-dark);
+	font-weight: 400;
+}
+
+.admin-panel button.border:disabled {
+	background-color: transparent;
+	color: var(--button-disabled-color);
+	font-weight: 500;
+}
+
+.admin-panel button.link {
+	background-color: transparent;
+	border-color: transparent;
+	color: var(--color-text);
+
+	font-size: 0.98em;
+	font-weight: 540;
+	text-transform: uppercase;
+}
+.admin-panel button.link.active {
+	text-decoration: 1.5px var(--color-marker) underline;
+	text-underline-offset: 0.35em;
+	text-decoration-skip-ink: none;
+}
+/* .admin-panel button.link:disabled {
+	background-color: transparent;
+	color: var(--button-disabled-color);
+	font-weight: 500;
+} */
+
+@media (hover: hover) {
+	.admin-panel button.action:not(:disabled):hover {
+		background-color: hsl(from var(--color-dahm-bordo-dark) h s calc(l + 7));
+	}
+	.admin-panel button.border:not(:disabled):hover {
+		background-color: hsl(from var(--color-dahm-bordo-dark) h calc(s - 7) calc(l + 7));
+		color: #ffffff;
+		font-weight: 300;
+	}
+	.admin-panel button.link:not(:disabled):hover {
+		background-color: transparent;
+	}
+}

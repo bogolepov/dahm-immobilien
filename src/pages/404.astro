@@ -5,12 +5,9 @@ import Layout from '@layouts/Layout.astro';
 const title: string = '404';
 ---
 
-<Layout {title}>
+<Layout {title} robots='noindex, nofollow'>
 	<p class='big-font'>Diese Seite konnte nicht gefunden werden.</p>
-	<p>
-		Möglicherweise haben Sie eine falsche oder veraltete URL aufgerufen, oder wir haben die Seite umbenannt oder
-		gelöscht.
-	</p>
+	<p>Möglicherweise haben Sie eine falsche oder veraltete URL aufgerufen, oder wir haben die Seite umbenannt oder gelöscht.</p>
 	<p>Vielleicht können Sie den gewünschten Inhalt über unsere Navigation oben finden?</p>
 </Layout>
 

@@ -1,5 +1,5 @@
 ---
-import ListVerwaltung from '@components/ListVerwaltung.astro';
+import ListVerwaltung from '@components/serviceList/ListVerwaltung.astro';
 import Dahm from '@data/dahm.json';
 import { getDuration1991 } from '@scripts/utils';
 
@@ -8,18 +8,18 @@ const experience = getDuration1991();
 
 <article class='management'>
 	<p class='text-block mt0'>
-		Die Haupttätigkeit des Unternehmens <span class='company-name-bold'>{Dahm.company_fullname}</span> bleibt die Verwaltung
-		von Industrieobjekten, Mehrfamilienhäuser, Gewerbe und Mehrfamilienhäuser, WEG-Mehrfamilienhäuser.
+		Die Haupttätigkeit des Unternehmens <span class='company-name-bold'>{Dahm.company_fullname}</span> bleibt die Verwaltung von Industrieobjekten,
+		Mehrfamilienhäuser, Gewerbe und Mehrfamilienhäuser, WEG-Mehrfamilienhäuser.
 	</p>
 	<p class='text-block'>
-		Seit über {experience} Jahren stehen wir als erfahrene Immobilienverwaltungsgesellschaft für professionelle Betreuung,
-		transparente Kommunikation und nachhaltige Werte. Unsere langjährige Erfahrung erlaubt es uns, Immobilien nicht nur zu
-		verwalten, sondern ihren Wert langfristig zu sichern und zu steigern.
+		Seit über {experience} Jahren stehen wir als erfahrene Immobilienverwaltungsgesellschaft für professionelle Betreuung, transparente Kommunikation
+		und nachhaltige Werte. Unsere langjährige Erfahrung erlaubt es uns, Immobilien nicht nur zu verwalten, sondern ihren Wert langfristig zu
+		sichern und zu steigern.
 	</p>
 	<p class='text-block'>
-		Was uns besonders macht? Wir setzen auf persönliche Nähe und bauen vertrauensvolle, langfristige Beziehungen zu
-		Eigentümern, Mietern und Geschäftspartnern auf. Denn wir wissen: Immobilien sind Vertrauenssache – und Vertrauen
-		entsteht durch Kompetenz, Engagement und Zuverlässigkeit.
+		Was uns besonders macht? Wir setzen auf persönliche Nähe und bauen vertrauensvolle, langfristige Beziehungen zu Eigentümern, Mietern und
+		Geschäftspartnern auf. Denn wir wissen: Immobilien sind Vertrauenssache – und Vertrauen entsteht durch Kompetenz, Engagement und
+		Zuverlässigkeit.
 	</p>
 	<p class='text-block motto'>Ihr Eigentum in besten Händen.</p>
 	<ListVerwaltung />
@@ -27,12 +27,6 @@ const experience = getDuration1991();
 </article>
 
 <style>
-	.management > p {
-		margin-top: 2em;
-		margin-bottom: 2em;
-		font-size: calc(var(--font-size) * 1.05);
-	}
-
 	.management .motto {
 		/* font-size: calc(var(--font-size) * 1.15); */
 		font-weight: 500;
@@ -41,10 +35,5 @@ const experience = getDuration1991();
 		.management .motto {
 			font-weight: 540;
 		}
-	}
-
-	.management .final {
-		font-weight: 500;
-		margin-top: 0;
 	}
 </style>

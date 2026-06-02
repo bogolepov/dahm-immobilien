@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, useId, useTemplateRef } from 'vue';
-import DahmTexts from '@data/dahm_text.json';
 import PrivacyPolicyControl from './PrivacyPolicyControl.vue';
 import SendingLoader from './Loader.vue';
 import MessageDialog from './Dialog.vue';
@@ -17,7 +16,6 @@ import {
 import '@styles/form.css';
 
 type PrivacyPolicyType = InstanceType<typeof PrivacyPolicyControl>;
-type SendingLoaderType = InstanceType<typeof SendingLoader>;
 type MessageDialogType = InstanceType<typeof MessageDialog>;
 
 const topics: string[] = ['Verwaltung', 'Verkauf', 'Vermietung', 'Anderes'];
@@ -38,8 +36,9 @@ const message = ref<string>('');
 const acceptedPolicy = ref(false);
 const agreedConnection = ref(false);
 
+const isSending = ref<boolean>(false);
+
 const policyComponent = useTemplateRef<PrivacyPolicyType>('policy-ctrl');
-const sendingLoader = useTemplateRef<SendingLoaderType>('loader-ctrl');
 const msgDialog = useTemplateRef<MessageDialogType>('msg-dialog');
 
 const buttonValid = computed(() => {
@@ -64,7 +63,7 @@ function handleSendForm() {
 	validationMode.value = true;
 	const formData = validateFormData();
 	if (formData) {
-		startSendingLoader();
+		isSending.value = true;
 		sendContactForm(formData, handleSendResult);
 	}
 }
@@ -74,7 +73,7 @@ function handleSendResult(isOk: boolean, msg: string) {
 		resetForm();
 		formSent.value = true;
 	}
-	stopSendingLoader();
+	isSending.value = false;
 	msgDialog.value?.show(msg);
 }
 
@@ -105,13 +104,6 @@ function resetForm() {
 	message.value = '';
 	agreedConnection.value = false;
 	policyComponent.value?.resetPolicy();
-}
-
-function startSendingLoader() {
-	sendingLoader.value?.start();
-}
-function stopSendingLoader() {
-	sendingLoader.value?.stop();
 }
 
 function closeDialog() {
@@ -177,17 +169,12 @@ function closeCardMessage() {
 			required
 		></textarea>
 		<div class="flex-checkbox-label">
-			<input
-				:id="agreeId"
-				type="checkbox"
-				v-model="agreedConnection"
-				@keypress.enter.prevent="agreedConnection = !agreedConnection"
-			/>
+			<input :id="agreeId" type="checkbox" v-model="agreedConnection" @keypress.enter.prevent="agreedConnection = !agreedConnection" />
 			<label :for="agreeId">Hiermit erlaube ich Ihnen mich per E-Mail und/oder Telefon zu kontaktieren.</label>
 		</div>
 		<PrivacyPolicyControl ref="policy-ctrl" @policy-status="handlePolicyStatus" />
 		<button type="button" class="red-button" @click="handleSendForm" :disabled="!buttonValid">Absenden</button>
-		<SendingLoader ref="loader-ctrl" :background="false" />
+		<SendingLoader v-if="isSending" :transparent="true" />
 		<MessageDialog ref="msg-dialog" @handle-close="closeDialog" />
 	</form>
 </template>

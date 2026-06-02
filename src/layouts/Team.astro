@@ -15,6 +15,7 @@ const experience = getDuration1991();
   p.description {
     font-size: 1.05em;
     font-weight: 300;
+    margin: 0 auto;
   }
   a:where(.phone) {
     font-size: 0.95em;
@@ -140,7 +141,10 @@ const experience = getDuration1991();
 </style>
 
 <article class="team">
-  <p class="text-block description">Die <span class="company-name-bold">{Dahm.company_fullname}</span> als Nachfolger für die <span class="company-name-bold">Hausverwaltung Dahm</span> verwaltet seit über {experience} Jahren verlässlich Immobilien. Wir arbeiten stets seriös, zuverlässig und professionell.</p>
+  <p class="text-block description">
+    Die <span class="company-name-bold">{Dahm.company_fullname}</span> als Nachfolger für die 
+    <span class="company-name-bold">Hausverwaltung Dahm</span> verwaltet seit über {experience}
+    Jahren verlässlich Immobilien. Wir arbeiten stets seriös, zuverlässig und professionell.</p>
     <Picture 
       class='image-wrapper-landscape text-block team-photo' 
       src={TeamPhoto} 

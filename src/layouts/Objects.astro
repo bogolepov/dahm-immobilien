@@ -3,6 +3,9 @@ import { Icon } from 'astro-icon/components';
 
 import dahm from '@data/dahm.json';
 import ExternalService from '@vue/cookie/ExternalService.vue';
+import ObjectsControl from '@vue/Objects/ObjectsControl/ObjectsControl.vue';
+import ObjectsArticle from '@vue/Objects/ObjectsArticle/ObjectsArticle.vue';
+
 const { objects } = dahm;
 objects.sort((obj1, obj2) => {
 	let res: number = obj1.address.str.toLowerCase().localeCompare(obj2.address.str.toLowerCase(), 'de');
@@ -13,90 +16,133 @@ objects.sort((obj1, obj2) => {
 
 ---
 
-<article class='s-objects'>
-	<p class='text-block mb0 mt0'>
-		Derzeit verwaltet <span class='company-name-bold'>{dahm.company_name}</span> zahlreiche Objekte unterschiedlicher Art in Hagen und Umgebung:
-	</p>
-	<ul class='text-block obj-types mt05'>
-		{
-			dahm.object_types.map(type => {
-				return <li>{type.title_plural}</li>;
-			})
-		}
-	</ul>
-	<p class="text-block mt05">Unten sehen Sie eine Karte mit verwalteten Objekten.</p>
-	<div class='map-container'>
-		<ExternalService client:only='vue' type='open_street_map'>
-			<iframe
-			class='map-objects'
-			frameborder='0'
-			allowfullscreen
-			allow='geolocation'
-			src='//umap.openstreetmap.fr/de/map/dahm-immobilien-verwaltung-gmbh_1194597#10/51.3834/7.4487?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'
-		>
-	</iframe>
-		</ExternalService>
-	</div>
-	<ul class='obj-list'>
-		{
-			objects.map(object => {
-				const objectName = dahm.object_types.find(type => type.sid === object.type)?.title;
-				const objectAddress = `${object.address.str} ${object.address.number}, ${object.address.plz} ${object.address.city}`;
-				return (
-					<li>
-						<p class='object-address' tabindex="0" role="button" aria-expanded='false'>
-							{objectAddress}
-						</p>
-						<div class='object-card' inert>
-							{object.person && (
-								<div>
-									{objectName && (
-											<p class='card-title new-part'>Objekt</p>
-											<p class='marg-l'>{objectName}</p>
+<div>
+	<ObjectsControl client:only="vue"></ObjectsControl>
+	<div class="objects-wrapper">
+		<article class='s-objects management show'>
+			<p class='text-block mb0 mt0'>
+				Derzeit verwaltet <span class='company-name-bold'>{dahm.company_name}</span> zahlreiche Objekte unterschiedlicher Art in Hagen und Umgebung:
+			</p>
+			<ul class='text-block obj-types mt05'>
+				{
+					dahm.object_types.map(type => {
+						return <li>{type.title_plural}</li>;
+					})
+				}
+			</ul>
+			<p class="text-block mt05">Unten sehen Sie eine Karte mit verwalteten Objekten.</p>
+			<div class='map-container'>
+				<ExternalService client:only='vue' type='open_street_map'>
+					<iframe
+					class='map-objects'
+					frameborder='0'
+					allowfullscreen
+					allow='geolocation'
+					src='//umap.openstreetmap.fr/de/map/dahm-immobilien-verwaltung-gmbh_1194597#10/51.3834/7.4487?scaleControl=false&miniMap=false&scrollWheelZoom=false&zoomControl=true&editMode=disabled&moreControl=true&searchControl=null&tilelayersControl=null&embedControl=null&datalayersControl=true&onLoadPanel=none&captionBar=false&captionMenus=true'
+				>
+			</iframe>
+				</ExternalService>
+			</div>
+			<ul class='obj-list'>
+				{
+					objects.map(object => {
+						const objectName = dahm.object_types.find(type => type.sid === object.type)?.title;
+						const objectAddress = `${object.address.str} ${object.address.number}, ${object.address.plz} ${object.address.city}`;
+						return (
+							<li>
+								<p class='object-address' tabindex="0" role="button" aria-expanded='false'>
+									{objectAddress}
+								</p>
+								<div class='object-card' inert>
+									{object.person && (
+										<div>
+											{objectName && (
+													<p class='card-title new-part'>Objekt</p>
+													<p class='marg-l'>{objectName}</p>
+											)}
+											<p class='card-title new-part'>Ansprechpartner</p>
+											{object.person.map((item, index) => {
+												const who = dahm.team.find(t => t.sid === item);
+												if (!who) return null;
+												return (
+													<div class='icon-flex marg-t1' class:list={[{'marg-t2': index>0}]}>
+														<Icon name='person' />
+														<p class="person-name">{who.name} {who.lastname}</p>
+													</div>
+													<div class='icon-flex'>
+														<Icon name='email' />
+														<a href={'mailto:' + who.email} aria-label={`${who.name} ${who.lastname} E-Mail-Adresse`}>
+															{who.email}
+														</a>
+													</div>
+													<div class='icon-flex'>
+														<Icon name='phone' />
+														<a href={'tel:' + who.telephone.replaceAll(' ', '')} aria-label={`${who.name} ${who.lastname} Telefonnummer`}>
+															{who.telephone}
+														</a>
+													</div>
+												);
+											})}
+											{
+												object.google &&
+												<p class='card-title new-part'>
+												<a href={object.google} target='_blank' rel='noopener external'>
+													Auf Google Maps
+												</a>
+											</p>
+											}
+											
+										</div>
 									)}
-									<p class='card-title new-part'>Ansprechpartner</p>
-									{object.person.map((item, index) => {
-										const who = dahm.team.find(t => t.sid === item);
-										if (!who) return null;
-										return (
-											<div class='icon-flex marg-t1' class:list={[{'marg-t2': index>0}]}>
-												<Icon name='person' />
-												<p class="person-name">{who.name} {who.lastname}</p>
-											</div>
-											<div class='icon-flex'>
-												<Icon name='email' />
-												<a href={'mailto:' + who.email} aria-label={`${who.name} ${who.lastname} E-Mail-Adresse`}>
-													{who.email}
-												</a>
-											</div>
-											<div class='icon-flex'>
-												<Icon name='phone' />
-												<a href={'tel:' + who.telephone.replaceAll(' ', '')} aria-label={`${who.name} ${who.lastname} Telefonnummer`}>
-													{who.telephone}
-												</a>
-											</div>
-										);
-									})}
-									{
-										object.google &&
-										<p class='card-title new-part'>
-										<a href={object.google} target='_blank' rel='noopener external'>
-											Auf Google Maps
-										</a>
-									</p>
-									}
-									
 								</div>
-							)}
-						</div>
-					</li>
-				);
-			})
-		}
-	</ul>
-</article>
+							</li>
+						);
+					})
+				}
+			</ul>
+		</article>
+		<ObjectsArticle client:only="vue" type='sale'></ObjectsArticle>
+		<ObjectsArticle client:only="vue" type='rent'></ObjectsArticle>
+	</div>
+</div>
 
 <style>
+	.objects-wrapper {
+		position: relative;
+	}
+
+	.s-objects {
+	position: absolute;
+	width: 100%;
+	inset: 0;
+	pointer-events: none;
+
+	background-color: var(--color-dahm-background);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(10px);
+
+  transition:
+    opacity 0.95s ease,
+    transform 0.95s ease,
+		visibility 0s linear 0.95s;
+}
+
+.s-objects.show {
+	position: relative;
+	pointer-events: auto;
+	
+  opacity: 1;
+  visibility: visible;
+
+  transition:
+    opacity 0.95s ease,
+    transform 0.95s ease,
+    visibility 0s;
+}
+
 	.s-objects .map-container {
 		--map-height: min(calc((100vh - var(--header-height)) * 0.9), calc(1.2 * 100vw));
 		width: 100%;
@@ -107,12 +153,6 @@ objects.sort((obj1, obj2) => {
 		.s-objects .map-objects {
 		width: 100%;
 		height: 100%;
-	}
-
-	.s-objects > p {
-		margin-top: 2em;
-		margin-bottom: 2em;
-		font-size: calc(var(--font-size) * 1.05);
 	}
 
 	.s-objects .obj-types {

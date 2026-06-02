@@ -1,0 +1,47 @@
+.eye-edit {
+	--eye-width: 1.8em;
+
+	display: flex;
+	flex-direction: row;
+	column-gap: 0.4em;
+	flex-wrap: wrap;
+	align-items: baseline;
+}
+
+.eye-edit sup {
+	color: var(--color-dahm-bordo-dark);
+}
+
+.eye-edit .input-field {
+	position: relative;
+	flex: 1;
+}
+.eye-edit .input-field.eye input {
+	padding-right: var(--eye-width);
+}
+.eye-edit .input-field.hidden input {
+	background-color: var(--color-dahm-grey);
+}
+
+.eye-edit button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: var(--eye-width);
+
+	background-color: transparent;
+	border: transparent;
+	cursor: pointer;
+
+	display: grid;
+	align-items: center;
+}
+
+.eye-edit button svg {
+	display: block;
+	margin: auto;
+	height: 1em;
+	/* height: 1rem; */
+	fill: hsl(0, 0%, 25%);
+}

@@ -1,0 +1,27 @@
+header.button-menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	column-gap: 0.4em;
+	padding: 0.8em 1.5em;
+	width: 100%;
+
+	background-color: var(--color-dahm-background);
+	background-color: hsl(from var(--color-dahm-background) h s l / 0.9);
+}
+header.button-menu button {
+	padding: 5px 10px;
+}
+
+main {
+	margin-top: 3.5em;
+}
+
+.logout-button {
+	margin-left: auto;
+}

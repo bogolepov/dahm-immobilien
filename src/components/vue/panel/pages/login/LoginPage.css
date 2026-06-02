@@ -1,0 +1,35 @@
+.admin-panel:has(.login-form) {
+	height: 80%;
+}
+
+main {
+	display: grid;
+	place-items: center;
+	height: 100%;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	width: 100%;
+	max-width: 300px;
+	margin: 1em auto 6em auto;
+}
+
+.login-form .logo {
+	max-width: 40%;
+	min-width: 90px;
+	margin: 0 auto 2.2em auto;
+}
+
+.password-input {
+	margin-top: 0.6em;
+	margin-bottom: 1.6em;
+}
+
+.login-form button.action {
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+}

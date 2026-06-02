@@ -1,4 +1,6 @@
 ---
+import '@styles/list.css';
+
 type TAdvantage = {
 	advName: string;
 	advMotto: string;
@@ -57,12 +59,12 @@ const list: TAdvantage[] = [
 ];
 ---
 
-<ul class='advantages-list'>
+<ul class='card-list'>
 	{
 		list.map(item => {
 			return (
-				<li class='advantage sticker color'>
-					<h5>{item.advName}</h5>
+				<li class='card-item sticker color'>
+					<h5 class='bold'>{item.advName}</h5>
 					<blockquote>{item.advMotto}</blockquote>
 					<p>{item.advDescription}</p>
 				</li>
@@ -72,42 +74,3 @@ const list: TAdvantage[] = [
 	<li></li>
 	<li></li>
 </ul>
-
-<style>
-	.advantages-list {
-		--padding-x-service: 1.2em;
-		--padding-y-service: 0.8em;
-
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		width: 100%;
-		flex-wrap: wrap;
-		column-gap: 2em;
-	}
-	.advantages-list > * {
-		width: min(100%, 300px);
-		flex-grow: 1;
-	}
-	.advantages-list .advantage {
-		margin-bottom: 2em;
-	}
-
-	.advantage.sticker {
-		--padding-x-sticker: var(--padding-x-service);
-		--padding-y-sticker: var(--padding-y-service);
-	}
-
-	.advantage h5 {
-		text-transform: uppercase;
-		font-size: 0.8em;
-		letter-spacing: 0.025em;
-		padding-bottom: 0.3em;
-	}
-	.advantage blockquote {
-		font-size: 1.1em;
-		font-style: italic;
-		padding-bottom: 0.3em;
-		color: var(--color-dahm-bordo);
-	}
-</style>

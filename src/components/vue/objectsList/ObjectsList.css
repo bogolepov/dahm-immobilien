@@ -1,0 +1,124 @@
+.card-item.property {
+	align-items: left;
+	line-height: 1.15em;
+}
+
+.card-item.new {
+	display: grid;
+	place-items: center;
+	min-height: 300px;
+}
+.card-item.new button.border {
+	padding: 1.2em 2em;
+	font-weight: 500;
+	border-width: 2px;
+}
+
+.card-item img {
+	margin: 0 auto;
+	padding-bottom: 0.4em;
+	max-height: 250px;
+	max-width: 450px;
+	width: 100%;
+	object-fit: contain;
+}
+
+@media (hover: hover) {
+	.sticker.not-zoom:hover {
+		transform: none;
+	}
+}
+
+.card-item p span {
+	font-weight: 500;
+	padding-right: 0.7em;
+	text-transform: uppercase;
+	font-size: 0.75em;
+	letter-spacing: 0.015em;
+	font-weight: 720;
+}
+
+.card-item .title {
+	color: var(--color-dahm-bordo-dark);
+	font-size: 1.03em;
+	font-weight: 600;
+	line-height: 1.1em;
+	text-align: center;
+	padding: 0.3em 1em 0.5em 1em;
+	/* padding: 0.3em 0 0.5em 0; */
+}
+
+.card-item .property-sid {
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translateY(-100%);
+	color: var(--color-dahm-bordo-dark);
+	font-size: 0.9em;
+	font-weight: 500;
+	line-height: 1.1em;
+	text-align: right;
+	padding: 0.15em 0;
+}
+
+.card-item .price {
+	/* font-variant-numeric: tabular-nums; */
+}
+
+.card-item .expose-link {
+	margin-top: 0.4em;
+	font-weight: 450;
+}
+
+.card-item .blur-layer {
+	position: absolute;
+	inset: 0;
+	-webkit-backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px);
+}
+
+.card-item .pdf-button {
+	color: var(--color-dahm-bordo-dark);
+	width: 1em;
+	height: 1em;
+	margin-left: 0.1em;
+	position: relative;
+}
+.pdf-button svg {
+	position: absolute;
+	inset: -0.2em 0 0 0;
+	display: grid;
+	place-items: center;
+}
+
+.card-control-layer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	flex-direction: row;
+	place-items: center;
+	row-gap: 0.6em;
+	padding: 0.6em 0.9em;
+}
+
+.card-control-layer button {
+	padding: 0.2em 0.5em;
+	color: var(--color-dahm-bordo-dark);
+}
+.card-control-layer button svg {
+	display: block;
+}
+
+button.save-show-changes {
+	width: 100%;
+	max-width: 350px;
+	padding: 0.3em 0.7em;
+	margin-bottom: 0.8em;
+}
+button.save-show-changes div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 0.9em;
+}

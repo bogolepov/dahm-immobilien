@@ -1,0 +1,152 @@
+.layer-on-window {
+	position: fixed;
+	z-index: 1200;
+	inset: 0;
+
+	display: grid;
+	place-items: center;
+
+	-webkit-backdrop-filter: blur(1.5px);
+	backdrop-filter: blur(1.5px);
+	background-color: hsl(from var(--color-dahm-background-dark) h s calc(l + 5) / 0.7);
+
+	padding: 2em 2.5em;
+}
+@media screen and (max-width: 530px) {
+	.layer-on-window {
+		padding: 1em 1em;
+	}
+}
+
+.edit-layer {
+	position: relative;
+	margin: auto auto;
+	max-width: 700px;
+	width: 98%;
+	height: 85vh;
+	border: 2px solid var(--border-color);
+	box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.5);
+	/* box-shadow:
+		0 0 3px var(--border-color),
+		0 0 8px var(--border-color),
+		0 0 14px var(--border-color); */
+
+	/* box-shadow: 1px 1px 1px 0 hsl(from var(--border-color) h s l); */
+}
+.edit-layer.changed {
+	border-color: var(--color-dahm-bordo-dark);
+}
+
+.edit-loader-layer {
+	position: absolute;
+	z-index: 1210;
+	inset: 0;
+}
+
+.edit-layer-body {
+	position: absolute;
+	inset: 0;
+	overflow-y: auto;
+	padding: 1.2em 1.6em;
+	background-color: var(--color-dahm-background-dark);
+}
+
+.separator {
+	border-top: 1px solid var(--border-color);
+}
+
+.edit-row {
+	display: flex;
+	column-gap: 1.2em;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.edit-row .max-column {
+	flex-grow: 1;
+}
+
+.list-select {
+	min-width: 5.8em;
+	max-width: 7em;
+	padding-right: 1rem;
+}
+
+.cover-image-preview {
+	position: relative;
+}
+.cover-image-preview > img,
+.cover-image-preview > svg {
+	color: var(--border-color);
+	display: block;
+	width: 100%;
+	max-width: 250px;
+	min-width: 120px;
+	margin: 0 auto;
+}
+.cover-image-preview > img {
+	margin-bottom: 1.3em;
+}
+
+.picture-control {
+	display: flex;
+	column-gap: 1em;
+	color: var(--color-dahm-bordo-dark);
+	width: max-content;
+	margin: 0 auto;
+}
+.picture-control label {
+	cursor: pointer;
+}
+
+.expose-item {
+	display: flex;
+	align-items: start;
+	column-gap: 1em;
+}
+.expose-item label,
+.expose-item button {
+	color: var(--color-dahm-bordo-dark);
+	cursor: pointer;
+}
+.expose-filename {
+	color: inherit;
+	display: flex;
+	column-gap: 0.1em;
+	font-size: 0.85em;
+}
+
+.row-gap-small {
+	margin-bottom: 0.4em;
+}
+.row-gap-middle {
+	margin-bottom: 0.7em;
+}
+.row-gap-big {
+	margin-bottom: 1em;
+}
+
+.i-building {
+	max-width: 5.5em;
+}
+.i-zip {
+	max-width: 6.3em;
+}
+
+.category-list,
+.separator {
+	margin-bottom: 1em;
+}
+.category-list > * {
+	margin-bottom: 0.4em;
+}
+
+.button-actions {
+	display: flex;
+	column-gap: 2em;
+	width: fit-content;
+	margin-left: auto;
+}
+
+.button-actions button {
+	padding: 0.3em 0.8em;
+}

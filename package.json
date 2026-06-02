@@ -1,31 +1,39 @@
 {
 	"name": "dahm-immobilien-verwaltung-gmbh",
 	"type": "module",
-	"version": "1.0.1",
+	"version": "1.2.0",
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
+		"gen-supabase-db-types": "npx supabase gen types typescript --project-id awqevzpginfjkafpxzsa --schema public > ./src/scripts/supabase_db_types.ts",
 		"build-emails": "rimraf --glob ./netlify/functions/lib/emails/html/*.html && mjml ./netlify/functions/lib/emails/mjml/*.mjml -o ./netlify/functions/lib/emails/html && node ./netlify/functions/lib/emails/postprocess-html.mjs",
 		"build-emails-prod": "rimraf --glob ./netlify/functions/lib/emails/html/*.html && mjml ./netlify/functions/lib/emails/mjml/*.mjml -o ./netlify/functions/lib/emails/html && node ./netlify/functions/lib/emails/postprocess-html.mjs --prod"
 	},
 	"dependencies": {
-		"@astrojs/netlify": "^6.3.1",
-		"@astrojs/sitemap": "^3.4.1",
-		"@astrojs/vue": "^5.0.11",
-		"astro": "^5.7.5",
+		"@astrojs/netlify": "^7.0.10",
+		"@astrojs/sitemap": "^3.7.2",
+		"@astrojs/vue": "^6.0.1",
+		"@netlify/functions": "^5.2.2",
+		"@supabase/supabase-js": "^2.106.1",
+		"astro": "^6.3.7",
 		"astro-icon": "^1.1.5",
+		"cookie": "^1.1.1",
 		"handlebars": "^4.7.8",
-		"mjml": "^4.18.0",
-		"nodemailer": "^7.0.3",
+		"jsonwebtoken": "^9.0.3",
+		"mjml": "^5.2.2",
+		"nodemailer": "^8.0.7",
+		"pinia": "^3.0.4",
 		"vue": "^3.5.13",
-		"zod": "^3.25.64"
+		"zod": "^4.4.3"
 	},
 	"devDependencies": {
+		"@types/jsonwebtoken": "^9.0.10",
 		"@types/nodemailer": "^6.4.17",
 		"prettier": "^3.4.2",
 		"prettier-plugin-astro": "^0.14.1",
-		"rimraf": "^6.1.3"
+		"rimraf": "^6.1.3",
+		"supabase": "^2.101.0"
 	}
 }

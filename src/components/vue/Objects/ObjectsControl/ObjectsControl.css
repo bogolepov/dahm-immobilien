@@ -1,0 +1,21 @@
+.objects-control {
+	display: flex;
+	column-gap: 1em;
+	row-gap: 0.6em;
+	/* padding-bottom: 1em; */
+	margin-bottom: 2em;
+	flex-wrap: wrap;
+	/* border-bottom: 1px solid gray; */
+
+	button {
+		font-size: 0.98em;
+		font-weight: 540;
+		text-transform: uppercase;
+	}
+
+	button.active {
+		text-decoration: 1.5px var(--color-marker) underline;
+		text-underline-offset: 0.35em;
+		text-decoration-skip-ink: none;
+	}
+}

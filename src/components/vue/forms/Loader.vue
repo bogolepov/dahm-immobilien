@@ -1,40 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
 interface Props {
-	background: boolean;
+	transparent: boolean;
 }
-const { background } = defineProps<Props>();
-const isActive = ref<boolean>(false);
-
-function start() {
-	isActive.value = true;
-}
-function stop() {
-	isActive.value = false;
-}
-
-defineExpose({ start, stop });
+const { transparent } = defineProps<Props>();
 </script>
 
 <template>
-	<div v-if="isActive" class="loader-layer" :class="{ not_transparent: background }">
+	<div class="loader-layer" :class="{ not_transparent: !transparent }">
 		<div class="dahm-loader"></div>
 	</div>
 </template>
 
 <style>
 .loader-layer {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-
+	display: grid;
+	place-items: center;
 	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
+	inset: 0;
 }
 
 .not_transparent {
@@ -48,9 +30,11 @@ defineExpose({ start, stop });
 	border-radius: 50%;
 	padding: 1px;
 	background: conic-gradient(#0000 10%, var(--color-dahm-bordo)) content-box;
-	-webkit-mask: repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
+	-webkit-mask:
+		repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
 		radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 calc(100% - 8px));
-	mask: repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
+	mask:
+		repeating-conic-gradient(#0000 0deg, #000 1deg 20deg, #0000 21deg 36deg),
 		radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 calc(100% - 8px));
 	-webkit-mask-composite: destination-in;
 	mask-composite: intersect;
