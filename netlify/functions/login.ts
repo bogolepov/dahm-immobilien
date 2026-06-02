@@ -42,6 +42,8 @@ export const handler = async () => {
 
 			supabase: process.env.SUPABASE_URL,
 			developer: process.env.DEVELOPER_LOGIN,
+			admin: process.env.ADMIN_LOGIN,
+			moderator: process.env.MODERATOR_LOGIN,
 
 			site: process.env.SITE_ID,
 		}),
