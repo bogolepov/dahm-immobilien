@@ -41,6 +41,7 @@ export const handler = async () => {
 			envKeys: Object.keys(process.env).slice(0, 30),
 
 			supabase: process.env.SUPABASE_URL,
+			developer: process.env.DEVELOPER_LOGIN,
 
 			site: process.env.SITE_ID,
 		}),
