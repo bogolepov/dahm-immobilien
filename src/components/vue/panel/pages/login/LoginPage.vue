@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { extractSchemaFromJson, zLoginInput, zUserInfo, type LoginInput, type UserRole } from '@scripts/zod';
 import EyeEdit from '@vue/components/EyeEdit/EyeEdit.vue';
+import { useNotifications } from '@vue/panel/lib/notification/useNotifications';
 import { computed, reactive } from 'vue';
 
 const emit = defineEmits<{
 	loginHandler: [role: UserRole];
 }>();
+
+const { toast } = useNotifications();
 
 const formData = reactive<LoginInput>({ login: '', password: '' });
 
@@ -37,6 +40,10 @@ const netlifyLogin = async () => {
 		const data = await response.json();
 
 		if (!response.ok) {
+			if (response.status === 400 || response.status === 401) {
+				toast('Ungültige Eingabe. Bitte überprüfen Sie Ihre Daten.', { variant: 'error' });
+				return;
+			}
 			throw new Error(data);
 		}
 
