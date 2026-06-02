@@ -42,11 +42,11 @@ const netlifyLogin = async () => {
 
 		console.log('data: ', data);
 
-		// const user = extractSchemaFromJson(zUserInfo, JSON.stringify(data));
-		// if (!user) throw new Error('Invalid response data: extractSchemaFromJson');
+		const user = extractSchemaFromJson(zUserInfo, JSON.stringify(data));
+		if (!user) throw new Error('Invalid response data: extractSchemaFromJson');
 
-		// resetFormData();
-		// emit('loginHandler', user.role);
+		resetFormData();
+		emit('loginHandler', user.role);
 	} catch (err) {
 		console.log(err);
 	}

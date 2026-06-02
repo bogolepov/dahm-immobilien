@@ -34,41 +34,23 @@ function userLogin(role: UserRole) {
 	};
 }
 
-export const handler = async () => {
-	return {
-		statusCode: 200,
-		body: JSON.stringify({
-			envKeys: Object.keys(process.env).slice(0, 30),
+export const handler: Handler = async (event, context) => {
+	if (!event || !event.body) return response(400, 'Bad request');
 
-			supabase: process.env.SUPABASE_URL,
-			developer: process.env.DEVELOPER_LOGIN,
-			admin: process.env.ADMIN_LOGIN,
-			moderator: process.env.MODERATOR_LOGIN,
+	const input = extractSchemaFromJson(zLoginInput, event.body);
+	if (!input) return response(400, 'Bad request');
 
-			site: process.env.SITE_ID,
-		}),
-	};
+	console.log(input);
+
+	if (input.email?.length) return response(400, 'Bad request');
+
+	console.log('DEVELOPER:', process.env.DEVELOPER_LOGIN);
+	if (input.login !== process.env.DEVELOPER_LOGIN) console.log('login not from Developer');
+	if (input.password !== process.env.DEVELOPER_PASSWORD) console.log('password not from Developer');
+
+	if (input.login === process.env.ADMIN_LOGIN && input.password === process.env.ADMIN_PASSWORD) return userLogin('admin');
+	if (input.login === process.env.MODERATOR_LOGIN && input.password === process.env.MODERATOR_PASSWORD) return userLogin('moderator');
+	if (input.login === process.env.DEVELOPER_LOGIN && input.password === process.env.DEVELOPER_PASSWORD) return userLogin('developer');
+
+	return response(401, 'Invalid credentials');
 };
-
-// export const handler: Handler = async (event, context) => {
-// 	if (!event || !event.body) return response(400, 'Bad request');
-
-// 	const input = extractSchemaFromJson(zLoginInput, event.body);
-// 	if (!input) return response(400, 'Bad request');
-
-// 	console.log(input);
-
-// 	if (input.email?.length) return response(400, 'Bad request');
-
-// 	// console.log('ADMIN:', process.env.ADMIN_LOGIN);
-// 	// console.log('MODERATOR:', process.env.MODERATOR_LOGIN);
-// 	console.log('DEVELOPER:', process.env.DEVELOPER_LOGIN);
-// 	if (input.login !== process.env.DEVELOPER_LOGIN) console.log('login not from Developer');
-// 	if (input.password !== process.env.DEVELOPER_PASSWORD) console.log('password not from Developer');
-
-// 	if (input.login === process.env.ADMIN_LOGIN && input.password === process.env.ADMIN_PASSWORD) return userLogin('admin');
-// 	if (input.login === process.env.MODERATOR_LOGIN && input.password === process.env.MODERATOR_PASSWORD) return userLogin('moderator');
-// 	if (input.login === process.env.DEVELOPER_LOGIN && input.password === process.env.DEVELOPER_PASSWORD) return userLogin('developer');
-
-// 	return response(401, 'Invalid credentials');
-// };
