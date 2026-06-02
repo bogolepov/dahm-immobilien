@@ -54,7 +54,7 @@ const netlifyLogin = async () => {
 <template>
 	<main>
 		<form @submit.prevent="handleSubmit" class="login-form" novalidate>
-			<img class="logo" src="/src/icons/logo2025.svg" alt="Dahm Immobilien Verwaltung GMBH - Logo" />
+			<img class="logo" src="/logo.svg" alt="Dahm Immobilien Verwaltung GMBH - Logo" />
 			<input type="nickname" v-model.trim="formData.login" placeholder="Login" autocorrect="off" required />
 			<input
 				type="email"
