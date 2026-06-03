@@ -18,13 +18,13 @@
 	}
 }
 
-.edit-layer {
+.view-layer {
 	position: relative;
 	margin: auto auto;
 	max-width: 700px;
 	width: 98%;
 	height: 85vh;
-	border: 2px solid var(--border-color);
+	border: 1px solid var(--border-color);
 	box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.5);
 	/* box-shadow:
 		0 0 3px var(--border-color),
@@ -33,17 +33,14 @@
 
 	/* box-shadow: 1px 1px 1px 0 hsl(from var(--border-color) h s l); */
 }
-.edit-layer.changed {
-	border-color: var(--color-dahm-bordo-dark);
-}
 
-.edit-loader-layer {
+.view-loader-layer {
 	position: absolute;
 	z-index: 1210;
 	inset: 0;
 }
 
-.edit-layer-body {
+.view-layer-body {
 	position: absolute;
 	inset: 0;
 	overflow-y: auto;
@@ -71,13 +68,34 @@
 	padding-right: 1rem;
 }
 
-.edit-layer .cover-image-container:has(img) {
+/* .cover-image-container {
+	--max-width: 250px;
+	--min-width: 120px;
+	--max-height: 250px;
+
+	position: relative;
+	width: 100%;
+	max-width: var(--max-width);
+	min-width: var(--min-width);
+	margin: 0 auto;
+	overflow: hidden;
+	color: var(--border-color);
+}
+.cover-image-container > img,
+.cover-image-container > svg {
+	display: block;
+	max-width: var(--max-width);
+	min-width: var(--min-width);
+	width: 100%;
+	max-height: var(--max-height);
+	object-fit: contain;
+}
+.cover-image-container > img {
 	margin-bottom: 1.3em;
 }
-
-.cover-image-preview {
-	position: relative;
-}
+.cover-image-container > svg {
+	border: 1px solid var(--border-color);
+} */
 
 .picture-control {
 	display: flex;

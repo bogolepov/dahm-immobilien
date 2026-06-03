@@ -1,6 +1,7 @@
 .card-item.property {
 	align-items: left;
 	line-height: 1.15em;
+	overflow: hidden;
 }
 
 .card-item.new {
@@ -12,15 +13,6 @@
 	padding: 1.2em 2em;
 	font-weight: 500;
 	border-width: 2px;
-}
-
-.card-item img {
-	margin: 0 auto;
-	padding-bottom: 0.4em;
-	max-height: 250px;
-	max-width: 450px;
-	width: 100%;
-	object-fit: contain;
 }
 
 @media (hover: hover) {
@@ -36,6 +28,10 @@
 	font-size: 0.75em;
 	letter-spacing: 0.015em;
 	font-weight: 720;
+}
+
+.card-item-image {
+	padding-bottom: 0.4em;
 }
 
 .card-item .title {

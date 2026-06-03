@@ -1,200 +1,35 @@
 <script setup lang="ts">
-import { PROPERTY_STATUSES, type ActionType } from '@scripts/supabase_types';
-import { compactDeepCopy, createPropertyFormData, ensurePropertyFormData } from '@scripts/utils';
-import { zPropertyFormData, type PropertyFormData, type PropertyFormState } from '@scripts/zod';
-import { computed, reactive, ref, watch } from 'vue';
+import { type PropertyFormData } from '@scripts/zod';
 import EyeEdit from '../components/EyeEdit/EyeEdit.vue';
-import { netlifySaveObject } from '@vue/panel/lib/netlify.ts';
-import AddPhotoIcon from '@vue/icons/AddPhotoIcon.vue';
-import RemovePhotoIcon from '@vue/icons/RemovePhotoIcon.vue';
-import { ALLOWED_EXPOSE_TYPES, ALLOWED_IMAGE_TYPES, Z_MARKETING_TITLE_MIN, Z_PROPERTY_SID_MIN } from '@scripts/consts.ts';
-import RemovePdfIcon from '@vue/icons/RemovePdfIcon.vue';
-import AddPdfIcon from '@vue/icons/AddPdfIcon.vue';
-import WorldIcon from '@vue/icons/WorldIcon.vue';
-import ComputerIcon from '@vue/icons/ComputerIcon.vue';
-import Loader from '@vue/forms/Loader.vue';
-import { checkExposeFile, checkImageFile } from '@scripts/file.ts';
-import { useNotifications } from '@vue/panel/lib/notification/useNotifications.ts';
-import type { ZodError } from 'zod';
-import { StatusList } from '@vue/panel/lib/types.ts';
+import ObjectStatusSticker from '@vue/Objects/ObjectStatusSticker/ObjectStatusSticker.vue';
 import ObjectCoverImage from './ObjectCoverImage.vue';
 
 interface Props {
-	type: ActionType;
-	object: PropertyFormData | null;
+	object: PropertyFormData;
 }
 
-const { object, type } = defineProps<Props>();
+const { object } = defineProps<Props>();
 
 const emit = defineEmits<{
-	cancelHandler: [];
-	savedHandler: [];
+	closeHandler: [];
 }>();
 
-const statusOptions = PROPERTY_STATUSES.filter(option => {
-	if (type === 'rent' && option === 'sold') return false;
-	if (type === 'sale' && option === 'rented') return false;
-	return true;
-});
-
-let timer: number | undefined = undefined;
-const anyChanges = ref<boolean>(false);
-const isSaving = ref<boolean>(false);
-
-const { toast } = useNotifications();
-
-const normalizedObject = reactive<PropertyFormState>(
-	ensurePropertyFormData(JSON.parse(JSON.stringify(object || createPropertyFormData()))),
-);
-const updatedObject = reactive<PropertyFormState>(JSON.parse(JSON.stringify(normalizedObject)));
-const { address, finance, areas, spaces, tech_details } = updatedObject;
-
-const exposeFile = ref<File | null>(null);
-const imageFile = ref<File | null>(null);
-const imagePreviewUrl = ref<string | null>(null);
-
-const hasExpose = computed(() => updatedObject.url_expose || exposeFile.value);
-const exposeFilename = computed(() => {
-	if (updatedObject.url_expose) {
-		const url = new URL(updatedObject.url_expose);
-		const encodedFilename = url.pathname.split('/').pop() || '';
-		const filename = decodeURIComponent(encodedFilename);
-		return filename;
-	}
-	if (exposeFile.value) return exposeFile.value?.name;
-	return undefined;
-});
-
-watch(updatedObject, () => {
-	if (timer) window.clearTimeout(timer);
-	timer = window.setTimeout(() => {
-		anyChanges.value = JSON.stringify(compactDeepCopy(object)) !== JSON.stringify(compactDeepCopy(updatedObject));
-		timer = undefined;
-	}, 450);
-});
-
-const normalizeSlug = (slug: string) => {
-	return slug
-		.toLowerCase()
-		.replace(/[^a-z0-9_äöüß]/g, '')
-		.replaceAll('ä', 'ae')
-		.replaceAll('ö', 'oe')
-		.replaceAll('ü', 'ue')
-		.replaceAll('ß', 'ss');
-};
-
-function saveObject() {
-	if (JSON.stringify(compactDeepCopy(normalizedObject)) === JSON.stringify(compactDeepCopy(updatedObject))) return;
-
-	try {
-		const parsed = JSON.parse(JSON.stringify(updatedObject));
-		const result = zPropertyFormData.safeParse(parsed);
-
-		if (result.success && result.data) {
-			const saveProperty = result.data;
-			let slug = saveProperty.property_sid.replace(' ', '_');
-			if (saveProperty.address?.zip?.length) slug += '_' + saveProperty.address?.zip;
-			if (saveProperty.address?.city?.length) slug += '_' + saveProperty.address?.city;
-			saveProperty.slug = normalizeSlug(slug);
-
-			isSaving.value = true;
-			netlifySaveObject(saveProperty, exposeFile.value, imageFile.value, (ok: boolean, error?: string) => {
-				isSaving.value = false;
-				if (!ok && error) toast(error, { variant: 'error', dismissible: false });
-				if (ok) emit('savedHandler');
-			});
-		} else {
-			const errors = (result.error satisfies ZodError).issues;
-			errors.forEach(error => {
-				error.path.forEach(field =>
-					toast(error.message, { title: getFieldLabel(field) || (field as string), variant: 'error', dismissible: false }),
-				);
-			});
-		}
-	} catch (error) {
-		console.error(error);
-		return;
-	}
-}
-function getFieldLabel(field: PropertyKey) {
-	switch (field) {
-		case 'marketing_title':
-			return 'Titel';
-		case 'property_sid':
-			return 'Objekt-ID';
-		default:
-			return field as string;
-	}
-}
-
-async function onExposeSelected(event: Event) {
-	const target = event.target as HTMLInputElement;
-	const file = target.files?.[0];
-	target.value = '';
-
-	if (!file) return;
-
-	const { ok, errorMsg } = await checkExposeFile(file);
-	if (errorMsg || !ok) {
-		if (errorMsg?.length) toast('Expose: ' + errorMsg, { variant: 'error' });
-		return;
-	}
-
-	exposeFile.value = file;
-	updatedObject.url_expose = null;
-}
-function onExposeRemove() {
-	exposeFile.value = null;
-	updatedObject.url_expose = null;
-}
-
-async function onImageSelected(event: Event) {
-	const target = event.target as HTMLInputElement;
-	const file = target.files?.[0] || null;
-	target.value = '';
-
-	if (!file) return;
-
-	const { ok, errorMsg } = await checkImageFile(file);
-	if (errorMsg || !ok) {
-		if (errorMsg?.length) toast('Bilder: ' + errorMsg, { variant: 'error' });
-		return;
-	}
-
-	imageFile.value = file;
-	updatedObject.url_image = null;
-	imagePreviewUrl.value = URL.createObjectURL(file);
-}
-
-function onImageRemove() {
-	imageFile.value = null;
-	updatedObject.url_image = null;
-	imagePreviewUrl.value = null;
-}
+const { address, finance, areas, spaces, tech_details } = object;
 </script>
 
 <template>
 	<div class="layer-on-window">
-		<div class="edit-layer" :class="{ changed: anyChanges }">
-			<div class="edit-layer-body">
+		<div class="view-layer">
+			<div class="view-layer-body">
 				<div class="category-list prop-cover-image">
-					<div class="cover-image-preview">
-						<div class="cover-image-container">
-							<ObjectCoverImage :url="imagePreviewUrl || updatedObject.url_image" />
-						</div>
-						<div class="picture-control">
-							<label title="Auswählen">
-								<input type="file" :accept="ALLOWED_IMAGE_TYPES.join()" style="display: none" @change.prevent="onImageSelected" />
-								<AddPhotoIcon />
-							</label>
-							<label v-if="updatedObject.url_image?.length || imageFile" @click="onImageRemove" title="Löschen">
-								<RemovePhotoIcon />
-							</label>
-						</div>
+					<div class="cover-image-container">
+						<ObjectCoverImage :url="object.url_image" :alt="object.marketing_title">
+							<ObjectStatusSticker :status="'sold'" />
+						</ObjectCoverImage>
 					</div>
 				</div>
 
-				<div class="category-list status eye-edit">
+				<!-- <div class="category-list status eye-edit">
 					<div>Status</div>
 					<select v-model="updatedObject.status" class="list-select">
 						<option disabled value="" hidden>Auswählen:</option>
@@ -202,11 +37,11 @@ function onImageRemove() {
 							{{ StatusList[option] }}
 						</option>
 					</select>
-				</div>
+				</div> -->
 
 				<div class="separator"></div>
 
-				<div class="category-list property-root">
+				<!-- <div class="category-list property-root">
 					<EyeEdit
 						v-model="updatedObject.marketing_title"
 						label="Titel"
@@ -222,11 +57,11 @@ function onImageRemove() {
 						required
 					/>
 					<EyeEdit v-model="updatedObject.property_type" label="Objektart" type="string" />
-				</div>
+				</div> -->
 
 				<div class="separator"></div>
 
-				<div class="category-list expose">
+				<!-- <div class="category-list expose">
 					<div>
 						<div class="expose-item">
 							Expose (5MB max.)
@@ -245,11 +80,11 @@ function onImageRemove() {
 							'{{ exposeFilename }}' ]
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="separator"></div>
 
-				<div class="category-list address">
+				<!-- <div class="category-list address">
 					<div class="edit-row">
 						<EyeEdit
 							v-model="address.street"
@@ -293,11 +128,11 @@ function onImageRemove() {
 						type="string"
 						fieldname="url_location"
 					/>
-				</div>
+				</div> -->
 
 				<div class="separator"></div>
 
-				<div class="category-list finance">
+				<!-- <div class="category-list finance">
 					<EyeEdit
 						v-if="type === 'sale'"
 						v-model="finance.purchase_price"
@@ -384,11 +219,11 @@ function onImageRemove() {
 						type="string"
 						fieldname="price_per_sqm"
 					/>
-				</div>
+				</div> -->
 
 				<div class="separator"></div>
 
-				<div class="category-list areas">
+				<!-- <div class="category-list areas">
 					<EyeEdit
 						v-model="areas.plot_area"
 						v-model:hidden="areas.hidden_fields"
@@ -462,11 +297,11 @@ function onImageRemove() {
 						type="string"
 						fieldname="floor_area_ratio"
 					/>
-				</div>
+				</div> -->
 
 				<div class="separator"></div>
 
-				<div class="category-list spaces">
+				<!-- <div class="category-list spaces">
 					<EyeEdit
 						v-model="spaces.ceiling_height"
 						v-model:hidden="spaces.hidden_fields"
@@ -512,11 +347,11 @@ function onImageRemove() {
 					<EyeEdit v-model="spaces.basement" v-model:hidden="spaces.hidden_fields" label="Keller" type="string" fieldname="basement" />
 					<EyeEdit v-model="spaces.garage" v-model:hidden="spaces.hidden_fields" label="Garage" type="string" fieldname="garage" />
 					<EyeEdit v-model="spaces.parking" v-model:hidden="spaces.hidden_fields" label="Stellplatz" type="string" fieldname="parking" />
-				</div>
+				</div> -->
 
 				<div class="separator"></div>
 
-				<div class="category-list tech-details">
+				<!-- <div class="category-list tech-details">
 					<EyeEdit
 						v-model="tech_details.year_built"
 						v-model:hidden="tech_details.hidden_fields"
@@ -587,27 +422,16 @@ function onImageRemove() {
 						type="string"
 						fieldname="last_renovation_year"
 					/>
-				</div>
+				</div> -->
 
 				<div class="separator"></div>
 
-				<!-- <div class="category-list">
-				<EyeEdit v-model="updatedObject.description" v-model:hidden="updatedObject.hidden_fields" label="Objektbeschreibung" type="string" />
-			</div>
-
-			<div class="separator"></div>
-			-->
 				<div class="button-actions">
-					<button type="button" class="border" @click.prevent="emit('cancelHandler')" :disabled="isSaving">Abbrechen</button>
-					<button type="button" class="action" @click.prevent="saveObject" :disabled="!anyChanges || isSaving">Speichern</button>
+					<button type="button" class="action" @click.prevent="emit('closeHandler')">Schließen</button>
 				</div>
-			</div>
-
-			<div v-if="isSaving" class="edit-loader-layer">
-				<Loader :transparent="true" />
 			</div>
 		</div>
 	</div>
 </template>
 
-<style src="./ObjectEdit.css"></style>
+<style src="./ObjectView.css"></style>

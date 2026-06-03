@@ -20,7 +20,7 @@
 .admin-panel input:-webkit-autofill,
 .admin-panel input:-webkit-autofill:hover,
 .admin-panel input:-webkit-autofill:focus {
-	--input-background: hsl(44, 13%, 80%);
+	--input-background: hsl(44, 13%, 83%);
 	-webkit-box-shadow: 0 0 0 1000px var(--input-background) inset;
 	box-shadow: 0 0 0 1000px var(--input-background) inset;
 

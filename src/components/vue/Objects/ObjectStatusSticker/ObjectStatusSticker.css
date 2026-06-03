@@ -1,0 +1,33 @@
+.property-status-layer {
+	--color-sticker: var(--color-dahm-bordo);
+
+	position: absolute;
+	top: 22px;
+	right: -46px;
+
+	width: 180px;
+
+	padding: 10px 0;
+
+	transform: rotate(45deg);
+
+	text-align: center;
+
+	font-size: 0.9em;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+
+	color: white;
+
+	background: var(--color-sticker);
+
+	box-shadow: 0 4px 12px rgb(0 0 0 / 25%);
+}
+
+.property-status-layer.draft {
+	--color-sticker: hsl(27, 91%, 44%);
+}
+.property-status-layer.reserved {
+	--color-sticker: hsl(32, 69%, 44%);
+}

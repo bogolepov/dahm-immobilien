@@ -16,7 +16,6 @@ export async function getPropertiesUser() {
 		console.error(error);
 		return undefined;
 	}
-	console.log('actual data: ', data);
 
 	const properties: PropertyFormData[] = data ?? [];
 
@@ -36,7 +35,6 @@ export async function getPropertiesAdmin() {
 		console.error(error);
 		return undefined;
 	}
-	console.log(data);
 
 	const properties: PropertyFormData[] = data ?? [];
 

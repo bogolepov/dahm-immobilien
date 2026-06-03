@@ -9,6 +9,9 @@ import EditIcon from '@vue/icons/EditIcon.vue';
 import DeleteIcon from '@vue/icons/DeleteIcon.vue';
 import PdfIcon from '@vue/icons/PdfIcon.vue';
 import EyeIcon from '@vue/icons/EyeIcon.vue';
+import ObjectSticker from '@vue/Objects/ObjectStatusSticker/ObjectStatusSticker.vue';
+import ObjectView from './ObjectView.vue';
+import ObjectCoverImage from './ObjectCoverImage.vue';
 
 type ShowItem = Record<number, boolean>;
 
@@ -22,6 +25,7 @@ const objectsList = ref<PropertyFormData[]>([]);
 const isLoaded = ref<boolean>(false);
 
 const editObject = ref<PropertyFormData | null | undefined>(undefined);
+const viewObject = ref<PropertyFormData | undefined>(undefined);
 
 const canDelete = computed(() => role === 'developer');
 const canEdit = computed(() => role === 'admin' || role === 'developer');
@@ -41,7 +45,7 @@ onMounted(() => {
 });
 
 const downloadProperties = () => {
-	getProperties(true, properties => {
+	getProperties(role !== undefined, properties => {
 		if (properties) {
 			nextTick(() => {
 				updateList(properties);
@@ -72,6 +76,13 @@ const updateList = (objects: Properties) => {
 	Object.keys(showItemsUpd.value).forEach(id => {
 		if (showItems.value[Number(id)] === undefined) delete showItemsUpd.value[Number(id)];
 	});
+};
+
+const viewProp = (object: PropertyFormData) => {
+	// viewObject.value = object;
+};
+const closeViewProp = () => {
+	viewObject.value = undefined;
 };
 
 const addProp = () => {
@@ -156,7 +167,10 @@ const saveShowProperties = async () => {
 			</li>
 			<template v-for="object in objectsList" :key="object.id">
 				<li v-if="!(isJustVisiter && !object.show)" class="card-item sticker color property" :class="{ 'not-zoom': !isJustVisiter }">
-					<img v-if="object.url_image" :src="object.url_image" :alt="object.marketing_title" />
+					<div class="card-item-image" @click.prevent="viewProp(object)">
+						<ObjectCoverImage :url="object.url_image" :alt="object.marketing_title" />
+					</div>
+					<ObjectSticker :status="object.status" />
 					<p v-if="object.marketing_title" class="title">{{ object.marketing_title }}</p>
 					<p v-if="object.address?.zip || object.address?.city"><span>Ort:</span>{{ object.address?.zip }} {{ object.address?.city }}</p>
 					<p v-if="object.areas?.usable_area" class="price"><span>Nutzfläche:</span>{{ object.areas?.usable_area }}</p>
@@ -190,12 +204,13 @@ const saveShowProperties = async () => {
 			<li></li>
 		</ul>
 		<ObjectEdit
-			v-if="editObject !== undefined"
+			v-if="!isJustVisiter && editObject !== undefined"
 			:type="type"
 			:object="editObject"
 			@cancel-handler="cancelEditProp"
 			@saved-handler="savedEditProp"
 		/>
+		<ObjectView v-if="!isJustVisiter && viewObject" :object="viewObject" @close-handler="closeViewProp" />
 	</template>
 	<Loader v-else :transparent="true"></Loader>
 </template>

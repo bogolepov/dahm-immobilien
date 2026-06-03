@@ -10,9 +10,9 @@ export async function updateActualProperties(property: Property) {
 		return;
 	}
 
-	if (!property.show || property.status === 'draft')
+	if (!property.show || property.status === 'draft') {
 		await writeSupabase.from(SUPABASE_PROPERTIES_ACTUAL_TABLE).delete().eq('id', property.id);
-	else {
+	} else {
 		cleanHidden(property as PropertyFormData);
 		const compactActual = compactDeep(property);
 		const { created_at, show, ...actualDB } = compactActual as Property;
