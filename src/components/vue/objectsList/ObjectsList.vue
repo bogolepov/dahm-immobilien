@@ -47,9 +47,9 @@ onMounted(() => {
 const downloadProperties = () => {
 	getProperties(role !== undefined, properties => {
 		if (properties) {
-			nextTick(() => {
-				updateList(properties);
-			});
+			// nextTick(() => {
+			updateList(properties);
+			// });
 		} else {
 			isLoaded.value = true;
 			showItems.value = {};
@@ -65,6 +65,10 @@ const updateList = (objects: Properties) => {
 		objectsList.value = objects.objectsRent;
 	}
 	isLoaded.value = true;
+
+	if (role === undefined) {
+		return;
+	}
 
 	showItems.value = {};
 	objectsList.value.forEach(object => {
@@ -188,13 +192,18 @@ const saveShowProperties = async () => {
 					<!-- <p v-if="isJustVisiter && object.property_sid" class="property-sid">{{ object.property_sid }}</p> -->
 					<div v-show="!isJustVisiter && object.id && showItemsUpd[object.id] === false" class="blur-layer"></div>
 					<div v-if="!isJustVisiter && object.id" class="card-control-layer">
-						<button v-if="canShowHide" type="button" @click.prevent="showItemsUpd[object.id] = !showItemsUpd[object.id]">
+						<button
+							v-if="canShowHide"
+							type="button"
+							@click.prevent="showItemsUpd[object.id] = !showItemsUpd[object.id]"
+							:title="showItemsUpd[object.id] ? 'Ausblenden' : 'Einblenden'"
+						>
 							<EyeIcon :see="showItemsUpd[object.id]" />
 						</button>
-						<button v-if="canEdit" type="button" @click.prevent="editProp(object)">
+						<button v-if="canEdit" type="button" @click.prevent="editProp(object)" title="Bearbeiten">
 							<EditIcon />
 						</button>
-						<button v-if="canDelete" type="button" @click.prevent="deleteProp(object)">
+						<button v-if="canDelete" type="button" @click.prevent="deleteProp(object)" title="Löschen">
 							<DeleteIcon />
 						</button>
 					</div>

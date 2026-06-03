@@ -127,7 +127,6 @@ export function propertiesToCache(objects: Properties) {
 		objectsSale: objects.objectsSale.map(obj => compactDeep(obj)).filter(isDefined),
 		objectsRent: objects.objectsRent.map(obj => compactDeep(obj)).filter(isDefined),
 	};
-	console.log('**** CACHE: ', cache);
 	localStorage.setItem(PROPERTIES__LS_KEY, JSON.stringify(cache));
 }
 
