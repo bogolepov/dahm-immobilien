@@ -3,7 +3,7 @@ import type { Properties } from '@scripts/zod';
 import { getPropertiesAdmin, getPropertiesUser } from '@scripts/readSupabase';
 
 export function useObjectsData() {
-	async function getProperties(apanel: boolean, handler: (properties: Properties | undefined) => void) {
+	async function getProperties(apanel: boolean) {
 		let properties;
 		if (apanel) {
 			properties = await getPropertiesAdmin();
@@ -16,7 +16,7 @@ export function useObjectsData() {
 				if (properties) propertiesToCache(properties);
 			}
 		}
-		handler(properties);
+		return properties;
 	}
 
 	return { getProperties };

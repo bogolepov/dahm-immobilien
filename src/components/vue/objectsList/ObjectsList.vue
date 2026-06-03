@@ -40,22 +40,21 @@ const showItemsChanged = computed<boolean>(() => {
 
 const { getProperties } = useObjectsData();
 
-onMounted(() => {
-	downloadProperties();
+onMounted(async () => {
+	await downloadProperties();
 });
 
-const downloadProperties = () => {
-	getProperties(role !== undefined, properties => {
-		if (properties) {
-			// nextTick(() => {
-			updateList(properties);
-			// });
-		} else {
-			isLoaded.value = true;
-			showItems.value = {};
-			showItemsUpd.value = {};
-		}
-	});
+const downloadProperties = async () => {
+	const properties = await getProperties(role !== undefined);
+	isLoaded.value = true;
+	if (properties) {
+		// nextTick(() => {
+		updateList(properties);
+		// });
+	} else {
+		showItems.value = {};
+		showItemsUpd.value = {};
+	}
 };
 
 const updateList = (objects: Properties) => {
@@ -64,7 +63,6 @@ const updateList = (objects: Properties) => {
 	} else if (type === 'rent') {
 		objectsList.value = objects.objectsRent;
 	}
-	isLoaded.value = true;
 
 	if (role === undefined) {
 		return;
@@ -99,10 +97,10 @@ const editProp = (object: PropertyFormData) => {
 const cancelEditProp = () => {
 	editObject.value = undefined;
 };
-const savedEditProp = () => {
+const savedEditProp = async () => {
 	editObject.value = undefined;
 	isLoaded.value = false;
-	downloadProperties();
+	await downloadProperties();
 };
 
 const deleteProp = async (object: PropertyFormData) => {
@@ -123,7 +121,7 @@ const deleteProp = async (object: PropertyFormData) => {
 		console.error(err);
 	} finally {
 		isLoaded.value = false;
-		downloadProperties();
+		await downloadProperties();
 	}
 };
 
@@ -155,7 +153,7 @@ const saveShowProperties = async () => {
 		console.log(err);
 	} finally {
 		isLoaded.value = false;
-		downloadProperties();
+		await downloadProperties();
 	}
 };
 </script>
@@ -170,7 +168,7 @@ const saveShowProperties = async () => {
 				<button class="border" @click.prevent="addProp">Neues Objekt<br />hinzufügen</button>
 			</li>
 			<template v-for="object in objectsList" :key="object.id">
-				<li v-if="!(isJustVisiter && !object.show)" class="card-item sticker color property" :class="{ 'not-zoom': !isJustVisiter }">
+				<li class="card-item sticker color property" :class="{ 'not-zoom': !isJustVisiter }">
 					<div class="card-item-image" @click.prevent="viewProp(object)">
 						<ObjectCoverImage :url="object.url_image" :alt="object.marketing_title" />
 					</div>

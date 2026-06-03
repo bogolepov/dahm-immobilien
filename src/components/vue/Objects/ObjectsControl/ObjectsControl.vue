@@ -15,17 +15,16 @@ const elements: Elements = { management: null, sale: null, rent: null };
 
 const { getProperties } = useObjectsData();
 
-onMounted(() => {
+onMounted(async () => {
 	elements.management = document.querySelector('.s-objects.management');
 
-	getProperties(false, properties => {
-		if (properties) {
-			nextTick(() => {
-				showSale.value = properties.objectsSale.length > 0;
-				showRent.value = properties.objectsRent.length > 0;
-			});
-		}
-	});
+	const properties = await getProperties(false);
+	if (properties) {
+		nextTick(() => {
+			showSale.value = properties.objectsSale.length > 0;
+			showRent.value = properties.objectsRent.length > 0;
+		});
+	}
 });
 
 const selectType = (newType: ControlType) => {

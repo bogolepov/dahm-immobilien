@@ -33,14 +33,13 @@ const updateShow = (hasForRent: boolean, hasForSale: boolean) => {
 	}
 };
 
-onMounted(() => {
-	getProperties(false, properties => {
-		if (properties) {
-			nextTick(() => {
-				updateShow(properties.objectsRent.length > 0, properties.objectsSale.length > 0);
-			});
-		}
-	});
+onMounted(async () => {
+	const properties = await getProperties(false);
+	if (properties) {
+		nextTick(() => {
+			updateShow(properties.objectsRent.length > 0, properties.objectsSale.length > 0);
+		});
+	}
 });
 </script>
 
