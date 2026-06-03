@@ -9,6 +9,7 @@ type Elements = Record<ControlType, Element | null>;
 const showSale = ref<boolean>(false);
 const showRent = ref<boolean>(false);
 const show = computed(() => showSale.value || showRent.value);
+const selected = ref<boolean>(true);
 
 const type = ref<ControlType>('management');
 const elements: Elements = { management: null, sale: null, rent: null };
@@ -28,6 +29,8 @@ onMounted(async () => {
 });
 
 const selectType = (newType: ControlType) => {
+	if (selected.value === false) return; // wait for ending of previous animation
+
 	const prevType = type.value;
 	if (prevType === newType) return;
 
@@ -36,6 +39,7 @@ const selectType = (newType: ControlType) => {
 
 	if (!elements[newType] || !elements[prevType]) return;
 
+	selected.value = false;
 	(elements[newType] as HTMLElement).style.display = 'block';
 	window.setTimeout(() => {
 		if (elements[prevType]) elements[prevType].classList.remove('show');
@@ -43,7 +47,8 @@ const selectType = (newType: ControlType) => {
 	}, 50);
 	window.setTimeout(() => {
 		if (elements[prevType]) (elements[prevType] as HTMLElement).style.display = 'none';
-	}, 900);
+		selected.value = true;
+	}, 500);
 
 	type.value = newType;
 };

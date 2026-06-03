@@ -17,6 +17,7 @@
 	font-weight: 700;
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
+	user-select: none;
 
 	color: white;
 
