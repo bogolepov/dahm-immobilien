@@ -216,7 +216,7 @@ function onImageRemove() {
 					/>
 					<EyeEdit
 						v-model="updatedObject.property_sid"
-						label="Objekt-ID"
+						label="Objekt Nr."
 						type="string"
 						:placeholder="`mind. ${Z_PROPERTY_SID_MIN} Zeichen`"
 						required

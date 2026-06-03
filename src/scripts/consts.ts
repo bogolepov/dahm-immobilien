@@ -7,7 +7,7 @@ export const ALLOWED_IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
 export const ALLOWED_EXPOSE_EXTENSIONS = ['pdf'];
 
 export const Z_MARKETING_TITLE_MIN = 6;
-export const Z_PROPERTY_SID_MIN = 6;
+export const Z_PROPERTY_SID_MIN = 2;
 
 export const SUPABASE_EXPOSE_STORAGE = 'property-exposes';
 export const SUPABASE_IMAGE_STORAGE = 'property-images';

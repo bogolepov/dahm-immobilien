@@ -12,6 +12,7 @@ import EyeIcon from '@vue/icons/EyeIcon.vue';
 import ObjectSticker from '@vue/Objects/ObjectStatusSticker/ObjectStatusSticker.vue';
 import ObjectView from './ObjectView.vue';
 import ObjectCoverImage from './ObjectCoverImage.vue';
+import AttachIcon from '@vue/icons/AttachIcon.vue';
 
 type ShowItem = Record<number, boolean>;
 
@@ -81,7 +82,8 @@ const updateList = (objects: Properties) => {
 };
 
 const viewProp = (object: PropertyFormData) => {
-	// viewObject.value = object;
+	console.log('****************************');
+	viewObject.value = object;
 };
 const closeViewProp = () => {
 	viewObject.value = undefined;
@@ -179,15 +181,15 @@ const saveShowProperties = async () => {
 					<p v-if="object.areas?.living_area" class="price"><span>Wohnfläche:</span>{{ object.areas?.living_area }}</p>
 					<p v-if="object.finance?.purchase_price" class="price"><span>Kaufpreis:</span>{{ object.finance?.purchase_price }}</p>
 					<p v-if="object.tech_details?.year_built"><span>Baujahr:</span>{{ object.tech_details?.year_built }}</p>
-					<p v-if="object.url_expose" class="expose-link">
+					<p v-if="object.url_expose">
+						<span>Expose:</span>
 						<a :href="object.url_expose" target="_blank" rel="noopener noreferrer">
-							Expose
-							<button class="pdf-button">
-								<PdfIcon />
+							PDF
+							<button>
+								<AttachIcon />
 							</button>
 						</a>
 					</p>
-					<!-- <p v-if="isJustVisiter && object.property_sid" class="property-sid">{{ object.property_sid }}</p> -->
 					<div v-show="!isJustVisiter && object.id && showItemsUpd[object.id] === false" class="blur-layer"></div>
 					<div v-if="!isJustVisiter && object.id" class="card-control-layer">
 						<button
@@ -217,7 +219,9 @@ const saveShowProperties = async () => {
 			@cancel-handler="cancelEditProp"
 			@saved-handler="savedEditProp"
 		/>
-		<ObjectView v-if="!isJustVisiter && viewObject" :object="viewObject" @close-handler="closeViewProp" />
+		<Teleport to="body">
+			<ObjectView v-if="viewObject" :object="viewObject" @close-handler="closeViewProp" />
+		</Teleport>
 	</template>
 	<Loader v-else :transparent="true"></Loader>
 </template>
