@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { type PropertyFormData } from '@scripts/zod';
-import EyeEdit from '../components/EyeEdit/EyeEdit.vue';
 import ObjectStatusSticker from '@vue/Objects/ObjectStatusSticker/ObjectStatusSticker.vue';
 import ObjectCoverImage from './ObjectCoverImage.vue';
-import WorldIcon from '@vue/icons/WorldIcon.vue';
-import PdfIcon from '@vue/icons/PdfIcon.vue';
 import AttachIcon from '@vue/icons/AttachIcon.vue';
+import { onMounted, onUnmounted } from 'vue';
 
 interface Props {
 	object: PropertyFormData;
@@ -17,17 +15,32 @@ const { address, finance, areas, spaces, tech_details } = object;
 const emit = defineEmits<{
 	closeHandler: [];
 }>();
+
+const onKeydown = (e: KeyboardEvent) => {
+	if (e.key === 'Escape') {
+		emit('closeHandler');
+	}
+};
+
+onMounted(() => {
+	window.addEventListener('keydown', onKeydown);
+});
+
+onUnmounted(() => {
+	window.removeEventListener('keydown', onKeydown);
+});
 </script>
 
 <template>
 	<div class="layer-on-window" @click.self="emit('closeHandler')">
 		<div class="view-layer">
+			<button type="button" class="close-button" @click.prevent="emit('closeHandler')" aria-label="Schließen" tabindex="0">&#10006;</button>
+
 			<div class="category-list prop-cover-image">
 				<div class="cover-image-container">
 					<ObjectCoverImage :url="object.url_image" :alt="object.marketing_title" />
 					<ObjectStatusSticker :status="object.status" />
 				</div>
-				<button type="button" class="close-button" @click.prevent="emit('closeHandler')" aria-label="Schließen">&#10006;</button>
 			</div>
 
 			<p v-if="object.marketing_title" class="title">{{ object.marketing_title }}</p>

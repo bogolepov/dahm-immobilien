@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import type { DeletePropertyInput, Properties, PropertyFormData, UpdatePropertiesShowInput, UserRole } from '@scripts/zod';
 import { useObjectsData } from '@vue/Objects/useObjectsData';
-import { computed, nextTick, onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import ObjectEdit from './ObjectEdit.vue';
 import type { ActionType } from '@scripts/supabase_types';
 import Loader from '@vue/forms/Loader.vue';
 import EditIcon from '@vue/icons/EditIcon.vue';
 import DeleteIcon from '@vue/icons/DeleteIcon.vue';
-import PdfIcon from '@vue/icons/PdfIcon.vue';
 import EyeIcon from '@vue/icons/EyeIcon.vue';
 import ObjectSticker from '@vue/Objects/ObjectStatusSticker/ObjectStatusSticker.vue';
 import ObjectView from './ObjectView.vue';
 import ObjectCoverImage from './ObjectCoverImage.vue';
 import AttachIcon from '@vue/icons/AttachIcon.vue';
+import ZoomIcon from '@vue/icons/ZoomIcon.vue';
 
 type ShowItem = Record<number, boolean>;
 
@@ -82,7 +82,6 @@ const updateList = (objects: Properties) => {
 };
 
 const viewProp = (object: PropertyFormData) => {
-	console.log('****************************');
 	viewObject.value = object;
 };
 const closeViewProp = () => {
@@ -191,7 +190,7 @@ const saveShowProperties = async () => {
 						</a>
 					</p>
 					<div v-show="!isJustVisiter && object.id && showItemsUpd[object.id] === false" class="blur-layer"></div>
-					<div v-if="!isJustVisiter && object.id" class="card-control-layer">
+					<div v-if="object.id" class="card-control-layer">
 						<button
 							v-if="canShowHide"
 							type="button"
@@ -205,6 +204,9 @@ const saveShowProperties = async () => {
 						</button>
 						<button v-if="canDelete" type="button" @click.prevent="deleteProp(object)" title="Löschen">
 							<DeleteIcon />
+						</button>
+						<button @click.prevent="viewProp(object)">
+							<ZoomIcon />
 						</button>
 					</div>
 				</li>

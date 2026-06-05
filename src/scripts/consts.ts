@@ -14,3 +14,6 @@ export const SUPABASE_IMAGE_STORAGE = 'property-images';
 
 export const SUPABASE_PROPERTIES_TABLE = 'properties';
 export const SUPABASE_PROPERTIES_ACTUAL_TABLE = 'properties-actual';
+
+export const PROPERTIES__LS_KEY = 'properties_db';
+export const PROPERTIES__CACHE_TTL = 5 * 60 * 1000; // 5 min

@@ -38,13 +38,15 @@
 }
 
 .view-layer .prop-cover-image {
+	margin-top: 0.25em;
 	position: relative;
 }
 .view-layer .close-button {
 	position: absolute;
-	top: 0;
-	right: 0;
+	top: 0.4em;
+	right: 0.5em;
 	font-size: 1.17em;
+	font-weight: 300;
 	line-height: 1;
 	margin-left: auto;
 	color: var(--color-dahm-bordo-dark);

@@ -1,3 +1,4 @@
+import { PROPERTIES__CACHE_TTL, PROPERTIES__LS_KEY } from './consts';
 import {
 	extractSchemaFromJson,
 	zPropertiesCache,
@@ -34,9 +35,6 @@ export function getDuration1991(): number {
 export function getDuration2025(): number {
 	return new Date().getFullYear() - 2025;
 }
-
-const PROPERTIES__LS_KEY = 'properties_db';
-const PROPERTIES__CACHE_TTL = 2 * 60 * 1000; // 2 min
 
 // all undefined and null fields will be excluded
 // function compactObject<T extends object>(obj: T): Partial<T> {
