@@ -4,13 +4,12 @@ import PictureIcon from '@vue/icons/PictureIcon.vue';
 interface Props {
 	url?: string | null;
 	alt?: string;
-	customClass?: string;
 }
 const props = defineProps<Props>();
 </script>
 
 <template>
-	<div class="property-cover-image" :class="props.customClass">
+	<div class="property-cover-image">
 		<img v-if="props.url" :src="props.url" :alt="props.alt" />
 		<PictureIcon v-else />
 		<slot />

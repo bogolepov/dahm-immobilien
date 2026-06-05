@@ -222,7 +222,9 @@ const saveShowProperties = async () => {
 			@saved-handler="savedEditProp"
 		/>
 		<Teleport to="body">
-			<ObjectView v-if="viewObject" :object="viewObject" @close-handler="closeViewProp" />
+			<Transition name="backdrop">
+				<ObjectView v-if="viewObject" :object="viewObject" @close-handler="closeViewProp" />
+			</Transition>
 		</Teleport>
 	</template>
 	<Loader v-else :transparent="true"></Loader>
