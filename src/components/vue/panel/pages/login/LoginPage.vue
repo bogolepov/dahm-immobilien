@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getUserRole, readSupabase } from '@scripts/readSupabase';
+import { getUserRole, supabase } from '@scripts/supabase';
 import { zLoginInput, type LoginInput, type UserRole } from '@scripts/zod';
 import type { AuthTokenResponsePassword } from '@supabase/supabase-js';
 import EyeEdit from '@vue/components/EyeEdit/EyeEdit.vue';
@@ -29,12 +29,12 @@ const handleSubmit = () => {
 };
 
 const loginSupabase = async () => {
-	if (!readSupabase) {
+	if (!supabase) {
 		toast('Ungültige Eingabe. Bitte überprüfen Sie Ihre Daten.', { variant: 'error' });
 		return;
 	}
 
-	const { data, error } = (await readSupabase.auth.signInWithPassword({
+	const { data, error } = (await supabase.auth.signInWithPassword({
 		email: formData.login,
 		password: formData.password,
 	})) as AuthTokenResponsePassword;

@@ -1,4 +1,5 @@
 import { PROPERTIES__CACHE_TTL, PROPERTIES__LS_KEY } from './consts';
+import type { ActionType } from './supabase_types';
 import {
 	extractSchemaFromJson,
 	zPropertiesCache,
@@ -148,6 +149,9 @@ export function propertiesFromCache(): Properties | undefined {
 	return properties;
 }
 
-export function createPropertyFormData() {
-	return zPropertyFormData.parse({});
+export function createPropertyFormData(type: ActionType) {
+	const newProperty = zPropertyFormData.parse({});
+	newProperty.action_type = type;
+	console.log('neues Objekt zu ', newProperty.action_type);
+	return newProperty;
 }

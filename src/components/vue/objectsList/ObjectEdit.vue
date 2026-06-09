@@ -4,7 +4,6 @@ import { compactDeepCopy, createPropertyFormData, ensurePropertyFormData } from 
 import { zPropertyFormData, type PropertyFormData, type PropertyFormState } from '@scripts/zod';
 import { computed, reactive, ref, watch } from 'vue';
 import EyeEdit from '../components/EyeEdit/EyeEdit.vue';
-import { netlifySaveObject } from '@vue/panel/lib/netlify.ts';
 import AddPhotoIcon from '@vue/icons/AddPhotoIcon.vue';
 import RemovePhotoIcon from '@vue/icons/RemovePhotoIcon.vue';
 import { ALLOWED_EXPOSE_TYPES, ALLOWED_IMAGE_TYPES, Z_MARKETING_TITLE_MIN, Z_PROPERTY_SID_MIN } from '@scripts/consts.ts';
@@ -45,7 +44,7 @@ const isSaving = ref<boolean>(false);
 const { toast } = useNotifications();
 
 const normalizedObject = reactive<PropertyFormState>(
-	ensurePropertyFormData(JSON.parse(JSON.stringify(object || createPropertyFormData()))),
+	ensurePropertyFormData(JSON.parse(JSON.stringify(object || createPropertyFormData(type)))),
 );
 const updatedObject = reactive<PropertyFormState>(JSON.parse(JSON.stringify(normalizedObject)));
 const { address, finance, areas, spaces, tech_details } = updatedObject;
@@ -100,7 +99,6 @@ function saveObject() {
 			saveProperty.slug = normalizeSlug(slug);
 
 			isSaving.value = true;
-			// netlifySaveObject(saveProperty, exposeFile.value, imageFile.value, (ok: boolean, error?: string) => {
 			savePropertyDB(saveProperty, exposeFile.value, imageFile.value, (ok: boolean, error?: string) => {
 				isSaving.value = false;
 				if (!ok && error) toast(error, { variant: 'error', dismissible: false });
@@ -124,7 +122,7 @@ function getFieldLabel(field: PropertyKey) {
 		case 'marketing_title':
 			return 'Titel';
 		case 'property_sid':
-			return 'Objekt-ID';
+			return 'Objekt Nr.';
 		default:
 			return field as string;
 	}

@@ -1,6 +1,5 @@
 import { propertiesFromCache, propertiesToCache } from '@scripts/utils';
-import type { Properties } from '@scripts/zod';
-import { getPropertiesAdmin, getPropertiesUser } from '@scripts/readSupabase';
+import { getPropertiesAdmin, getPropertiesUser } from '@scripts/supabase';
 
 export function useObjectsData() {
 	async function getProperties(apanel: boolean) {

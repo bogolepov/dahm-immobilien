@@ -5,13 +5,13 @@ import {
 	SUPABASE_PROPERTIES_TABLE,
 } from '@scripts/consts';
 import { detectMime, getFileExtension } from '@scripts/file';
-import { readSupabase } from '@scripts/readSupabase';
+import { supabase } from '@scripts/supabase';
 import { compactDeep } from '@scripts/utils';
 import { type PropertyFormData, type UpdatePropertiesShowInput } from '@scripts/zod';
 import type { Property } from './supabase_types';
 
 const uploadFiles = async (property: PropertyFormData, fileExpose: File | null, fileImage: File | null) => {
-	if (!readSupabase) return false;
+	if (!supabase) return false;
 
 	if (!fileExpose && !fileImage) return true;
 
@@ -22,13 +22,13 @@ const uploadFiles = async (property: PropertyFormData, fileExpose: File | null, 
 			const filename = property.slug + strDate + '.' + getFileExtension(fileImage.name);
 			const mimeType = await detectMime(fileImage);
 
-			const { data, error } = await readSupabase.storage
+			const { data, error } = await supabase.storage
 				.from(SUPABASE_IMAGE_STORAGE)
 				.upload(filename, fileImage, { upsert: false, ...(mimeType && { contentType: mimeType }) });
 
 			if (error) throw new Error(`Upload failed for ${fileImage.name}`, { cause: error });
 
-			const { data: publicUrlData } = readSupabase.storage.from(SUPABASE_IMAGE_STORAGE).getPublicUrl(data.path);
+			const { data: publicUrlData } = supabase.storage.from(SUPABASE_IMAGE_STORAGE).getPublicUrl(data.path);
 			property.url_image = publicUrlData.publicUrl;
 		}
 
@@ -36,13 +36,13 @@ const uploadFiles = async (property: PropertyFormData, fileExpose: File | null, 
 			const filename = property.slug + strDate + '.' + getFileExtension(fileExpose.name);
 			const mimeType = await detectMime(fileExpose);
 
-			const { data, error } = await readSupabase.storage
+			const { data, error } = await supabase.storage
 				.from(SUPABASE_EXPOSE_STORAGE)
 				.upload(filename, fileExpose, { upsert: false, ...(mimeType && { contentType: mimeType }) });
 
 			if (error) throw new Error(`Upload failed for ${fileExpose.name}`, { cause: error });
 
-			const { data: publicUrlData } = readSupabase.storage.from(SUPABASE_EXPOSE_STORAGE).getPublicUrl(data.path);
+			const { data: publicUrlData } = supabase.storage.from(SUPABASE_EXPOSE_STORAGE).getPublicUrl(data.path);
 			property.url_expose = publicUrlData.publicUrl;
 		}
 
@@ -59,7 +59,7 @@ export const savePropertyDB = async (
 	fileImage: File | null,
 	handler: (ok: boolean, error?: string) => void,
 ) => {
-	if (!readSupabase) {
+	if (!supabase) {
 		handler(false, 'System Fehler: supabase #1 ');
 		return;
 	}
@@ -91,8 +91,8 @@ export const savePropertyDB = async (
 	if (!propData.tech_details) propData.tech_details = {};
 
 	const { data, error } = id
-		? await readSupabase.from(SUPABASE_PROPERTIES_TABLE).update(propData).eq('id', property.id).select().single()
-		: await readSupabase.from(SUPABASE_PROPERTIES_TABLE).insert(propData).select().single();
+		? await supabase.from(SUPABASE_PROPERTIES_TABLE).update(propData).eq('id', property.id).select().single()
+		: await supabase.from(SUPABASE_PROPERTIES_TABLE).insert(propData).select().single();
 
 	if (error) {
 		console.error(error);
@@ -110,26 +110,33 @@ export const savePropertyDB = async (
 };
 
 export const saveShowPropertiesDB = async (properties: UpdatePropertiesShowInput) => {
-	if (!readSupabase) return;
+	if (!supabase) return;
 
 	for (const { id, show } of properties) {
-		const { data, error } = await readSupabase.from(SUPABASE_PROPERTIES_TABLE).update({ show }).eq('id', id).select().single();
+		const { data, error } = await supabase.from(SUPABASE_PROPERTIES_TABLE).update({ show }).eq('id', id).select().single();
 		if (!error) {
 			await updateActualProperties(data);
 		}
 	}
 };
 
+export const deletePropertyDB = async (id: number) => {
+	if (!supabase) return;
+
+	const { error } = await supabase.from(SUPABASE_PROPERTIES_TABLE).delete().eq('id', id);
+	if (error) console.error(error);
+};
+
 async function updateActualProperties(property: Property) {
-	if (!readSupabase) return { error: 'System Fehler: supabase #1' };
+	if (!supabase) return { error: 'System Fehler: supabase #1' };
 
 	if (!property.show || property.status === 'draft') {
-		await readSupabase.from(SUPABASE_PROPERTIES_ACTUAL_TABLE).delete().eq('id', property.id);
+		await supabase.from(SUPABASE_PROPERTIES_ACTUAL_TABLE).delete().eq('id', property.id);
 		return {};
 	} else {
 		cleanHidden(property as PropertyFormData);
 		const { created_at, show, ...actualDB } = property as Property;
-		const { error: actualError } = await readSupabase
+		const { error: actualError } = await supabase
 			.from(SUPABASE_PROPERTIES_ACTUAL_TABLE)
 			.upsert(actualDB)
 			.eq('id', actualDB.id)

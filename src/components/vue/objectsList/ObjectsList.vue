@@ -13,7 +13,7 @@ import ObjectView from './ObjectView.vue';
 import ObjectCoverImage from './ObjectCoverImage.vue';
 import AttachIcon from '@vue/icons/AttachIcon.vue';
 import ZoomIcon from '@vue/icons/ZoomIcon.vue';
-import { saveShowPropertiesDB } from '@scripts/supabase_utils.ts';
+import { deletePropertyDB, saveShowPropertiesDB } from '@scripts/supabase_utils.ts';
 
 type ShowItem = Record<number, boolean>;
 
@@ -50,9 +50,7 @@ const downloadProperties = async () => {
 	const properties = await getProperties(role !== undefined);
 	isLoaded.value = true;
 	if (properties) {
-		// nextTick(() => {
 		updateList(properties);
-		// });
 	} else {
 		showItems.value = {};
 		showItemsUpd.value = {};
@@ -109,22 +107,9 @@ const deleteProp = async (object: PropertyFormData) => {
 	if (!object.id) return;
 	if (!confirm('Objekt wirklich löschen?')) return;
 
-	const input: DeletePropertyInput = { id: object.id };
-
-	try {
-		const response = await fetch('/.netlify/functions/deleteProperty', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(input),
-			credentials: 'include',
-		});
-		if (!response.ok) console.error('Anzeige konnte nicht gelöscht werden');
-	} catch (err) {
-		console.error(err);
-	} finally {
-		isLoaded.value = false;
-		await downloadProperties();
-	}
+	await deletePropertyDB(object.id);
+	isLoaded.value = false;
+	await downloadProperties();
 };
 
 const saveShowProperties = async () => {
@@ -143,32 +128,16 @@ const saveShowProperties = async () => {
 	await saveShowPropertiesDB(updates);
 	isLoaded.value = false;
 	await downloadProperties();
-
-	// try {
-	// 	const response = await fetch('/.netlify/functions/updatePropertiesShow', {
-	// 		method: 'POST',
-	// 		headers: { 'Content-Type': 'application/json' },
-	// 		body: JSON.stringify(updates),
-	// 		credentials: 'include',
-	// 	});
-	// 	if (!response.ok) {
-	// 		const errorData = await response.json();
-	// 		throw new Error(errorData);
-	// 	}
-	// } catch (err) {
-	// 	console.log(err);
-	// } finally {
-	// 	isLoaded.value = false;
-	// 	await downloadProperties();
-	// }
 };
 </script>
 
 <template>
 	<template v-if="isLoaded">
-		<button v-if="canShowHide && showItemsChanged" class="action save-show-changes" @click.prevent="saveShowProperties">
-			<div>Änderungen speichern <EyeIcon :see="true" /></div>
-		</button>
+		<div class="save-button-container">
+			<button v-if="canShowHide && showItemsChanged" class="action save-show-changes" @click.prevent="saveShowProperties">
+				<div>Änderungen speichern <EyeIcon :see="true" /></div>
+			</button>
+		</div>
 		<ul class="card-list">
 			<li v-if="canEdit" class="card-item sticker color edit new not-zoom">
 				<button class="border" @click.prevent="addProp">Neues Objekt<br />hinzufügen</button>

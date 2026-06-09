@@ -9,7 +9,7 @@ const { type } = defineProps<Props>();
 </script>
 
 <template>
-	<article class="s-objects sale">
+	<article class="s-objects" :class="type">
 		<p class="text-block mt0">
 			Über Details und aktuelle Informationen zu den angebotenen Immobilien können Sie sich auch telefonisch oder per E-Mail informieren.
 		</p>

@@ -6,7 +6,7 @@ import { createPinia } from 'pinia';
 import { type UserRole } from '@scripts/zod';
 import Loader from '@vue/forms/Loader.vue';
 import NotificationManager from './NotificationManager.vue';
-import { getUserRole, readSupabase } from '@scripts/readSupabase.ts';
+import { getUserRole, supabase } from '@scripts/supabase.ts';
 import type { Subscription } from '@supabase/supabase-js';
 
 const app = getCurrentInstance()?.appContext.app;
@@ -21,16 +21,16 @@ const loginHandler = (role: UserRole) => {
 	userRole.value = role;
 };
 const logoutHandler = async () => {
-	await readSupabase?.auth.signOut();
+	await supabase?.auth.signOut();
 };
 
 const getMe = async () => {
-	if (!readSupabase) {
+	if (!supabase) {
 		meChecked.value = true;
 		return;
 	}
 
-	const { data } = await readSupabase.auth.getSession();
+	const { data } = await supabase.auth.getSession();
 	if (data?.session) userRole.value = await getUserRole(data.session.user.id);
 
 	meChecked.value = true;
@@ -39,7 +39,7 @@ const getMe = async () => {
 onBeforeMount(() => {
 	getMe();
 
-	const res = readSupabase?.auth.onAuthStateChange(async (event, session) => {
+	const res = supabase?.auth.onAuthStateChange(async (event, session) => {
 		if (event === 'SIGNED_OUT') {
 			userRole.value = undefined;
 		}

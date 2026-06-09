@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ActionType } from '@scripts/supabase_types';
 import type { UserRole } from '@scripts/zod';
+import LogoutIcon from '@vue/icons/LogoutIcon.vue';
 import ObjectsList from '@vue/objectsList/ObjectsList.vue';
 import { ref } from 'vue';
 
@@ -21,9 +22,9 @@ const currentObjsType = ref<ActionType>('sale');
 				Verkauf
 			</button>
 			<button type="button" @click.prevent="currentObjsType = 'rent'" class="link" :class="{ active: currentObjsType === 'rent' }">
-				Vermiete
+				Vermietung
 			</button>
-			<button type="button" @click.prevent="emit('logoutHandler')" class="action logout-button">Abmelden</button>
+			<button type="button" @click.prevent="emit('logoutHandler')" class="action logout-button"><span>Abmelden</span><LogoutIcon /></button>
 		</header>
 
 		<main>

@@ -93,10 +93,20 @@
 	display: block;
 }
 
+.save-button-container {
+	position: sticky;
+	top: 3.5em;
+	display: grid;
+	place-items: center;
+	width: 101%;
+	background-color: var(--color-dahm-background);
+	z-index: 1;
+}
 button.save-show-changes {
 	width: 100%;
 	max-width: 350px;
 	padding: 0.3em 0.7em;
+	margin-top: 0.3em;
 	margin-bottom: 0.8em;
 }
 button.save-show-changes div {
