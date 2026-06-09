@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { extractSchemaFromJson, zLoginInput, zUserInfo, type LoginInput, type UserRole } from '@scripts/zod';
+import { getUserRole, readSupabase } from '@scripts/readSupabase';
+import { zLoginInput, type LoginInput, type UserRole } from '@scripts/zod';
+import type { AuthTokenResponsePassword } from '@supabase/supabase-js';
 import EyeEdit from '@vue/components/EyeEdit/EyeEdit.vue';
 import { useNotifications } from '@vue/panel/lib/notification/useNotifications';
 import { computed, reactive } from 'vue';
@@ -23,40 +25,30 @@ function resetFormData() {
 const handleSubmit = () => {
 	if (formData.email?.length) return;
 
-	netlifyLogin();
+	loginSupabase();
 };
 
-const netlifyLogin = async () => {
-	const options = {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(formData),
-	};
-
-	try {
-		const response = await fetch('/.netlify/functions/login', options);
-		const data = await response.json();
-
-		if (!response.ok) {
-			if (response.status === 400 || response.status === 401) {
-				toast('Ungültige Eingabe. Bitte überprüfen Sie Ihre Daten.', { variant: 'error' });
-				return;
-			}
-			throw new Error(data);
-		}
-
-		console.log('data: ', data);
-
-		const user = extractSchemaFromJson(zUserInfo, JSON.stringify(data));
-		if (!user) throw new Error('Invalid response data: extractSchemaFromJson');
-
-		resetFormData();
-		emit('loginHandler', user.role);
-	} catch (err) {
-		console.log(err);
+const loginSupabase = async () => {
+	if (!readSupabase) {
+		toast('Ungültige Eingabe. Bitte überprüfen Sie Ihre Daten.', { variant: 'error' });
+		return;
 	}
+
+	const { data, error } = (await readSupabase.auth.signInWithPassword({
+		email: formData.login,
+		password: formData.password,
+	})) as AuthTokenResponsePassword;
+
+	if (!error && data?.user) {
+		const role = await getUserRole(data.user.id);
+		if (role) {
+			resetFormData();
+			emit('loginHandler', role);
+			return;
+		}
+	}
+
+	toast('Ungültige Eingabe. Bitte überprüfen Sie Ihre Daten.', { variant: 'error' });
 };
 </script>
 

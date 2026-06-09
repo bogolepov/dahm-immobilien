@@ -3,7 +3,7 @@ import { type PropertyFormData } from '@scripts/zod';
 import ObjectStatusSticker from '@vue/Objects/ObjectStatusSticker/ObjectStatusSticker.vue';
 import ObjectCoverImage from './ObjectCoverImage.vue';
 import AttachIcon from '@vue/icons/AttachIcon.vue';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 
 interface Props {
 	object: PropertyFormData;
@@ -16,8 +16,6 @@ const emit = defineEmits<{
 	closeHandler: [];
 }>();
 
-const isOpen = ref<boolean>(false);
-
 const onKeydown = (e: KeyboardEvent) => {
 	if (e.key === 'Escape') {
 		emit('closeHandler');
@@ -26,7 +24,6 @@ const onKeydown = (e: KeyboardEvent) => {
 
 onMounted(() => {
 	window.addEventListener('keydown', onKeydown);
-	isOpen.value = true;
 });
 
 onUnmounted(() => {
@@ -37,7 +34,7 @@ onUnmounted(() => {
 <template>
 	<div class="layer-on-window" @click.self="emit('closeHandler')">
 		<Transition name="dialog" appear>
-			<div v-if="isOpen" class="view-layer">
+			<div class="view-layer">
 				<button type="button" class="close-button" @click.prevent="emit('closeHandler')" aria-label="Schließen" tabindex="0">
 					&#10006;
 				</button>
@@ -135,6 +132,7 @@ onUnmounted(() => {
 						<p v-if="tech_details?.last_modernization_year"><span>Modernisierungsjahr:</span>{{ tech_details?.last_modernization_year }}</p>
 						<p v-if="tech_details?.last_renovation_year"><span>Letzte Sanierung:</span>{{ tech_details?.last_renovation_year }}</p>
 					</li>
+					<li></li>
 				</ul>
 			</div>
 		</Transition>

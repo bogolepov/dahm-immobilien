@@ -60,7 +60,7 @@ export async function checkExposeFile(file: File): Promise<FileCheck> {
 	return result;
 }
 
-async function detectMime(file: File) {
+export async function detectMime(file: File) {
 	const buffer = new Uint8Array(await file.slice(0, 16).arrayBuffer());
 
 	// PNG

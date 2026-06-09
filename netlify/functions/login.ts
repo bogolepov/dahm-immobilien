@@ -43,8 +43,8 @@ export const handler: Handler = async (event, context) => {
 	if (input.email?.length) return response(400, 'Bad request');
 
 	if (input.login === process.env.ADMIN_LOGIN && input.password === process.env.ADMIN_PASSWORD) return userLogin('admin');
-	if (input.login === process.env.MODERATOR_LOGIN && input.password === process.env.MODERATOR_PASSWORD) return userLogin('moderator');
-	if (input.login === process.env.DEVELOPER_LOGIN && input.password === process.env.DEVELOPER_PASSWORD) return userLogin('developer');
+	if (input.login === process.env.MODERATOR_LOGIN && input.password === process.env.MODERATOR_PASSWORD) return userLogin('manager');
+	if (input.login === process.env.DEVELOPER_LOGIN && input.password === process.env.DEVELOPER_PASSWORD) return userLogin('super_admin');
 
 	return response(401, 'Invalid credentials');
 };

@@ -14,6 +14,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      profiles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["auth_roles"]
+        }
+        Insert: {
+          id: string
+          role: Database["public"]["Enums"]["auth_roles"]
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["auth_roles"]
+        }
+        Relationships: []
+      }
       properties: {
         Row: {
           action_type: Database["public"]["Enums"]["action_type"]
@@ -174,6 +189,7 @@ export type Database = {
     }
     Enums: {
       action_type: "sale" | "rent"
+      auth_roles: "super_admin" | "admin" | "manager"
       object_status: "available" | "sold" | "rented" | "reserved" | "draft"
     }
     CompositeTypes: {
@@ -303,6 +319,7 @@ export const Constants = {
   public: {
     Enums: {
       action_type: ["sale", "rent"],
+      auth_roles: ["super_admin", "admin", "manager"],
       object_status: ["available", "sold", "rented", "reserved", "draft"],
     },
   },

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { PROPERTY_STATUSES, ACTION_TYPES, type PropertyFormDataDB } from './supabase_types';
+import { PROPERTY_STATUSES, ACTION_TYPES, type PropertyFormDataDB, AUTH_ROLES } from './supabase_types';
 import { Z_MARKETING_TITLE_MIN, Z_PROPERTY_SID_MIN } from './consts';
 
 const zNullableString = z.preprocess(value => (value === '' ? null : value), z.string().nullable().default(null));
@@ -204,7 +204,7 @@ export const zLoginInput = z.object({
 export type LoginInput = z.infer<typeof zLoginInput>;
 
 export const zUserInfo = z.object({
-	role: z.enum(['admin', 'moderator', 'developer']),
+	role: z.enum(AUTH_ROLES),
 });
 export type UserInfo = z.infer<typeof zUserInfo>;
 export type UserRole = z.infer<typeof zUserInfo>['role'];

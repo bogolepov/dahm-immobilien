@@ -13,6 +13,7 @@ import ObjectView from './ObjectView.vue';
 import ObjectCoverImage from './ObjectCoverImage.vue';
 import AttachIcon from '@vue/icons/AttachIcon.vue';
 import ZoomIcon from '@vue/icons/ZoomIcon.vue';
+import { saveShowPropertiesDB } from '@scripts/supabase_utils.ts';
 
 type ShowItem = Record<number, boolean>;
 
@@ -28,8 +29,8 @@ const isLoaded = ref<boolean>(false);
 const editObject = ref<PropertyFormData | null | undefined>(undefined);
 const viewObject = ref<PropertyFormData | undefined>(undefined);
 
-const canDelete = computed(() => role === 'developer');
-const canEdit = computed(() => role === 'admin' || role === 'developer');
+const canDelete = computed(() => role === 'super_admin');
+const canEdit = computed(() => role === 'admin' || role === 'super_admin');
 const canShowHide = computed(() => role !== undefined);
 const isJustVisiter = computed(() => role === undefined);
 
@@ -139,23 +140,27 @@ const saveShowProperties = async () => {
 
 	if (updates.length === 0) return;
 
-	try {
-		const response = await fetch('/.netlify/functions/updatePropertiesShow', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(updates),
-			credentials: 'include',
-		});
-		if (!response.ok) {
-			const errorData = await response.json();
-			throw new Error(errorData);
-		}
-	} catch (err) {
-		console.log(err);
-	} finally {
-		isLoaded.value = false;
-		await downloadProperties();
-	}
+	await saveShowPropertiesDB(updates);
+	isLoaded.value = false;
+	await downloadProperties();
+
+	// try {
+	// 	const response = await fetch('/.netlify/functions/updatePropertiesShow', {
+	// 		method: 'POST',
+	// 		headers: { 'Content-Type': 'application/json' },
+	// 		body: JSON.stringify(updates),
+	// 		credentials: 'include',
+	// 	});
+	// 	if (!response.ok) {
+	// 		const errorData = await response.json();
+	// 		throw new Error(errorData);
+	// 	}
+	// } catch (err) {
+	// 	console.log(err);
+	// } finally {
+	// 	isLoaded.value = false;
+	// 	await downloadProperties();
+	// }
 };
 </script>
 

@@ -18,6 +18,7 @@ import { useNotifications } from '@vue/panel/lib/notification/useNotifications.t
 import type { ZodError } from 'zod';
 import { StatusList } from '@vue/panel/lib/types.ts';
 import ObjectCoverImage from './ObjectCoverImage.vue';
+import { savePropertyDB } from '@scripts/supabase_utils.ts';
 
 interface Props {
 	type: ActionType;
@@ -65,10 +66,11 @@ const exposeFilename = computed(() => {
 	return undefined;
 });
 
-watch(updatedObject, () => {
+watch([updatedObject, exposeFile, imageFile], () => {
 	if (timer) window.clearTimeout(timer);
 	timer = window.setTimeout(() => {
-		anyChanges.value = JSON.stringify(compactDeepCopy(object)) !== JSON.stringify(compactDeepCopy(updatedObject));
+		anyChanges.value =
+			!!exposeFile.value || !!imageFile.value || JSON.stringify(compactDeepCopy(object)) !== JSON.stringify(compactDeepCopy(updatedObject));
 		timer = undefined;
 	}, 450);
 });
@@ -84,7 +86,7 @@ const normalizeSlug = (slug: string) => {
 };
 
 function saveObject() {
-	if (JSON.stringify(compactDeepCopy(normalizedObject)) === JSON.stringify(compactDeepCopy(updatedObject))) return;
+	if (!anyChanges.value) return;
 
 	try {
 		const parsed = JSON.parse(JSON.stringify(updatedObject));
@@ -98,7 +100,8 @@ function saveObject() {
 			saveProperty.slug = normalizeSlug(slug);
 
 			isSaving.value = true;
-			netlifySaveObject(saveProperty, exposeFile.value, imageFile.value, (ok: boolean, error?: string) => {
+			// netlifySaveObject(saveProperty, exposeFile.value, imageFile.value, (ok: boolean, error?: string) => {
+			savePropertyDB(saveProperty, exposeFile.value, imageFile.value, (ok: boolean, error?: string) => {
 				isSaving.value = false;
 				if (!ok && error) toast(error, { variant: 'error', dismissible: false });
 				if (ok) emit('savedHandler');

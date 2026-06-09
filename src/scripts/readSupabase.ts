@@ -44,3 +44,11 @@ export async function getPropertiesAdmin() {
 	};
 	return objects;
 }
+
+export async function getUserRole(userId: string) {
+	if (!readSupabase) return undefined;
+
+	const { data, error } = await readSupabase.from('profiles').select('role').eq('id', userId).single();
+	if (!error) return data.role;
+	return undefined;
+}

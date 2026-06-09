@@ -18,7 +18,7 @@ function response(resCode: number, resObject: Object): HandlerResponse {
 }
 
 export const handler: Handler = async (event, context) => {
-	return await authMiddleware('moderator', processHandler, event, context);
+	return await authMiddleware('manager', processHandler, event, context);
 };
 
 async function processHandler(event: HandlerEvent, context: HandlerContext): Promise<HandlerResponse> {

@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { getCurrentInstance, onBeforeMount, ref, useTemplateRef } from 'vue';
+import { getCurrentInstance, onBeforeMount, onUnmounted, ref } from 'vue';
 import LoginPage from './pages/login/LoginPage.vue';
 import WorkPage from './pages/work/WorkPage.vue';
 import { createPinia } from 'pinia';
-import { extractSchemaFromJson, zUserInfo, type UserRole } from '@scripts/zod';
+import { type UserRole } from '@scripts/zod';
 import Loader from '@vue/forms/Loader.vue';
 import NotificationManager from './NotificationManager.vue';
+import { getUserRole, readSupabase } from '@scripts/readSupabase.ts';
+import type { Subscription } from '@supabase/supabase-js';
 
 const app = getCurrentInstance()?.appContext.app;
 app?.use(createPinia());
@@ -13,36 +15,43 @@ app?.use(createPinia());
 const meChecked = ref<boolean>(false);
 const userRole = ref<UserRole | undefined>(undefined);
 
+const supaSubscription = ref<Subscription | undefined>(undefined);
+
 const loginHandler = (role: UserRole) => {
 	userRole.value = role;
 };
-const logoutHandler = () => {
-	userRole.value = undefined;
-	fetch('/.netlify/functions/logout', { credentials: 'include' });
+const logoutHandler = async () => {
+	await readSupabase?.auth.signOut();
 };
 
 const getMe = async () => {
-	try {
-		const response = await fetch('/.netlify/functions/getMe', { credentials: 'include' });
-		const data = await response.json();
-
-		if (!response.ok) {
-			throw new Error(data);
-		}
-
-		const user = extractSchemaFromJson(zUserInfo, JSON.stringify(data));
-		if (!user) throw new Error('Invalid response data: extractSchemaFromJson');
-
-		userRole.value = user.role;
-	} catch (err) {
-		console.log(err);
-	} finally {
+	if (!readSupabase) {
 		meChecked.value = true;
+		return;
 	}
+
+	const { data } = await readSupabase.auth.getSession();
+	if (data?.session) userRole.value = await getUserRole(data.session.user.id);
+
+	meChecked.value = true;
 };
 
 onBeforeMount(() => {
 	getMe();
+
+	const res = readSupabase?.auth.onAuthStateChange(async (event, session) => {
+		if (event === 'SIGNED_OUT') {
+			userRole.value = undefined;
+		}
+		if (event === 'SIGNED_IN' && session?.user.id) {
+			userRole.value = await getUserRole(session?.user.id);
+		}
+	});
+	supaSubscription.value = res?.data.subscription;
+});
+
+onUnmounted(() => {
+	supaSubscription.value?.unsubscribe();
 });
 </script>
 

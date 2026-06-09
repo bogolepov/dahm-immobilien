@@ -13,11 +13,11 @@ function response(resCode: number, resObject: Object): HandlerResponse {
 
 function canProcess(userRole: UserRole, needRole: UserRole): boolean {
 	switch (needRole) {
-		case 'developer':
-			if (userRole === 'developer') return true;
+		case 'super_admin':
+			if (userRole === 'super_admin') return true;
 			else return false;
 		case 'admin':
-			if (userRole === 'developer' || userRole === 'admin') return true;
+			if (userRole === 'super_admin' || userRole === 'admin') return true;
 			else return false;
 		default:
 			return true;
