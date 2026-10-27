@@ -47,17 +47,20 @@ const errorPage = title === '404';
 			}
 			<div class='main-content-wrapper'>
 				<div class='main-content'>
-					{
-						title && title.length > 0 && (
-							<h1 class:list={['page-title', { error: errorPage }]}>{errorPage ? '#' + title : title}</h1>
-						)
-					}
+					{title && title.length > 0 && <h1 class:list={['page-title', { error: errorPage }]}>{errorPage ? '#' + title : title}</h1>}
 					<slot />
 				</div>
 			</div>
 		</main>
 		<Footer />
 		<Cookie client:load />
+		<!-- Cloudflare Web Analytics -->
+		<script
+			type='module'
+			src='https://static.cloudflareinsights.com/beacon.min.js'
+			data-cf-beacon='{"token": "47b64436644d459597899801770d6a43"}'
+		></script>
+		<!-- End Cloudflare Web Analytics -->
 	</body>
 </html>
 
