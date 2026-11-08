@@ -2,12 +2,12 @@
 import dahm from '@data/dahm.json';
 import texts from '@data/dahm_text.json';
 
-const { days, time } = dahm.office_time;
-const strHours = `${days.von}-${days.bis} ${time.von}-${time.bis}`;
+// const { days, time } = dahm.office_time;
+// const strHours = `${days.von}-${days.bis} ${time.von}-${time.bis}`;
 
 const json: string = JSON.stringify({
 	'@context': 'https://schema.org',
-	'@type': 'Organization',
+	'@type': 'Organization', // 'LocalBusiness'
 	url: dahm.website_link,
 	logo: dahm.website_link + '/assets/logo600.svg',
 	name: dahm.company_fullname,
@@ -22,12 +22,12 @@ const json: string = JSON.stringify({
 		postalCode: dahm.address.zip,
 	},
 	image: dahm.website_link + '/assets/building.jpg',
-	openingHours: [strHours],
-	geo: {
-		'@type': 'GeoCoordinates',
-		latitude: 51.358463,
-		longitude: 7.469349,
-	},
+	// openingHours: [strHours],
+	// geo: {
+	// 	'@type': 'GeoCoordinates',
+	// 	latitude: 51.358463,
+	// 	longitude: 7.469349,
+	// },
 });
 ---
 
