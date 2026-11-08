@@ -1,10 +1,12 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import DatenschutzContent from '@layouts/Datenschutz.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Datenschutzerklärung';
+const description: string = texts.description_datenschutz;
 ---
 
-<Layout {title}>
+<Layout {title} {description}>
 	<DatenschutzContent />
 </Layout>

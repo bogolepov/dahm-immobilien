@@ -1,10 +1,12 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import ImpressumContent from '@layouts/Impressum.astro';
+import texts from '@data/dahm_text.json';
 
 const title: string = 'Impressum';
+const description: string = texts.description_impressum;
 ---
 
-<Layout {title}>
+<Layout {title} {description}>
 	<ImpressumContent />
 </Layout>
